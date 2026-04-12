@@ -16,34 +16,51 @@
             transition: background 3s ease; z-index: -2;
         }
         .sky-bg.sunset { background: linear-gradient(to bottom, #fbcfe8 0%, #fef08a 100%); }
-        .sky-bg.night { background: linear-gradient(to bottom, #1e1b4b 0%, #312e81 100%); }
+        .sky-bg.night { background: linear-gradient(to bottom, #0f172a 0%, #312e81 100%); }
 
+        /* Stars - Оптимізовано (без box-shadow) */
+        .star {
+            position: absolute; background: white; border-radius: 50%;
+            opacity: 0; z-index: -1; transition: opacity 2s;
+            will-change: opacity; /* Апаратне прискорення */
+            transform: translateZ(0);
+        }
+        .sky-bg.night ~ .game .star { animation: twinkle var(--duration) infinite ease-in-out var(--delay); }
+        @keyframes twinkle { 
+            0%, 100% { opacity: 0.2; transform: scale(1); } 
+            50% { opacity: 0.9; transform: scale(1.3); } 
+        }
+
+        /* Clouds - Оптимізовано (без blur) */
         .cloud {
             position: absolute; background: white; border-radius: 50px;
-            opacity: 0.6; z-index: -1; filter: blur(1px); pointer-events: none;
+            opacity: 0.5; z-index: -1; pointer-events: none;
             transition: background 3s ease, opacity 3s ease;
+            will-change: transform;
+            transform: translateZ(0);
         }
-        .sky-bg.night ~ .game .cloud { background: #64748b; opacity: 0.3; }
+        .sky-bg.night ~ .game .cloud { background: #475569; opacity: 0.15; }
 
         /* UI Elements */
         .nav {
             position: fixed; width: 100%; top: 0; display: flex; 
             justify-content: space-between; align-items: center;
-            padding: 15px 5%; background: rgba(255,255,255,0.6);
-            backdrop-filter: blur(12px); border-bottom: 1px solid rgba(37, 99, 235, 0.1);
-            z-index: 1000; transition: all 0.3s ease;
+            padding: 15px 5%; background: rgba(255,255,255,0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            z-index: 1000; transition: all 0.5s ease;
         }
-        .sky-bg.night ~ .nav { background: rgba(15, 23, 42, 0.6); border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: white; }
+        .sky-bg.night ~ .nav { background: rgba(15, 23, 42, 0.8); border-bottom: 1px solid rgba(255, 255, 255, 0.05); color: white; }
         .logo {
             display: flex; align-items: center; gap: 12px;
             font-family: 'Pacifico', cursive; font-size: 24px;
             color: #2563eb; text-decoration: none; cursor: pointer; text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .logo-img { width: 40px; height: 40px; border-radius: 50%; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .sky-bg.night ~ .nav .logo { color: #93c5fd; }
+        .logo-img { width: 40px; height: 40px; border-radius: 50%; }
         
         .controls-top { display: flex; gap: 15px; align-items: center; }
-        .btn-icon { background: none; border: none; font-size: 24px; cursor: pointer; color: #3b82f6; transition: transform 0.2s; }
-        .btn-icon:hover { transform: scale(1.1); }
+        .btn-icon { background: none; border: none; font-size: 24px; cursor: pointer; transition: transform 0.2s; }
+        .btn-icon:hover { transform: scale(1.15) rotate(5deg); }
 
         .bg-logo {
             position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%);
@@ -51,100 +68,172 @@
             background: linear-gradient(120deg, #2563eb, #93c5fd, #2563eb);
             background-size: 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: gradientMove 8s linear infinite; opacity: 0.08; user-select: none;
-            transition: transform 0.1s ease-out; white-space: nowrap;
+            transition: transform 0.1s ease-out; white-space: nowrap; z-index: -1;
+            will-change: transform;
         }
 
+        /* Screen Shake Animation */
+        @keyframes shake {
+            0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+            20% { transform: translate3d(-8px, 5px, 0) rotate(-1deg); }
+            40% { transform: translate3d(8px, -5px, 0) rotate(1deg); }
+            60% { transform: translate3d(-5px, -5px, 0) rotate(-1deg); }
+            80% { transform: translate3d(5px, 5px, 0) rotate(1deg); }
+        }
+        .shake-active { animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both; }
+
         /* Game Elements */
-        .game { width: 100vw; height: 100vh; position: relative; cursor: pointer; }
-        .ground { position: absolute; bottom: 0; width: 100%; height: 12px; background: #3b82f6; opacity: 0.3; transition: all 0.3s; }
-        .sky-bg.night ~ .game .ground { background: #818cf8; opacity: 0.2; }
+        .game { width: 100vw; height: 100vh; position: relative; cursor: pointer; overflow: hidden; transform: translateZ(0); }
         
+        /* CSS Parallax Hills - Оптимізовано (без filter grayscale) */
+        .hills {
+            position: absolute; bottom: 12px; width: 200%; height: 180px;
+            background: 
+                radial-gradient(ellipse at 25% 100%, #93c5fd 0%, transparent 60%),
+                radial-gradient(ellipse at 75% 100%, #60a5fa 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 100%, #3b82f6 0%, transparent 70%);
+            background-size: 50% 100%; opacity: 0.35; z-index: 1; pointer-events: none;
+            animation: scrollHills 15s linear infinite; transition: opacity 2s;
+            will-change: transform;
+        }
+        /* Зниження прозорості замість фільтру */
+        .sky-bg.night ~ .game .hills { opacity: 0.08; } 
+        @keyframes scrollHills { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        .ground { position: absolute; bottom: 0; width: 100%; height: 12px; background: linear-gradient(90deg, #3b82f6, #2563eb); opacity: 0.5; transition: all 1s; z-index: 2; }
+        .sky-bg.night ~ .game .ground { background: linear-gradient(90deg, #4f46e5, #3730a3); opacity: 0.4; }
+        
+        /* Player - Оптимізовано (без drop-shadow) */
         .player { 
             width: 130px; height: 85px; position: absolute; bottom: 12px; left: 10%; z-index: 10; 
             transition: transform 0.05s linear;
+            will-change: transform;
         }
-        .player img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.15)); }
+        .player img { width: 100%; height: 100%; object-fit: contain; }
         
-        /* Shield Effect */
-        .shield-active { position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border-radius: 50%; border: 3px solid #4ade80; background: rgba(74, 222, 128, 0.2); animation: pulseShield 1.5s infinite; z-index: -1; display: none; }
+        /* Auras - Оптимізовано (без анімації box-shadow) */
+        .aura { position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border-radius: 50%; display: none; z-index: -1; transform: translateZ(0); }
+        .shield-active { border: 3px solid #4ade80; background: rgba(74, 222, 128, 0.2); animation: pulseAura 1.5s infinite; }
+        .magnet-active { border: 3px dashed #60a5fa; background: rgba(96, 165, 250, 0.2); animation: spinAura 3s linear infinite; }
+        .time-active { border: 3px solid #c084fc; background: rgba(192, 132, 252, 0.2); animation: pulseAura 1s infinite alternate; }
+        .star-active { border: 3px solid #fbbf24; background: rgba(251, 191, 36, 0.35); animation: pulseAura 0.4s infinite alternate; }
+        
         .player.has-shield .shield-active { display: block; }
-        @keyframes pulseShield { 0% { transform: scale(0.95); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 0.4; } 100% { transform: scale(0.95); opacity: 0.8; } }
+        .player.has-magnet .magnet-active { display: block; }
+        .player.has-time .time-active { display: block; }
+        .player.has-star .star-active { display: block; }
+        
+        @keyframes pulseAura { 0% { transform: scale(0.95); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 0.4; } 100% { transform: scale(0.95); opacity: 0.8; } }
+        @keyframes spinAura { from { transform: rotate(0deg) scale(1.1); } to { transform: rotate(360deg) scale(1.1); } }
+
+        .jump-ripple { position: absolute; border: 3px solid rgba(255,255,255,0.8); border-radius: 50%; animation: rippleOut 0.4s ease-out forwards; z-index: 5; pointer-events: none; }
+        @keyframes rippleOut { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(2.5); opacity: 0; } }
 
         .trail {
-            position: absolute; width: 80px; height: 3px; background: rgba(37, 99, 235, 0.3);
-            border-radius: 3px; pointer-events: none; animation: slideOut 0.4s ease-out forwards;
+            position: absolute; width: 80px; height: 4px; background: linear-gradient(90deg, rgba(37,99,235,0.4), transparent);
+            border-radius: 4px; pointer-events: none; animation: slideOut 0.4s ease-out forwards; z-index: 2;
         }
-        @keyframes slideOut { from { opacity: 1; transform: scaleX(1); } to { opacity: 0; transform: scaleX(0.2) translateX(-100px); } }
+        .player.has-star ~ .trail { background: linear-gradient(90deg, rgba(251,191,36,0.8), transparent); width: 120px; }
+        @keyframes slideOut { from { opacity: 1; transform: scaleX(1); } to { opacity: 0; transform: scaleX(0.1) translateX(-150px); } }
 
-        .particle {
-            position: absolute; border-radius: 50%; pointer-events: none; animation: puff 0.6s ease-out forwards;
-        }
-        @keyframes puff { to { transform: scale(0) translate(var(--x), var(--y)); opacity: 0; } }
+        /* Particles - Оптимізовано */
+        .particle { position: absolute; border-radius: 50%; pointer-events: none; animation: puff 0.6s ease-out forwards; z-index: 15; will-change: transform, opacity; }
+        @keyframes puff { to { transform: translate3d(var(--x), var(--y), 0) scale(0); opacity: 0; } }
 
         .floating-text {
-            position: absolute; font-weight: 900; font-size: 26px; pointer-events: none; animation: floatUp 0.8s ease-out forwards; z-index: 20; text-shadow: 0 2px 10px rgba(255,255,255,0.8);
+            position: absolute; font-weight: 900; font-size: 28px; pointer-events: none; animation: floatUp 0.8s ease-out forwards; z-index: 30; text-shadow: 0 4px 10px rgba(255,255,255,0.8);
+            will-change: transform, opacity;
         }
-        @keyframes floatUp { to { transform: translateY(-80px) scale(1.2); opacity: 0; } }
+        @keyframes floatUp { 0% { transform: translateY(0) scale(0.8); opacity: 0; } 20% { opacity: 1; transform: translateY(-20px) scale(1.2); } to { transform: translateY(-80px) scale(1); opacity: 0; } }
 
         /* Entities */
+        .obstacle, .obstacle-flying, .coin, .powerup, .fly-warning {
+            will-change: transform;
+            transform: translateZ(0); /* Force GPU render */
+        }
+
         .obstacle {
-            position: absolute; bottom: 12px; width: 45px; height: 50px;
-            background: linear-gradient(to bottom, #ef4444, #991b1b); border-radius: 12px 12px 4px 4px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2); border: 2px solid #7f1d1d;
+            position: absolute; bottom: 12px; width: 45px; height: 50px; z-index: 5;
+            background: linear-gradient(135deg, #ef4444, #991b1b); border-radius: 12px 12px 4px 4px;
+            border: 2px solid #7f1d1d;
         }
         .obstacle-flying {
-            position: absolute; width: 50px; height: 30px;
-            background: linear-gradient(to right, #64748b, #334155); border-radius: 20px;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3); animation: flyFloat 1s infinite alternate ease-in-out;
+            position: absolute; width: 55px; height: 35px; z-index: 5;
+            background: linear-gradient(135deg, #64748b, #334155); border-radius: 20px;
+            animation: flyFloat 1s infinite alternate ease-in-out;
+            border: 2px solid #1e293b;
         }
-        @keyframes flyFloat { from { transform: translateY(-5px); } to { transform: translateY(5px); } }
+        @keyframes flyFloat { from { transform: translateY(-8px); } to { transform: translateY(8px); } }
 
-        .coin { position: absolute; width: 45px; height: 45px; z-index: 5; }
-        .coin img { width: 100%; animation: coinSpin 1.5s infinite linear; filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.6)); }
+        .fly-warning {
+            position: absolute; right: 20px; font-size: 32px; font-weight: bold; color: #ef4444;
+            animation: warnFlash 0.3s infinite alternate; z-index: 40;
+        }
+        @keyframes warnFlash { from { opacity: 1; transform: scale(1); } to { opacity: 0.3; transform: scale(1.2); } }
+
+        /* Coins - Оптимізовано (без drop-shadow) */
+        .coin { position: absolute; width: 45px; height: 45px; z-index: 6; }
+        .coin img { width: 100%; animation: coinSpin 1.5s infinite linear; }
         @keyframes coinSpin { 0% { transform: rotateY(0deg) scale(1); } 50% { transform: rotateY(180deg) scale(1.1); } 100% { transform: rotateY(360deg) scale(1); } }
 
         .powerup {
-            position: absolute; width: 40px; height: 40px; background: #4ade80; border-radius: 50%;
-            box-shadow: 0 0 20px #4ade80; display: flex; align-items: center; justify-content: center;
-            animation: pulseShield 1s infinite; z-index: 6; color: white; font-weight: bold; font-size: 20px;
+            position: absolute; width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 6; color: white; font-weight: 900; font-size: 22px;
         }
+        .powerup.shield { background: linear-gradient(135deg, #4ade80, #16a34a); color: #4ade80; animation: pulseShield 1s infinite; }
+        .powerup.magnet { background: linear-gradient(135deg, #60a5fa, #2563eb); color: #60a5fa; animation: pulseShield 1s infinite reverse; }
+        .powerup.time { background: linear-gradient(135deg, #c084fc, #9333ea); color: #c084fc; animation: pulseShield 0.8s infinite alternate; }
+        .powerup.star { background: linear-gradient(135deg, #fbbf24, #d97706); color: #fbbf24; animation: pulseShield 0.5s infinite alternate; font-size: 26px; }
+
+        .time-vignette {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100;
+            background: radial-gradient(circle at center, transparent 40%, rgba(147, 51, 234, 0.3) 100%);
+            opacity: 0; transition: opacity 0.5s ease;
+        }
+        .gameArea-time-slow .time-vignette { opacity: 1; }
 
         /* Screens & UI */
         .score-container { position: absolute; top: 90px; right: 5%; text-align: right; z-index: 100; pointer-events: none; }
-        .score { font-size: 64px; font-weight: 900; color: #1d4ed8; line-height: 1; transition: transform 0.1s; text-shadow: 0 4px 15px rgba(255,255,255,0.6); }
-        .sky-bg.night ~ .game .score { color: #818cf8; text-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .score { font-size: 72px; font-weight: 900; color: #1d4ed8; line-height: 1; transition: transform 0.1s; text-shadow: 0 4px 10px rgba(255,255,255,0.8); }
+        .sky-bg.night ~ .game .score { color: #a5b4fc; text-shadow: 0 4px 10px rgba(0,0,0,0.8); }
         .score.pop { transform: scale(1.3) rotate(-3deg); }
-        .best-score { font-size: 16px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 2px; }
+        .best-score { font-size: 16px; font-weight: 900; color: #64748b; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; background: rgba(255,255,255,0.8); padding: 4px 12px; border-radius: 20px; display: inline-block; }
 
         .overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(15, 23, 42, 0.6); display: flex; align-items: center; 
-            justify-content: center; z-index: 2000; backdrop-filter: blur(8px); flex-direction: column;
+            justify-content: center; z-index: 2000; flex-direction: column;
+            transition: opacity 0.3s;
         }
+        /* Оптимізовано (без backdrop-filter) */
         .menu-card {
-            background: #fff; padding: 40px; max-width: 450px; width: 90%;
-            border-radius: 32px; text-align: center; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
-            border: 2px solid rgba(37, 99, 235, 0.1); transform: scale(0.9); animation: popIn 0.3s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(255, 255, 255, 0.98); padding: 40px; max-width: 450px; width: 90%;
+            border-radius: 32px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.6); transform: scale(0.9); 
+            animation: popIn 0.3s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .sky-bg.night ~ .overlay .menu-card {
+            background: rgba(30, 41, 59, 0.98); border-color: rgba(255,255,255,0.1); color: #f8fafc;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
         @keyframes popIn { to { transform: scale(1); } }
         
         .main-btn {
             display: inline-block; margin-top: 20px; padding: 18px 40px; background: linear-gradient(135deg, #2563eb, #3b82f6); 
             color: #fff; border-radius: 20px; text-decoration: none; font-weight: 900; font-size: 20px;
-            cursor: pointer; border: none; box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.5); transition: all 0.2s;
+            cursor: pointer; border: none; box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4); transition: transform 0.1s;
         }
-        .main-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 25px -5px rgba(37, 99, 235, 0.6); }
-        .main-btn:active { transform: translateY(1px); }
+        .main-btn:active { transform: translateY(2px); }
 
-        .tg-btn { display: block; margin-top: 15px; padding: 15px; background: #f1f5f9; color: #2563eb; border-radius: 16px; text-decoration: none; font-weight: 700; border: 1px solid #e2e8f0; transition: background 0.2s; }
+        .tg-btn { display: block; margin-top: 15px; padding: 15px; background: #f1f5f9; color: #2563eb; border-radius: 16px; text-decoration: none; font-weight: 700; transition: background 0.2s; }
         .tg-btn:hover { background: #e2e8f0; }
-
-        @keyframes gradientMove { 0% { background-position: 0% 50% } 100% { background-position: 200% 50% } }
+        .sky-bg.night ~ .overlay .tg-btn { background: #334155; color: #93c5fd; }
 
         @media (max-width: 768px) {
             .player { width: 100px; height: 65px; }
             .bg-logo { font-size: 20vw; }
-            .score { font-size: 48px; }
+            .score { font-size: 56px; }
             .menu-card { padding: 30px 20px; }
         }
     </style>
@@ -166,8 +255,14 @@
 <div class="bg-logo" id="parallaxLogo">SkyKids</div>
 
 <div class="game" id="gameArea">
+    <div class="time-vignette"></div>
+    <div class="hills"></div>
+    
     <div class="player" id="player">
-        <div class="shield-active"></div>
+        <div class="aura shield-active"></div>
+        <div class="aura magnet-active"></div>
+        <div class="aura time-active"></div>
+        <div class="aura star-active"></div>
         <img src="https://i.ibb.co/PsX2SJQR/SKYKIDS.png" alt="Hero">
     </div>
     <div class="ground" id="ground"></div>
@@ -180,8 +275,8 @@
 <div class="overlay" id="startScreen">
     <div class="menu-card">
         <img src="https://i.ibb.co/bgmcGKHp/2.png" style="width: 80px; margin-bottom: 10px;">
-        <h1 style="font-family: 'Pacifico', cursive; color: #2563eb; font-size: 36px; margin-bottom: 10px;">SkyKids</h1>
-        <p style="color: #64748b; font-size: 15px; margin-bottom: 20px;">Торкніться екрана, щоб стрибати.<br>Уникайте перешкод та збирайте монетки!</p>
+        <h1 style="font-family: 'Pacifico', cursive; color: #2563eb; font-size: 42px; margin-bottom: 10px;">SkyKids</h1>
+        <p style="color: inherit; opacity: 0.8; font-size: 15px; margin-bottom: 25px; line-height: 1.5;">Торкніться екрана, щоб стрибати.<br>Монети дають очки. Збирайте <b>Щит</b>, <b>Магніт</b> та <b>Час</b>!</p>
         <button class="main-btn" id="startBtn">ПОЛЕТІЛИ!</button>
         <a href="https://t.me/skykids_dnipro" target="_blank" class="tg-btn">Наш Telegram</a>
     </div>
@@ -189,8 +284,8 @@
 
 <div class="overlay" id="gameOver" style="display: none;">
     <div class="menu-card">
-        <h2 style="font-size: 32px; color: #1e293b; margin-bottom: 8px;">Кінець гри</h2>
-        <div id="finalScore" style="font-size: 20px; margin-bottom: 24px; color: #2563eb; font-weight: 700;"></div>
+        <h2 style="font-size: 36px; margin-bottom: 10px;">Кінець гри</h2>
+        <div id="finalScore" style="font-size: 24px; margin-bottom: 30px; color: #2563eb; font-weight: 900;"></div>
         <button class="main-btn" id="restartBtn">СПРОБУВАТИ ЩЕ</button>
     </div>
 </div>
@@ -200,15 +295,14 @@
     const gameArea = document.getElementById("gameArea");
     const scoreEl = document.getElementById("score");
     const bestScoreEl = document.getElementById("bestScore");
-    const skyBg = document.getElementById("sky");
+    const skyBg = document.getElementById("sky"); 
     const pLogo = document.getElementById("parallaxLogo");
     
-    // Screens
     const startScreen = document.getElementById("startScreen");
     const gameOverScreen = document.getElementById("gameOver");
     const finalScoreEl = document.getElementById("finalScore");
 
-    let gameState = 'start'; // start, playing, gameover
+    let gameState = 'start'; 
     let score = 0;
     let bestScore = localStorage.getItem("skBestScore") || 0;
     let speed = 6.5;
@@ -217,12 +311,31 @@
     let position = 12;
     let jumps = 0;
     let spawnTimer;
+    
     let hasShield = false;
+    let hasMagnet = false;
+    let hasTimeSlow = false;
+    let hasStar = false; 
+    let magnetTimer, timeTimer, starTimer;
     let isMuted = false;
 
     bestScoreEl.innerText = `РЕКОРД: ${bestScore}`;
 
-    // Audio Context Setup
+    // Зменшено кількість зірок для продуктивності
+    function initStars() {
+        for(let i=0; i<20; i++) {
+            let star = document.createElement("div");
+            star.className = "star";
+            star.style.width = star.style.height = (Math.random() * 3 + 1) + "px";
+            star.style.left = Math.random() * 100 + "vw";
+            star.style.top = Math.random() * 70 + "vh";
+            star.style.setProperty('--duration', (Math.random() * 3 + 1.5) + "s");
+            star.style.setProperty('--delay', (Math.random() * 2) + "s");
+            gameArea.appendChild(star);
+        }
+    }
+    initStars();
+
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     function playSound(freq, type, duration, vol = 0.1) {
         if (isMuted) return;
@@ -237,14 +350,19 @@
         osc.start(); osc.stop(audioCtx.currentTime + duration);
     }
 
-    // Toggle Mute
     document.getElementById("muteBtn").onclick = (e) => {
         e.stopPropagation();
         isMuted = !isMuted;
         document.getElementById("muteBtn").innerText = isMuted ? "🔇" : "🔊";
     };
 
-    function createExplosion(x, y, color = "#93c5fd", count = 8) {
+    function triggerShake() {
+        document.body.classList.remove("shake-active");
+        void document.body.offsetWidth; 
+        document.body.classList.add("shake-active");
+    }
+
+    function createExplosion(x, y, color = "#93c5fd", count = 6) {
         for(let i=0; i<count; i++) {
             const p = document.createElement("div");
             p.className = "particle";
@@ -270,30 +388,33 @@
             setTimeout(() => trail.remove(), 400);
         }
     }
-    setInterval(createTrail, 80);
+    setInterval(createTrail, 60);
 
     function createCloud() {
-        if (gameState !== 'playing') return;
+        if (gameState !== 'playing' && gameState !== 'start') return;
         const cloud = document.createElement("div");
         cloud.className = "cloud";
         const w = Math.random() * 150 + 80;
         cloud.style.width = w + "px";
         cloud.style.height = (w * 0.4) + "px";
-        cloud.style.top = Math.random() * 65 + "%";
+        cloud.style.top = Math.random() * 60 + "%";
         cloud.style.left = "110%";
         gameArea.appendChild(cloud);
 
         let cPos = 110;
-        let cSpeed = (Math.random() * 1.5 + 0.5) + (speed * 0.05);
+        let cSpeed = (Math.random() * 1 + 0.3) + (gameState==='playing' ? speed * 0.05 : 0);
+        
         function move() {
-            if (cPos < -30 || gameState !== 'playing') { cloud.remove(); return; }
-            cPos -= cSpeed;
+            if (cPos < -30) { cloud.remove(); return; }
+            let moveSpeed = hasTimeSlow ? cSpeed * 0.5 : cSpeed;
+            if (hasStar) moveSpeed *= 1.5; 
+            cPos -= moveSpeed;
             cloud.style.left = cPos + "%";
             requestAnimationFrame(move);
         }
         move();
     }
-    setInterval(createCloud, 2000);
+    setInterval(createCloud, 1800);
 
     function triggerPop(x, y, text, color = "#2563eb") {
         const t = document.createElement("div");
@@ -307,9 +428,14 @@
     }
 
     function updateDayNightCycle() {
-        if (score >= 200) skyBg.className = "sky-bg night";
-        else if (score >= 100) skyBg.className = "sky-bg sunset";
-        else skyBg.className = "sky-bg";
+        if (score >= 200) {
+            // Додаємо клас лише якщо його ще немає, щоб уникнути зайвих маніпуляцій DOM
+            if (!skyBg.classList.contains("night")) skyBg.className = "sky-bg night";
+        } else if (score >= 100) {
+            if (!skyBg.classList.contains("sunset")) skyBg.className = "sky-bg sunset";
+        } else {
+            if (skyBg.className !== "sky-bg") skyBg.className = "sky-bg";
+        }
     }
 
     function gameLoop() {
@@ -320,24 +446,24 @@
         if (position <= 12) { 
             if(velocity < -2) { 
                 player.style.transform = `scale(1.25, 0.75)`;
-                playSound(80, 'sine', 0.1, 0.05); // Landing thud
-                setTimeout(() => { if(gameState==='playing') player.style.transform = `scale(1, 1)`; }, 100);
+                playSound(80, 'sine', 0.1, 0.05);
+                setTimeout(() => { if(gameState==='playing') player.style.transform = `scale(1, 1) translateZ(0)`; }, 100);
+                createExplosion(window.innerWidth * 0.15, 12, "rgba(148, 163, 184, 0.6)", 4);
             }
             position = 12; velocity = 0; jumps = 0; 
         }
         
         player.style.bottom = position + "px";
         
-        // Tilt and Stretch logic
-        const tilt = velocity * -1.8;
+        const tilt = Math.max(-20, Math.min(20, velocity * -1.5));
         const stretch = 1 + Math.abs(velocity) * 0.015;
         const squash = 1 - Math.abs(velocity) * 0.015;
         
         if (position > 12) {
-            player.style.transform = `rotate(${tilt}deg) scale(${squash}, ${stretch})`;
+            player.style.transform = `rotate(${tilt}deg) scale(${squash}, ${stretch}) translateZ(0)`;
         }
         
-        pLogo.style.transform = `translate(-50%, calc(-50% + ${position * 0.15}px))`;
+        pLogo.style.transform = `translate(-50%, calc(-50% + ${position * 0.15}px)) translateZ(0)`;
         requestAnimationFrame(gameLoop);
     }
 
@@ -346,22 +472,58 @@
             velocity = 16.5;
             jumps++;
             playSound(200 + (jumps * 150), 'sine', 0.15);
-            createExplosion(window.innerWidth * 0.15, position + 20, "#e0f2fe", 5);
+            createExplosion(window.innerWidth * 0.15, position + 20, "#e0f2fe", 4);
+            
+            if (jumps === 2) {
+                let ripple = document.createElement("div");
+                ripple.className = "jump-ripple";
+                ripple.style.left = "13%";
+                ripple.style.bottom = (position) + "px";
+                ripple.style.width = "60px";
+                ripple.style.height = "20px";
+                gameArea.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 400);
+            }
         }
     }
 
-    function activateShield() {
-        hasShield = true;
-        player.classList.add('has-shield');
-        playSound(600, 'sine', 0.3, 0.2);
-    }
-
-    function breakShield() {
-        hasShield = false;
-        player.classList.remove('has-shield');
-        createExplosion(window.innerWidth * 0.15, position + 40, "#4ade80", 15);
-        playSound(150, 'sawtooth', 0.3, 0.2);
-        triggerPop(window.innerWidth * 0.15, window.innerHeight - position - 80, "ЩИТ ЗЛАМАНО!", "#ef4444");
+    function activatePowerup(type) {
+        if(type === 'shield') {
+            hasShield = true;
+            player.classList.add('has-shield');
+            playSound(600, 'sine', 0.3, 0.2);
+        } else if(type === 'magnet') {
+            hasMagnet = true;
+            player.classList.add('has-magnet');
+            playSound(800, 'triangle', 0.4, 0.1);
+            clearTimeout(magnetTimer);
+            magnetTimer = setTimeout(() => {
+                hasMagnet = false;
+                player.classList.remove('has-magnet');
+            }, 10000); 
+        } else if(type === 'time') {
+            hasTimeSlow = true;
+            player.classList.add('has-time');
+            gameArea.classList.add('gameArea-time-slow');
+            playSound(300, 'square', 0.5, 0.2);
+            clearTimeout(timeTimer);
+            timeTimer = setTimeout(() => {
+                hasTimeSlow = false;
+                player.classList.remove('has-time');
+                gameArea.classList.remove('gameArea-time-slow');
+                playSound(400, 'sine', 0.3, 0.1); 
+            }, 8000); 
+        } else if(type === 'star') {
+            hasStar = true;
+            player.classList.add('has-star');
+            playSound(900, 'sine', 0.5, 0.3);
+            clearTimeout(starTimer);
+            starTimer = setTimeout(() => {
+                hasStar = false;
+                player.classList.remove('has-star');
+                playSound(200, 'sine', 0.4, 0.1);
+            }, 6000);
+        }
     }
 
     function spawnEntity() {
@@ -369,42 +531,83 @@
         
         const rand = Math.random();
         let type = "obstacle";
+        
         if (rand > 0.95 && !hasShield) type = "shield";
-        else if (rand > 0.7) type = "coin";
-        else if (rand > 0.4 && score > 30) type = "flying"; // Flying obstacles appear after 30 points
+        else if (rand > 0.91 && rand <= 0.95 && !hasMagnet) type = "magnet";
+        else if (rand > 0.88 && rand <= 0.91 && !hasTimeSlow) type = "time";
+        else if (rand > 0.85 && rand <= 0.88 && !hasStar) type = "star";
+        else if (rand > 0.55) type = "coin";
+        else if (rand > 0.30 && score > 30) type = "flying"; 
 
         const entity = document.createElement("div");
+        let warningObj = null;
         
         if (type === "coin") {
             entity.className = "coin";
             entity.innerHTML = `<img src="https://i.ibb.co/Y4mkpGfM/Sky.png">`;
-            entity.style.bottom = (Math.random() * 220 + 90) + "px";
-        } else if (type === "shield") {
-            entity.className = "powerup";
-            entity.innerText = "S";
-            entity.style.bottom = (Math.random() * 150 + 80) + "px";
+            entity.style.bottom = (Math.random() * 250 + 90) + "px";
+        } else if (["shield", "magnet", "time", "star"].includes(type)) {
+            entity.className = `powerup ${type}`;
+            entity.innerText = type === "shield" ? "S" : (type === "magnet" ? "M" : (type === "time" ? "T" : "★"));
+            entity.style.bottom = (Math.random() * 150 + 100) + "px";
         } else if (type === "flying") {
             entity.className = "obstacle-flying";
-            entity.style.bottom = (Math.random() * 100 + 100) + "px"; // Spawn in mid-air
+            let flyY = (Math.random() * 120 + 90) + "px";
+            entity.style.bottom = flyY;
+            
+            warningObj = document.createElement("div");
+            warningObj.className = "fly-warning";
+            warningObj.innerText = "❗";
+            warningObj.style.bottom = flyY;
+            gameArea.appendChild(warningObj);
         } else {
-            entity.className = "obstacle"; // Ground obstacle
+            entity.className = "obstacle";
         }
 
-        let xPos = window.innerWidth + 50;
+        let xPos = type === "flying" ? window.innerWidth + 300 : window.innerWidth + 50;
         entity.style.left = xPos + "px";
         gameArea.appendChild(entity);
 
         function move() {
-            if (gameState !== 'playing') { entity.remove(); return; }
-            xPos -= speed;
+            if (gameState !== 'playing') { 
+                entity.remove(); 
+                if (warningObj) warningObj.remove();
+                return; 
+            }
+            
+            let currentSpeed = speed;
+            if (hasTimeSlow) currentSpeed *= 0.45;
+            if (hasStar) currentSpeed *= 1.3; 
+
+            if (warningObj && xPos < window.innerWidth) {
+                warningObj.remove();
+                warningObj = null;
+            }
+
+            if (type === "coin" && hasMagnet) {
+                let pRect = player.getBoundingClientRect();
+                let eRect = entity.getBoundingClientRect();
+                let dx = pRect.left - eRect.left;
+                let dy = pRect.top - eRect.top;
+                let dist = Math.sqrt(dx*dx + dy*dy);
+                
+                if (dist < 400) {
+                    xPos += dx * 0.08; 
+                    let currentBottom = parseFloat(entity.style.bottom);
+                    entity.style.bottom = (currentBottom - dy * 0.08) + "px";
+                } else {
+                    xPos -= currentSpeed; 
+                }
+            } else {
+                xPos -= currentSpeed;
+            }
+
             entity.style.left = xPos + "px";
             
-            // Forgive hitbox slightly to make game fair
             let pRect = player.getBoundingClientRect();
             let eRect = entity.getBoundingClientRect();
-            let pMarginX = 35, pMarginY = 25;
+            let pMarginX = 30, pMarginY = 20; 
 
-            // Collision Detection
             if (eRect.left < pRect.right - pMarginX && eRect.right > pRect.left + pMarginX &&
                 eRect.top < pRect.bottom - pMarginY && eRect.bottom > pRect.top + pMarginY) {
                 
@@ -414,65 +617,94 @@
                     scoreEl.classList.add('pop');
                     setTimeout(() => scoreEl.classList.remove('pop'), 150);
                     triggerPop(eRect.left, eRect.top, "+10", "#eab308");
-                    createExplosion(eRect.left, window.innerHeight - eRect.top, "#fef08a", 10);
+                    createExplosion(eRect.left, window.innerHeight - eRect.top, "#fef08a", 8);
                     playSound(980, 'square', 0.1, 0.05);
                     updateDayNightCycle();
                     entity.remove();
                     return;
-                } else if (type === "shield") {
-                    activateShield();
-                    triggerPop(eRect.left, eRect.top, "ЩИТ!", "#4ade80");
+                } else if (["shield", "magnet", "time", "star"].includes(type)) {
+                    activatePowerup(type);
+                    let color = type==="shield"?"#4ade80" : type==="magnet"?"#60a5fa" : type==="time"?"#c084fc":"#fbbf24";
+                    let txt = type==="shield"?"ЩИТ!" : type==="magnet"?"МАГНІТ!" : type==="time"?"ЧАС!":"СУПЕР!";
+                    triggerPop(eRect.left, eRect.top, txt, color);
+                    createExplosion(eRect.left, window.innerHeight - eRect.top, color, 12);
                     entity.remove();
                     return;
                 } else {
-                    if (hasShield) {
-                        breakShield();
-                        entity.remove(); // Destroy obstacle
+                    if (hasStar) {
+                        score += 5;
+                        scoreEl.innerText = score;
+                        triggerPop(eRect.left, eRect.top, "БУМ!", "#fbbf24");
+                        createExplosion(eRect.left, window.innerHeight - eRect.top, "#fbbf24", 10);
+                        playSound(120, 'sawtooth', 0.2, 0.2);
+                        entity.remove();
+                        return;
+                    } else if (hasShield) {
+                        hasShield = false;
+                        player.classList.remove('has-shield');
+                        createExplosion(eRect.left, window.innerHeight - eRect.top, "#4ade80", 15);
+                        playSound(150, 'sawtooth', 0.4, 0.2);
+                        triggerShake(); 
+                        triggerPop(eRect.left, eRect.top, "ЩИТ ЗЛАМАНО!", "#ef4444");
+                        entity.remove(); 
                         return;
                     } else {
-                        playSound(100, 'sawtooth', 0.4, 0.3);
+                        playSound(100, 'sawtooth', 0.5, 0.3);
                         createExplosion(eRect.left, window.innerHeight - eRect.top, "#ef4444", 20);
+                        triggerShake(); 
                         endGame();
                         return;
                     }
                 }
             }
 
-            // Passed obstacle
             if (xPos < -100) {
                 if (type === "obstacle" || type === "flying") { 
                     score++; 
                     scoreEl.innerText = score; 
                     updateDayNightCycle();
-                    if (score > 0 && score % 15 === 0) {
-                        speed += 0.5; // Game speeds up
+                    if (score > 0 && score % 20 === 0) {
+                        speed += 0.4; 
                         triggerPop(window.innerWidth/2, 150, "ШВИДШЕ!", "#ef4444");
                     }
                 }
                 entity.remove();
+                if (warningObj) warningObj.remove();
             } else { 
                 requestAnimationFrame(move); 
             }
         }
         move();
         
-        // Dynamic spawn rate based on speed
-        let nextSpawn = Math.random() * 900 + Math.max(700, 2200 - (speed * 120));
+        let nextSpawn = Math.random() * 800 + Math.max(600, 2000 - (speed * 100));
+        if (hasTimeSlow) nextSpawn *= 1.5; 
+        if (hasStar) nextSpawn *= 0.7; 
+        
         spawnTimer = setTimeout(spawnEntity, nextSpawn);
     }
 
     function startGame() {
         if (audioCtx.state === 'suspended' && !isMuted) audioCtx.resume();
         gameState = 'playing';
-        score = 0; speed = 6.5; position = 12; velocity = 0; jumps = 0; hasShield = false;
-        player.classList.remove('has-shield');
+        score = 0; speed = 6.5; position = 12; velocity = 0; jumps = 0; 
+        hasShield = false; hasMagnet = false; hasTimeSlow = false; hasStar = false;
+        clearTimeout(magnetTimer);
+        clearTimeout(timeTimer);
+        clearTimeout(starTimer);
+        
+        player.classList.remove('has-shield', 'has-magnet', 'has-time', 'has-star');
+        gameArea.classList.remove('gameArea-time-slow');
         scoreEl.innerText = "0";
         updateDayNightCycle();
         
-        startScreen.style.display = "none";
-        gameOverScreen.style.display = "none";
+        startScreen.style.opacity = "0";
+        gameOverScreen.style.opacity = "0";
+        setTimeout(() => {
+            startScreen.style.display = "none";
+            gameOverScreen.style.display = "none";
+        }, 300);
         
-        document.querySelectorAll(".obstacle, .obstacle-flying, .coin, .powerup, .cloud, .trail").forEach(e => e.remove());
+        document.querySelectorAll(".obstacle, .obstacle-flying, .coin, .powerup, .trail, .fly-warning").forEach(e => e.remove());
         
         gameLoop();
         spawnEntity();
@@ -481,31 +713,30 @@
     function endGame() {
         gameState = 'gameover';
         clearTimeout(spawnTimer);
-        player.style.transform = `rotate(180deg) translateY(-20px)`; // Death animation
+        player.style.transform = `rotate(180deg) translateY(-20px)`; 
         
         setTimeout(() => {
             gameOverScreen.style.display = "flex";
+            requestAnimationFrame(() => gameOverScreen.style.opacity = "1");
+            
             finalScoreEl.innerHTML = `Зібрано: <b>${score}</b>`;
             if (score > bestScore) {
                 bestScore = score;
                 localStorage.setItem("skBestScore", bestScore);
                 bestScoreEl.innerText = `РЕКОРД: ${bestScore}`;
             }
-        }, 500);
+        }, 600);
     }
 
     const handleAction = (e) => {
-        // Ignore clicks on buttons/links
         if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A' || e.target.closest('.nav')) return;
-        
-        if (gameState === 'start' || gameState === 'gameover') return; // Handled by buttons now
+        if (gameState === 'start' || gameState === 'gameover') return;
         if (gameState === 'playing') {
             e.preventDefault();
             jump();
         }
     };
 
-    // Event Listeners
     document.getElementById("startBtn").addEventListener("click", startGame);
     document.getElementById("restartBtn").addEventListener("click", startGame);
     
@@ -519,13 +750,11 @@
         }
     });
 
-    // Logo opens external link or info
     document.getElementById("logoBtn").onclick = () => {
         window.open("https://t.me/skykids_dnipro", "_blank");
     };
 
-    // Pre-create some clouds for aesthetics on start screen
-    for(let i=0; i<3; i++) createCloud();
+    for(let i=0; i<4; i++) createCloud();
 </script>
 </body>
 </html>
