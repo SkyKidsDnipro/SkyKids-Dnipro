@@ -7,49 +7,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
-        body { overflow: hidden; font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; }
+        body { overflow: hidden; font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; touch-action: none; }
 
-        /* ===== BACKGROUND ELEMENTS ===== */
         .sky-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to bottom, #e0f2fe 0%, #ffffff 100%);
-            z-index: -2;
+            transition: filter 2s ease; z-index: -2;
         }
 
         .cloud {
-            position: absolute;
-            background: white;
-            border-radius: 50px;
-            opacity: 0.5;
-            z-index: -1;
-            filter: blur(2px);
+            position: absolute; background: white; border-radius: 50px;
+            opacity: 0.5; z-index: -1; filter: blur(2px); pointer-events: none;
         }
 
         .bg-logo {
-            position: absolute;
-            top: 45%; left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Pacifico', cursive;
-            font-size: 18vw;
+            position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%);
+            font-family: 'Pacifico', cursive; font-size: 18vw;
             background: linear-gradient(120deg, #2563eb, #93c5fd, #2563eb);
-            background-size: 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientMove 8s linear infinite;
-            opacity: 0.1;
-            user-select: none;
+            background-size: 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: gradientMove 8s linear infinite; opacity: 0.1; user-select: none;
+            transition: transform 0.1s ease-out;
         }
 
-        /* ===== NAVIGATION ===== */
+        /* ===== UI & NAV ===== */
         .nav {
-            position: fixed;
-            width: 100%; top: 0;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%;
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+            position: fixed; width: 100%; top: 0; display: flex; 
+            justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(12px); border-bottom: 1px solid rgba(37, 99, 235, 0.1);
             z-index: 1000;
         }
         .logo {
@@ -61,119 +46,112 @@
         .coming-header { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: #3b82f6; }
 
         /* ===== GAME ENGINE ===== */
-        .game { width: 100vw; height: 100vh; position: relative; cursor: pointer; touch-action: manipulation; }
-        .ground { position: absolute; bottom: 0; width: 100%; height: 10px; background: #3b82f6; opacity: 0.2; }
+        .game { width: 100vw; height: 100vh; position: relative; cursor: pointer; }
+        .ground { position: absolute; bottom: 0; width: 100%; height: 10px; background: #3b82f6; opacity: 0.2; transition: background 0.3s; }
         
-        .player {
-            width: 140px; height: 90px;
-            position: absolute;
-            bottom: 10px; left: 10%;
-            z-index: 10;
-        }
+        .player { width: 140px; height: 90px; position: absolute; bottom: 10px; left: 10%; z-index: 10; }
         .player img { width: 100%; height: 100%; object-fit: contain; }
 
+        .trail {
+            position: absolute; width: 80px; height: 2px; background: rgba(37, 99, 235, 0.2);
+            border-radius: 2px; pointer-events: none; animation: slideOut 0.4s ease-out forwards;
+        }
+        @keyframes slideOut { from { opacity: 1; transform: scaleX(1); } to { opacity: 0; transform: scaleX(0.2) translateX(-100px); } }
+
+        .jump-particle {
+            position: absolute; width: 15px; height: 15px; background: rgba(255,255,255,0.9);
+            border-radius: 50%; pointer-events: none; animation: puff 0.5s ease-out forwards;
+        }
+        @keyframes puff { to { transform: scale(4) translateY(15px); opacity: 0; } }
+
+        .floating-text {
+            position: absolute; color: #2563eb; font-weight: 800; font-size: 24px;
+            pointer-events: none; animation: floatUp 0.8s ease-out forwards; z-index: 20;
+        }
+        @keyframes floatUp { to { transform: translateY(-80px); opacity: 0; } }
+
         .obstacle {
-            position: absolute;
-            bottom: 10px;
-            width: 45px; height: 35px;
-            background: #94a3b8;
-            border-radius: 20px 20px 5px 5px;
+            position: absolute; bottom: 10px; width: 40px; height: 40px;
+            background: #64748b; border-radius: 12px;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
         }
 
         .coin {
-            position: absolute;
-            width: 45px; height: 45px;
-            z-index: 5;
-            filter: drop-shadow(0 4px 6px rgba(37, 99, 235, 0.2));
+            position: absolute; width: 45px; height: 45px; z-index: 5;
+            filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.5));
         }
-        .coin img { width: 100%; animation: float 2s ease-in-out infinite; }
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotateY(0); }
-            50% { transform: translateY(-10px) rotateY(180deg); }
-        }
+        .coin img { width: 100%; animation: coinSpin 1.5s infinite linear; }
+        @keyframes coinSpin { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
 
-        /* UI ELEMENTS */
-        .score-container {
-            position: absolute; top: 100px; right: 5%;
-            text-align: right; z-index: 100; pointer-events: none;
-        }
-        .score { font-size: 48px; font-weight: 900; color: #1d4ed8; line-height: 1; }
-        .best-score { font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; }
+        .score-container { position: absolute; top: 100px; right: 5%; text-align: right; z-index: 100; pointer-events: none; }
+        .score { font-size: 56px; font-weight: 900; color: #1d4ed8; line-height: 1; transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .score.pop { transform: scale(1.4); }
+        .best-score { font-size: 14px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 1px; }
 
         .game-over {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%,-50%);
-            display: none; text-align: center;
-            background: white; padding: 40px; border-radius: 32px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+            display: none; text-align: center; background: white; padding: 40px; 
+            border-radius: 32px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
             z-index: 2000; width: 90%; max-width: 400px;
         }
 
-        /* MODAL */
         .modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.4);
-            display: none; align-items: center; justify-content: center;
-            z-index: 3000; backdrop-filter: blur(8px);
+            background: rgba(15, 23, 42, 0.4); display: none; align-items: center; 
+            justify-content: center; z-index: 3000; backdrop-filter: blur(8px);
         }
         .modal-content {
             background: #fff; padding: 40px; max-width: 450px; width: 90%;
             border-radius: 32px; text-align: center; border: 1px solid rgba(37, 99, 235, 0.1);
         }
         .tg-btn {
-            display: block; margin-top: 24px; padding: 18px;
-            background: #2563eb; color: #fff; border-radius: 16px;
-            text-decoration: none; font-weight: 700; transition: transform 0.2s;
+            display: block; margin-top: 24px; padding: 18px; background: #2563eb; 
+            color: #fff; border-radius: 16px; text-decoration: none; font-weight: 700;
         }
-        .tg-btn:active { transform: scale(0.95); }
 
         @keyframes gradientMove { 0% { background-position: 0% 50% } 100% { background-position: 200% 50% } }
 
         @media (max-width: 768px) {
-            .player { width: 100px; height: 65px; }
-            .bg-logo { font-size: 22vw; top: 40%; }
-            .score { font-size: 38px; }
+            .player { width: 110px; height: 70px; }
+            .bg-logo { font-size: 24vw; }
+            .score { font-size: 42px; }
         }
     </style>
 </head>
 <body>
 
 <div class="sky-bg" id="sky"></div>
-
 <nav class="nav">
     <div class="logo" id="logoBtn">
         <img src="https://i.ibb.co/bgmcGKHp/2.png" class="logo-img" alt="SkyKids">
         SkyKids
     </div>
-    <div class="coming-header">Сайт у розробці! Незабаром...</div>
+    <div class="coming-header">Незабаром</div>
 </nav>
 
-<div class="bg-logo">SkyKids</div>
+<div class="bg-logo" id="parallaxLogo">SkyKids</div>
 
 <div class="game" id="gameArea">
     <div class="player" id="player">
         <img src="https://i.ibb.co/PsX2SJQR/SKYKIDS.png" alt="Hero">
     </div>
-    <div class="ground"></div>
-
+    <div class="ground" id="ground"></div>
     <div class="score-container">
         <div class="best-score" id="bestScore">РЕКОРД: 0</div>
         <div class="score" id="score">0</div>
     </div>
-
     <div class="game-over" id="gameOver">
-        <h2 style="font-size: 28px; margin-bottom: 8px; color: #1e293b;">Упс! Спробуємо ще?</h2>
+        <h2 style="font-size: 28px; margin-bottom: 8px;">Чудовий політ!</h2>
         <div id="finalScore" style="font-size: 18px; margin-bottom: 24px; color: #2563eb;"></div>
-        <p style="color: #64748b; font-size: 14px;">Натисніть на екран, щоб злетіти знову</p>
+        <p style="color: #64748b; font-size: 14px;">Торкніться екрана, щоб спробувати ще раз</p>
     </div>
 </div>
 
 <div class="modal" id="aboutModal">
     <div class="modal-content">
         <h2 style="margin-bottom: 16px; font-family: 'Pacifico', cursive; color: #2563eb;">SkyKids</h2>
-        <p style="margin-bottom: 12px; line-height: 1.6; color: #475569;">Ми створюємо простір для підтримки дітей, які постраждали від війни. Кожен крок тут — це шлях до безпечного дитинства.</p>
-        <a href="https://t.me/skykids_dnipro" target="_blank" class="tg-btn">Доєднатися до нас</a>
+        <p style="line-height: 1.6; color: #475569;">Ми будуємо майбутнє, де кожна дитина має крила. Наш проект допомагає дітям у складних життєвих обставинах знайти підтримку та безпеку.</p>
+        <a href="https://t.me/skykids_dnipro" target="_blank" class="tg-btn">Наш Telegram канал</a>
         <button id="closeModal" style="margin-top: 20px; background: none; border: none; color: #94a3b8; cursor: pointer; font-weight: 600;">Повернутися до гри</button>
     </div>
 </div>
@@ -185,128 +163,157 @@
     const bestScoreEl = document.getElementById("bestScore");
     const gameOverEl = document.getElementById("gameOver");
     const finalScoreEl = document.getElementById("finalScore");
-    const modal = document.getElementById("aboutModal");
-    const sky = document.getElementById("sky");
+    const skyBg = document.getElementById("sky");
+    const pLogo = document.getElementById("parallaxLogo");
+    const ground = document.getElementById("ground");
 
     let isGameOver = false;
     let score = 0;
     let bestScore = localStorage.getItem("skBestScore") || 0;
     let speed = 6;
-    let gravity = 0.75;
+    let gravity = 0.7;
     let velocity = 0;
     let position = 10;
     let jumps = 0;
     let spawnTimer;
-    
+
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playSound(freq, type, duration, vol = 0.1) {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        osc.start(); osc.stop(audioCtx.currentTime + duration);
+    }
+
     bestScoreEl.innerText = `РЕКОРД: ${bestScore}`;
 
-    // --- DECORATION: CLOUDS ---
+    function createTrail() {
+        if (position > 20 && !isGameOver) {
+            const trail = document.createElement("div");
+            trail.className = "trail";
+            trail.style.left = "10%";
+            trail.style.bottom = (position + 40) + "px";
+            gameArea.appendChild(trail);
+            setTimeout(() => trail.remove(), 400);
+        }
+    }
+    setInterval(createTrail, 100);
+
     function createCloud() {
+        if (isGameOver) return;
         const cloud = document.createElement("div");
         cloud.className = "cloud";
-        const w = Math.random() * 100 + 50;
+        const w = Math.random() * 120 + 60;
         cloud.style.width = w + "px";
-        cloud.style.height = (w * 0.4) + "px";
-        cloud.style.top = Math.random() * 60 + "%";
+        cloud.style.height = (w * 0.5) + "px";
+        cloud.style.top = Math.random() * 70 + "%";
         cloud.style.left = "110%";
-        sky.appendChild(cloud);
+        gameArea.appendChild(cloud);
 
         let cPos = 110;
-        let cSpeed = Math.random() * 1 + 0.5;
-
-        function moveCloud() {
-            if (cPos < -20) { cloud.remove(); return; }
+        let cSpeed = (Math.random() * 1.5 + 0.5) + (speed / 10);
+        function move() {
+            if (cPos < -30 || isGameOver) { cloud.remove(); return; }
             cPos -= cSpeed;
             cloud.style.left = cPos + "%";
-            requestAnimationFrame(moveCloud);
+            requestAnimationFrame(move);
         }
-        moveCloud();
+        move();
     }
-    setInterval(createCloud, 3000);
+    setInterval(createCloud, 2500);
 
-    // --- LOGIC ---
+    function triggerPop(x, y, text) {
+        const t = document.createElement("div");
+        t.className = "floating-text";
+        t.innerText = text;
+        t.style.left = x + "px";
+        t.style.top = y + "px";
+        gameArea.appendChild(t);
+        setTimeout(() => t.remove(), 800);
+        ground.style.background = "#2563eb";
+        setTimeout(() => ground.style.background = "#3b82f6", 200);
+    }
+
     function gameLoop() {
         if (isGameOver) return;
-
         velocity -= gravity;
         position += velocity;
-
-        if (position <= 10) {
-            position = 10;
-            velocity = 0;
-            jumps = 0;
-        }
-
+        if (position <= 10) { position = 10; velocity = 0; jumps = 0; }
+        
         player.style.bottom = position + "px";
-        player.style.transform = `rotate(${velocity * -1.2}deg)`;
-
+        player.style.transform = `rotate(${velocity * -1.5}deg)`;
+        
+        // Parallax effect on background logo
+        pLogo.style.transform = `translate(-50%, calc(-50% + ${position * 0.1}px))`;
+        
         requestAnimationFrame(gameLoop);
     }
 
     function jump() {
         if (jumps < 2) {
-            velocity = 17;
+            velocity = 16;
             jumps++;
+            playSound(150 + (jumps * 100), 'sine', 0.1);
+            const p = document.createElement("div");
+            p.className = "jump-particle";
+            p.style.left = "15%";
+            p.style.bottom = position + "px";
+            gameArea.appendChild(p);
+            setTimeout(() => p.remove(), 500);
         }
     }
 
     function spawnEntity() {
         if (isGameOver) return;
-
-        const isCoin = Math.random() > 0.75;
+        const isCoin = Math.random() > 0.7;
         const entity = document.createElement("div");
-        entity.classList.add(isCoin ? "coin" : "obstacle");
-        
+        entity.className = isCoin ? "coin" : "obstacle";
         if (isCoin) {
             entity.innerHTML = `<img src="https://i.ibb.co/Y4mkpGfM/Sky.png">`;
-            entity.style.bottom = (Math.random() * 180 + 100) + "px";
+            entity.style.bottom = (Math.random() * 200 + 80) + "px";
         }
-
         let xPos = window.innerWidth;
         entity.style.left = xPos + "px";
         gameArea.appendChild(entity);
 
         function move() {
             if (isGameOver) { entity.remove(); return; }
-
             xPos -= speed;
             entity.style.left = xPos + "px";
-
+            
             let pRect = player.getBoundingClientRect();
             let eRect = entity.getBoundingClientRect();
 
-            if (
-                eRect.left < pRect.right - 25 &&
-                eRect.right > pRect.left + 25 &&
-                eRect.top < pRect.bottom - 15 &&
-                eRect.bottom > pRect.top + 15
-            ) {
+            if (eRect.left < pRect.right - 35 && eRect.right > pRect.left + 35 &&
+                eRect.top < pRect.bottom - 25 && eRect.bottom > pRect.top + 25) {
                 if (isCoin) {
                     score += 10;
                     scoreEl.innerText = score;
+                    scoreEl.classList.add('pop');
+                    setTimeout(() => scoreEl.classList.remove('pop'), 150);
+                    triggerPop(eRect.left, eRect.top, "+10");
+                    playSound(880, 'square', 0.1, 0.05);
                     entity.remove();
-                    return; 
+                    return;
                 } else {
+                    playSound(100, 'sawtooth', 0.4, 0.2);
                     endGame();
                     return;
                 }
             }
 
             if (xPos < -100) {
-                if (!isCoin) {
-                    score++;
-                    scoreEl.innerText = score;
-                    if (score % 8 === 0) speed += 0.3; 
-                }
+                if (!isCoin) { score++; scoreEl.innerText = score; if (score % 10 === 0) speed += 0.4; }
                 entity.remove();
-            } else {
-                requestAnimationFrame(move);
-            }
+            } else { requestAnimationFrame(move); }
         }
         move();
-
-        const nextSpawn = Math.max(800, 2000 - (speed * 100));
-        spawnTimer = setTimeout(spawnEntity, Math.random() * 1000 + nextSpawn);
+        spawnTimer = setTimeout(spawnEntity, Math.random() * 1000 + Math.max(700, 2200 - (speed * 120)));
     }
 
     function endGame() {
@@ -314,7 +321,6 @@
         clearTimeout(spawnTimer);
         gameOverEl.style.display = "block";
         finalScoreEl.innerHTML = `Ви набрали: <b>${score}</b>`;
-        
         if (score > bestScore) {
             bestScore = score;
             localStorage.setItem("skBestScore", bestScore);
@@ -323,40 +329,26 @@
     }
 
     function restart() {
-        isGameOver = false;
-        score = 0;
-        speed = 6;
-        position = 10;
-        velocity = 0;
+        isGameOver = false; score = 0; speed = 6; position = 10; velocity = 0;
         scoreEl.innerText = "0";
         gameOverEl.style.display = "none";
-        document.querySelectorAll(".obstacle, .coin").forEach(e => e.remove());
+        document.querySelectorAll(".obstacle, .coin, .cloud, .trail").forEach(e => e.remove());
         gameLoop();
         spawnEntity();
     }
 
-    // --- CONTROLS ---
-    window.addEventListener("mousedown", (e) => {
-        if (modal.style.display === "flex") return;
-        if (isGameOver) restart();
-        else jump();
-    });
-
-    window.addEventListener("keydown", (e) => {
-        if (e.code === "Space") {
-            e.preventDefault();
-            if (isGameOver) restart();
-            else jump();
-        }
-    });
-
-    document.getElementById("logoBtn").onclick = (e) => {
-        e.stopPropagation();
-        modal.style.display = "flex";
+    const handleAction = (e) => {
+        if (document.getElementById("aboutModal").style.display === "flex") return;
+        if (isGameOver) restart(); else jump();
     };
-    document.getElementById("closeModal").onclick = () => modal.style.display = "none";
 
-    // --- START ---
+    window.addEventListener("mousedown", handleAction);
+    window.addEventListener("touchstart", (e) => { e.preventDefault(); handleAction(); }, {passive: false});
+    window.addEventListener("keydown", (e) => { if (e.code === "Space") { e.preventDefault(); handleAction(); }});
+
+    document.getElementById("logoBtn").onclick = (e) => { e.stopPropagation(); document.getElementById("aboutModal").style.display = "flex"; };
+    document.getElementById("closeModal").onclick = () => document.getElementById("aboutModal").style.display = "none";
+
     spawnEntity();
     gameLoop();
 </script>
