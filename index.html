@@ -1,600 +1,364 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SkyKids — Coming Soon</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SkyKids — Незабаром</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+        body { overflow: hidden; font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+        /* ===== BACKGROUND ELEMENTS ===== */
+        .sky-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, #e0f2fe 0%, #ffffff 100%);
+            z-index: -2;
+        }
 
-<style>
-* { margin:0; padding:0; box-sizing:border-box; }
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50px;
+            opacity: 0.5;
+            z-index: -1;
+            filter: blur(2px);
+        }
 
-body {
-    overflow: hidden;
-    font-family: 'Inter', sans-serif;
-    background: #ffffff;
-}
+        .bg-logo {
+            position: absolute;
+            top: 45%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Pacifico', cursive;
+            font-size: 18vw;
+            background: linear-gradient(120deg, #2563eb, #93c5fd, #2563eb);
+            background-size: 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientMove 8s linear infinite;
+            opacity: 0.1;
+            user-select: none;
+        }
 
-/* ===== ШАПКА ===== */
-.nav {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 18px 5%;
-    background: rgba(255,255,255,0.9);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    z-index: 1000;
-}
+        /* ===== NAVIGATION ===== */
+        .nav {
+            position: fixed;
+            width: 100%; top: 0;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%;
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+            z-index: 1000;
+        }
+        .logo {
+            display: flex; align-items: center; gap: 12px;
+            font-family: 'Pacifico', cursive; font-size: 24px;
+            color: #2563eb; text-decoration: none; cursor: pointer;
+        }
+        .logo-img { width: 40px; height: 40px; border-radius: 50%; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .coming-header { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: #3b82f6; }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: 'Pacifico', cursive;
-    font-size: 26px;
-    color: #000;
-    text-decoration: none;
-}
+        /* ===== GAME ENGINE ===== */
+        .game { width: 100vw; height: 100vh; position: relative; cursor: pointer; touch-action: manipulation; }
+        .ground { position: absolute; bottom: 0; width: 100%; height: 10px; background: #3b82f6; opacity: 0.2; }
+        
+        .player {
+            width: 140px; height: 90px;
+            position: absolute;
+            bottom: 10px; left: 10%;
+            z-index: 10;
+        }
+        .player img { width: 100%; height: 100%; object-fit: contain; }
 
-.logo-img {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-}
+        .obstacle {
+            position: absolute;
+            bottom: 10px;
+            width: 45px; height: 35px;
+            background: #94a3b8;
+            border-radius: 20px 20px 5px 5px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
 
-.coming-header {
-    font-weight: 700;
-    font-size: 18px;
-}
+        .coin {
+            position: absolute;
+            width: 45px; height: 45px;
+            z-index: 5;
+            filter: drop-shadow(0 4px 6px rgba(37, 99, 235, 0.2));
+        }
+        .coin img { width: 100%; animation: float 2s ease-in-out infinite; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotateY(0); }
+            50% { transform: translateY(-10px) rotateY(180deg); }
+        }
 
-/* ===== ФОН ===== */
-.bg-logo {
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Pacifico', cursive;
-    font-size: 20vw;
-    background: linear-gradient(120deg, #2563eb, #60a5fa, #2563eb);
-    background-size: 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientMove 10s ease infinite;
-    opacity: 0.12;
-}
+        /* UI ELEMENTS */
+        .score-container {
+            position: absolute; top: 100px; right: 5%;
+            text-align: right; z-index: 100; pointer-events: none;
+        }
+        .score { font-size: 48px; font-weight: 900; color: #1d4ed8; line-height: 1; }
+        .best-score { font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; }
 
-@keyframes gradientMove {
-    0% { background-position: 0% }
-    50% { background-position: 100% }
-    100% { background-position: 0% }
-}
+        .game-over {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            display: none; text-align: center;
+            background: white; padding: 40px; border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            z-index: 2000; width: 90%; max-width: 400px;
+        }
 
-/* ===== ИГРА ===== */
-.game {
-    width: 100vw;
-    height: 100vh;
-    padding-top: 80px;
-    position: relative;
-}
+        /* MODAL */
+        .modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.4);
+            display: none; align-items: center; justify-content: center;
+            z-index: 3000; backdrop-filter: blur(8px);
+        }
+        .modal-content {
+            background: #fff; padding: 40px; max-width: 450px; width: 90%;
+            border-radius: 32px; text-align: center; border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+        .tg-btn {
+            display: block; margin-top: 24px; padding: 18px;
+            background: #2563eb; color: #fff; border-radius: 16px;
+            text-decoration: none; font-weight: 700; transition: transform 0.2s;
+        }
+        .tg-btn:active { transform: scale(0.95); }
 
-.ground {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 6px;
-    background: #cbd5f5;
-}
+        @keyframes gradientMove { 0% { background-position: 0% 50% } 100% { background-position: 200% 50% } }
 
-.player {
-    width: 200px;
-    height: 120px;
-    position: absolute;
-    bottom: 6px;
-    left: 10%;
-}
-
-.player img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.obstacle {
-    position: absolute;
-    bottom: 6px;
-    width: 28px;
-    height: 45px;
-    background: #ef4444;
-}
-
-/* СЧЁТ */
-.score {
-    position: absolute;
-    top: 90px;
-    right: 30px;
-    font-size: 22px;
-    font-weight: 700;
-}
-
-.best-score {
-    position: absolute;
-    top: 60px;
-    right: 30px;
-    font-size: 16px;
-    opacity: 0.6;
-}
-
-/* GAME OVER */
-.game-over {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    display: none;
-    font-size: 24px;
-    text-align: center;
-}
-
-/* ХВОСТ */
-.trail {
-    position: absolute;
-    width: 80px;
-    height: 30px;
-    background: radial-gradient(circle, rgba(37,99,235,0.25), transparent);
-    border-radius: 50%;
-    pointer-events: none;
-    animation: fade 0.6s linear forwards;
-}
-
-@keyframes fade {
-    to { opacity: 0; transform: scale(2.5); }
-}
-  
-/* ===== МОНЕТКА ===== */
-.coin {
-    position: absolute;
-    width: 65px;
-    height: 65px;
-}
-
-.coin img {
-    width: 100%;
-}
-
-/* ===== МОБИЛКА ===== */
-@media (max-width: 768px) {
-    .player {
-        width: 120px;
-        height: 70px;
-    }
-
-    .score {
-        font-size: 18px;
-        right: 15px;
-    }
-
-    .best-score {
-        font-size: 14px;
-        right: 15px;
-    }
-
-    .coming-header {
-        font-size: 14px;
-    }
-}
-  
-@keyframes flyToScore {
-    to {
-        transform: translate(300px, -200px) scale(0.3);
-        opacity: 0;
-    }
-}
-
-.coin.collect {
-    animation: flyToScore 0.6s ease forwards;
-}
-
-@keyframes pop {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.3); }
-    100% { transform: scale(1); }
-}
-
-.score.pop {
-    animation: pop 0.3s ease;
-}
-
-@keyframes shake {
-    0% { transform: translate(-50%, -50%) translateX(0); }
-    25% { transform: translate(-50%, -50%) translateX(-10px); }
-    50% { transform: translate(-50%, -50%) translateX(10px); }
-    75% { transform: translate(-50%, -50%) translateX(-5px); }
-    100% { transform: translate(-50%, -50%) translateX(0); }
-}
-
-.game-over.shake {
-    animation: shake 0.4s;
-}
-  
-/* МОДАЛКА */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-}
-
-.modal-content {
-    background: #fff;
-    padding: 30px;
-    max-width: 420px;
-    width: 90%;
-    border-radius: 16px;
-    text-align: center;
-    animation: fadeIn 0.3s ease;
-}
-
-.modal-content h2 {
-    margin-bottom: 10px;
-}
-
-.modal-content p {
-    margin-bottom: 12px;
-    font-size: 14px;
-    opacity: 0.8;
-}
-
-.close-modal {
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    font-size: 22px;
-    cursor: pointer;
-}
-
-.tg-btn {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px 20px;
-    background: #2563eb;
-    color: #fff;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.2s;
-}
-
-.tg-btn:hover {
-    background: #1d4ed8;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-}
-</style>
+        @media (max-width: 768px) {
+            .player { width: 100px; height: 65px; }
+            .bg-logo { font-size: 22vw; top: 40%; }
+            .score { font-size: 38px; }
+        }
+    </style>
 </head>
-
 <body>
 
+<div class="sky-bg" id="sky"></div>
+
 <nav class="nav">
-    <a href="#" class="logo">
-        <img src="https://i.ibb.co/bgmcGKHp/2.png" class="logo-img">
+    <div class="logo" id="logoBtn">
+        <img src="https://i.ibb.co/bgmcGKHp/2.png" class="logo-img" alt="SkyKids">
         SkyKids
-    </a>
-    <div class="coming-header">Coming Soon...</div>
+    </div>
+    <div class="coming-header">Сайт у розробці! Незабаром...</div>
 </nav>
 
 <div class="bg-logo">SkyKids</div>
 
-<div class="game" id="game">
+<div class="game" id="gameArea">
     <div class="player" id="player">
-        <img src="https://i.ibb.co/PsX2SJQR/SKYKIDS.png">
+        <img src="https://i.ibb.co/PsX2SJQR/SKYKIDS.png" alt="Hero">
     </div>
     <div class="ground"></div>
 
-    <div class="best-score" id="bestScore">Best: 0</div>
-    <div class="score" id="score">0</div>
+    <div class="score-container">
+        <div class="best-score" id="bestScore">РЕКОРД: 0</div>
+        <div class="score" id="score">0</div>
+    </div>
 
     <div class="game-over" id="gameOver">
-        <div id="finalScore"></div>
-        <br>
-        Тапни / Натисни щоб почати щераз
+        <h2 style="font-size: 28px; margin-bottom: 8px; color: #1e293b;">Упс! Спробуємо ще?</h2>
+        <div id="finalScore" style="font-size: 18px; margin-bottom: 24px; color: #2563eb;"></div>
+        <p style="color: #64748b; font-size: 14px;">Натисніть на екран, щоб злетіти знову</p>
     </div>
 </div>
 
-<!-- МОДАЛКА -->
 <div class="modal" id="aboutModal">
-  <div class="modal-content">
-    <span class="close-modal" id="closeModal">&times;</span>
-
-    <h2>SkyKids</h2>
-
-    <p>
-      Платформа <strong>SkyKids</strong> наразі перебуває на етапі розробки.
-    </p>
-
-    <p>
-      Ми створюємо проєкт, спрямований на допомогу дітям із соціально вразливих сімей,
-      а також сім’ям, які постраждали від бойових дій або були вимушені переселитися.
-    </p>
-
-    <p>
-      Наша місія — забезпечити дітей необхідною підтримкою:
-      харчуванням, освітою, розвитком та безпечним середовищем для життя і зростання.
-    </p>
-
-    <p>
-      Вже зараз ми формуємо ініціативи, які допоможуть дітям отримати
-      шанс на стабільне та гідне майбутнє.
-    </p>
-
-    <a href="https://t.me/skykids_dnipro" target="_blank" class="tg-btn">
-      Підписатися на Telegram
-    </a>
-  </div>
+    <div class="modal-content">
+        <h2 style="margin-bottom: 16px; font-family: 'Pacifico', cursive; color: #2563eb;">SkyKids</h2>
+        <p style="margin-bottom: 12px; line-height: 1.6; color: #475569;">Ми створюємо простір для підтримки дітей, які постраждали від війни. Кожен крок тут — це шлях до безпечного дитинства.</p>
+        <a href="https://t.me/skykids_dnipro" target="_blank" class="tg-btn">Доєднатися до нас</a>
+        <button id="closeModal" style="margin-top: 20px; background: none; border: none; color: #94a3b8; cursor: pointer; font-weight: 600;">Повернутися до гри</button>
+    </div>
 </div>
-  
+
 <script>
-const logo = document.querySelector(".logo");
-const modal = document.getElementById("aboutModal");
-const closeModal = document.getElementById("closeModal");
+    const player = document.getElementById("player");
+    const gameArea = document.getElementById("gameArea");
+    const scoreEl = document.getElementById("score");
+    const bestScoreEl = document.getElementById("bestScore");
+    const gameOverEl = document.getElementById("gameOver");
+    const finalScoreEl = document.getElementById("finalScore");
+    const modal = document.getElementById("aboutModal");
+    const sky = document.getElementById("sky");
 
-logo.addEventListener("click", (e) => {
-    e.preventDefault();
-    modal.style.display = "flex";
-});
-
-closeModal.addEventListener("click", () => {
-    modal.style.display = "none";
-});
-
-window.addEventListener("click", (e) => {
-    if (e.target === modal) {
-        modal.style.display = "none";
-    }
-});
-  
-const player = document.getElementById("player");
-const scoreEl = document.getElementById("score");
-const bestScoreEl = document.getElementById("bestScore");
-const gameOverEl = document.getElementById("gameOver");
-const finalScoreEl = document.getElementById("finalScore");
-
-/* РЕКОРД */
-let bestScore = localStorage.getItem("bestScore") || 0;
-bestScore = Number(bestScore);
-bestScoreEl.innerText = "Best: " + bestScore;
-
-
-/* ФИЗИКА */
-let velocity = 0;
-let gravity = 1.1;
-let position = 6;
-
-
-let jumps = 0;
-let maxJumps = 2;
-
-let isGameOver = false;
-let score = 0;
-let speed = 5;
-function increaseDifficulty() {
-    speed += 0.4;
-}
-  
-setInterval(increaseDifficulty, 3000);
-
-function gameLoop() {
-    speed += 0.002;
-  
-    if (isGameOver) return;
-
-    velocity -= gravity;
-    position += velocity;
-
-    if (position <= 6) {
-        position = 6;
-        velocity = 0;
-        jumps = 0;
-    }
-
-    player.style.bottom = position + "px";
-    requestAnimationFrame(gameLoop);
-}
-
-/* ПРЫЖОК */
-function jump() {
-    if (jumps >= maxJumps) return;
-    velocity = 26; // УВЕЛИЧЕННЫЙ ПРЫЖОК
-    jumps++;
-    createTrail();
-}
-
-/* УПРАВЛЕНИЕ */
-document.addEventListener("keydown", e => {
-    if (e.code === "Space") action();
-});
-document.addEventListener("touchstart", action);
-document.addEventListener("mousedown", action);
-
-function action() {
-    if (isGameOver) restart();
-    else jump();
-}
-
-/* ПРЕПЯТСТВИЯ */
-const DISTANCE = 200;
-let lastObstacleX = window.innerWidth;
-
-function spawnObstacle() {
-    if (isGameOver) return;
-
-    const obs = document.createElement("div");
-    obs.classList.add("obstacle");
-
-    let pos = lastObstacleX + DISTANCE;
-    // шанс появления монетки
-    if (Math.random() > 0.4) {
-        spawnCoin(pos + 80);
-    }
-  
-    obs.style.left = pos + "px";
-    document.body.appendChild(obs);
-
-    lastObstacleX = pos;
-
-    function move() {
-        if (isGameOver) return;
-
-        pos -= speed;
-        obs.style.left = pos + "px";
-
-        let p = player.getBoundingClientRect();
-        let o = obs.getBoundingClientRect();
-
-        if (
-            o.left < p.right - 40 &&
-            o.right > p.left + 40 &&
-            p.bottom > o.top + 10
-        ) {
-            endGame();
-        }
-
-        if (pos < -50) {
-            obs.remove();
-            score++;
-            scoreEl.innerText = score;
-
-            scoreEl.classList.add("pop");
-            setTimeout(() => scoreEl.classList.remove("pop"), 300);
-            spawnObstacle();
-            return;
-        }
-
-        requestAnimationFrame(move);
-    }
-
-    move();
-}
-
-/* ХВОСТ */
-function createTrail() {
-    const t = document.createElement("div");
-    t.classList.add("trail");
-
-    let r = player.getBoundingClientRect();
-    t.style.left = r.left + "px";
-    t.style.top = r.bottom + "px";
-
-    document.body.appendChild(t);
-    setTimeout(() => t.remove(), 600);
-}
-
-function spawnCoin(x) {
-    const coin = document.createElement("div");
-    coin.classList.add("coin");
-    coin.innerHTML = `<img src="https://i.ibb.co/Y4mkpGfM/Sky.png">`;
-
-    let y = Math.random() * 120 + 80;
-
-    coin.style.left = x + "px";
-    coin.style.bottom = y + "px";
-
-    document.body.appendChild(coin);
-
-    function move() {
-        if (isGameOver) return;
-
-        x -= speed;
-        coin.style.left = x + "px";
-
-        let p = player.getBoundingClientRect();
-        let c = coin.getBoundingClientRect();
-
-        if (
-            c.left < p.right &&
-            c.right > p.left &&
-            c.bottom > p.top &&
-            c.top < p.bottom
-        ) {
-            coin.classList.add("collect");
-
-            score += 10;
-            scoreEl.innerText = score;
-
-            scoreEl.classList.add("pop");
-            setTimeout(() => scoreEl.classList.remove("pop"), 300);
-            scoreEl.innerText = score;
-            return;
-        }
-
-        if (x < -50) {
-            coin.remove();
-            return;
-        }
-
-        requestAnimationFrame(move);
-    }
-
-    move();
-}
-  
-/* GAME OVER */
-function endGame() {
-    gameOverEl.classList.add("shake");
-    setTimeout(() => gameOverEl.classList.remove("shake"), 400);
+    let isGameOver = false;
+    let score = 0;
+    let bestScore = localStorage.getItem("skBestScore") || 0;
+    let speed = 6;
+    let gravity = 0.75;
+    let velocity = 0;
+    let position = 10;
+    let jumps = 0;
+    let spawnTimer;
     
-    isGameOver = true;
+    bestScoreEl.innerText = `РЕКОРД: ${bestScore}`;
 
-    if (score > bestScore) {
-        bestScore = score;
-        localStorage.setItem("bestScore", bestScore);
+    // --- DECORATION: CLOUDS ---
+    function createCloud() {
+        const cloud = document.createElement("div");
+        cloud.className = "cloud";
+        const w = Math.random() * 100 + 50;
+        cloud.style.width = w + "px";
+        cloud.style.height = (w * 0.4) + "px";
+        cloud.style.top = Math.random() * 60 + "%";
+        cloud.style.left = "110%";
+        sky.appendChild(cloud);
+
+        let cPos = 110;
+        let cSpeed = Math.random() * 1 + 0.5;
+
+        function moveCloud() {
+            if (cPos < -20) { cloud.remove(); return; }
+            cPos -= cSpeed;
+            cloud.style.left = cPos + "%";
+            requestAnimationFrame(moveCloud);
+        }
+        moveCloud();
+    }
+    setInterval(createCloud, 3000);
+
+    // --- LOGIC ---
+    function gameLoop() {
+        if (isGameOver) return;
+
+        velocity -= gravity;
+        position += velocity;
+
+        if (position <= 10) {
+            position = 10;
+            velocity = 0;
+            jumps = 0;
+        }
+
+        player.style.bottom = position + "px";
+        player.style.transform = `rotate(${velocity * -1.2}deg)`;
+
+        requestAnimationFrame(gameLoop);
     }
 
-    bestScoreEl.innerText = "Best: " + bestScore;
+    function jump() {
+        if (jumps < 2) {
+            velocity = 17;
+            jumps++;
+        }
+    }
 
-    finalScoreEl.innerHTML = `
-        Game Over <br><br>
-        Score: ${score} <br>
-        Best: ${bestScore}
-    `;
+    function spawnEntity() {
+        if (isGameOver) return;
 
-    gameOverEl.style.display = "block";
-}
+        const isCoin = Math.random() > 0.75;
+        const entity = document.createElement("div");
+        entity.classList.add(isCoin ? "coin" : "obstacle");
+        
+        if (isCoin) {
+            entity.innerHTML = `<img src="https://i.ibb.co/Y4mkpGfM/Sky.png">`;
+            entity.style.bottom = (Math.random() * 180 + 100) + "px";
+        }
 
-/* RESTART */
-function restart() {
-    isGameOver = false;
+        let xPos = window.innerWidth;
+        entity.style.left = xPos + "px";
+        gameArea.appendChild(entity);
 
-    speed = 5; // 🔥 СБРОС СКОРОСТИ
+        function move() {
+            if (isGameOver) { entity.remove(); return; }
 
-    score = 0;
-    scoreEl.innerText = "0";
-    gameOverEl.style.display = "none";
-    lastObstacleX = window.innerWidth;
+            xPos -= speed;
+            entity.style.left = xPos + "px";
 
-    document.querySelectorAll(".obstacle, .coin").forEach(o => o.remove());
+            let pRect = player.getBoundingClientRect();
+            let eRect = entity.getBoundingClientRect();
 
-    spawnObstacle();
+            if (
+                eRect.left < pRect.right - 25 &&
+                eRect.right > pRect.left + 25 &&
+                eRect.top < pRect.bottom - 15 &&
+                eRect.bottom > pRect.top + 15
+            ) {
+                if (isCoin) {
+                    score += 10;
+                    scoreEl.innerText = score;
+                    entity.remove();
+                    return; 
+                } else {
+                    endGame();
+                    return;
+                }
+            }
+
+            if (xPos < -100) {
+                if (!isCoin) {
+                    score++;
+                    scoreEl.innerText = score;
+                    if (score % 8 === 0) speed += 0.3; 
+                }
+                entity.remove();
+            } else {
+                requestAnimationFrame(move);
+            }
+        }
+        move();
+
+        const nextSpawn = Math.max(800, 2000 - (speed * 100));
+        spawnTimer = setTimeout(spawnEntity, Math.random() * 1000 + nextSpawn);
+    }
+
+    function endGame() {
+        isGameOver = true;
+        clearTimeout(spawnTimer);
+        gameOverEl.style.display = "block";
+        finalScoreEl.innerHTML = `Ви набрали: <b>${score}</b>`;
+        
+        if (score > bestScore) {
+            bestScore = score;
+            localStorage.setItem("skBestScore", bestScore);
+            bestScoreEl.innerText = `РЕКОРД: ${bestScore}`;
+        }
+    }
+
+    function restart() {
+        isGameOver = false;
+        score = 0;
+        speed = 6;
+        position = 10;
+        velocity = 0;
+        scoreEl.innerText = "0";
+        gameOverEl.style.display = "none";
+        document.querySelectorAll(".obstacle, .coin").forEach(e => e.remove());
+        gameLoop();
+        spawnEntity();
+    }
+
+    // --- CONTROLS ---
+    window.addEventListener("mousedown", (e) => {
+        if (modal.style.display === "flex") return;
+        if (isGameOver) restart();
+        else jump();
+    });
+
+    window.addEventListener("keydown", (e) => {
+        if (e.code === "Space") {
+            e.preventDefault();
+            if (isGameOver) restart();
+            else jump();
+        }
+    });
+
+    document.getElementById("logoBtn").onclick = (e) => {
+        e.stopPropagation();
+        modal.style.display = "flex";
+    };
+    document.getElementById("closeModal").onclick = () => modal.style.display = "none";
+
+    // --- START ---
+    spawnEntity();
     gameLoop();
-}
-
-/* СТАРТ */
-spawnObstacle();
-gameLoop();
 </script>
-
 </body>
 </html>
