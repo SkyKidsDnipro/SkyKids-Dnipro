@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фінансова звітність | Sky Kids NGO</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Pacifico&display=swap">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --bg-soft: #f8fafc;
+            --white: #ffffff;
+            --shadow-lg: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
+            --radius-xl: 32px;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
+            background: linear-gradient(90deg, var(--primary), #60a5fa);
+            z-index: 9999; transition: width 0.1s ease;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-soft);
+            color: var(--text-main);
+            margin: 0; line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header Style */
+        .legal-header {
+            background: var(--white);
+            padding: 100px 5% 120px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .legal-header::before {
+            content: ''; position: absolute; top: -50%; right: -10%; width: 40%; height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.03) 0%, transparent 70%);
+            transform: rotate(15deg);
+        }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--primary); text-decoration: none; font-weight: 700; font-size: 14px;
+            margin-bottom: 30px; padding: 10px 20px; background: var(--primary-light);
+            border-radius: 100px; transition: 0.3s;
+        }
+        .back-link:hover { transform: translateX(-5px); border-color: var(--primary); background: var(--white); }
+
+        .legal-header h1 { font-size: clamp(36px, 6vw, 56px); font-weight: 800; margin: 0 0 15px; letter-spacing: -2px; }
+
+        /* Layout */
+        .legal-container {
+            max-width: 850px; margin: -80px auto 100px;
+            padding: 0 20px; position: relative; z-index: 10; 
+        }
+
+        .charter-card {
+            background: var(--white); padding: 70px; border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg); border: 1px solid rgba(226, 232, 240, 0.6);
+        }
+
+        .charter-text section { margin-bottom: 50px; }
+        .charter-text h2 { font-size: 26px; font-weight: 800; margin: 0 0 24px; display: flex; align-items: center; gap: 15px; }
+        .charter-text h2 span { width: 40px; height: 40px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 18px; flex-shrink: 0; }
+        .charter-text p { font-size: 18px; color: var(--text-muted); margin-bottom: 20px; }
+
+        /* OpenDataBot Notice */
+        .odb-notice {
+            display: flex; align-items: center; gap: 12px; background: #f1f5f9; padding: 16px 24px;
+            border-radius: 16px; margin-bottom: 30px; border-left: 4px solid #64748b;
+        }
+        .odb-notice i { font-size: 24px; color: #475569; }
+        .odb-notice p { margin: 0 !important; font-size: 15px !important; font-weight: 600; color: #334155 !important; }
+        
+        /* Звіти (Інтерактивні картки) */
+        .reports-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 30px; }
+
+        .report-item {
+            position: relative; display: flex; align-items: center; justify-content: space-between;
+            background: var(--white); padding: 20px 25px; border-radius: 16px;
+            border: 2px solid #e2e8f0; cursor: pointer; overflow: hidden; transition: 0.3s;
+        }
+
+        .report-info { display: flex; align-items: center; gap: 15px; position: relative; z-index: 2; transition: 0.3s; }
+        .report-info i { font-size: 32px; color: var(--primary); transition: 0.3s; }
+        .report-info div h4 { margin: 0 0 5px; font-size: 18px; font-weight: 800; color: var(--text-main); }
+        .report-info div p { margin: 0; font-size: 14px; color: var(--text-muted); font-weight: 500; }
+
+        .report-download-icon {
+            width: 40px; height: 40px; background: var(--primary-light); color: var(--primary);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 20px; transition: 0.3s; position: relative; z-index: 2;
+        }
+
+        /* Hover Overlay styles */
+        .hover-overlay {
+            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 3;
+            font-weight: 800; font-size: 16px; letter-spacing: 0.5px;
+        }
+
+        /* Минулі роки (2023, 2024, 2025) */
+        .report-item.past { border-color: #e2e8f0; }
+        .report-item.past:hover { border-color: var(--primary); box-shadow: 0 10px 25px rgba(37, 99, 235, 0.15); transform: translateY(-3px); }
+        .report-item.past:hover .report-download-icon { background: var(--primary); color: var(--white); }
+        .report-item.past .hover-overlay { background: rgba(239, 246, 255, 0.95); color: var(--primary); backdrop-filter: blur(3px); }
+        .report-item.past:hover .report-info, .report-item.past:hover .report-download-icon { opacity: 0; transform: scale(0.95); }
+        .report-item.past:hover .hover-overlay { opacity: 1; }
+
+        /* Поточний рік/Прогноз (2026) */
+        .report-item.current { border-color: #dcfce7; background: #f0fdf4; }
+        .report-item.current .report-info i { color: #10b981; }
+        .report-item.current .report-download-icon { background: #dcfce7; color: #10b981; }
+        .report-item.current .report-download-icon i::before { content: '\e26e'; /* ph-hourglass */ }
+
+        .report-item.current:hover .report-info, .report-item.current:hover .report-download-icon { opacity: 0; transform: scale(0.95); }
+        .report-item.current:hover { border-color: #10b981; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.15); transform: translateY(-3px); }
+        .report-item.current .hover-overlay { background: rgba(209, 250, 229, 0.95); color: #047857; backdrop-filter: blur(3px); }
+        .report-item.current:hover .hover-overlay { opacity: 1; }
+
+        /* МОДАЛЬНІ ВІКНА (ДАШБОРД СТАТИСТИКИ) */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(8px);
+            z-index: 99999; display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: 0.3s ease; padding: 20px;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+
+        .modal-box {
+            background: var(--white); width: 100%; max-width: 550px;
+            border-radius: 32px; padding: 40px; position: relative;
+            transform: translateY(30px) scale(0.95); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+        .modal-overlay.active .modal-box { transform: translateY(0) scale(1); }
+
+        .modal-close {
+            position: absolute; top: 20px; right: 20px; background: #f1f5f9; border: none;
+            width: 40px; height: 40px; border-radius: 50%; font-size: 20px; color: var(--text-muted);
+            cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center;
+        }
+        .modal-close:hover { background: #e2e8f0; color: #ef4444; transform: rotate(90deg); }
+
+        .modal-header { text-align: center; margin-bottom: 30px; }
+        .modal-header h3 { font-size: 28px; font-weight: 800; margin: 0 0 5px; color: var(--text-main); }
+        .modal-header p { font-size: 15px; color: var(--text-muted); margin: 0; }
+
+        /* Сітка статистики */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+        .stat-card { background: var(--bg-soft); padding: 20px; border-radius: 20px; border: 1px solid #f1f5f9; }
+        .stat-card.full-width { grid-column: span 2; background: var(--primary-light); border-color: #bfdbfe; }
+        
+        .stat-label { font-size: 13px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; margin-bottom: 5px; display: block; letter-spacing: 0.5px; }
+        .stat-card.full-width .stat-label { color: var(--primary); }
+        
+        .stat-value { font-size: 22px; font-weight: 800; color: var(--text-main); }
+        .stat-card.full-width .stat-value { font-size: 36px; color: var(--primary); letter-spacing: -1px; }
+        
+        .stat-change { font-size: 14px; font-weight: 700; margin-left: 10px; padding: 2px 8px; border-radius: 8px; }
+        .change-up { background: #dcfce7; color: #10b981; }
+        .change-down { background: #fee2e2; color: #ef4444; }
+
+        .btn-modal-action {
+            width: 100%; padding: 18px; background: #f8fafc; color: var(--text-main); border: 2px solid #e2e8f0;
+            border-radius: 16px; font-weight: 800; font-size: 16px; cursor: pointer; transition: 0.2s;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            text-decoration: none;
+        }
+        .btn-modal-action:hover { background: var(--white); border-color: var(--primary); color: var(--primary); }
+
+        /* Footer */
+        .legal-footer { text-align: center; padding-bottom: 80px; color: var(--text-muted); font-size: 15px; }
+
+        @media (max-width: 768px) {
+            .charter-card { padding: 40px 24px; }
+            .legal-header h1 { font-size: 34px; }
+            .report-item { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .report-download-icon { position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
+            .modal-box { padding: 30px 20px; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .stat-card.full-width { grid-column: span 1; }
+            .stat-card.full-width .stat-value { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="scroll-progress"></div>
+
+    <header class="legal-header">
+        <a href="index.html" class="back-link"><i class="ph-bold ph-arrow-left"></i> На головну</a>
+        <h1 data-uk="Фінансова звітність" data-en="Financial Reports">Фінансова звітність</h1>
+        <p data-uk="Прозорість кожної залученої та витраченої гривні" 
+           data-en="Transparency of every hryvnia raised and spent"
+           style="color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: clamp(16px, 2vw, 18px); font-weight: 500;">
+            Прозорість кожної залученої та витраченої гривні
+        </p>
+    </header>
+
+    <main class="legal-container">
+        <div class="charter-card">
+            
+            <div class="odb-notice">
+                <i class="ph-duotone ph-check-badge"></i>
+                <p>Усі фінансові показники на цій сторінці верифіковані та відповідають офіційним даним державних реєстрів (ДПС, Держстат).</p>
+            </div>
+
+            <div class="charter-text">
+                <section>
+                    <h2><span>1</span> Наші принципи фінансування</h2>
+                    <p>ГО «Небесні Діти» (ЄДРПОУ 45080222) є неприбутковою організацією. Усі фінансові операції проходять через офіційні рахунки, а залучені кошти спрямовуються виключно на реалізацію статутних цілей (харчування дітей, освіта, утримання безпечного простору).</p>
+                </section>
+
+                <section>
+                    <h2><span>2</span> Реєстр фінансових звітів</h2>
+                    <p>Оберіть рік для перегляду ключових фінансових показників організації.</p>
+                    
+                    <div class="reports-grid">
+                        
+                        <div class="report-item current" onclick="openReport('2026')">
+                            <div class="report-info">
+                                <i class="ph-duotone ph-chart-line-up"></i>
+                                <div>
+                                    <h4>Фінансовий прогноз на 2026 рік</h4>
+                                    <p>Поточний операційний період</p>
+                                </div>
+                            </div>
+                            <div class="report-download-icon"><i class="ph-bold ph-hourglass"></i></div>
+                            <div class="hover-overlay"><i class="ph-bold ph-eye" style="margin-right:8px;"></i> Переглянути прогноз</div>
+                        </div>
+
+                        <div class="report-item past" onclick="openReport('2025')">
+                            <div class="report-info">
+                                <i class="ph-duotone ph-file-text"></i>
+                                <div>
+                                    <h4>Річний звіт за 2025 рік</h4>
+                                    <p>Офіційні дані</p>
+                                </div>
+                            </div>
+                            <div class="report-download-icon"><i class="ph-bold ph-chart-pie-slice"></i></div>
+                            <div class="hover-overlay"><i class="ph-bold ph-folder-open" style="margin-right:8px;"></i> Відкрити звіт</div>
+                        </div>
+
+                        <div class="report-item past" onclick="openReport('2024')">
+                            <div class="report-info">
+                                <i class="ph-duotone ph-file-text"></i>
+                                <div>
+                                    <h4>Річний звіт за 2024 рік</h4>
+                                    <p>Офіційні дані</p>
+                                </div>
+                            </div>
+                            <div class="report-download-icon"><i class="ph-bold ph-chart-pie-slice"></i></div>
+                            <div class="hover-overlay"><i class="ph-bold ph-folder-open" style="margin-right:8px;"></i> Відкрити звіт</div>
+                        </div>
+
+                        <div class="report-item past" onclick="openReport('2023')">
+                            <div class="report-info">
+                                <i class="ph-duotone ph-file-text"></i>
+                                <div>
+                                    <h4>Річний звіт за 2023 рік</h4>
+                                    <p>Офіційні дані</p>
+                                </div>
+                            </div>
+                            <div class="report-download-icon"><i class="ph-bold ph-chart-pie-slice"></i></div>
+                            <div class="hover-overlay"><i class="ph-bold ph-folder-open" style="margin-right:8px;"></i> Відкрити звіт</div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="statModal" onclick="closeModal(event, 'statModal')">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal(null, 'statModal')"><i class="ph-bold ph-x"></i></button>
+            
+            <div class="modal-header">
+                <h3 id="m-title">Річний звіт</h3>
+                <p id="m-status">Статус: Затверджено</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card full-width">
+                    <span class="stat-label">Загальний дохід</span>
+                    <div style="display:flex; align-items:center;">
+                        <span class="stat-value" id="m-revenue">0 ₴</span>
+                        <span class="stat-change" id="m-rev-change" style="display:none;"></span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <span class="stat-label">Фінансовий результат</span>
+                    <span class="stat-value" id="m-profit" style="font-size:18px;">0 ₴</span>
+                </div>
+                
+                <div class="stat-card">
+                    <span class="stat-label">Активи</span>
+                    <span class="stat-value" id="m-assets" style="font-size:18px;">0 ₴</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">Рентабельність</span>
+                    <span class="stat-value" id="m-margin" style="font-size:18px;">0%</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">Працівників</span>
+                    <span class="stat-value" id="m-employees" style="font-size:18px;">0</span>
+                </div>
+            </div>
+
+            <a href="https://opendatabot.ua/c/45080222" target="_blank" class="btn-modal-action">
+                <i class="ph-bold ph-arrow-square-out"></i> Перевірити на Опендатабот
+            </a>
+        </div>
+    </div>
+
+    <footer class="legal-footer">
+        <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 15px;">
+            <i class="ph-fill ph-bank" style="color: var(--primary); font-size: 24px;"></i>
+            <i class="ph-fill ph-check-circle" style="color: #059669; font-size: 24px;"></i>
+        </div>
+        <strong>NGO Sky Kids</strong> — Фінансова прозорість та довіра.<br>
+        2026 &bull; Дніпро &bull; Україна
+    </footer>
+
+    <script>
+        // Дані зі скриншота Опендатабот
+        const financialData = {
+            '2026': {
+                title: 'Прогноз на 2026 рік', status: 'Триває накопичення даних',
+                revenue: '2 317 994 ₴', revChange: '+3.85%', revClass: 'change-up',
+                profit: 'В процесі', margin: 'В процесі', assets: 'В процесі', employees: 'Оновлюється'
+            },
+            '2025': {
+                title: 'Фінансові показники 2025', status: 'Офіційні дані',
+                revenue: '2 232 000 ₴', revChange: '-76.24%', revClass: 'change-down',
+                profit: '-8 500 ₴', margin: '-0.38%', assets: '0 ₴', employees: '3'
+            },
+            '2024': {
+                title: 'Фінансові показники 2024', status: 'Офіційні дані',
+                revenue: '9 394 000 ₴', revChange: '+703.59%', revClass: 'change-up',
+                profit: '47 500 ₴', margin: '0.51%', assets: '47 500 ₴', employees: '4'
+            },
+            '2023': {
+                title: 'Фінансові показники 2023', status: 'Офіційні дані',
+                revenue: '1 169 000 ₴', revChange: null, revClass: '',
+                profit: '438 000 ₴', margin: '37.47%', assets: '438 000 ₴', employees: '0'
+            }
+        };
+
+        // Функція відкриття звіту
+        function openReport(year) {
+            const data = financialData[year];
+            
+            document.getElementById('m-title').innerText = data.title;
+            document.getElementById('m-status').innerText = data.status;
+            document.getElementById('m-revenue').innerText = data.revenue;
+            
+            const changeEl = document.getElementById('m-rev-change');
+            if(data.revChange) {
+                changeEl.style.display = 'inline-block';
+                changeEl.innerText = data.revChange;
+                changeEl.className = 'stat-change ' + data.revClass;
+            } else {
+                changeEl.style.display = 'none';
+            }
+
+            document.getElementById('m-profit').innerText = data.profit;
+            document.getElementById('m-margin').innerText = data.margin;
+            document.getElementById('m-assets').innerText = data.assets;
+            document.getElementById('m-employees').innerText = data.employees;
+
+            document.getElementById('statModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Закриття модалки
+        function closeModal(event, id) {
+            if (!event || event.target.id === id) {
+                document.getElementById(id).classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Індикатор скролу
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        };
+    </script>
+
+</body>
+</html>
