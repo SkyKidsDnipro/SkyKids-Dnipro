@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Kit & Brand | Sky Kids NGO</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Pacifico&display=swap">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --bg-soft: #f8fafc;
+            --white: #ffffff;
+            --shadow-lg: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
+            --radius-xl: 32px;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        /* Індикатор прогресу читання */
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
+            background: linear-gradient(90deg, var(--primary), #60a5fa);
+            z-index: 9999; transition: width 0.1s ease;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-soft);
+            color: var(--text-main);
+            margin: 0; line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header */
+        .legal-header {
+            background: var(--white);
+            padding: 100px 5% 120px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .legal-header::before {
+            content: ''; position: absolute; top: -50%; right: -10%; width: 40%; height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.03) 0%, transparent 70%);
+            transform: rotate(15deg);
+        }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--primary); text-decoration: none; font-weight: 700; font-size: 14px;
+            margin-bottom: 30px; padding: 10px 20px; background: var(--primary-light);
+            border-radius: 100px; transition: 0.3s;
+        }
+        .back-link:hover { transform: translateX(-5px); border-color: var(--primary); background: var(--white); }
+
+        .legal-header h1 { font-size: clamp(36px, 6vw, 56px); font-weight: 800; margin: 0 0 15px; letter-spacing: -2px; }
+
+        /* Layout */
+        .legal-container {
+            max-width: 1000px; margin: -80px auto 100px;
+            padding: 0 20px; position: relative; z-index: 10; 
+        }
+
+        .charter-card {
+            background: var(--white); padding: 70px; border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg); border: 1px solid rgba(226, 232, 240, 0.6);
+            margin-bottom: 40px;
+        }
+
+        /* Typography Global */
+        .section-title { font-size: 26px; font-weight: 800; margin: 0 0 24px; display: flex; align-items: center; gap: 15px; }
+        .section-title span { width: 40px; height: 40px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 18px; flex-shrink: 0; }
+
+        /* Boilerplate Text (Коротка довідка) */
+        .boilerplate-box {
+            background: #f8fafc; padding: 30px; border-radius: 20px;
+            border-left: 4px solid var(--primary); margin-bottom: 50px;
+            position: relative;
+        }
+        .boilerplate-box h3 { font-size: 20px; font-weight: 800; margin: 0 0 10px; }
+        .boilerplate-box p { font-size: 16px; color: var(--text-muted); margin: 0; line-height: 1.6; }
+        
+        /* Кнопки копіювання */
+        .btn-action {
+            background: white; border: 1px solid #e2e8f0; padding: 8px 16px; border-radius: 10px;
+            font-size: 13px; font-weight: 700; color: var(--text-main); cursor: pointer;
+            display: inline-flex; align-items: center; gap: 8px; transition: 0.2s;
+        }
+        .btn-action:hover { background: var(--primary-light); color: var(--primary); border-color: var(--primary-light); }
+        .btn-action.success { background: #dcfce7; color: #10b981; border-color: #10b981; }
+
+        .btn-copy-main { position: absolute; top: 30px; right: 30px; }
+
+        /* Logos Grid */
+        .logos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 60px; }
+        
+        .logo-card {
+            border: 1px solid #e2e8f0; border-radius: 20px; overflow: hidden;
+            display: flex; flex-direction: column; transition: 0.3s;
+        }
+        .logo-card:hover { border-color: var(--primary); box-shadow: 0 15px 30px rgba(37,99,235,0.08); transform: translateY(-5px); }
+        
+        .logo-preview {
+            background: #f1f5f9; 
+            background-image: linear-gradient(45deg, #e2e8f0 25%, transparent 25%), linear-gradient(-45deg, #e2e8f0 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e2e8f0 75%), linear-gradient(-45deg, transparent 75%, #e2e8f0 75%);
+            background-size: 20px 20px; background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            height: 180px; display: flex; align-items: center; justify-content: center; padding: 20px;
+        }
+        
+        .logo-info { padding: 20px; background: white; display: flex; flex-direction: column; gap: 15px; }
+        .logo-info-text h4 { margin: 0 0 5px; font-size: 16px; font-weight: 700; color: var(--text-main); }
+        .logo-info-text p { margin: 0; font-size: 13px; color: var(--text-muted); }
+        
+        .logo-actions { display: flex; gap: 10px; width: 100%; }
+        .logo-actions .btn-action { flex: 1; justify-content: center; }
+
+        /* Додаткові секції: Шрифти та Голос бренду */
+        .brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 60px; }
+        
+        .brand-box { background: var(--bg-soft); padding: 30px; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .brand-box h4 { margin: 0 0 15px; font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+        .brand-box h4 i { color: var(--primary); font-size: 24px; }
+        
+        .font-spec { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #cbd5e1; }
+        .font-spec:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .font-name { font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
+        .font-desc { font-size: 14px; color: var(--text-muted); margin: 0; }
+        .font-link { display: inline-block; margin-top: 8px; font-size: 13px; color: var(--primary); text-decoration: none; font-weight: 700; }
+        .font-link:hover { text-decoration: underline; }
+
+        /* Tone of Voice */
+        .tov-list { list-style: none; padding: 0; margin: 0; }
+        .tov-list li { position: relative; padding-left: 25px; margin-bottom: 10px; font-size: 15px; color: var(--text-muted); }
+        .tov-list li::before { content: '•'; position: absolute; left: 0; color: var(--primary); font-weight: bold; font-size: 20px; line-height: 1; top: -2px; }
+        .tov-list li strong { color: var(--text-main); }
+
+        /* Правила використання лого */
+        .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 60px; }
+        .rule-card { padding: 25px; border-radius: 20px; }
+        .rule-do { background: #f0fdf4; border: 1px solid #bbf7d0; }
+        .rule-dont { background: #fef2f2; border: 1px solid #fecaca; }
+        .rule-card h4 { display: flex; align-items: center; gap: 10px; margin: 0 0 15px; font-size: 18px; font-weight: 800; }
+        .rule-do h4 { color: #16a34a; }
+        .rule-dont h4 { color: #dc2626; }
+        .rule-card p { font-size: 15px; color: var(--text-muted); margin: 0; }
+
+        /* Colors Grid */
+        .colors-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 60px; }
+        .color-card { border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; }
+        .color-swatch { height: 100px; width: 100%; }
+        .color-info { padding: 15px; background: white; text-align: center; }
+        .color-info strong { display: block; font-size: 16px; font-weight: 800; margin-bottom: 2px; }
+        .color-info span { font-size: 13px; color: var(--text-muted); font-family: monospace; }
+
+        /* Contacts */
+        .pr-contact { display: flex; gap: 20px; align-items: center; background: #f8fafc; padding: 25px; border-radius: 20px; border: 1px dashed #cbd5e1; }
+        .pr-contact i { font-size: 40px; color: var(--primary); }
+        .pr-contact h4 { margin: 0 0 5px; font-size: 18px; font-weight: 800; }
+        .pr-contact p { margin: 0; color: var(--text-muted); font-size: 15px; }
+        .pr-contact a { color: var(--primary); font-weight: 700; text-decoration: none; }
+
+        /* Footer */
+        .legal-footer { text-align: center; padding-bottom: 80px; color: var(--text-muted); font-size: 15px; }
+
+        @media (max-width: 768px) {
+            .charter-card { padding: 40px 24px; }
+            .legal-header h1 { font-size: 34px; }
+            .btn-copy-main { position: relative; top: 0; right: 0; margin-top: 15px; display: inline-flex; }
+            .brand-grid, .rules-grid { grid-template-columns: 1fr; }
+            .logo-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="scroll-progress"></div>
+
+    <header class="legal-header">
+        <a href="index.html" class="back-link"><i class="ph-bold ph-arrow-left"></i> На головну</a>
+        <h1 data-uk="Бренд та Медіа-кіт" data-en="Brand & Media Kit">Бренд та Медіа-кіт</h1>
+        <p data-uk="Офіційні матеріали, логотипи та гайдлайни SkyKids" 
+           data-en="Official materials, logos and guidelines of SkyKids"
+           style="color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: clamp(16px, 2vw, 18px); font-weight: 500;">
+            Офіційні матеріали, логотипи та гайдлайни SkyKids
+        </p>
+    </header>
+
+    <main class="legal-container">
+        <div class="charter-card">
+            
+            <div class="boilerplate-box">
+                <button class="btn-action btn-copy-main" onclick="copyText('boilerplate-text', this)"><i class="ph-bold ph-copy"></i> Скопіювати текст</button>
+                <h3 data-uk="Про Організацію (Boilerplate)" data-en="About the Organization (Boilerplate)">Про Організацію (Boilerplate)</h3>
+                <p id="boilerplate-text">
+                    ГО «Небесні Діти» (NGO Sky Kids) — громадська організація, що займається підтримкою та соціалізацією дітей і молоді, які опинилися у складних життєвих обставинах. Ми створюємо безпечні простори, де діти отримують гаряче харчування, освітню підтримку, психологічну допомогу та можливості для розвитку на основі християнських цінностей.
+                </p>
+            </div>
+
+            <h2 class="section-title"><span>1</span> Офіційні логотипи</h2>
+            <div class="logos-grid">
+                <div class="logo-card">
+                    <div class="logo-preview">
+                        <img src="https://i.ibb.co/bgmcGKHp/2.png" alt="Icon" style="height: 100px;">
+                    </div>
+                    <div class="logo-info">
+                        <div class="logo-info-text">
+                            <h4>Символ (Іконка)</h4>
+                            <p>PNG з прозорим фоном. Використовується для аватарів та квадратних форматів.</p>
+                        </div>
+                        <div class="logo-actions">
+                            <button class="btn-action" onclick="copyTextDirect('https://i.ibb.co/bgmcGKHp/2.png', this)">
+                                <i class="ph-bold ph-link"></i> Копіювати URL
+                            </button>
+                            <a href="https://i.ibb.co/bgmcGKHp/2.png" download target="_blank" class="btn-action">
+                                <i class="ph-bold ph-download-simple"></i> Завантажити
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="logo-card">
+                    <div class="logo-preview">
+                        <img src="https://i.ibb.co/6ccMK12n/3.png" alt="Text Logo" style="height: 45px;">
+                    </div>
+                    <div class="logo-info">
+                        <div class="logo-info-text">
+                            <h4>Текстовий логотип</h4>
+                            <p>PNG з прозорим фоном. Основний логотип для документів та банерів.</p>
+                        </div>
+                        <div class="logo-actions">
+                            <button class="btn-action" onclick="copyTextDirect('https://i.ibb.co/6ccMK12n/3.png', this)">
+                                <i class="ph-bold ph-link"></i> Копіювати URL
+                            </button>
+                            <a href="https://i.ibb.co/6ccMK12n/3.png" download target="_blank" class="btn-action">
+                                <i class="ph-bold ph-download-simple"></i> Завантажити
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rules-grid">
+                <div class="rule-card rule-do">
+                    <h4><i class="ph-fill ph-check-circle"></i> Як використовувати</h4>
+                    <p>Залишайте достатньо вільного простору навколо логотипа. Використовуйте оригінальні файли без зміни пропорцій та кольорів на контрастних фонах.</p>
+                </div>
+                <div class="rule-card rule-dont">
+                    <h4><i class="ph-fill ph-x-circle"></i> Чого не варто робити</h4>
+                    <p>Заборонено розтягувати чи стискати логотип, застосовувати до нього сторонні тіні, градієнти або змінювати шрифт у текстовій частині.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title"><span>2</span> Бренд-ідентика</h2>
+            <div class="brand-grid">
+                <div class="brand-box">
+                    <h4><i class="ph-duotone ph-text-aa"></i> Корпоративні шрифти</h4>
+                    
+                    <div class="font-spec">
+                        <div class="font-name" style="font-family: serif;">DK Butterfly Ball</div>
+                        <p class="font-desc">Акцентний шрифт. Використовується <strong>виключно</strong> у нашому логотипі.</p>
+                        <a href="https://www.dafont.com/dk-butterfly-ball.font" target="_blank" class="font-link">Переглянути на DaFont &rarr;</a>
+                    </div>
+                    
+                    <div class="font-spec">
+                        <div class="font-name" style="font-family: 'Plus Jakarta Sans', sans-serif;">Plus Jakarta Sans</div>
+                        <p class="font-desc">Основний робочий шрифт. Використовується для сайту, документів, презентацій та соцмереж.</p>
+                        <a href="https://fonts.google.com/specimen/Plus+Jakarta+Sans" target="_blank" class="font-link">Завантажити з Google Fonts &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="brand-box">
+                    <h4><i class="ph-duotone ph-chat-teardrop-text"></i> Tone of Voice</h4>
+                    <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 15px;">Як ми звучимо у публічному просторі:</p>
+                    <ul class="tov-list">
+                        <li><strong>Емпатійно, але без жалю:</strong> Ми підтримуємо, але не викликаємо почуття безвиході. Ми — про надію та дію.</li>
+                        <li><strong>Прозоро:</strong> Говоримо мовою фактів, цифр та реальних кейсів. Нічого не приховуємо.</li>
+                        <li><strong>Сучасно:</strong> Ми — молода, динамічна команда. Спілкуємося професійно, але без зайвого бюрократизму.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2 class="section-title"><span>3</span> Кольорова палітра</h2>
+            <div class="colors-grid">
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #2563eb;"></div>
+                    <div class="color-info">
+                        <strong>Sky Blue</strong>
+                        <span class="copy-trigger" onclick="copyTextDirect('#2563eb', this)" style="cursor: pointer;">#2563eb</span>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #0f172a;"></div>
+                    <div class="color-info">
+                        <strong>Dark Slate</strong>
+                        <span class="copy-trigger" onclick="copyTextDirect('#0f172a', this)" style="cursor: pointer;">#0f172a</span>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #fbbf24;"></div>
+                    <div class="color-info">
+                        <strong>Warm Sun</strong>
+                        <span class="copy-trigger" onclick="copyTextDirect('#fbbf24', this)" style="cursor: pointer;">#fbbf24</span>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #f8fafc;"></div>
+                    <div class="color-info" style="border-top: 1px solid #e2e8f0;">
+                        <strong>Soft Background</strong>
+                        <span class="copy-trigger" onclick="copyTextDirect('#f8fafc', this)" style="cursor: pointer;">#f8fafc</span>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title"><span>4</span> Контакти для ЗМІ</h2>
+            <div class="pr-contact">
+                <i class="ph-duotone ph-megaphone"></i>
+                <div>
+                    <h4>PR та Медіа відділ</h4>
+                    <p>Для запитів на інтерв'ю, коментарів та партнерських публікацій:</p>
+                    <p style="margin-top: 5px;">
+                        Email: <a href="mailto:skykidsdnipro@gmail.com">skykidsdnipro@gmail.com</a>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="legal-footer">
+        <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 15px;">
+            <i class="ph-fill ph-swatches" style="color: var(--primary); font-size: 24px;"></i>
+            <i class="ph-fill ph-bezier-curve" style="color: #64748b; font-size: 24px;"></i>
+        </div>
+        <strong>NGO Sky Kids</strong> — Бренд-матеріали та преса.<br>
+        2026 &bull; Дніпро &bull; Україна
+    </footer>
+
+    <script>
+        // Індикатор скролу
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        };
+
+        // Функція для копіювання тексту з елемента (Boilerplate)
+        function copyText(elementId, btnElement) {
+            const text = document.getElementById(elementId).innerText;
+            executeCopy(text, btnElement);
+        }
+
+        // Функція для прямого копіювання переданого тексту (URL або HEX)
+        function copyTextDirect(text, btnElement) {
+            executeCopy(text, btnElement);
+        }
+
+        // Ядро копіювання
+        function executeCopy(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalHtml = btn.innerHTML;
+                
+                // Зміна вигляду залежно від елемента
+                if(btn.classList.contains('btn-action')) {
+                    btn.innerHTML = '<i class="ph-bold ph-check"></i> Скопійовано';
+                    btn.classList.add('success');
+                } else if(btn.classList.contains('copy-trigger')) {
+                    btn.innerText = 'Copied!';
+                    btn.style.color = '#10b981';
+                }
+
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    if(btn.classList.contains('btn-action')) btn.classList.remove('success');
+                    if(btn.classList.contains('copy-trigger')) btn.style.color = '';
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>
