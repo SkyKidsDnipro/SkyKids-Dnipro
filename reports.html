@@ -135,19 +135,24 @@
         .report-item.current:hover .hover-overlay { opacity: 1; }
 
         /* МОДАЛЬНІ ВІКНА (ДАШБОРД СТАТИСТИКИ) */
-        .modal-overlay {
-            position: fixed; inset: 0; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(8px);
-            z-index: 99999; display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden; transition: 0.3s ease; padding: 20px;
-        }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
+.modal-overlay {
+    position: fixed; inset: 0; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(8px);
+    z-index: 99999; display: flex; 
+    align-items: flex-start; /* ИЗМЕНЕНО: теперь окно начинается сверху, если не влезает */
+    justify-content: center;
+    overflow-y: auto; /* ДОБАВЛЕНО: разрешаем прокрутку */
+    padding: 40px 20px; /* ИЗМЕНЕНО: чуть больше отступов, чтобы окно не прилипало к краям экрана */
+    opacity: 0; visibility: hidden; transition: 0.3s ease; 
+}
+.modal-overlay.active { opacity: 1; visibility: visible; }
 
-        .modal-box {
-            background: var(--white); width: 100%; max-width: 550px;
-            border-radius: 32px; padding: 40px; position: relative;
-            transform: translateY(30px) scale(0.95); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
-        }
+.modal-box {
+    background: var(--white); width: 100%; max-width: 550px;
+    border-radius: 32px; padding: 40px; position: relative;
+    margin: auto; /* ДОБАВЛЕНО: магия, которая центрирует окно при flex-start */
+    transform: translateY(30px) scale(0.95); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
         .modal-overlay.active .modal-box { transform: translateY(0) scale(1); }
 
         .modal-close {
