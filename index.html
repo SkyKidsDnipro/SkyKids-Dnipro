@@ -1185,19 +1185,54 @@ body::-webkit-scrollbar {
     inset: 0;
     background: rgba(0,0,0,0.6);
     backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-content {
     background: white;
     max-width: 500px;
-    margin: 10% auto;
+    margin: 2% auto;
     padding: 40px;
     border-radius: 24px;
     text-align: center;
     position: relative;
     animation: fadeIn 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+      
+.modal-content {
+    max-width: 1100px; /* было 500px */
+    width: 95%;
 }
 
+.modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+      
+.donate-layout {
+    align-items: stretch;
+}
+      
+.donate-fast {
+    min-height: 100%;
+}
+      
+.donate-left {
+    display: flex;
+}
+
+.donate-left .donate-box {
+    width: 100%;
+}
+      
+.donate-left {
+    border-right: 1px solid rgba(0,0,0,0.05);
+    padding-right: 10px;
+}
+      
 .close {
     position: absolute;
     right: 20px;
@@ -1252,6 +1287,17 @@ body::-webkit-scrollbar {
     font-weight: 700;
     color: #2563eb;
 }
+      
+.donate-fast {
+    box-shadow: 
+        0 20px 60px rgba(37, 99, 235, 0.4),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+}
+      
+.donate-fast:hover {
+    transform: translateY(-3px);
+    transition: 0.3s;
+}
 
 /* Список партнера */
 .partner-list {
@@ -1276,13 +1322,364 @@ body::-webkit-scrollbar {
 body.modal-open {
     overflow: hidden;
 }
+
+/* ДОП. ДЛЯ ОКНА ДОНАТОВ */
+/* --- КНОПКА КОПИРОВАНИЯ --- */
+.card-copy-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.copy-btn {
+    background: var(--primary);
+    border: none;
+    color: white;
+    border-radius: 10px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.copy-btn:hover {
+    background: var(--primary-hover);
+    transform: scale(1.1);
+}
+
+/* Акцент строки карты */
+.donate-card-row strong {
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+/* --- БЛОК ПАРТНЁРСТВА --- */
+.partner-cta {
+    margin-top: 25px;
+}
+
+.partner-note {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* --- ЛЕГКИЙ ВИЗУАЛЬНЫЙ АКЦЕНТ МОДАЛКИ --- */
+.modal-premium {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+}
+      
+/* Для двух кнопок копирования */
+.card-copy-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Чуть усилить IBAN строку */
+#ibanNumber {
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+@media (min-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+      
+/* 2 колонка*/
+/* --- GRID --- */
+.donate-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* --- ПРАВАЯ КОЛОНКА --- */
+.donate-fast {
+    height: 100%;
+    border-radius: 24px;
+    padding: 30px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ФОН ПОД КАРТИНКУ (потом вставишь) */
+.donate-fast::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url('https://i.ibb.co/HwyxVCM/189b59aa-55e4-4e75-bfe6-6ae52a7ea522.png') center/cover no-repeat;
+    opacity: 1;
+}
+      
+/* Контент поверх */
+.donate-fast-content {
+    position: relative;
+    z-index: 2;
+}
+
+.donate-fast h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.donate-fast p {
+    opacity: 0.9;
+    margin-bottom: 20px;
+}
+
+/* Кнопка банка */
+.mono-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    color: var(--primary);
+    padding: 14px 20px;
+    border-radius: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.mono-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Нижний блок */
+.donate-bottom {
+    margin-top: 25px;
+}
+
+/* --- АДАПТИВ --- */
+@media (max-width: 900px) {
+    .donate-layout {
+        grid-template-columns: 1fr;
+    }
+}
+      
+/* Кнопки */
+      .quick-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.quick-buttons button {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+
+.quick-buttons button:hover {
+    background: white;
+    color: var(--primary);
+    transform: scale(1.05);
+}
+      
+.mono-btn {
+    font-size: 16px;
+    padding: 16px 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+      
+.donate-fast::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(37,99,235,0.75), rgba(29,78,216,0.45));
+    z-index: 1;
+}
+      
+/* --- PROGRESS BAR --- */
+.donate-progress {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 8px;
+    opacity: 0.9;
+}
+
+.progress-header strong {
+    font-size: 14px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #ffffff, #c7d2fe);
+    border-radius: 10px;
+    transition: width 0.6s ease;
+    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.progress-footer {
+    margin-top: 8px;
+    font-size: 12px;
+    opacity: 0.8;
+    display: flex;
+    justify-content: space-between;
+}
+      
+/* Улучщеный блок стати партнером */
+.partner-modal {
+    max-width: 720px;
+}
+
+.partner-section {
+    margin: 30px 0;
+    text-align: left;
+}
+
+.partner-section h4 {
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.partner-grid {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.partner-card {
+    background: #f1f7ff;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.partner-box {
+    background: white;
+    padding: 15px;
+    border-radius: 14px;
+    flex: 1;
+    min-width: 150px;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.partner-proof {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    text-align: center;
+}
+
+.proof-item strong {
+    font-size: 22px;
+    color: var(--primary);
+}
+
+.partner-note {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+      
+/* --- WIDE МОДАЛКА --- */
+.partner-modal-wide {
+    max-width: 1000px;
+    width: 95%;
+}
+
+/* --- ЛЕЙАУТ --- */
+.partner-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    align-items: stretch;
+}
+
+/* --- ЛЕВАЯ --- */
+.partner-left {
+    text-align: left;
+}
+
+/* --- ПРАВАЯ --- */
+.partner-right {
+    display: flex;
+}
+
+.partner-highlight {
+    width: 100%;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* --- СТАТЫ --- */
+.partner-stats {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.partner-stats strong {
+    font-size: 20px;
+}
+
+.partner-stats span {
+    font-size: 12px;
+    opacity: 0.8;
+}
+      
+.partner-highlight .partner-note {
+    color: rgba(255,255,255,0.75);
+}
+
+/* --- АДАПТИВ --- */
+@media (max-width: 900px) {
+    .partner-layout {
+        grid-template-columns: 1fr;
+    }
+}
     </style>
 </head>
 <body>
 
     <nav class="nav" id="navbar">
       
-         <a href="#" class="logo">
+         <a href="404.html" class="logo">
     <img src="https://i.ibb.co/bgmcGKHp/2.png" alt="Logo" class="logo-img">
     <img src="https://i.ibb.co/6ccMK12n/3.png" alt="SkyKids Text" class="logo-text-img">
 </a>
@@ -1505,9 +1902,8 @@ body.modal-open {
                     Ми будуємо систему, де кожна дитина має право на безпеку, розвиток та гарячий обід. Приєднуйтесь до змін.
                 </p>
                 <div class="social-mechanics">
-                    <a href="#" class="social-btn"><i class="ph-bold ph-instagram-logo"></i></a>
-                    <a href="#" class="social-btn"><i class="ph-bold ph-telegram-logo"></i></a>
-                    <a href="#" class="social-btn"><i class="ph-bold ph-youtube-logo"></i></a>
+                    <a href="https://www.instagram.com/skykids.dnipro/" class="social-btn"><i class="ph-bold ph-instagram-logo"></i></a>
+                    <a href="https://t.me/skykids_dnipro" class="social-btn"><i class="ph-bold ph-telegram-logo"></i></a>
                 </div>
             </div>
 
@@ -1578,27 +1974,136 @@ body.modal-open {
     </h2>
 
     <p class="modal-sub"
-       data-uk="Кожен внесок — це гарячий обід та турбота для дитини."
-       data-en="Every donation is a hot meal and care for a child.">
-        Кожен внесок — це гарячий обід та турбота для дитини.
+       data-uk="Оберіть зручний формат підтримки: разовий внесок або системна допомога."
+       data-en="Choose a convenient way to support: one-time donation or long-term partnership.">
+        Оберіть зручний формат підтримки: разовий внесок або системна допомога.
     </p>
 
-    <div class="donate-box premium-box">
-        <div class="donate-row">
-            <span data-uk="Банк" data-en="Bank">Банк</span>
-            <strong>Monobank</strong>
+
+<!-- РЕКВИЗИТЫ -->
+<div class="donate-layout">
+
+    <!-- ЛЕВАЯ КОЛОНКА (РЕКВИЗИТЫ) -->
+    <div class="donate-left">
+
+        <div class="donate-box premium-box">
+
+            <div class="donate-row">
+                <span data-uk="Банк" data-en="Bank">Банк</span>
+                <strong>Приват Банк</strong>
+            </div>
+
+            <div class="donate-row">
+                <span data-uk="Отримувач" data-en="Recipient">Отримувач</span>
+                <strong data-uk='ГО "Небесні Діти"' data-en='NGO "Sky Kids"'>
+                    ГО "Небесні Діти"
+                </strong>
+            </div>
+
+            <div class="donate-row">
+                <span data-uk="Код ЄДРПОУ" data-en="EDRPOU">Код ЄДРПОУ</span>
+                <strong>12345678</strong>
+            </div>
+
+            <div class="donate-row donate-card-row">
+                <span data-uk="Картка" data-en="Card">Картка</span>
+
+                <div class="card-copy-wrap">
+                    <strong id="cardNumber">4246 0010 0732 1643</strong>
+                    <button class="copy-btn" onclick="copyCard()">
+                        <i class="ph-bold ph-copy"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="donate-row">
+                <span>IBAN</span>
+
+                <div class="card-copy-wrap">
+                    <strong id="ibanNumber">UA833052990000026004050569233</strong>
+                    <button class="copy-btn" onclick="copyIBAN()">
+                        <i class="ph-bold ph-copy"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="donate-row">
+                <span data-uk="Призначення платежу" data-en="Payment purpose">
+                    Призначення платежу
+                </span>
+                <strong data-uk="Благодійний внесок" data-en="Charitable donation">
+                    Благодійний внесок
+                </strong>
+            </div>
+
         </div>
 
-        <div class="donate-row">
-            <span data-uk="Картка" data-en="Card">Картка</span>
-            <strong id="cardNumber">4441 1111 2222 3333</strong>
-        </div>
-
-        <div class="donate-row">
-            <span>IBAN</span>
-            <strong>UA123456789...</strong>
-        </div>
     </div>
+
+    <!-- ПРАВАЯ КОЛОНКА (ONE CLICK DONATE) -->
+    <div class="donate-right">
+
+        <div class="donate-fast">
+
+            <div class="donate-fast-content">
+
+                <h3>
+                    <span data-uk="Нагодувати дитину зараз"
+                          data-en="Feed a child now">
+                          Нагодувати дитину зараз
+                    </span>
+                </h3>
+
+                <p>
+                    <span data-uk="1 клік = реальний обід"
+                        data-en="1 click = a real meal">
+                        1 клік = реальний обід
+                    </span>
+                </p>
+              
+
+
+                <button onclick="copyCardWithHint()" class="mono-btn">
+                    <i class="ph-bold ph-copy"></i>
+                    <span data-uk="Скопіювати реквізити"
+                          data-en="Copy details">
+                          Скопіювати карту 1 клік
+                    </span>
+                </button>
+              <div class="donate-progress">
+
+    <div class="progress-header">
+        <span data-uk="Щомісячна мета" data-en="Monthly goal">
+            Щомісячна мета
+        </span>
+        <strong id="progressAmount">
+            0 / 42 000 грн
+        </strong>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="progress-footer">
+        <span data-uk="Залишилось зібрати" data-en="Remaining">
+            Залишилось:
+        </span>
+        <strong id="progressLeft">42 000 грн</strong>
+    </div>
+
+</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- НИЖНИЙ БЛОК -->
+<div class="donate-bottom">
 
     <div class="donate-impact">
         <span data-uk="1200 грн = 1 день харчування"
@@ -1607,38 +2112,117 @@ body.modal-open {
         </span>
     </div>
 
-    <button class="btn" onclick="copyCard()">
-        <span data-uk="Скопіювати номер" data-en="Copy number">Скопіювати номер</span>
-    </button>
+    <div class="partner-cta">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSchy3q_1q5ep0ZCOXAairzzsiHzwO3Ws1nb-1gJFcfTnVkdnA/viewform?usp=dialog"
+           target="_blank"
+           class="btn">
+
+            <span data-uk="Стати постійним партнером"
+                  data-en="Become a long-term partner">
+                  Стати постійним партнером
+            </span>
+        </a>
+
+        <p class="partner-note"
+            data-uk="Для бізнесу, фондів та організацій"
+            data-en="For businesses, foundations and organizations">
+            Для бізнесу, фондів та організацій
+        </p>
+    </div>
+
+</div>
 
   </div>
 </div>
   
-<!-- Модалка партнерство  -->
+<!-- МОДАЛКА ПАРТНЕРСТВА (WIDE VERSION) -->
 <div id="partnerModal" class="modal">
-  <div class="modal-content modal-premium">
+  <div class="modal-content modal-premium partner-modal-wide">
 
     <span class="close" onclick="closePartnerModal()">&times;</span>
 
-    <h2 data-uk="Партнерство зі SkyKids" data-en="Partnership with SkyKids">
-        Партнерство зі SkyKids
-    </h2>
+    <div class="partner-layout">
 
-    <p class="modal-sub"
-       data-uk="Станьте частиною системної допомоги дітям."
-       data-en="Become part of systemic support for children.">
-       Станьте частиною системної допомоги дітям.
-    </p>
+        <!-- ЛЕВАЯ ЧАСТЬ -->
+        <div class="partner-left">
 
-    <ul class="partner-list">
-        <li data-uk="Прозора звітність" data-en="Transparent reporting">✔ Прозора звітність</li>
-        <li data-uk="Закріплення за проєктом" data-en="Assigned to a project">✔ Закріплення за проєктом</li>
-        <li data-uk="Реальний вплив" data-en="Real impact">✔ Реальний вплив</li>
-    </ul>
+            <h2>
+                <span data-uk="Партнерство зі SkyKids"
+                      data-en="Partnership with SkyKids">
+                    Партнерство зі SkyKids  💙
+                </span>
+            </h2>
 
-    <a href="ССЫЛКА_НА_GOOGLE_FORM_ПАРТНЕРА" target="_blank" class="btn">
-        <span data-uk="Стати партнером" data-en="Become a partner">Стати партнером</span>
-    </a>
+            <p class="modal-sub"
+               data-uk="Станьте частиною системної допомоги дітям та створюйте реальний соціальний вплив."
+               data-en="Become part of systemic support for children and create real social impact.">
+               Станьте частиною системної допомоги дітям та створюйте реальний соціальний вплив.
+            </p>
+
+            <ul class="partner-list">
+                <li>✔ Прозора звітність</li>
+                <li>✔ Закріплення за проєктом</li>
+                <li>✔ Реальний вимірюваний вплив</li>
+                <li>✔ Контент для вашого бренду</li>
+            </ul>
+
+        </div>
+
+        <!-- ПРАВАЯ ЧАСТЬ (АКЦЕНТ) -->
+        <div class="partner-right">
+
+            <div class="partner-highlight">
+
+                <h3>
+                    <span data-uk="Станьте частиною змін"
+                          data-en="Become part of change">
+                        Станьте частиною змін
+                    </span>
+                </h3>
+
+                <p>
+                    <span data-uk="Ваш внесок = стабільне харчування дітей щодня"
+                          data-en="Your support = daily meals for children">
+                        Ваш внесок = стабільне харчування дітей щодня
+                    </span>
+                </p>
+
+                <div class="partner-stats">
+                    <div>
+                        <strong>20+</strong>
+                        <span>дітей щодня</span>
+                    </div>
+                    <div>
+                        <strong>10 000+</strong>
+                        <span>обідів</span>
+                    </div>
+                    <div>
+                        <strong>3+ роки</strong>
+                        <span>досвіду</span>
+                    </div>
+                </div>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSchy3q_1q5ep0ZCOXAairzzsiHzwO3Ws1nb-1gJFcfTnVkdnA/viewform?usp=publish-editor"
+                   target="_blank"
+                   class="btn">
+                    <span data-uk="Подати заявку"
+                          data-en="Apply now">
+                        Подати заявку
+                    </span>
+                </a>
+
+                <p class="partner-note">
+                    <span data-uk="Відповідаємо протягом 24 годин"
+                          data-en="We respond within 24 hours">
+                        Відповідаємо протягом 24 годин
+                    </span>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
 
   </div>
 </div>
@@ -1759,11 +2343,55 @@ function closePartnerModal() {
     document.getElementById('partnerModal').classList.remove('show');
     document.body.classList.remove('modal-open');
 }
-
+      
+// ИКОНКА КОПИРОВАНИЯ
 function copyCard() {
     const text = document.getElementById("cardNumber").innerText;
     navigator.clipboard.writeText(text);
-    alert("Скопійовано");
+
+    const btn = document.querySelector('.copy-btn i');
+
+    btn.className = "ph-bold ph-check";
+
+    setTimeout(() => {
+        btn.className = "ph-bold ph-copy";
+    }, 1500);
+}
+      
+function copyIBAN() {
+    const text = document.getElementById("ibanNumber").innerText;
+    navigator.clipboard.writeText(text);
+
+    const btn = document.querySelector('#ibanNumber').nextElementSibling.querySelector('i');
+    btn.className = "ph-bold ph-check";
+
+    setTimeout(() => {
+        btn.className = "ph-bold ph-copy";
+    }, 1500);
+}
+      
+// Прогрес-бар
+function updateProgress(current, goal) {
+    const percent = Math.min((current / goal) * 100, 100);
+
+    document.getElementById("progressFill").style.width = percent + "%";
+
+    document.getElementById("progressAmount").innerText =
+        current.toLocaleString('uk-UA') + " / " + goal.toLocaleString('uk-UA') + " грн";
+
+    document.getElementById("progressLeft").innerText =
+        (goal - current).toLocaleString('uk-UA') + " грн";
+}
+
+/* стартовое значение */
+updateProgress(17800, 42000);
+
+// Копировать карту в правом блоке
+function copyCardWithHint() {
+    const card = document.getElementById("cardNumber").innerText;
+    navigator.clipboard.writeText(card);
+
+    alert("Номер скопійовано. Відкрийте свій банк та вставте для переказу.");
 }
     </script>
 </body>
