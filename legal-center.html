@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Юридичний центр | Sky Kids NGO</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Pacifico&display=swap">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --bg-soft: #f8fafc;
+            --white: #ffffff;
+            --shadow-lg: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
+            --radius-xl: 32px;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
+            background: linear-gradient(90deg, var(--primary), #60a5fa);
+            z-index: 9999; transition: width 0.1s ease;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-soft);
+            color: var(--text-main);
+            margin: 0; line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header Style Match */
+        .legal-header {
+            background: var(--white);
+            padding: 120px 5% 140px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .legal-header::before {
+            content: ''; position: absolute; top: -50%; left: -10%; width: 40%; height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
+            transform: rotate(-15deg);
+        }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--primary); text-decoration: none; font-weight: 700; font-size: 14px;
+            margin-bottom: 30px; padding: 10px 20px; background: var(--primary-light);
+            border-radius: 100px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+
+        .back-link:hover { transform: translateX(-5px); border-color: var(--primary); background: var(--white); }
+
+        .legal-header h1 { 
+            font-size: clamp(36px, 7vw, 64px); font-weight: 800; 
+            margin: 0 0 20px; letter-spacing: -3px; color: var(--text-main);
+            line-height: 1.1;
+        }
+
+        /* Layout Container */
+        .legal-container {
+            max-width: 1000px; 
+            margin: -100px auto 100px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .charter-card {
+            background: var(--white); 
+            padding: 60px; 
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg); 
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            margin-bottom: 40px;
+        }
+
+        /* Intro Text */
+        .intro-text {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .intro-text h2 { font-size: 28px; font-weight: 800; margin-bottom: 15px; color: var(--text-main); }
+        .intro-text p { font-size: 18px; color: var(--text-muted); max-width: 700px; margin: 0 auto; }
+
+        /* Document Cards Grid */
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .doc-card {
+            background: var(--bg-soft);
+            padding: 35px 30px;
+            border-radius: 24px;
+            text-align: left;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid transparent;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .doc-card:hover { 
+            transform: translateY(-8px); 
+            border-color: var(--primary-light); 
+            background: var(--white); 
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.08); 
+        }
+
+        .doc-card::after {
+            content: '\e0ba'; /* Arrow right icon in Phosphor */
+            font-family: "Phosphor";
+            position: absolute;
+            top: 35px;
+            right: 30px;
+            font-size: 24px;
+            color: var(--primary);
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .doc-card:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .doc-card i { font-size: 42px; color: var(--primary); margin-bottom: 20px; display: inline-block; }
+        .doc-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 10px; color: var(--text-main); transition: color 0.3s; }
+        .doc-card:hover h3 { color: var(--primary); }
+        .doc-card p { font-size: 15px; color: var(--text-muted); margin: 0; line-height: 1.5; }
+
+        /* Requisites Box */
+        .requisites-box {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px dashed #cbd5e1;
+            margin-top: 20px;
+        }
+
+        .requisites-header {
+            display: flex; align-items: center; gap: 12px; margin-bottom: 25px;
+        }
+        .requisites-header i { font-size: 28px; color: var(--primary); }
+        .requisites-header h3 { font-size: 20px; font-weight: 800; margin: 0; }
+
+        .requisite-row {
+            display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f1f5f9;
+        }
+        .requisite-row:last-child { border: none; padding-bottom: 0; }
+        .requisite-label { font-weight: 700; color: var(--text-muted); font-size: 15px; }
+        .requisite-value { font-weight: 800; color: var(--text-main); font-size: 15px; text-align: right; }
+
+        .legal-footer {
+            text-align: center; padding-bottom: 80px; color: var(--text-muted); font-size: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .charter-card { padding: 40px 24px; }
+            .legal-header h1 { font-size: 38px; letter-spacing: -1px; }
+            .legal-header { padding: 100px 20px 120px; }
+            .requisite-row { flex-direction: column; gap: 4px; text-align: left; }
+            .requisite-value { text-align: left; }
+            .doc-card::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="scroll-progress"></div>
+
+    <header class="legal-header">
+        <a href="index.html" class="back-link">
+            <i class="ph-bold ph-arrow-left"></i> На головну
+        </a>
+        <h1 data-uk="Юридичний центр" data-en="Legal Center">Юридичний центр</h1>
+        <p data-uk="Прозорість, звітність та відкритість діяльності" 
+           data-en="Transparency, accountability and openness of activities"
+           style="color: var(--text-muted); max-width: 700px; margin: 0 auto; font-size: clamp(16px, 2vw, 20px); font-weight: 500;">
+            Прозорість, звітність та відкритість діяльності
+        </p>
+    </header>
+
+    <main class="legal-container">
+        <div class="charter-card">
+            
+            <div class="intro-text">
+                <h2 data-uk="Документи ГО «Небесні Діти»" data-en="Documents of NGO Sky Kids">Документи ГО «Небесні Діти»</h2>
+                <p data-uk="Ми будуємо довіру через абсолютну юридичну прозорість. Усі наші установчі документи, договори та політики знаходяться у відкритому доступі."
+                   data-en="We build trust through absolute legal transparency. All our statutory documents, agreements, and policies are publicly available.">
+                    Ми будуємо довіру через абсолютну юридичну прозорість. Усі наші установчі документи, договори та політики знаходяться у відкритому доступі.
+                </p>
+            </div>
+
+            <div class="docs-grid">
+                <a href="charter.html" class="doc-card">
+                    <i class="ph-duotone ph-file-text"></i>
+                    <h3 data-uk="Статут Організації" data-en="NGO Charter">Статут Організації</h3>
+                    <p data-uk="Офіційні установчі документи, структура управління та мета створення ГО."
+                       data-en="Official foundation documents, management structure, and purpose of the NGO.">
+                        Офіційні установчі документи, структура управління та мета створення ГО.
+                    </p>
+                </a>
+
+                <a href="offer.html" class="doc-card">
+                    <i class="ph-duotone ph-handshake"></i>
+                    <h3 data-uk="Публічна оферта" data-en="Public Offer">Публічна оферта</h3>
+                    <p data-uk="Договір про надання добровільної благодійної допомоги та умови використання коштів."
+                       data-en="Agreement on the provision of voluntary charitable assistance and terms of fund usage.">
+                        Договір про надання добровільної благодійної допомоги та умови використання коштів.
+                    </p>
+                </a>
+
+                <a href="privacy.html" class="doc-card">
+                    <i class="ph-duotone ph-shield-check"></i>
+                    <h3 data-uk="Політика конфіденційності" data-en="Privacy Policy">Політика конфіденційності</h3>
+                    <p data-uk="Як ми збираємо, обробляємо та захищаємо ваші персональні дані на сайті."
+                       data-en="How we collect, process, and protect your personal data on the website.">
+                        Як ми збираємо, обробляємо та захищаємо ваші персональні дані на сайті.
+                    </p>
+                </a>
+
+                <a href="#reports" class="doc-card">
+                    <i class="ph-duotone ph-chart-pie-slice"></i>
+                    <h3 data-uk="Фінансова звітність" data-en="Financial Reports">Фінансова звітність</h3>
+                    <p data-uk="Щорічні публічні звіти про надходження та витрати благодійних пожертв."
+                       data-en="Annual public reports on the receipt and expenditure of charitable donations.">
+                        Щорічні публічні звіти про надходження та витрати благодійних пожертв.
+                    </p>
+                </a>
+            </div>
+
+            <div class="requisites-box">
+                <div class="requisites-header">
+                    <i class="ph-fill ph-bank"></i>
+                    <h3 data-uk="Офіційні реквізити" data-en="Official Requisites">Офіційні реквізити</h3>
+                </div>
+                
+                <div class="requisite-row">
+                    <span class="requisite-label" data-uk="Повна назва:" data-en="Full Name:">Повна назва:</span>
+                    <span class="requisite-value">ГО «НЕБЕСНІ ДІТИ»</span>
+                </div>
+                <div class="requisite-row">
+                    <span class="requisite-label" data-uk="Англійською:" data-en="In English:">Англійською:</span>
+                    <span class="requisite-value">NGO «SKY KIDS»</span>
+                </div>
+                <div class="requisite-row">
+                    <span class="requisite-label" data-uk="Код ЄДРПОУ:" data-en="EDRPOU Code:">Код ЄДРПОУ:</span>
+                    <span class="requisite-value">45080222</span>
+                </div>
+                <div class="requisite-row">
+                    <span class="requisite-label" data-uk="Ознака неприбутковості:" data-en="Non-profit status:">Ознака неприбутковості:</span>
+                    <span class="requisite-value" style="color: #059669;">0048 (Неприбуткова організація)</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="legal-footer">
+        <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 15px;">
+            <i class="ph-fill ph-scales" style="color: var(--primary); font-size: 24px;"></i>
+            <i class="ph-fill ph-files" style="color: #64748b; font-size: 24px;"></i>
+        </div>
+        <strong>NGO Sky Kids</strong> — Юридична прозорість.<br>
+        2026 &bull; Дніпро &bull; Україна
+    </footer>
+
+    <script>
+        // Індикатор читання
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        };
+
+        // Функція перемикання мов
+        function setLang(lang) {
+            document.querySelectorAll('[data-uk]').forEach(el => {
+                const translation = el.getAttribute('data-' + lang);
+                const icon = el.querySelector('i');
+                if (icon) {
+                    Array.from(el.childNodes).forEach(node => { if (node.nodeType === Node.TEXT_NODE) node.remove(); });
+                    el.appendChild(document.createTextNode(' ' + translation));
+                } else {
+                    el.innerText = translation;
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
