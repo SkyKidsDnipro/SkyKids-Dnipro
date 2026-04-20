@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Sky Kids NGO</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --bg-soft: #f8fafc;
+            --white: #ffffff;
+            --shadow-lg: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
+            --radius-xl: 32px;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        /* Індикатор прогресу читання */
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
+            background: linear-gradient(90deg, var(--primary), #60a5fa);
+            z-index: 9999; transition: width 0.1s ease;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-soft);
+            color: var(--text-main);
+            margin: 0; line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header Style Match */
+        .legal-header {
+            background: var(--white);
+            padding: 100px 5% 120px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .legal-header::before {
+            content: ''; position: absolute; top: -50%; right: -10%; width: 40%; height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.03) 0%, transparent 70%);
+            transform: rotate(15deg);
+        }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--primary); text-decoration: none; font-weight: 700; font-size: 14px;
+            margin-bottom: 30px; padding: 10px 20px; background: var(--primary-light);
+            border-radius: 100px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+
+        .back-link:hover { transform: translateX(-5px); border-color: var(--primary); background: var(--white); }
+
+        .update-date {
+            font-size: 12px; color: var(--text-muted); text-transform: uppercase;
+            letter-spacing: 2px; font-weight: 800; margin-bottom: 15px; display: block;
+        }
+
+        .legal-header h1 { 
+            font-size: clamp(36px, 6vw, 56px); font-weight: 800; 
+            margin: 0; letter-spacing: -2px; color: var(--text-main);
+        }
+
+        /* Layout - Одноколонковий для Policy */
+        .legal-container {
+            max-width: 850px; 
+            margin: -80px auto 100px; /* Від'ємний марджин піднімає блок вгору */
+            padding: 0 20px;
+            
+            /* Додай ці два рядки обов'язково: */
+            position: relative; 
+            z-index: 10; 
+        }
+
+        /* Main Card */
+        .charter-card {
+            background: var(--white); 
+            padding: 70px; 
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg); 
+            border: 1px solid rgba(226, 232, 240, 0.6);
+        }
+
+        /* Typography */
+        .charter-text section { margin-bottom: 50px; }
+
+        .charter-text h2 {
+            font-size: 26px; font-weight: 800; margin: 0 0 24px;
+            color: var(--text-main); display: flex; align-items: center; gap: 15px;
+        }
+
+        .charter-text h2 span {
+            width: 40px; height: 40px; background: var(--primary-light);
+            color: var(--primary); display: flex; align-items: center; justify-content: center;
+            border-radius: 12px; font-size: 18px;
+        }
+
+        .charter-text p { font-size: 18px; color: var(--text-muted); margin-bottom: 20px; }
+        .charter-text strong { color: var(--text-main); }
+        
+        .charter-text ul { padding-left: 25px; margin-bottom: 25px; }
+        .charter-text li { font-size: 18px; color: var(--text-muted); margin-bottom: 12px; }
+
+        /* Highlight box */
+        .info-box {
+            background: var(--bg-soft); padding: 30px; border-radius: 20px;
+            border-left: 4px solid var(--primary); margin: 40px 0;
+        }
+
+        /* Footer */
+        .legal-footer {
+            text-align: center; padding-bottom: 80px; color: var(--text-muted); font-size: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .charter-card { padding: 40px 24px; }
+            .legal-header h1 { font-size: 34px; }
+            .legal-header { padding: 80px 20px 100px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="scroll-progress"></div>
+
+    <header class="legal-header">
+        <a href="index.html" class="back-link">
+            <i class="ph-bold ph-arrow-left"></i> На головну
+        </a>
+        <span class="update-date">Останнє оновлення: Квітень 2026</span>
+        <h1>Політика конфіденційності</h1>
+    </header>
+
+<main class="legal-container">
+    <div class="charter-card">
+        <div class="charter-text">
+            <section>
+                <h2><span>1</span> Загальні положення</h2>
+                <p><strong>Громадська організація «Небесні діти» (офіційна англомовна назва — «Sky kids»</strong>, далі — Організація) з великою повагою ставиться до конфіденційної інформації будь-якої особи, яка відвідує наш сайт. <strong>Керуючись принципами прозорості та відкритості</strong>, ця Політика визначає, які дані ми збираємо та як їх використовуємо.</p>
+            </section>
+
+            <section>
+                <h2><span>2</span> Які дані ми збираємо</h2>
+                <p>Для забезпечення стабільної роботи сервісів та обробки благодійної допомоги ми можемо збирати:</p>
+                <ul>
+                    <li><strong>Контактні дані:</strong> ім'я, номер телефону, адреса електронної пошти.</li>
+                    <li><strong>Технічні дані:</strong> IP-адреса, тип браузера, час перебування на сайті.</li>
+                    <li><strong>Платіжну інформацію:</strong> дані про транзакції (ми не зберігаємо дані ваших карток — вони безпечно обробляються платіжними системами згідно зі стандартами PCI DSS).</li>
+                    <li><strong>Дані з реєстраційних форм:</strong> інформація, яку ви добровільно надаєте під час заповнення заявок на волонтерство або заяв-анкет на вступ до членів Організації.</li>
+                </ul>
+            </section>
+
+            <div class="info-box">
+                <p style="margin: 0; color: var(--text-main); font-weight: 600;">
+                    <i class="ph-bold ph-info" style="color: var(--primary);"></i>
+                        Персональні дані не передаються третім особам без вашої попередньої згоди, за винятком випадків, прямо передбачених законодавством України (наприклад, запит правоохоронних органів). У рамках реалізації грантових проєктів ми можемо передавати донорам лише знеособлені (анонімізовані) статистичні дані.
+                </p>
+            </div>
+
+            <section>
+                <h2><span>3</span> Дані неповнолітніх та вразливих груп</h2>
+                <p>Зважаючи на специфіку нашої роботи, інформація про соціально незахищених дітей та молодь становить особливу цінність і потребує посиленого захисту. Ми збираємо та обробляємо персональні дані бенефіціарів (особливо неповнолітніх) <strong>виключно за письмовою згодою їхніх законних представників</strong> (батьків, опікунів, піклувальників) та з суворим дотриманням законодавства про захист персональних даних.</p>
+            </section>
+          
+            <section>
+                <h2><span>4</span> Мета збору даних</h2>
+                <p>Дані використовуються виключно в межах статутної діяльності <strong>Організації</strong>:</p>
+                <ul>
+                    <li>Обробка ваших <strong>добровільних пожертвувань та безповоротної фінансової допомоги</strong>.</li>
+                    <li>Підготовка та розсилка звітів про використання коштів для забезпечення повної підзвітності.</li>
+                    <li>Комунікація щодо нових проєктів та термінових зборів для <strong>соціально незахищених дітей</strong>.</li>
+                    <li>Аналіз зручності сайту для покращення користувацького досвіду.</li>
+                    <li>Надання відкритої соціальної, матеріальної та психологічної допомоги дітям, молоді та сім'ям у кризових ситуаціях.</li>
+                    <li>Організація навчально-освітніх заходів, таборів відпочинку, закладів рекреації та дозвілля.</li>
+                    <li>Звітування перед донорами, державними та контролюючими органами відповідно до законодавства України.</li>
+                     <li>Ведення внутрішнього реєстру членів Організації на підставі їхніх письмових заяв про вступ.</li>
+<li>Оформлення відносин (у тому числі укладання договорів) із залученими волонтерами та працівниками.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2><span>5</span> Захист інформації</h2>
+                <p>Ми впровадили сучасні заходи безпеки, включаючи SSL-шифрування всіх з'єднань. Доступ до персональних даних обмежений і надається лише уповноваженим співробітникам Організації, які підписали зобов'язання про нерозголошення.</p>
+            </section>
+
+            <section>
+                <h2><span>6</span> Ваші права</h2>
+                <p>Відповідно до Закону України «Про захист персональних даних» <strong>(а також поважаючи міжнародні стандарти конфіденційності)</strong>, ви маєте право знати про джерела збирання та місцезнаходження ваших даних, вимагати їх доступу, виправлення або повного видалення, а також <strong>відкликати свою згоду на обробку персональних даних</strong>.</p>
+
+                <p>Для реалізації цих прав напишіть нам на адресу: <a href="mailto:skykidsdnipro@gmail.com" style="color: var(--primary); font-weight: 700; text-decoration: none;">skykidsdnipro@gmail.com</a></p>
+            </section>
+        </div>
+    </div>
+</main>
+
+    <footer class="legal-footer">
+        <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 15px;">
+            <i class="ph-fill ph-fingerprint" style="color: var(--primary); font-size: 24px;"></i>
+            <i class="ph-fill ph-lock-key" style="color: #059669; font-size: 24px;"></i>
+        </div>
+        © 2026 NGO Sky Kids. Всі права захищено.
+    </footer>
+
+    <script>
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        };
+    </script>
+
+</body>
+</html>
