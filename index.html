@@ -2166,98 +2166,6 @@ body.modal-open {
 
   </div>
 </div>
-  
-<!-- МОДАЛКА ПАРТНЕРСТВА (WIDE VERSION) -->
-<div id="partnerModal" class="modal">
-  <div class="modal-content modal-premium partner-modal-wide">
-
-    <span class="close" onclick="closePartnerModal()">&times;</span>
-
-    <div class="partner-layout">
-
-        <!-- ЛЕВАЯ ЧАСТЬ -->
-        <div class="partner-left">
-
-            <h2>
-                <span data-uk="Партнерство зі SkyKids"
-                      data-en="Partnership with SkyKids">
-                    Партнерство зі SkyKids  💙
-                </span>
-            </h2>
-
-            <p class="modal-sub"
-               data-uk="Станьте частиною системної допомоги дітям та створюйте реальний соціальний вплив."
-               data-en="Become part of systemic support for children and create real social impact.">
-               Станьте частиною системної допомоги дітям та створюйте реальний соціальний вплив.
-            </p>
-
-            <ul class="partner-list">
-                <li>✔ Прозора звітність</li>
-                <li>✔ Закріплення за проєктом</li>
-                <li>✔ Реальний вимірюваний вплив</li>
-                <li>✔ Контент для вашого бренду</li>
-            </ul>
-
-        </div>
-
-        <!-- ПРАВАЯ ЧАСТЬ (АКЦЕНТ) -->
-        <div class="partner-right">
-
-            <div class="partner-highlight">
-
-                <h3>
-                    <span data-uk="Станьте частиною змін"
-                          data-en="Become part of change">
-                        Станьте частиною змін
-                    </span>
-                </h3>
-
-                <p>
-                    <span data-uk="Ваш внесок = стабільне харчування дітей щодня"
-                          data-en="Your support = daily meals for children">
-                        Ваш внесок = стабільне харчування дітей щодня
-                    </span>
-                </p>
-
-                <div class="partner-stats">
-                    <div>
-                        <strong>20+</strong>
-                        <span>дітей щодня</span>
-                    </div>
-                    <div>
-                        <strong>10 000+</strong>
-                        <span>обідів</span>
-                    </div>
-                    <div>
-                        <strong>3+ роки</strong>
-                        <span>досвіду</span>
-                    </div>
-                </div>
-
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSchy3q_1q5ep0ZCOXAairzzsiHzwO3Ws1nb-1gJFcfTnVkdnA/viewform?usp=publish-editor"
-                   target="_blank"
-                   class="btn">
-                    <span data-uk="Подати заявку"
-                          data-en="Apply now">
-                        Подати заявку
-                    </span>
-                </a>
-
-                <p class="partner-note">
-                    <span data-uk="Відповідаємо протягом 24 годин"
-                          data-en="We respond within 24 hours">
-                        Відповідаємо протягом 24 годин
-                    </span>
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-  </div>
-</div>
 
     <script>
 // Единственная и правильная функция переключения языков
@@ -2362,17 +2270,6 @@ function openDonateModal() {
 
 function closeDonateModal() {
     document.getElementById('donateModal').classList.remove('show');
-    document.body.classList.remove('modal-open');
-}
-
-// МОДАЛКА ПАРТНЁРСТВО
-function openPartnerModal() {
-    document.getElementById('partnerModal').classList.add('show');
-    document.body.classList.add('modal-open');
-}
-
-function closePartnerModal() {
-    document.getElementById('partnerModal').classList.remove('show');
     document.body.classList.remove('modal-open');
 }
       
