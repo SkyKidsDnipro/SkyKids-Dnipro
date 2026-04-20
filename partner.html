@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Партнерство | Sky Kids NGO</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Pacifico&display=swap">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --bg-soft: #f8fafc;
+            --white: #ffffff;
+            --shadow-lg: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
+            --radius-xl: 32px;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        /* Індикатор прогресу читання */
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
+            background: linear-gradient(90deg, var(--primary), #60a5fa);
+            z-index: 9999; transition: width 0.1s ease;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-soft);
+            color: var(--text-main);
+            margin: 0; line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header Style Match */
+        .legal-header {
+            background: var(--white);
+            padding: 120px 5% 140px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .legal-header::before {
+            content: ''; position: absolute; top: -50%; left: -10%; width: 40%; height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
+            transform: rotate(-15deg);
+        }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--primary); text-decoration: none; font-weight: 700; font-size: 14px;
+            margin-bottom: 30px; padding: 10px 20px; background: var(--primary-light);
+            border-radius: 100px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+
+        .back-link:hover { transform: translateX(-5px); border-color: var(--primary); background: var(--white); }
+
+        .legal-header h1 { 
+            font-size: clamp(36px, 7vw, 64px); font-weight: 800; 
+            margin: 0 0 20px; letter-spacing: -3px; color: var(--text-main);
+            line-height: 1.1;
+        }
+
+        /* Layout Container */
+        .legal-container {
+            max-width: 1000px; 
+            margin: -100px auto 100px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Section Cards */
+        .charter-card {
+            background: var(--white); 
+            padding: 60px; 
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg); 
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            margin-bottom: 40px;
+        }
+
+        /* Спеціальний стиль для блоку з формою */
+        .form-card {
+            padding: 0; 
+            overflow: hidden;
+        }
+
+        /* Motivation Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .vol-card {
+            background: var(--bg-soft);
+            padding: 30px;
+            border-radius: 24px;
+            text-align: center;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .vol-card:hover { transform: translateY(-5px); border-color: var(--primary-light); background: var(--white); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+
+        .vol-card i { font-size: 40px; color: var(--primary); margin-bottom: 15px; }
+        .vol-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
+        .vol-card p { font-size: 14px; color: var(--text-muted); margin: 0; line-height: 1.5; }
+
+        /* Heart Quote */
+        .heart-quote {
+            text-align: center;
+            margin: 60px 0;
+            padding: 40px;
+        }
+
+        .heart-quote h2 {
+            font-family: 'Pacifico', cursive;
+            color: var(--primary);
+            font-size: clamp(32px, 5vw, 48px);
+            margin-bottom: 15px;
+            filter: drop-shadow(0 5px 15px rgba(37, 99, 235, 0.1));
+        }
+
+        .heart-quote p { font-size: 18px; font-weight: 600; color: var(--text-main); }
+
+        /* Адаптивний контейнер Google Form */
+        .google-form-container {
+            width: 100%;
+            height: 2800px; /* Фіксована висота згідно з вашим iframe */
+            overflow: hidden;
+            border-radius: var(--radius-xl);
+        }
+
+        .google-form-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Заголовок анкети поза карткою */
+        .form-external-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .form-external-header h2 { font-size: 36px; font-weight: 800; margin-bottom: 10px; color: var(--text-main); }
+        .form-external-header p { color: var(--text-muted); font-size: 18px; }
+
+        /* Footer Style Match */
+        .legal-footer {
+            text-align: center; padding-bottom: 80px; color: var(--text-muted); font-size: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .charter-card { padding: 40px 24px; }
+            .form-card { padding: 0; }
+            .legal-header h1 { font-size: 38px; letter-spacing: -1px; }
+            .legal-header { padding: 100px 20px 120px; }
+            .google-form-container { height: 3100px; /* Запас для мобільних */ }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="scroll-progress"></div>
+
+    <header class="legal-header">
+        <a href="index.html" class="back-link">
+            <i class="ph-bold ph-arrow-left"></i> На головну
+        </a>
+        <h1 data-uk="Системне партнерство — великі зміни" data-en="Systemic Partnership — Big Changes">Системне партнерство — великі зміни</h1>
+        <p data-uk="Ми віримо, що бізнес може бути силою добра. SkyKids створює прозору платформу для компаній, які готові розділити з нами відповідальність за дитинство та майбутнє України." 
+           data-en="We believe business can be a force for good. SkyKids creates a transparent platform for companies ready to share responsibility for childhood and the future of Ukraine."
+           style="color: var(--text-muted); max-width: 800px; margin: 0 auto; font-size: clamp(16px, 2vw, 20px); font-weight: 500;">
+            Ми віримо, що бізнес може бути силою добра. SkyKids створює прозору платформу для компаній, які готові розділити з нами відповідальність за дитинство та майбутнє України.
+        </p>
+    </header>
+
+    <main class="legal-container">
+        <div class="charter-card">
+            <div class="cards-grid">
+                <div class="vol-card">
+                    <i class="ph-duotone ph-chart-line-up"></i>
+                    <h3 data-uk="Репутаційний капітал" data-en="Reputational Capital">Репутаційний капітал</h3>
+                    <p data-uk="Ваш бренд стає частиною великої соціальної місії. Ми забезпечуємо повну медійну підтримку та висвітлення вашого внеску." 
+                       data-en="Your brand becomes part of a grand social mission. We provide full media support and coverage of your contribution.">
+                        Ваш бренд стає частиною великої соціальної місії. Ми забезпечуємо повну медійну підтримку та висвітлення вашого внеску.
+                    </p>
+                </div>
+                <div class="vol-card">
+                    <i class="ph-duotone ph-eye"></i>
+                    <h3 data-uk="Прозорість та звіти" data-en="Transparency & Reports">Прозорість та звіти</h3>
+                    <p data-uk="Кожна гривня вашої допомоги підкріплена звітами. Ви бачите реальні обличчя дітей, яким допомогли ваші ресурси." 
+                       data-en="Every hryvnia of your aid is backed by reports. You see the real faces of children helped by your resources.">
+                        Кожна гривня вашої допомоги підкріплена звітами. Ви бачите реальні обличчя дітей, яким допомогли ваші ресурси.
+                    </p>
+                </div>
+                <div class="vol-card">
+                    <i class="ph-duotone ph-handshake"></i>
+                    <h3 data-uk="Індивідуальні формати" data-en="Individual Formats">Індивідуальні формати</h3>
+                    <p data-uk="Від прямого фінансування проектів до корпоративного волонтерства. Ми знайдемо формат, що підходить вашій CSR-стратегії." 
+                       data-en="From direct project funding to corporate volunteering. We'll find a format that suits your CSR strategy.">
+                        Від прямого фінансування проектів до корпоративного волонтерства. Ми знайдемо формат, що підходить вашій CSR-стратегії.
+                    </p>
+                </div>
+            </div>
+
+            <div class="heart-quote">
+                <h2 data-uk="«Чужих дітей не буває»" data-en="«There are no strangers' children»">«Чужих дітей не буває»</h2>
+                <p data-uk="Ми знаємо, як важко зараз кожному, але разом ми — система, яку неможливо зламати. Ваша підтримка — це фундамент безпеки дитини." 
+                   data-en="We know how hard it is for everyone right now, but together we are a system that cannot be broken. Your support is the foundation of a child's safety.">
+                    Ми знаємо, як важко зараз кожному, але разом ми — система, яку неможливо зламати. Ваша підтримка — це фундамент безпеки дитини.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-external-header">
+            <h2 data-uk="Обговорити партнерство" data-en="Discuss Partnership">Обговорити партнерство</h2>
+            <p data-uk="Залиште заявку, і ми запропонуємо кілька сценаріїв спільної роботи." 
+               data-en="Leave a request, and we will offer several scenarios for working together.">
+                Залиште заявку, і ми запропонуємо кілька сценаріїв спільної роботи.
+            </p>
+        </div>
+
+        <div class="charter-card form-card">
+            <div class="google-form-container">
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSchy3q_1q5ep0ZCOXAairzzsiHzwO3Ws1nb-1gJFcfTnVkdnA/viewform?embedded=true" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0">
+                    Завантаження…
+                </iframe>
+            </div>
+        </div>
+    </main>
+
+    <footer class="legal-footer">
+        <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 15px;">
+            <i class="ph-fill ph-handshake" style="color: #059669; font-size: 24px;"></i>
+            <i class="ph-fill ph-globe-hemisphere-west" style="color: var(--primary); font-size: 24px;"></i>
+        </div>
+        <strong>NGO Sky Kids</strong> — Програма корпоративного партнерства.<br>
+        2026 &bull; Дніпро &bull; Україна
+    </footer>
+
+    <script>
+        // Скрипт індикатора читання
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        };
+
+        // Функція перемикання мов (залишена з попереднього макета для багатомовності)
+        function setLang(lang) {
+            document.querySelectorAll('[data-uk]').forEach(el => {
+                const translation = el.getAttribute('data-' + lang);
+                const icon = el.querySelector('i');
+                if (icon) {
+                    Array.from(el.childNodes).forEach(node => { if (node.nodeType === Node.TEXT_NODE) node.remove(); });
+                    el.appendChild(document.createTextNode(' ' + translation));
+                } else {
+                    el.innerText = translation;
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
