@@ -183,6 +183,60 @@
             .requisite-value { text-align: left; }
             .doc-card::after { display: none; }
         }
+        
+/* Акцентний блок на всю ширину */
+.doc-card.highlight-wide {
+    grid-column: 1 / -1; /* Розтягує на всі колонки */
+    background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+    border: 2px solid #bfdbfe;
+    flex-direction: row; /* Горизонтальне вирівнювання */
+    align-items: center;
+    gap: 30px;
+    padding: 40px;
+}
+
+.doc-card.highlight-wide::after {
+    display: none; /* Прибираємо стандартну стрілку-наведення */
+}
+
+.doc-card.highlight-wide i.main-icon {
+    font-size: 56px;
+    margin-bottom: 0;
+    background: var(--white);
+    padding: 20px;
+    border-radius: 24px;
+    box-shadow: 0 15px 30px -10px rgba(37, 99, 235, 0.15);
+    flex-shrink: 0;
+}
+
+.doc-card.highlight-wide .text-content {
+    flex: 1;
+}
+
+.doc-card.highlight-wide .text-content h3 {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.doc-card.highlight-wide .action-link {
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+/* Адаптація для мобільних */
+@media (max-width: 900px) {
+    .doc-card.highlight-wide {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px 25px;
+        gap: 20px;
+    }
+}
     </style>
 </head>
 <body>
@@ -250,6 +304,22 @@
                 </a>
             </div>
 
+            <a href="governance.html" class="doc-card highlight-wide">
+    <i class="ph-duotone ph-folders main-icon"></i>
+    
+    <div class="text-content">
+        <h3 data-uk="Внутрішня документація" data-en="Internal Documentation">Внутрішня документація</h3>
+        <p data-uk="Збірник усіх внутрішніх регламентів, політик та інструкцій. Цей розділ містить Кодекс етики, політику захисту дітей, антикорупційну програму та інші стандарти, які забезпечують прозорість і безпеку нашої щоденної роботи."
+           data-en="A collection of all internal regulations, policies, and instructions. This section contains the Code of Ethics, child protection policy, anti-corruption program, and other standards.">
+            Збірник усіх внутрішніх регламентів, політик та інструкцій. Цей розділ містить Кодекс етики, політику захисту дітей, антикорупційну програму та інші стандарти, які забезпечують прозорість і безпеку нашої щоденної роботи.
+        </p>
+    </div>
+    
+    <div class="action-link">
+        <span data-uk="Відкрити реєстр" data-en="Open registry">Відкрити реєстр</span> <i class="ph-bold ph-arrow-right"></i>
+    </div>
+</a>
+          
             <div class="requisites-box">
                 <div class="requisites-header">
                     <i class="ph-fill ph-bank"></i>
