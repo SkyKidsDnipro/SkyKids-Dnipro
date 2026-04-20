@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partnerships | Sky Kids NGO</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Pacifico&display=swap">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --bg-soft: #f8fafc;
+            --white: #ffffff;
+            --shadow-lg: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
+            --radius-xl: 32px;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        /* Індикатор прогресу читання */
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
+            background: linear-gradient(90deg, var(--primary), #60a5fa);
+            z-index: 9999; transition: width 0.1s ease;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-soft);
+            color: var(--text-main);
+            margin: 0; line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header */
+        .legal-header {
+            background: var(--white);
+            padding: 100px 5% 120px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .legal-header::before {
+            content: ''; position: absolute; top: -50%; right: -10%; width: 40%; height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.03) 0%, transparent 70%);
+            transform: rotate(15deg);
+        }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--primary); text-decoration: none; font-weight: 700; font-size: 14px;
+            margin-bottom: 30px; padding: 10px 20px; background: var(--primary-light);
+            border-radius: 100px; transition: 0.3s;
+        }
+        .back-link:hover { transform: translateX(-5px); border-color: var(--primary); background: var(--white); }
+
+        .legal-header h1 { font-size: clamp(36px, 6vw, 56px); font-weight: 800; margin: 0 0 15px; letter-spacing: -2px; }
+
+        /* Layout */
+        .legal-container {
+            max-width: 1000px; margin: -80px auto 100px;
+            padding: 0 20px; position: relative; z-index: 10; 
+        }
+
+        .charter-card {
+            background: var(--white); padding: 70px; border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg); border: 1px solid rgba(226, 232, 240, 0.6);
+            margin-bottom: 40px;
+        }
+
+        /* Intro Text */
+        .intro-box {
+            text-align: center; margin-bottom: 50px;
+        }
+        .intro-box h2 { font-size: 28px; font-weight: 800; margin-bottom: 15px; color: var(--text-main); }
+        .intro-box p { font-size: 18px; color: var(--text-muted); max-width: 750px; margin: 0 auto; }
+
+        /* Переваги для бізнесу (Сітка) */
+        .b2b-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 60px;
+        }
+
+        .b2b-card {
+            background: var(--bg-soft); padding: 30px; border-radius: 24px;
+            border: 1px solid transparent; transition: 0.3s;
+        }
+        .b2b-card:hover { transform: translateY(-5px); background: var(--white); border-color: var(--primary-light); box-shadow: 0 15px 30px rgba(37,99,235,0.05); }
+        
+        .b2b-card i { font-size: 42px; color: var(--primary); margin-bottom: 15px; display: block; }
+        .b2b-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+        .b2b-card p { font-size: 15px; color: var(--text-muted); margin: 0; line-height: 1.6; }
+
+        /* Формати співпраці (Рядки) */
+        .formats-section h3 { font-size: 24px; font-weight: 800; margin-bottom: 30px; display: flex; align-items: center; gap: 12px; }
+        .formats-section h3 i { color: var(--primary); }
+
+        .format-row {
+            display: flex; align-items: center; gap: 20px; padding: 25px;
+            border: 1px solid #e2e8f0; border-radius: 20px; margin-bottom: 15px;
+            transition: 0.3s;
+        }
+        .format-row:hover { border-color: var(--primary); background: var(--primary-light); }
+        
+        .format-icon {
+            width: 60px; height: 60px; background: var(--white); border-radius: 16px;
+            display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--primary);
+            flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .format-info h4 { margin: 0 0 5px; font-size: 18px; font-weight: 800; }
+        .format-info p { margin: 0; font-size: 15px; color: var(--text-muted); }
+
+        /* Майбутні кейси (Cases placeholder) */
+        .cases-section {
+            margin-top: 60px; padding: 40px; background: #0f172a; color: white;
+            border-radius: 28px; position: relative; overflow: hidden; text-align: center;
+        }
+        .cases-section::before {
+            content: ''; position: absolute; top: -50px; right: -50px; width: 200px; height: 200px;
+            background: var(--primary); filter: blur(80px); opacity: 0.4;
+        }
+        .cases-section h3 { font-size: 28px; font-weight: 800; margin: 0 0 15px; position: relative; z-index: 2; }
+        .cases-section p { font-size: 16px; color: #94a3b8; margin: 0 auto 30px; max-width: 600px; position: relative; z-index: 2; }
+        
+        .cases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; position: relative; z-index: 2; }
+        .case-card {
+            background: rgba(255,255,255,0.05); border: 1px dashed rgba(255,255,255,0.2);
+            padding: 30px; border-radius: 20px; backdrop-filter: blur(10px);
+        }
+        .case-card i { font-size: 32px; color: #cbd5e1; opacity: 0.5; margin-bottom: 10px; }
+        .case-card h4 { margin: 0; font-size: 16px; color: #cbd5e1; font-weight: 600; }
+
+        /* CTA Button */
+        .cta-container { text-align: center; margin-top: 60px; }
+        .btn-cta {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+            background: var(--primary); color: white; padding: 20px 40px;
+            border-radius: 16px; font-size: 18px; font-weight: 800; text-decoration: none;
+            transition: 0.3s; box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
+        }
+        .btn-cta:hover { background: var(--primary-hover); transform: translateY(-3px); box-shadow: 0 20px 40px rgba(37, 99, 235, 0.3); }
+
+        /* Footer */
+        .legal-footer { text-align: center; padding-bottom: 80px; color: var(--text-muted); font-size: 15px; }
+
+        @media (max-width: 768px) {
+            .charter-card { padding: 40px 24px; }
+            .legal-header h1 { font-size: 34px; }
+            .format-row { flex-direction: column; text-align: center; }
+            .cases-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="scroll-progress"></div>
+
+    <header class="legal-header">
+        <a href="index.html" class="back-link"><i class="ph-bold ph-arrow-left"></i> На головну</a>
+        <h1 data-uk="Партнерство для бізнесу" data-en="Partnerships for Business">Партнерство для бізнесу</h1>
+        <p data-uk="Перетворюємо соціальну відповідальність на репутаційний капітал" 
+           data-en="Turning social responsibility into reputational capital"
+           style="color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: clamp(16px, 2vw, 18px); font-weight: 500;">
+            Перетворюємо соціальну відповідальність на репутаційний капітал
+        </p>
+    </header>
+
+    <main class="legal-container">
+        <div class="charter-card">
+            
+            <div class="intro-box">
+                <h2>Платформа для спільних перемог</h2>
+                <p>SkyKids — це не просто благодійний проєкт. Це системна B2B-платформа, де бізнес отримує можливість реалізувати свою КСВ (Корпоративну соціальну відповідальність) максимально прозоро, ефективно та з користю для власного бренду.</p>
+            </div>
+
+            <div class="b2b-grid">
+                <div class="b2b-card">
+                    <i class="ph-duotone ph-trend-up"></i>
+                    <h3>Потужний PR та Репутація</h3>
+                    <p>Покращення іміджу бренду в очах клієнтів та партнерів. Ми публічно висвітлюємо вашу підтримку на наших ресурсах та у медіа.</p>
+                </div>
+                <div class="b2b-card">
+                    <i class="ph-duotone ph-receipt"></i>
+                    <h3>Податкові переваги</h3>
+                    <p>Оскільки ми є офіційною неприбутковою організацією (ознака 0048), ваша компанія може оптимізувати базу оподаткування згідно з ПКУ.</p>
+                </div>
+                <div class="b2b-card">
+                    <i class="ph-duotone ph-users-three"></i>
+                    <h3>Залученість команди</h3>
+                    <p>Корпоративне волонтерство підвищує лояльність ваших працівників (eNPS) та згуртовує команду навколо важливої мети.</p>
+                </div>
+                <div class="b2b-card">
+                    <i class="ph-duotone ph-check-verified"></i>
+                    <h3>100% Прозорість</h3>
+                    <p>Ми надаємо детальні звіти за кожну витрачену гривню. Ви точно знаєте, кому, як і коли допоміг ваш бізнес.</p>
+                </div>
+            </div>
+
+            <div class="formats-section">
+                <h3><i class="ph-bold ph-handshake"></i> Як ми можемо співпрацювати?</h3>
+                
+                <div class="format-row">
+                    <div class="format-icon"><i class="ph-bold ph-bank"></i></div>
+                    <div class="format-info">
+                        <h4>Генеральне фінансування проєктів</h4>
+                        <p>Ваша компанія бере під патронат окремий напрямок (наприклад, річне харчування дітей у просторі або закупівля техніки для навчання).</p>
+                    </div>
+                </div>
+
+                <div class="format-row">
+                    <div class="format-icon"><i class="ph-bold ph-shopping-bag"></i></div>
+                    <div class="format-info">
+                        <h4>Відсоток від продажів (Cause-related marketing)</h4>
+                        <p>Перерахування фіксованого відсотка або суми з продажу ваших товарів/послуг. Клієнти купують більше, знаючи, що допомагають дітям.</p>
+                    </div>
+                </div>
+
+                <div class="format-row">
+                    <div class="format-icon"><i class="ph-bold ph-package"></i></div>
+                    <div class="format-info">
+                        <h4>Pro Bono та In-kind пожертви</h4>
+                        <p>Надання професійних послуг вашої компанії (юридичні, IT, маркетинг) або передача продукції (будматеріали, їжа, техніка) для потреб фонду.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cases-section">
+                <h3>Історії успіху</h3>
+                <p>Тут будуть розміщені реальні кейси нашої співпраці з бізнесом: цифри, досягнення та вплив на суспільство.</p>
+                
+                <div class="cases-grid">
+                    <div class="case-card">
+                        <i class="ph-duotone ph-image"></i>
+                        <h4>Місце для вашого бренду</h4>
+                    </div>
+                    <div class="case-card">
+                        <i class="ph-duotone ph-image"></i>
+                        <h4>Місце для вашого бренду</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-container">
+                <a href="partner.html" class="btn-cta">
+                    Заповнити заявку партнера <i class="ph-bold ph-arrow-right"></i>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="legal-footer">
+        <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 15px;">
+            <i class="ph-fill ph-briefcase" style="color: var(--primary); font-size: 24px;"></i>
+            <i class="ph-fill ph-chart-polar" style="color: #64748b; font-size: 24px;"></i>
+        </div>
+        <strong>NGO Sky Kids</strong> — B2B партнерство.<br>
+        2026 &bull; Дніпро &bull; Україна
+    </footer>
+
+    <script>
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        };
+    </script>
+
+</body>
+</html>
