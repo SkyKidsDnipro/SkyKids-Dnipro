@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Волонтерство | Sky Kids NGO</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Pacifico&display=swap">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --bg-soft: #f8fafc;
+            --white: #ffffff;
+            --shadow-lg: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
+            --radius-xl: 32px;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
+            background: linear-gradient(90deg, var(--primary), #60a5fa);
+            z-index: 9999; transition: width 0.1s ease;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-soft);
+            color: var(--text-main);
+            margin: 0; line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header Style Match */
+        .legal-header {
+            background: var(--white);
+            padding: 120px 5% 140px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .legal-header::before {
+            content: ''; position: absolute; top: -50%; left: -10%; width: 40%; height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
+            transform: rotate(-15deg);
+        }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--primary); text-decoration: none; font-weight: 700; font-size: 14px;
+            margin-bottom: 30px; padding: 10px 20px; background: var(--primary-light);
+            border-radius: 100px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+
+        .back-link:hover { transform: translateX(-5px); border-color: var(--primary); background: var(--white); }
+
+        .legal-header h1 { 
+            font-size: clamp(36px, 7vw, 64px); font-weight: 800; 
+            margin: 0 0 20px; letter-spacing: -3px; color: var(--text-main);
+            line-height: 1.1;
+        }
+
+        .legal-container {
+            max-width: 1000px; 
+            margin: -100px auto 100px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Section Cards */
+        .charter-card {
+            background: var(--white); 
+            padding: 60px; 
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg); 
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            margin-bottom: 40px;
+        }
+
+        /* Спеціальний стиль для блоку з формою */
+        .form-card {
+            padding: 0; /* Прибираємо внутрішні відступи для форми */
+            overflow: hidden;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .vol-card {
+            background: var(--bg-soft);
+            padding: 30px;
+            border-radius: 24px;
+            text-align: center;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .vol-card:hover { transform: translateY(-5px); border-color: var(--primary-light); background: var(--white); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+
+        .vol-card i { font-size: 40px; color: var(--primary); margin-bottom: 15px; }
+        .vol-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
+        .vol-card p { font-size: 14px; color: var(--text-muted); margin: 0; line-height: 1.5; }
+
+        .heart-quote {
+            text-align: center;
+            margin: 60px 0;
+            padding: 40px;
+        }
+
+        .heart-quote h2 {
+            font-family: 'Pacifico', cursive;
+            color: var(--primary);
+            font-size: clamp(32px, 5vw, 48px);
+            margin-bottom: 15px;
+        }
+
+        /* Адаптивний контейнер Google Form */
+        .google-form-container {
+            width: 100%;
+            height: 3000px; /* Фіксована висота, щоб уникнути прокрутки всередині */
+            overflow: hidden;
+            border-radius: var(--radius-xl);
+        }
+
+        .google-form-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Заголовок анкети поза карткою */
+        .form-external-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .form-external-header h2 { font-size: 36px; font-weight: 800; margin-bottom: 10px; color: var(--text-main); }
+        .form-external-header p { color: var(--text-muted); font-size: 18px; }
+
+        .legal-footer {
+            text-align: center; padding-bottom: 80px; color: var(--text-muted); font-size: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .charter-card { padding: 40px 24px; }
+            .form-card { padding: 0; }
+            .legal-header h1 { font-size: 38px; letter-spacing: -1px; }
+            .google-form-container { height: 3100px; /* Трохи більше для мобільних через розтягування тексту */ }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="scroll-progress"></div>
+
+    <header class="legal-header">
+        <a href="index.html" class="back-link">
+            <i class="ph-bold ph-arrow-left"></i> На головну
+        </a>
+        <h1>Волонтерство з душею</h1>
+        <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto; font-size: clamp(16px, 2vw, 20px); font-weight: 500;">
+            SkyKids — це про підтримку тих, хто на межі, силами тих, хто має хоча б краплину тепла.
+        </p>
+    </header>
+
+    <main class="legal-container">
+        <div class="charter-card">
+            <div class="cards-grid">
+                <div class="vol-card">
+                    <i class="ph-duotone ph-lightning"></i>
+                    <h3>Це не забере час</h3>
+                    <p>Навіть 15 хвилин онлайн — написати пост чи відповісти на повідомлення — це врятована увага дитини.</p>
+                </div>
+                <div class="vol-card">
+                    <i class="ph-duotone ph-strategy"></i>
+                    <h3>Ви там, де потрібні</h3>
+                    <p>Від разової допомоги в Дніпрі до інтелектуального волонтерства з будь-якої точки світу.</p>
+                </div>
+                <div class="vol-card">
+                    <i class="ph-duotone ph-users-four"></i>
+                    <h3>Ми цінуємо вас</h3>
+                    <p>Кожне ваше слово підтримки чи година в нашому центрі — це спільна відповідальність за майбутнє.</p>
+                </div>
+            </div>
+
+            <div class="heart-quote">
+                <h2>«Чужих дітей не буває»</h2>
+                <p>Ми дякуємо кожному, хто викладається на повну, і тим, хто допомагає простою посмішкою.</p>
+            </div>
+        </div>
+
+        <div class="form-external-header">
+            <h2>Стати частиною SkyKids</h2>
+            <p>Заповніть анкету нижче, і ми знайдемо ідеальний формат для вас.</p>
+        </div>
+
+        <div class="charter-card form-card">
+            <div class="google-form-container">
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSdbGZ0JoG1SY7iIyejUr3GuEpnpXE3IfeBtV6dDQpNFe-UUTw/viewform?embedded=true" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0">
+                    Завантаження…
+                </iframe>
+            </div>
+        </div>
+    </main>
+
+    <footer class="legal-footer">
+        <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 15px;">
+            <i class="ph-fill ph-heart" style="color: #f43f5e; font-size: 24px;"></i>
+            <i class="ph-fill ph-users" style="color: var(--primary); font-size: 24px;"></i>
+        </div>
+        <strong>NGO Sky Kids</strong> — Програма волонтерської підтримки.<br>
+        2026 &bull; Дніпро &bull; Україна
+    </footer>
+
+    <script>
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        };
+    </script>
+
+</body>
+</html>
