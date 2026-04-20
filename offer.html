@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Offer | Sky Kids NGO</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --bg-soft: #f8fafc;
+            --white: #ffffff;
+            --shadow-lg: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
+            --radius-xl: 32px;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        /* Прогрес читання */
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
+            background: linear-gradient(90deg, var(--primary), #60a5fa);
+            z-index: 9999; transition: width 0.1s ease;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-soft);
+            color: var(--text-main);
+            margin: 0; line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header Style Match */
+        .legal-header {
+            background: var(--white);
+            padding: 100px 5% 120px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .legal-header::before {
+            content: ''; position: absolute; top: -50%; left: -10%; width: 40%; height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.03) 0%, transparent 70%);
+            transform: rotate(-15deg);
+        }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--primary); text-decoration: none; font-weight: 700; font-size: 14px;
+            margin-bottom: 30px; padding: 10px 20px; background: var(--primary-light);
+            border-radius: 100px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+
+        .back-link:hover { transform: translateX(-5px); border-color: var(--primary); background: var(--white); }
+
+        .update-date {
+            font-size: 12px; color: var(--text-muted); text-transform: uppercase;
+            letter-spacing: 2px; font-weight: 800; margin-bottom: 15px; display: block;
+        }
+
+        .legal-header h1 { 
+            font-size: clamp(36px, 6vw, 56px); font-weight: 800; 
+            margin: 0; letter-spacing: -2px; color: var(--text-main);
+        }
+
+        /* Layout */
+        .legal-container {
+            max-width: 850px; 
+            margin: -80px auto 100px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .charter-card {
+            background: var(--white); 
+            padding: 70px; 
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg); 
+            border: 1px solid rgba(226, 232, 240, 0.6);
+        }
+
+        /* Alert Box */
+        .important-note {
+            background: #fff1f2;
+            border-left: 4px solid #f43f5e;
+            padding: 24px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .important-note i { font-size: 24px; color: #f43f5e; }
+        .important-note p { margin: 0; font-size: 16px; color: #9f1239; font-weight: 600; line-height: 1.5; }
+
+        /* Typography */
+        .charter-text section { margin-bottom: 50px; }
+
+        .charter-text h2 {
+            font-size: 26px; font-weight: 800; margin: 0 0 24px;
+            color: var(--text-main); display: flex; align-items: center; gap: 15px;
+        }
+
+        .charter-text h2 span {
+            width: 40px; height: 40px; background: var(--primary-light);
+            color: var(--primary); display: flex; align-items: center; justify-content: center;
+            border-radius: 12px; font-size: 18px;
+        }
+
+        .charter-text p { font-size: 18px; color: var(--text-muted); margin-bottom: 20px; text-align: justify; }
+        .charter-text strong { color: var(--text-main); }
+        
+        .charter-text ul { padding-left: 25px; margin-bottom: 25px; }
+        .charter-text li { font-size: 18px; color: var(--text-muted); margin-bottom: 12px; }
+
+        /* Таблиця реквізитів */
+        .requisites-box {
+            background: var(--bg-soft);
+            padding: 30px;
+            border-radius: 24px;
+            border: 1px dashed #cbd5e1;
+            margin-top: 40px;
+        }
+
+        .requisite-row {
+            display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e2e8f0;
+        }
+        .requisite-row:last-child { border: none; }
+        .requisite-label { font-weight: 700; color: var(--text-muted); font-size: 14px; }
+        .requisite-value { font-weight: 800; color: var(--text-main); font-size: 14px; }
+
+        /* Footer Style Match */
+        .legal-footer {
+            text-align: center; padding-bottom: 80px; color: var(--text-muted); font-size: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .charter-card { padding: 40px 24px; }
+            .legal-header h1 { font-size: 34px; }
+            .requisite-row { flex-direction: column; gap: 4px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="scroll-progress"></div>
+
+    <header class="legal-header">
+        <a href="index.html" class="back-link">
+            <i class="ph-bold ph-arrow-left"></i> На головну
+        </a>
+        <span class="update-date">Діє з: Квітень 2026</span>
+        <h1>Публічна оферта</h1>
+    </header>
+
+    <main class="legal-container">
+        <div class="charter-card">
+            
+            <div class="important-note">
+                <i class="ph-fill ph-warning-circle"></i>
+                <p>Увага! Натискаючи кнопку оплати на Сайті або здійснюючи переказ через платіжні термінали, ви автоматично погоджуєтесь з умовами даного Договору про надання благодійної допомоги.</p>
+            </div>
+
+            <div class="charter-text">
+                <section>
+                    <h2><span>1</span> Предмет Договору</h2>
+                    <p>Цей Договір є <strong>Публічною пропозицією</strong> (Офертою) Громадської організації «Небесні діти» (далі — Організація), адресованою необмеженому колу осіб, надати добровільний безповоротний благодійний внесок для здійснення статутної діяльності Організації. Даний договір є договором приєднання в розумінні ст. 634 Цивільного кодексу України.</p>
+                </section>
+
+                <section>
+                    <h2><span>2</span> Акцепт Оферти</h2>
+                    <p>Акцептом (прийняттям) Оферти вважається здійснення Благодійником будь-якої з наступних дій:</p>
+                    <ul>
+                        <li>Перерахування коштів через платіжні системи на Сайті;</li>
+                        <li>Внесення коштів через банківські установи чи термінали самообслуговування;</li>
+                        <li>Перерахування коштів з використанням QR-кодів Організації.</li>
+                    </ul>
+                    <p>Договір вважається укладеним без необхідності підписання паперової версії.</p>
+                </section>
+
+                <section>
+                    <h2><span>3</span> Мета та Напрями</h2>
+                    <p>Внески спрямовуються на підтримку діяльності простору <strong>SKY Kids</strong> та реалізацію благодійних програм, а саме:</p>
+                    <ul>
+                        <li>Забезпечення гарячого харчування для соціально незахищених дітей;</li>
+                        <li>Оплата праці наставників, викладачів англійської мови та творчих фахівців;</li>
+                        <li>Утримання приміщень центру (оренда, комунальні витрати);</li>
+                        <li>Матеріали для навчання, творчості та спортивний інвентар.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2><span>4</span> Умови використання та повернення</h2>
+                    <p>Відповідно до ст. 1 Закону України «Про благодійну діяльність та благодійні організації», благодійна допомога є безповоротною. Вона не підлягає поверненню Благодійнику, крім випадків, коли це передбачено законом.</p>
+                    <p>Організація самостійно визначає напрямки використання коштів у межах своїх статутних цілей. Якщо збір на конкретний проєкт завершено або він втратив актуальність, залишок коштів перерозподіляється на інші термінові потреби вихованців.</p>
+                </section>
+
+                <section>
+                    <h2><span>5</span> Підтвердження та Конфіденційність</h2>
+                    <p>Благодійник підтверджує, що він має повну дієздатність та добровільно здійснює внесок. Організація гарантує, що персональні дані Благодійника використовуються виключно для цілей звітності та внутрішньої комунікації згідно з нашою <strong>Політикою конфіденційності</strong>.</p>
+                </section>
+
+                <div class="requisites-box">
+                    <div style="margin-bottom: 20px; font-weight: 800; color: var(--primary); font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">
+                        Реквізити Організації
+                    </div>
+                    <div class="requisite-row">
+                        <span class="requisite-label">Назва:</span>
+                        <span class="requisite-value">ГО «НЕБЕСНІ ДІТИ» (SKY KIDS)</span>
+                    </div>
+                    <div class="requisite-row">
+                        <span class="requisite-label">ЄДРПОУ:</span>
+                        <span class="requisite-value">45080222</span>
+                    </div>
+                    <div class="requisite-row">
+                        <span class="requisite-label">Юридична адреса:</span>
+                        <span class="requisite-value">Україна, м. Дніпро</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="legal-footer">
+        <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 15px;">
+            <i class="ph-fill ph-seal-check" style="color: var(--primary); font-size: 24px;"></i>
+            <i class="ph-fill ph-hand-heart" style="color: #059669; font-size: 24px;"></i>
+        </div>
+        <strong>NGO Sky Kids</strong> — Публічний договір благодійного внеску.<br>
+        2026 &bull; Прозорість та довіра.
+    </footer>
+
+    <script>
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        };
+    </script>
+
+</body>
+</html>
