@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Внутрішня документація | Sky Kids NGO</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Pacifico&display=swap">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --bg-soft: #f8fafc;
+            --white: #ffffff;
+            --shadow-lg: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
+            --radius-xl: 32px;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
+            background: linear-gradient(90deg, var(--primary), #60a5fa);
+            z-index: 9999; transition: width 0.1s ease;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-soft);
+            color: var(--text-main);
+            margin: 0; line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header Style Match */
+        .legal-header {
+            background: var(--white);
+            padding: 120px 5% 140px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .legal-header::before {
+            content: ''; position: absolute; top: -50%; left: -10%; width: 40%; height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
+            transform: rotate(-15deg);
+        }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--primary); text-decoration: none; font-weight: 700; font-size: 14px;
+            margin-bottom: 30px; padding: 10px 20px; background: var(--primary-light);
+            border-radius: 100px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+
+        .back-link:hover { transform: translateX(-5px); border-color: var(--primary); background: var(--white); }
+
+        .legal-header h1 { 
+            font-size: clamp(32px, 5vw, 56px); font-weight: 800; 
+            margin: 0 0 20px; letter-spacing: -2px; color: var(--text-main);
+            line-height: 1.1;
+        }
+
+        /* Layout Container */
+        .legal-container {
+            max-width: 1100px; 
+            margin: -100px auto 100px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Info Box з зеленою тінню */
+        .info-box {
+            background: #f0fdf4;
+            padding: 30px 40px;
+            border-radius: 24px;
+            border-left: 5px solid #16a34a;
+            margin-bottom: 40px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            box-shadow: 0 15px 35px -5px rgba(22, 163, 74, 0.15); /* Зеленувата тінь */
+        }
+
+        .info-box i {
+            font-size: 36px;
+            color: #16a34a;
+            flex-shrink: 0;
+        }
+
+        .info-box p {
+            margin: 0;
+            color: #064e3b;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Документальна сітка - 2 в ряд */
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .doc-block {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 28px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .doc-block:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-light);
+            box-shadow: 0 30px 60px -15px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Спеціальний стиль для блоку зі статутом (на всю ширину) */
+        .doc-block.charter-link {
+            grid-column: 1 / -1; /* Розтягуємо на 2 колонки */
+            background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+            border: 1px solid #bfdbfe;
+            flex-direction: row;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .doc-block.charter-link i {
+            margin-bottom: 0;
+            font-size: 56px;
+        }
+
+        .doc-block.charter-link .charter-content {
+            flex: 1;
+        }
+
+        .doc-block i {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .doc-block h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin: 0 0 12px;
+            line-height: 1.3;
+            color: var(--text-main);
+        }
+
+        .doc-block p {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Кнопка Google Drive */
+        .drive-action {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn-drive {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--text-main);
+            color: white;
+            padding: 24px 48px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 18px;
+            transition: 0.3s;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2);
+        }
+
+        .btn-drive:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-drive i { font-size: 24px; }
+
+        @media (max-width: 900px) {
+            .docs-grid { grid-template-columns: 1fr; }
+            .legal-header h1 { font-size: 38px; letter-spacing: -1px; }
+            .doc-block { padding: 30px; }
+            .doc-block.charter-link { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .doc-block.charter-link i { font-size: 40px; }
+            .info-box { flex-direction: column; text-align: center; padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="scroll-progress"></div>
+
+    <header class="legal-header">
+        <a href="index.html" class="back-link">
+            <i class="ph-bold ph-arrow-left"></i> На головну
+        </a>
+        <h1>Внутрішня документація</h1>
+        <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto; font-size: clamp(16px, 2vw, 20px); font-weight: 500;">
+            Офіційні регламенти та політики ГО «Небесні Діти»
+        </p>
+    </header>
+
+    <main class="legal-container">
+
+        <div class="info-box">
+            <i class="ph-fill ph-users-three"></i>
+            <p>Цей розділ призначений для волонтерів, співробітників та партнерів організації. Тут зібрані всі ключові регламенти, які гарантують безпеку та прозорість нашої діяльності.</p>
+        </div>
+        
+        <div class="docs-grid">
+            
+            <a href="charter.html" class="doc-block charter-link">
+                <i class="ph-duotone ph-book-open"></i>
+                <div class="charter-content">
+                    <h3>Статут Громадської організації «Небесні діти»</h3>
+                    <p>Основний установчий документ, що визначає правові засади, мету та структуру управління нашою організацією.</p>
+                </div>
+                <div style="color: var(--primary); font-weight: 700; font-size: 15px; white-space: nowrap; display: flex; align-items: center; gap: 8px;">
+                    Перейти <i class="ph-bold ph-arrow-right"></i>
+                </div>
+            </a>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-strategy"></i>
+                <h3>Стратегічний план на 2023–2026 роки</h3>
+                <p>Дорожня карта розвитку організації з чітко визначеними пріоритетами, цілями та очікуваними результатами.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-folder-notched"></i>
+                <h3>Інструкція з діловодства</h3>
+                <p>Єдині правила створення, оформлення та зберігання офіційної документації і внутрішнього обігу документів.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-shield-star"></i>
+                <h3>Антикорупційна політика</h3>
+                <p>Комплекс заходів та принципів, спрямованих на запобігання, виявлення та протидію будь-яким проявам корупції.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-gender-intersex"></i>
+                <h3>Гендерна політика та політика рівності</h3>
+                <p>Гарантія забезпечення рівних прав, можливостей, інклюзії та захисту від дискримінації для всіх учасників процесів.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-hand-heart"></i>
+                <h3>Етичний кодекс</h3>
+                <p>Збірка моральних принципів та норм професійної поведінки для членів команди, волонтерів та працівників.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-shopping-cart"></i>
+                <h3>Закупівельна політика</h3>
+                <p>Регламент прозорого та ефективного використання коштів при придбанні товарів, робіт та послуг для потреб ГО.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-megaphone"></i>
+                <h3>Комунікаційна політика</h3>
+                <p>Стратегія зовнішньої та внутрішньої взаємодії, що забезпечує відкритість та єдиний голос організації в медіа.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-calculator"></i>
+                <h3>Облікова політика</h3>
+                <p>Встановлені правила ведення фінансового управління, бухгалтерського обліку та контролю витрат організації.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-users-three"></i>
+                <h3>Положення про Наглядову раду</h3>
+                <p>Документ, що регламентує діяльність вищого контролюючого органу ГО, його повноваження та склад.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-users-four"></i>
+                <h3>Положення про волонтерську діяльність</h3>
+                <p>Визначає права, обов’язки волонтерів та порядок їхньої участі у соціальних та благодійних проєктах організації.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-tent"></i>
+                <h3>Положення про табори та заклади рекреації</h3>
+                <p>Норми організації безпечного дозвілля, рекреації та оздоровлення дітей у межах програм SkyKids.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-identification-card"></i>
+                <h3>Положення про членство та внески</h3>
+                <p>Регламентує порядок вступу до ГО, статус членів організації та умови сплати членських внесків.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-lock-key"></i>
+                <h3>Політика безпеки</h3>
+                <p>Стандарти фізичної та операційної безпеки під час проведення заходів та роботи офісу організації.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-shield-check"></i>
+                <h3>Політика захисту персональних даних</h3>
+                <p>Правила конфіденційності, що гарантують надійне зберігання та використання інформації про наших бенефіціарів.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-buildings"></i>
+                <h3>Політика управління активами та ресурсами</h3>
+                <p>Система контролю за матеріально-технічною базою та майном для забезпечення ефективності діяльності.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-user-list"></i>
+                <h3>Політика управління персоналом</h3>
+                <p>Принципи найму, мотивації та професійного розвитку команди для досягнення місії SkyKids.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-chart-line-up"></i>
+                <h3>Політика моніторингу та оцінки</h3>
+                <p>Методологія відстеження результатів проєктів та оцінки їхнього впливу на життя вихованців.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-projector-screen-chart"></i>
+                <h3>Політика управління проєктами</h3>
+                <p>Стандарти планування та реалізації благодійних ініціатив від задуму до фінального звіту.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-video-conference"></i>
+                <h3>Регламент проведення онлайн-засідань</h3>
+                <p>Порядок підготовки та легітимного проведення зустрічей керівних органів за допомогою цифрових платформ.</p>
+            </div>
+
+            <div class="doc-block">
+                <i class="ph-duotone ph-chalkboard-teacher"></i>
+                <h3>Регламент проведення офлайн-засідань</h3>
+                <p>Процедура організації та протоколювання очних зустрічей правління та загальних зборів членів ГО.</p>
+            </div>
+
+        </div>
+
+        <div class="drive-action">
+            <a href="https://drive.google.com/your-folder-link" target="_blank" class="btn-drive">
+                <i class="ph-bold ph-google-drive-logo"></i>
+                Відкрити всі документи на Google Диску
+            </a>
+        </div>
+
+    </main>
+
+    <footer style="text-align: center; padding-bottom: 80px; color: var(--text-muted); font-size: 15px;">
+        <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 15px;">
+            <i class="ph-fill ph-check-circle" style="color: #059669; font-size: 24px;"></i>
+            <i class="ph-fill ph-shield-check" style="color: var(--primary); font-size: 24px;"></i>
+        </div>
+        <strong>NGO Sky Kids</strong> — Повна юридична відповідність.<br>
+        2026 &bull; Дніпро &bull; Україна
+    </footer>
+
+    <script>
+        // Скрипт індикатора читання
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        };
+    </script>
+
+</body>
+</html>
