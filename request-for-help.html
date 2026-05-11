@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Отримати підтримку | Sky Kids NGO">
+    <meta property="og:description" content="Ми поруч. Залиште заявку на отримання допомоги для вашої дитини.">
+  
     <title>Отримати підтримку | Sky Kids NGO</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Pacifico&display=swap">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
     <style>
         :root {
             --primary: #2563eb;
             --primary-hover: #1d4ed8;
             --primary-light: #eff6ff;
-            --text-main: #0f172a;
+            --text-main: #1e293b;
             --text-muted: #64748b;
             --bg-soft: #f8fafc;
             --white: #ffffff;
@@ -20,27 +27,57 @@
             --radius-xl: 32px;
         }
 
-        * { box-sizing: border-box; scroll-behavior: smooth; }
-
-        /* Індикатор прогресу читання */
-        #scroll-progress {
-            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
-            background: linear-gradient(90deg, var(--primary), #60a5fa);
-            z-index: 9999; transition: width 0.1s ease;
-        }
+        * { box-sizing: border-box; scroll-behavior: smooth; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--bg-soft);
             color: var(--text-main);
-            margin: 0; line-height: 1.8;
-            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Header Style Match */
+        /* --- НАВІГАЦІЯ --- */
+        .nav {
+            position: fixed; width: 100%; top: 0; display: flex;
+            justify-content: space-between; align-items: center;
+            padding: 20px 5%; z-index: 1000; transition: all 0.4s ease;
+        }
+        .nav.scrolled {
+            padding: 12px 5%; background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--primary); text-decoration: none; font-weight: 700;
+            background: rgba(37, 99, 235, 0.1); padding: 8px 16px; border-radius: 20px;
+            transition: 0.3s;
+        }
+        .back-link:hover { background: var(--primary); color: white; transform: translateX(-5px); }
+
+        .lang-switch {
+            display: flex; gap: 4px; background: rgba(241, 245, 249, 0.8);
+            padding: 4px; border-radius: 30px; position: relative; width: 110px;
+        }
+        .lang-switch button {
+            flex: 1; border: none; background: transparent; z-index: 2;
+            padding: 8px 0; cursor: pointer; font-weight: 600; color: var(--text-muted);
+            transition: 0.3s;
+        }
+        .lang-slider {
+            position: absolute; top: 4px; left: 4px; width: 50%; height: calc(100% - 8px);
+            background: white; border-radius: 20px; transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+        .lang-switch.en .lang-slider { transform: translateX(85%); }
+        .lang-switch button.active { color: var(--primary); }
+
+        /* --- HEADER СТОРІНКИ --- */
         .legal-header {
             background: var(--white);
-            padding: 120px 5% 140px;
+            padding: 140px 5% 120px;
             text-align: center;
             position: relative;
             border-bottom: 1px solid #e2e8f0;
@@ -53,32 +90,26 @@
             transform: rotate(-15deg);
         }
 
-        .back-link {
-            display: inline-flex; align-items: center; gap: 8px;
-            color: var(--primary); text-decoration: none; font-weight: 700; font-size: 14px;
-            margin-bottom: 30px; padding: 10px 20px; background: var(--primary-light);
-            border-radius: 100px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid transparent;
-        }
-
-        .back-link:hover { transform: translateX(-5px); border-color: var(--primary); background: var(--white); }
-
         .legal-header h1 { 
-            font-size: clamp(36px, 7vw, 64px); font-weight: 800; 
+            font-size: clamp(36px, 5vw, 56px); font-weight: 800; 
             margin: 0 0 20px; letter-spacing: -2px; color: var(--text-main);
-            line-height: 1.1;
+            line-height: 1.1; position: relative; z-index: 2;
         }
 
-        /* Layout Container */
+        .legal-header p {
+            color: var(--text-muted); max-width: 800px; margin: 0 auto; 
+            font-size: clamp(16px, 2vw, 20px); font-weight: 500; position: relative; z-index: 2;
+        }
+
+        /* --- КОНТЕЙНЕР --- */
         .legal-container {
             max-width: 1000px; 
-            margin: -100px auto 100px;
+            margin: -60px auto 100px;
             padding: 0 20px;
             position: relative;
             z-index: 10;
         }
 
-        /* Section Cards */
         .charter-card {
             background: var(--white); 
             padding: 60px; 
@@ -88,13 +119,9 @@
             margin-bottom: 40px;
         }
 
-        /* Спеціальний стиль для блоку з формою */
-        .form-card {
-            padding: 0; 
-            overflow: hidden;
-        }
+        .form-card { padding: 0; overflow: hidden; }
 
-        /* Motivation Cards Grid */
+        /* --- КАРТКИ "ЯК МИ ДОПОМАГАЄМО" --- */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -117,39 +144,26 @@
         .vol-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
         .vol-card p { font-size: 14px; color: var(--text-muted); margin: 0; line-height: 1.5; }
 
-        /* Heart Quote */
+        /* --- ЦИТАТА --- */
         .heart-quote {
             text-align: center;
-            margin: 60px 0;
+            margin: 40px 0;
             padding: 40px;
+            background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+            border-radius: 24px;
+            border: 1px dashed #bfdbfe;
         }
 
         .heart-quote h2 {
             font-family: 'Pacifico', cursive;
             color: var(--primary);
-            font-size: clamp(32px, 5vw, 48px);
+            font-size: clamp(28px, 4vw, 42px);
             margin-bottom: 15px;
-            filter: drop-shadow(0 5px 15px rgba(37, 99, 235, 0.1));
         }
 
-        .heart-quote p { font-size: 18px; font-weight: 600; color: var(--text-main); }
+        .heart-quote p { font-size: 16px; font-weight: 500; color: var(--text-main); max-width: 600px; margin: 0 auto; }
 
-        /* Адаптивний контейнер Google Form */
-        .google-form-container {
-            width: 100%;
-            height: 2900px; /* Фіксована висота згідно з вашим iframe */
-            overflow: hidden;
-            border-radius: var(--radius-xl);
-        }
-
-        .google-form-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-
-        /* Заголовок анкети поза карткою */
+        /* --- GOOGLE ФОРМА --- */
         .form-external-header {
             text-align: center;
             margin-bottom: 40px;
@@ -159,33 +173,82 @@
         .form-external-header h2 { font-size: 36px; font-weight: 800; margin-bottom: 10px; color: var(--text-main); }
         .form-external-header p { color: var(--text-muted); font-size: 18px; }
 
-        /* Footer Style Match */
-        .legal-footer {
-            text-align: center; padding-bottom: 80px; color: var(--text-muted); font-size: 15px;
+        .google-form-container {
+            width: 100%;
+            height: 2900px; /* Висота підібрана під вашу велику анкету */
+            overflow: hidden;
+            border-radius: var(--radius-xl);
+            background: #f8fafc;
+        }
+
+        .google-form-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* --- УЛУЧШЕННЫЙ ФУТЕР --- */
+        .sky-footer { background: #0a0f1a; color: #fff; padding: 80px 5% 40px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-container { max-width: 1100px; margin: 0 auto; }
+        
+        /* Сетка для перелинковки */
+        .footer-nav-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 40px; 
+            text-align: left;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .footer-col h4 { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: 25px; font-weight: 800; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 15px; }
+        .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 15px; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        .footer-links a:hover { color: #fff; transform: translateX(5px); }
+        
+        /* Нижняя панель с легал-ссылками */
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .legal-links { display: flex; gap: 25px; }
+        .legal-links a { color: rgba(255,255,255,0.3); text-decoration: none; font-size: 13px; transition: 0.3s; }
+        .legal-links a:hover { color: #fff; }
+        .copyright { color: rgba(255,255,255,0.2); font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .footer-nav-grid { text-align: center; }
+            .footer-links a { justify-content: center; }
+            .footer-bottom { flex-direction: column; text-align: center; }
         }
 
         @media (max-width: 768px) {
-            .charter-card { padding: 40px 24px; }
-            .form-card { padding: 0; }
-            .legal-header h1 { font-size: 38px; letter-spacing: -1px; }
-            .legal-header { padding: 100px 20px 120px; }
-            .google-form-container { height: 3200px; /* Запас для мобільних, щоб не обрізало */ }
+            .charter-card { padding: 40px 20px; }
+            .legal-header h1 { font-size: 32px; letter-spacing: -1px; }
+            .legal-header { padding: 120px 20px 100px; }
+            .google-form-container { height: 3200px; } /* На мобільних форма стає довшою */
         }
     </style>
 </head>
 <body>
 
-    <div id="scroll-progress"></div>
+    <nav class="nav" id="navbar">
+        <a href="index.html" class="back-link">
+            <i class="ph-bold ph-arrow-left"></i> <span data-uk="На головну" data-en="Back to Home">На головну</span>
+        </a>
+        
+        <div class="lang-switch">
+            <div class="lang-slider"></div>
+            <button id="btn-uk" class="active" onclick="setLang('uk')">UA</button>
+            <button id="btn-en" onclick="setLang('en')">EN</button>
+        </div>  
+    </nav>
 
     <header class="legal-header">
-        <a href="index.html" class="back-link">
-            <i class="ph-bold ph-arrow-left"></i> На головну
-        </a>
         <h1 data-uk="Ми поруч, коли це найважливіше" data-en="We are here when it matters most">Ми поруч, коли це найважливіше</h1>
-        <p data-uk="Якщо ваша дитина потребує підтримки, харчування або просто уваги — не залишайтеся з цим наодинці. SkyKids створений для того, щоб кожна дитина відчувала безпеку та турботу." 
-           data-en="If your child needs support, nutrition, or just attention — don't stay alone with it. SkyKids is created to ensure every child feels safe and cared for."
-           style="color: var(--text-muted); max-width: 800px; margin: 0 auto; font-size: clamp(16px, 2vw, 20px); font-weight: 500;">
-            Якщо ваша дитина потребує підтримки, харчування або просто уваги — не залишайтеся з цим наодинці. SkyKids створений для того, щоб кожна дитина відчувала безпеку та турботу.
+        <p data-uk="Якщо вашій дитині потрібна підтримка, харчування або просто увага — не залишайтеся з цим наодинці. SkyKids створений для того, щоб кожна дитина відчувала безпеку." 
+           data-en="If your child needs support, nutrition, or just attention — don't stay alone with it. SkyKids is created to ensure every child feels safe.">
+            Якщо вашій дитині потрібна підтримка, харчування або просто увага — не залишайтеся з цим наодинці. SkyKids створений для того, щоб кожна дитина відчувала безпеку.
         </p>
     </header>
 
@@ -195,43 +258,43 @@
                 <div class="vol-card">
                     <i class="ph-duotone ph-bowl-food"></i>
                     <h3 data-uk="Гаряче харчування" data-en="Hot Meals">Гаряче харчування</h3>
-                    <p data-uk="Ми забезпечуємо дітей щоденними обідами у нашому центрі. Жодна дитина не повинна бути голодною." 
-                       data-en="We provide children with daily lunches at our center. No child should be hungry.">
-                        Ми забезпечуємо дітей щоденними обідами у нашому центрі. Жодна дитина не повинна бути голодною.
+                    <p data-uk="Ми забезпечуємо дітей щоденними повноцінними обідами у нашому центрі. Жодна дитина не повинна бути голодною." 
+                       data-en="We provide children with daily full meals at our center. No child should be hungry.">
+                        Ми забезпечуємо дітей щоденними повноцінними обідами у нашому центрі. Жодна дитина не повинна бути голодною.
                     </p>
                 </div>
                 <div class="vol-card">
                     <i class="ph-duotone ph-t-shirt"></i>
                     <h3 data-uk="Речі та подарунки" data-en="Clothes & Gifts">Речі та подарунки</h3>
-                    <p data-uk="Одяг, іграшки та шкільне приладдя. Ми збираємо та передаємо все необхідне для гідного дитинства." 
-                       data-en="Clothing, toys, and school supplies. We collect and provide everything necessary for a dignified childhood.">
-                        Одяг, іграшки та шкільне приладдя. Ми збираємо та передаємо все необхідне для гідного дитинства.
+                    <p data-uk="Одяг, іграшки та шкільне приладдя. Ми збираємо та передаємо найнеобхідніше для гідного та радісного дитинства." 
+                       data-en="Clothing, toys, and school supplies. We collect and provide the essentials for a dignified and joyful childhood.">
+                        Одяг, іграшки та шкільне приладдя. Ми збираємо та передаємо найнеобхідніше для гідного та радісного дитинства.
                     </p>
                 </div>
                 <div class="vol-card">
-                    <i class="ph-duotone ph-book-open"></i>
+                    <i class="ph-duotone ph-heartbeat"></i>
                     <h3 data-uk="Розвиток та увага" data-en="Development & Attention">Розвиток та увага</h3>
-                    <p data-uk="Навчальні курси, творчі заняття та психологічна підтримка. Ми дбаємо про ментальне здоров'я дитини." 
-                       data-en="Educational courses, creative classes, and psychological support. We care about the child's mental health.">
-                        Навчальні курси, творчі заняття та психологічна підтримка. Ми дбаємо про ментальне здоров'я дитини.
+                    <p data-uk="Творчі майстер-класи, безпечне середовище для спілкування та підтримка від наставників." 
+                       data-en="Creative workshops, a safe environment for communication, and support from mentors.">
+                        Творчі майстер-класи, безпечне середовище для спілкування та підтримка від наставників.
                     </p>
                 </div>
             </div>
 
             <div class="heart-quote">
                 <h2 data-uk="«Чужих дітей не буває»" data-en="«There are no strangers' children»">«Чужих дітей не буває»</h2>
-                <p data-uk="Ми знаємо, як важко просити про допомогу, але пам'ятайте: це не слабкість, це ваша сила та турбота про майбутнє дитини." 
-                   data-en="We know how hard it is to ask for help, but remember: it is not a weakness, it is your strength and care for the child's future.">
-                    Ми знаємо, як важко просити про допомогу, але пам'ятайте: це не слабкість, це ваша сила та турбота про майбутнє дитини.
+                <p data-uk="Ми розуміємо, що просити про допомогу іноді складно. Але пам'ятайте: це не слабкість, це ваша сила та турбота про майбутнє вашої дитини." 
+                   data-en="We understand that asking for help is sometimes difficult. But remember: it is not a weakness, it is your strength and care for your child's future.">
+                    Ми розуміємо, що просити про допомогу іноді складно. Але пам'ятайте: це не слабкість, це ваша сила та турбота про майбутнє вашої дитини.
                 </p>
             </div>
         </div>
 
         <div class="form-external-header">
             <h2 data-uk="Заявка на допомогу" data-en="Application for Help">Заявка на допомогу</h2>
-            <p data-uk="Будь ласка, заповніть форму нижче, і наш соціальний менеджер зв'яжеться з вами." 
-               data-en="Please fill out the form below, and our social manager will contact you.">
-                Будь ласка, заповніть форму нижче, і наш соціальний менеджер зв'яжеться з вами.
+            <p data-uk="Будь ласка, заповніть форму нижче, і наш соціальний менеджер обов'язково зв'яжеться з вами." 
+               data-en="Please fill out the form below, and our social manager will definitely contact you.">
+                Будь ласка, заповніть форму нижче, і наш соціальний менеджер обов'язково зв'яжеться з вами.
             </p>
         </div>
 
@@ -242,43 +305,79 @@
                     frameborder="0" 
                     marginheight="0" 
                     marginwidth="0">
-                    Завантаження…
+                    Завантаження анкети...
                 </iframe>
             </div>
         </div>
     </main>
 
-    <footer class="legal-footer">
-        <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 15px;">
-            <i class="ph-fill ph-heart" style="color: #f43f5e; font-size: 24px;"></i>
-            <i class="ph-fill ph-hands-clapping" style="color: var(--primary); font-size: 24px;"></i>
+    <footer class="sky-footer">
+        <div class="footer-container">
+            <div class="footer-nav-grid">
+                <div class="footer-col">
+                    <h4 data-uk="Проєкти" data-en="Projects">Проєкти</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="ph-bold ph-house"></i> <span data-uk="Головна" data-en="Home">Головна</span></a></li>
+                        <li><a href="sky-kitchen.html"><i class="ph-fill ph-bowl-food"></i> <span data-uk="Харчування" data-en="Nutrition">Харчування</span></a></li>
+                        <li><a href="index.html#projects"><i class="ph-bold ph-graduation-cap"></i> <span data-uk="Академія" data-en="Academy">Академія</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-uk="Долучитися" data-en="Get Involved">Долучитися</h4>
+                    <ul class="footer-links">
+                        <li><a href="volunteer.html"><i class="ph-bold ph-users"></i> <span data-uk="Стати волонтером" data-en="Become a Volunteer">Стати волонтером</span></a></li>
+                        <li><a href="partner.html"><i class="ph-bold ph-handshake"></i> <span data-uk="Стати партнером" data-en="Become a Partner">Стати партнером</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-uk="Контакти" data-en="Contacts">Контакти</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:skykidsdnipro@gmail.com"><i class="ph-bold ph-envelope"></i> skykidsdnipro@gmail.com</a></li>
+                        <li><a href="tel:+380667427733"><i class="ph-bold ph-phone"></i> +38 (066) 742-77-33</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="legal-links">
+                    <a href="privacy.html" data-uk="Політика конфіденційності" data-en="Privacy Policy">Політика конфіденційності</a>
+                    <a href="offer.html" data-uk="Публічна оферта" data-en="Public Offer">Публічна оферта</a>
+                    <a href="reports.html" data-uk="Звітність" data-en="Reports">Звітність</a>
+                    <a href="charter.html" data-uk="Статут" data-en="Charter">Статут</a>
+                </div>
+                <p class="copyright">© 2026 Sky Kids NGO. Created with heart for children.</p>
+            </div>
         </div>
-        <strong>NGO Sky Kids</strong> — Програма соціальної підтримки.<br>
-        2026 &bull; Дніпро &bull; Україна
     </footer>
 
     <script>
-        // Скрипт індикатора читання
-        window.onscroll = function() {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
-            document.getElementById("scroll-progress").style.width = scrolled + "%";
-        };
-
-        // Функція перемикання мов 
+        // Перемикач мов
         function setLang(lang) {
+            const switcher = document.querySelector('.lang-switch');
+            document.getElementById('btn-uk').classList.toggle('active', lang === 'uk');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            switcher.classList.toggle('en', lang === 'en');
+
             document.querySelectorAll('[data-uk]').forEach(el => {
                 const translation = el.getAttribute('data-' + lang);
                 const icon = el.querySelector('i');
                 if (icon) {
-                    Array.from(el.childNodes).forEach(node => { if (node.nodeType === Node.TEXT_NODE) node.remove(); });
+                    Array.from(el.childNodes).forEach(node => {
+                        if (node.nodeType === Node.TEXT_NODE) node.remove();
+                    });
                     el.appendChild(document.createTextNode(' ' + translation));
                 } else {
-                    el.innerText = translation;
+                    el.innerHTML = translation; 
                 }
             });
         }
+
+        // Sticky Navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 10) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
     </script>
 
 </body>
