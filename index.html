@@ -1673,6 +1673,115 @@ body.modal-open {
         grid-template-columns: 1fr;
     }
 }
+      
+/* ============================================================
+   СТИЛІ ДЛЯ СЕКЦІЇ КОМАНДИ
+   ============================================================ */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.team-card {
+    background: #ffffff;
+    border-radius: 32px;
+    padding: 35px 20px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.02), 0 30px 60px rgba(37, 99, 235, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    animation: fadeInUp 0.6s ease backwards;
+}
+
+.team-card:nth-child(1) { animation-delay: 0.1s; }
+.team-card:nth-child(2) { animation-delay: 0.2s; }
+.team-card:nth-child(3) { animation-delay: 0.3s; }
+.team-card:nth-child(4) { animation-delay: 0.4s; }
+
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 40px 80px rgba(37, 99, 235, 0.1);
+    border-color: rgba(37, 99, 235, 0.1);
+}
+
+.team-img-wrap {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient(135deg, var(--primary), #60a5fa);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+}
+
+.team-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #ffffff;
+}
+
+.team-name {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 5px;
+    color: var(--text-main);
+}
+
+.team-role {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+      
+/* ============================================================
+   КАРТКА "ЩЕ ВОЛОНТЕРИ"
+   ============================================================ */
+.team-img-placeholder {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: #f8fafc;
+    border: 2px dashed #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 54px;
+    color: #94a3b8;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.team-card.more-volunteers {
+    cursor: pointer;
+    text-decoration: none;
+    display: block; /* Щоб посилання працювало як блок */
+}
+
+.team-card.more-volunteers:hover .team-img-placeholder {
+    background: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: scale(1.05) rotate(5deg);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+}
+
+.team-card.more-volunteers .team-name {
+    color: var(--text-main);
+    transition: color 0.3s;
+}
+
+.team-card.more-volunteers:hover .team-name {
+    color: var(--primary);
+}
+
+.team-card:nth-child(5) { animation-delay: 0.5s; }
+.team-card:nth-child(6) { animation-delay: 0.6s; }
     </style>
 </head>
 <body>
@@ -1717,7 +1826,7 @@ body.modal-open {
 
         <div class="projects-grid">
 
-            <a href="#" class="project-card">
+            <a href="skykitchen.html" class="project-card">
                 <div class="card-content">
                     <i class="ph-duotone ph-bowl-food"></i>
                     <h3 data-uk=" Sky Kitchen (Годування)" data-en=" Sky Kitchen (Feeding)"> Sky Kitchen (Годування)</h3>
@@ -1823,6 +1932,68 @@ body.modal-open {
 </div>
 </section>
   
+  <section class="section text-center">
+    <span class="section-tag" data-uk="Наша команда" data-en="Our Team">Наша команда</span>
+    <h2 class="section-title" data-uk="Люди, які створюють зміни" data-en="People who create change">
+        Люди, які створюють зміни
+    </h2>
+    <p class="section-subtitle" style="margin-inline: auto;" 
+       data-uk="Ми — об'єднані спільною метою: захистити та підтримати дітей. Наша команда працює щодня, щоб кожен малюк відчував турботу та безпеку." 
+       data-en="We are united by a common goal: to protect and support children. Our team works every day so that every child feels cared for and safe.">
+        Ми — об'єднані спільною метою: захистити та підтримати дітей. Наша команда працює щодня, щоб кожен малюк відчував турботу та безпеку.
+    </p>
+
+    <div class="team-grid">
+    <div class="team-card">
+        <div class="team-img-wrap">
+            <img src="https://i.ibb.co/JFkyZmXB/eee4215b-7e16-46f5-b93d-befd89bcb68a.png" alt="Коновалова Ольга" class="team-img">
+        </div>
+        <h3 class="team-name" data-uk="Коновалова Ольга" data-en="Konovalova Olga">Коновалова Ольга</h3>
+        <p class="team-role" data-uk="Директор" data-en="Director">Директор</p>
+    </div>
+    
+    <div class="team-card">
+        <div class="team-img-wrap">
+            <img src="https://i.ibb.co/qbQzCVL/b8aa9b6d-53ad-4480-bfec-8a685babec3f.png" alt="Аліна Кагайкіна" class="team-img">
+        </div>
+        <h3 class="team-name" data-uk="Аліна Кагайкіна" data-en="Alina Kahaikina">Аліна Кагайкіна</h3>
+        <p class="team-role" data-uk="Адміністратор та вихователь" data-en="Administrator & Educator">Адміністратор та вихователь</p>
+    </div>
+
+    <div class="team-card">
+        <div class="team-img-wrap">
+            <img src="https://i.ibb.co/3L49xvT/df7e0b90-4618-4417-b87b-4a120e45d666.png" alt="Баранник Ірина" class="team-img">
+        </div>
+        <h3 class="team-name" data-uk="Баранник Ірина" data-en="Barannyk Iryna">Баранник Ірина</h3>
+        <p class="team-role" data-uk="Вихователь" data-en="Educator">Вихователь</p>
+    </div>
+    
+    <div class="team-card">
+        <div class="team-img-wrap">
+            <img src="https://i.ibb.co/FLrpXXhN/76e9d388-ffe6-43e9-ad75-4c54ce951ae2.png" alt="Чернов Євген" class="team-img">
+        </div>
+        <h3 class="team-name" data-uk="Чернов Євген" data-en="Chernov Evgen">Чернов Євген</h3>
+        <p class="team-role" data-uk="Фандрайзер / Волонтер" data-en="Fundraiser / Volunteer">Фандрайзер / Волонтер</p>
+    </div>
+
+    <div class="team-card">
+        <div class="team-img-wrap">
+            <img src="https://i.ibb.co/pjH80Sf0/c944842f-c77c-4220-b496-856b15872f11.png" alt="Микита Нечистенко" class="team-img">
+        </div>
+        <h3 class="team-name" data-uk="Микита Нечистенко" data-en="Mykyta Nechystenko">Микита Нечистенко</h3>
+        <p class="team-role" data-uk="Помічник фандрайзера / Волонтер" data-en="Assistant Fundraiser / Volunteer">Помічник фандрайзера / Волонтер</p>
+    </div>
+
+    <a href="volunteer.html" class="team-card more-volunteers">
+        <div class="team-img-placeholder">
+            <i class="ph-duotone ph-users-three"></i>
+        </div>
+        <h3 class="team-name" data-uk="Ще 20+ волонтерів" data-en="20+ more volunteers">Ще 20+ волонтерів</h3>
+        <p class="team-role" style="color: var(--text-muted); text-transform: none; letter-spacing: normal; font-weight: 500;" data-uk="допомагають щодня" data-en="help every day">допомагають щодня</p>
+    </a>
+</div>
+</section>
+  
   <section class="help-request-container">
     <div class="help-card-big">
         <div class="help-content">
@@ -1914,7 +2085,7 @@ body.modal-open {
                         <i class="ph-bold ph-house-line"></i>
                         <span data-uk="Головна SkyKids" data-en="Home SkyKids">Головна сторінка</span>
                     </a>
-                    <a href="#" class="nav-link">
+                    <a href="skykitchen.html" class="nav-link">
                         <i class="ph-duotone ph-bowl-food"></i>
                         <span data-uk="Sky Kitchen (Годування)" data-en="Sky Kitchen (Feeding)">Sky Kitchen (Годування)</span>
                     </a>
