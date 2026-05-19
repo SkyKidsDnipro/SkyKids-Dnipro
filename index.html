@@ -2386,8 +2386,15 @@ body.modal-open {
                 <span>IBAN</span>
 
                 <div class="card-copy-wrap">
-                    <strong id="ibanNumber">UA833052990000026004050569233</strong>
-                    <button class="copy-btn" onclick="copyIBAN()">
+                    <div class="iban-container" style="max-width: 100%; overflow: hidden;">
+                        <strong id="ibanNumber" style="
+                            display: block; 
+                            word-break: break-all; 
+                            font-family: 'Courier New', monospace; 
+                            line-height: 1.2;
+                        ">UA833052990000026004050569233</strong>
+                    </div>
+                    <button class="copy-btn" onclick="copyIBAN()" style="flex-shrink: 0;">
                         <i class="ph-bold ph-copy"></i>
                     </button>
                 </div>
@@ -2421,26 +2428,31 @@ body.modal-open {
                 </h3>
 
                 <p style="font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 25px;">
-                    <span data-uk="Apple Pay / Google Pay в 1 клік" data-en="Apple Pay / Google Pay in 1 click">
-                        Apple Pay / Google Pay в 1 клік
+                    <span data-uk="Apple Pay / Google Pay / Card в 1 клік" data-en="Apple Pay / Google Pay / Card in 1 click">
+                        Apple Pay / Google Pay / Card в 1 клік
                     </span>
                 </p>
 
                 <a href="https://send.monobank.ua/jar/3uRgTwfozj" target="_blank" class="mono-btn" style="background: #e2e8f0; color: #111827; width: 100%; justify-content: center; padding: 18px 20px; border-radius: 16px; font-size: 18px;">
                     <i class="ph-fill ph-lightning" style="color: #6366f1;"></i>
                     <span data-uk="Задонатити швидко" data-en="Donate quickly">
-                        Задонатити швидко
+                        Задонатити в 1 дотик
                     </span>
                 </a>
 
                               <p style="font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 25px;">
-                    <span data-uk="Apple Pay / Google Pay в 1 клік" data-en="Apple Pay / Google Pay in 1 click">Або</span>
+                    <span data-uk="or scan the QR-Code / або скануй QR-Code" data-en="Apple Pay / Google Pay in 1 click">або скануй QR-Code</span>
                 </p>
               
-                <div style="margin-top: 30px; background: white; padding: 15px; border-radius: 20px; display: inline-block;">
-                    <img src="https://i.ibb.co/prRjSqBB/2026-05-19-110108.png" alt="QR Code Monobank" style="width: 120px; height: 120px; border-radius: 10px;">
+                <div style="margin-top: 25px; width: 100%; display: flex; justify-content: center;">
+                    <div style="background: white; padding: 12px; border-radius: 20px; width: 100%; max-width: 250px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://send.monobank.ua/jar/3uRgTwfozj" 
+                             alt="QR Code Monobank" 
+                             style="width: 100%; height: auto; border-radius: 10px; display: block;">
+                    </div>
                 </div>
-                <p style="font-size: 12px; margin-top: 15px; color: rgba(255,255,255,0.5);" data-uk="Наведіть камеру телефону" data-en="Scan with phone camera">
+                <p style="font-size: 13px; margin-top: 15px; color: rgba(255,255,255,0.6); font-weight: 500;" data-uk="Наведіть камеру телефону" data-en="Scan with phone camera">
+                    <i class="ph-bold ph-scan" style="vertical-align: middle; margin-right: 5px;"></i>
                     Наведіть камеру телефону
                 </p>
 
@@ -2456,7 +2468,7 @@ body.modal-open {
     <div class="donate-impact">
         <span data-uk="2900 грн = 1 день харчування"
               data-en="2900 UAH = 1 day of food">
-              1200 грн = 1 день харчування
+              2900 грн = 1 день харчування
         </span>
     </div>
 
