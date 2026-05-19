@@ -598,18 +598,59 @@ main.section {
 }
 /* НОВЫЕ// */
       
-/* --- ПРОСТА PREMIIUM HERO SECTION: ТІЛЬКИ ГРАДІЄНТ ТА ТІНЬ --- */
+/* --- PREMIUM HERO SECTION З ВІДЕО-ФОНОМ --- */
 .hero-brand {
-    padding: 180px 5% 80px; /* Збільшили відступи зверху та знизу для балансу */
+    padding: 180px 5% 80px;
     text-align: center;
-    background: radial-gradient(circle at center, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
     position: relative;
-    overflow: visible; /* ГАРАНТІЯ: Нічого не ріжемо */
-    min-height: 70vh; /* Щоб заголовок був у центрі уваги */
+    overflow: hidden; /* Обов'язково приховуємо краї відео */
+    min-height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+/* Контейнер відео */
+.hero-video-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none; /* Пропускаємо всі кліки крізь відео */
+    overflow: hidden;
+}
+
+/* Магія масштабування YouTube iframe без чорних смуг (повне покриття) */
+.hero-video-iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw; /* 16:9 Aspect Ratio */
+    min-height: 100vh;
+    min-width: 177.77vh; /* 16:9 Aspect Ratio */
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Світлий Glassmorphism оверлей, щоб зберегти читабельність темного тексту та логотипу */
+.hero-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(241, 245, 249, 0.10) 100%);
+    backdrop-filter: blur(2px); /* Легке розмиття відео для преміального ефекту */
+    z-index: 1;
+}
+
+/* Піднімаємо контент над відео */
+.hero-brand h1, 
+.hero-brand .mission-box {
+    position: relative;
+    z-index: 2;
 }
 
 /* Оновлений заголовок SkyKids */
@@ -1888,11 +1929,21 @@ body.modal-open {
     </nav>
 
 <section class="hero-brand" id="heroSection">
+        <div class="hero-video-wrapper">
+            <iframe class="hero-video-iframe" 
+                    src="https://www.youtube.com/embed/BJXmcD2eWYw?autoplay=1&mute=1&loop=1&playlist=BJXmcD2eWYw&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1" 
+                    frameborder="0" 
+                    allow="autoplay; encrypted-media" 
+                    allowfullscreen>
+            </iframe>
+            <div class="hero-video-overlay"></div>
+        </div>
+
         <h1 id="magnetText" style="position: relative;">
             <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;" data-uk="Sky Kids — Благодійний фонд та системна допомога дітям" data-en="Sky Kids — Charity Foundation and Systemic Aid for Children">
                 Sky Kids — Благодійний фонд та системна допомога дітям
             </span>
-            <img src="https://i.ibb.co/m53sqRXX/1a38507f-6114-4d82-ac55-1e0bd8f708ba-removebg-preview.png" alt="SkyKids NGO Logo" class="hero-logo-text" fetchpriority="high" loading="eager">
+            <img src="https://i.ibb.co/6ccMK12n/3.png" alt="SkyKids NGO Logo" class="hero-logo-text" fetchpriority="high" loading="eager">
         </h1>
         
         <div class="mission-box">
@@ -1905,7 +1956,6 @@ body.modal-open {
             </p>
         </div>
     </section>
- 
   
 <main class="section">
         <style>
@@ -2318,7 +2368,7 @@ body.modal-open {
                     <button class="copy-btn" onclick="copyCard()">
                         <i class="ph-bold ph-copy"></i>
                     </button>
-                </div>
+                </div> 
             </div>
 
             <div class="donate-row">
@@ -2347,13 +2397,44 @@ body.modal-open {
 
     <!-- ПРАВАЯ КОЛОНКА (ONE CLICK DONATE) -->
     <div class="donate-right">
-        <iframe 
-            src="https://send.monobank.ua/widget.html?jar=5ysk3zRVwU2M9k4FbP1HCKm9N7xgqxXo&sendId=4EEyoEa8n4&type=qrp&colorScheme=purple" 
-            title="Monobank Donation Widget"
-            scrolling="no"
-            style="width: 100%; height: 100%; min-height: 520px; border: none; border-radius: 24px; box-shadow: 0 20px 60px rgba(37, 99, 235, 0.15); background: transparent;" 
-            allowtransparency="true">
-        </iframe>
+        <div class="donate-fast" style="background: linear-gradient(135deg, #111827 0%, #312e81 100%);">
+            <div class="donate-fast-content">
+                <div style="margin-bottom: 20px;">
+                    <img src="https://otzovik-ua.com/wp-content/uploads/2018/09/monobank.png" alt="Monobank" style="height: 40px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">
+                </div>
+
+                <h3>
+                    <span data-uk="Поповнити Банку" data-en="Top up the Jar">
+                        Поповнити Банку
+                    </span>
+                </h3>
+
+                <p style="font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 25px;">
+                    <span data-uk="Apple Pay / Google Pay в 1 клік" data-en="Apple Pay / Google Pay in 1 click">
+                        Apple Pay / Google Pay в 1 клік
+                    </span>
+                </p>
+
+                <a href="https://send.monobank.ua/jar/3uRgTwfozj" target="_blank" class="mono-btn" style="background: #e2e8f0; color: #111827; width: 100%; justify-content: center; padding: 18px 20px; border-radius: 16px; font-size: 18px;">
+                    <i class="ph-fill ph-lightning" style="color: #6366f1;"></i>
+                    <span data-uk="Задонатити швидко" data-en="Donate quickly">
+                        Задонатити швидко
+                    </span>
+                </a>
+
+                              <p style="font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 25px;">
+                    <span data-uk="Apple Pay / Google Pay в 1 клік" data-en="Apple Pay / Google Pay in 1 click">Або</span>
+                </p>
+              
+                <div style="margin-top: 30px; background: white; padding: 15px; border-radius: 20px; display: inline-block;">
+                    <img src="https://i.ibb.co/prRjSqBB/2026-05-19-110108.png" alt="QR Code Monobank" style="width: 120px; height: 120px; border-radius: 10px;">
+                </div>
+                <p style="font-size: 12px; margin-top: 15px; color: rgba(255,255,255,0.5);" data-uk="Наведіть камеру телефону" data-en="Scan with phone camera">
+                    Наведіть камеру телефону
+                </p>
+
+            </div>
+        </div>
     </div>
 
 </div>
