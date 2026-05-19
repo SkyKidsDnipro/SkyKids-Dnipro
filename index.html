@@ -1920,11 +1920,18 @@ body.modal-open {
     <img src="https://i.ibb.co/6ccMK12n/3.png" alt="Текстовий логотип системної допомоги дітям Sky Kids" class="logo-text-img" fetchpriority="high" loading="eager" decoding="async">
 </a>
       
-      <div class="lang-switch">
-    <div class="lang-slider"></div>
-    <button id="btn-uk" class="active" onclick="setLang('uk')">UA</button>
-    <button id="btn-en" onclick="setLang('en')">EN</button>
-</div>  
+    <div class="nav-right" style="display: flex; align-items: center; gap: 15px;">
+        <button class="btn" style="padding: 10px 20px; font-size: 14px; box-shadow: none;" onclick="openDonateModal()">
+            <i class="ph-fill ph-heart"></i>
+           <span data-uk="Підтримати" data-en="Support">Підтримати</span>
+        </button>
+
+        <div class="lang-switch">
+            <div class="lang-slider"></div>
+            <button id="btn-uk" class="active" onclick="setLang('uk')">UA</button>
+            <button id="btn-en" onclick="setLang('en')">EN</button>
+        </div>
+    </div>
       
     </nav>
 
