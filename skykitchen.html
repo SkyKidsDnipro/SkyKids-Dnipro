@@ -1,20 +1,78 @@
-<!DOCTYPE html>
+21 750 ₴<!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Sky Kitchen — Нагодуй дитину сьогодні">
-    <meta property="og:description" content="Фінансування ЗАВЕРШЕНО. 30 дітей потребують гарячих обідів вже зараз. Твої 145 грн — це ситий день для дитини.">
-  
-    <title>Sky Kitchen | Збір на харчування дітей</title>
     
+    <title>Sky Kitchen — Гарячі обіди для дітей | Sky Kids NGO</title>
+    <meta name="title" content="Sky Kitchen — Нагодуй дитину сьогодні | Sky Kids">
+    <meta name="description" content="Благодійний проєкт Sky Kitchen. Забезпечуємо щоденним гарячим харчуванням 30 дітей у Дніпрі. Ваші 145 грн — це ситий день для дитини. Долучайтеся до збору.">
+    <meta name="keywords" content="Sky Kitchen, благодійний фонд, допомога дітям Дніпро, гаряче харчування для дітей, волонтери Україна, благодійний внесок">
+    <meta name="theme-color" content="#f59e0b">
+
+    <link rel="icon" type="image/png" href="https://i.ibb.co/bgmcGKHp/2.png">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/bgmcGKHp/2.png">
+
+    <link rel="alternate" hreflang="uk" href="https://skykids.org.ua/skykitchen.html" />
+    <link rel="alternate" hreflang="en" href="https://skykids.org.ua/en/skykitchen.html" />
+    <link rel="alternate" hreflang="x-default" href="https://skykids.org.ua/skykitchen.html" />
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://skykids.org.ua/skykitchen.html">
+    <meta property="og:title" content="Sky Kitchen — Нагодуй дитину сьогодні">
+    <meta property="og:description" content="30 дітей потребують гарячих обідів вже зараз. Ваші 145 грн — це ситий день для дитини. Підтримайте проєкт.">
+    <meta property="og:image" content="https://files.fm/thumb_show.php?i=xhaff59xwq">
+    <meta property="og:site_name" content="Sky Kids NGO">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://skykids.org.ua/skykitchen.html">
+    <meta name="twitter:title" content="Sky Kitchen — Нагодуй дитину сьогодні">
+    <meta name="twitter:description" content="Екстрений збір на гаряче харчування для 30 дітей. Долучайся!">
+    <meta name="twitter:image" content="https://files.fm/thumb_show.php?i=xhaff59xwq">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://i.ibb.co">
+    <link rel="preconnect" href="https://files.fm">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "DonateAction",
+      "name": "Підтримка проєкту Sky Kitchen",
+      "description": "Збір коштів на гаряче харчування для 30 дітей з малозабезпечених сімей у прифронтовій зоні.",
+      "recipient": {
+        "@type": "NGO",
+        "name": "Sky Kids",
+        "alternateName": "ГО Небесні Діти",
+        "url": "https://skykids.org.ua",
+        "logo": "https://i.ibb.co/bgmcGKHp/2.png"
+      }
+    }
+    </script>
+
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
+        /* Глобальная защита всех иконок (Phosphor Icons) */
+        i[class^="ph-"], 
+        i[class*=" ph-"],
+        .ph, .ph-fill, .ph-bold, .ph-light, .ph-duotone {
+            flex-shrink: 0 !important;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 1 / 1 !important; 
+            min-width: 1.25em !important; 
+            min-height: 1.25em !important;
+            line-height: 1 !important;
+            vertical-align: middle;
+        }
+
         :root {
             --primary: #2563eb;
             --primary-hover: #1d4ed8;
@@ -24,6 +82,7 @@
             --text-main: #1e293b;
             --text-muted: #64748b;
             --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #eff6ff 100%);
+            --border-radius: 24px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -57,6 +116,15 @@
             transition: 0.3s;
         }
         .back-link:hover { background: var(--primary); color: white; transform: translateX(-5px); }
+
+        /* Кнопки Навігації */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 10px 20px; border-radius: 50px; background: var(--primary);
+            color: white; font-weight: 600; font-size: 14px; text-decoration: none;
+            border: none; cursor: pointer; transition: all 0.3s ease;
+        }
+        .btn:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25); }
 
         .lang-switch {
             display: flex; gap: 4px; background: rgba(241, 245, 249, 0.8);
@@ -196,63 +264,25 @@
         .review-card i.ph-quotes { font-size: 40px; color: rgba(37, 99, 235, 0.1); position: absolute; top: 20px; right: 20px; }
         .review-text { font-size: 15px; color: var(--text-main); font-style: italic; margin-bottom: 20px; font-weight: 500; position: relative; z-index: 2; }
         .review-author { display: flex; align-items: center; gap: 10px; }
-        .review-author-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: 800; }
+        .review-author-avatar { width: 40px; height: 40px; border-radius: 50%; background: #dcfce7; color: #10b981; display: flex; align-items: center; justify-content: center; font-weight: 800; }
         .review-author-info strong { display: block; font-size: 15px; }
         .review-author-info span { font-size: 12px; color: var(--text-muted); }
 
-        /* --- ВБУДОВАНИЙ БЛОК ДОНАТІВ --- */
-        .donate-section { max-width: 1100px; margin: 0 auto 40px; padding: 0 20px; }
-        .donate-wrapper {
-            background: white; border-radius: 32px; padding: 40px;
-            box-shadow: 0 25px 60px rgba(37, 99, 235, 0.08); border: 1px solid rgba(37, 99, 235, 0.1);
-            display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px;
-        }
-
-        .donate-left { display: flex; flex-direction: column; justify-content: center; }
-        .premium-box { background: #f8fafc; border-radius: 20px; padding: 25px; border: 1px dashed #cbd5e1; }
-        .donate-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #e2e8f0; }
-        .donate-row:last-child { border: none; padding-bottom: 0; }
-        .donate-row span { color: var(--text-muted); font-size: 14px; font-weight: 500; }
-        .donate-row strong { font-size: 15px; font-weight: 700; color: var(--text-main); }
+        /* --- ВБУДОВАНИЙ БЛОК ДОНАТІВ НА СТОРІНЦІ --- */
+        .donate-section { max-width: 800px; margin: 0 auto 100px; text-align: center; padding: 0 5%; }
         
-        .card-copy-wrap { display: flex; align-items: center; gap: 10px; }
-        .copy-btn {
-            background: var(--primary-light); color: var(--primary); border: none;
-            width: 32px; height: 32px; border-radius: 8px; cursor: pointer; transition: 0.2s;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .copy-btn:hover { background: var(--primary); color: white; transform: scale(1.1); }
-        .copy-btn.success { background: #10b981; color: white; }
-
-        .donate-right {
-            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
-            border-radius: 24px; padding: 40px; color: white;
-            display: flex; flex-direction: column; justify-content: center; text-align: center;
-            position: relative; overflow: hidden;
-        }
-        .donate-right::after { content: ''; position: absolute; inset: 0; background: url("https://www.transparenttextures.com/patterns/noise.png"); opacity: 0.1; }
-
-        .donate-right h3 { font-size: 28px; margin-bottom: 10px; position: relative; z-index: 2; }
-        .donate-right p { opacity: 0.9; margin-bottom: 30px; font-size: 16px; position: relative; z-index: 2; }
-
         .btn-action {
             display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-            background: white; color: var(--text-main); font-weight: 800; font-size: 18px;
-            padding: 20px 40px; border-radius: 60px; text-decoration: none;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2); transition: 0.3s; position: relative; z-index: 2;
-            animation: pulseButton 2s infinite;
+            background: var(--primary); color: white; font-weight: 800; font-size: 20px;
+            padding: 22px 55px; border-radius: 60px; text-decoration: none; border: none; cursor: pointer;
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.3); transition: 0.3s; position: relative;
         }
-        @keyframes pulseButton {
-            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
-        }
-        .btn-action:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); color: var(--primary); animation: none; }
+        .btn-action:hover { transform: translateY(-5px); box-shadow: 0 20px 45px rgba(37, 99, 235, 0.4); background: var(--primary-hover); }
 
-        .progress-container { margin-top: 40px; position: relative; z-index: 2; text-align: left; }
-        .progress-header { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 10px; font-weight: 600;}
-        .progress-bar { width: 100%; height: 12px; background: rgba(255,255,255,0.2); border-radius: 10px; overflow: hidden; }
-        .progress-fill { height: 100%; width: 0%; background: #fbbf24; border-radius: 10px; transition: width 1s ease; box-shadow: 0 0 15px rgba(251, 191, 36, 0.6); }
+        .progress-container { margin-top: 50px; background: white; padding: 35px; border-radius: 28px; box-shadow: 0 15px 40px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.03); text-align: left; }
+        .progress-header { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 16px; font-weight: 600; }
+        .progress-bar { width: 100%; height: 16px; background: #f1f5f9; border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), #fbbf24); border-radius: 10px; transition: width 1.5s ease-out; }
 
         /* --- СОЦ МЕРЕЖІ --- */
         .social-section { text-align: center; padding: 40px 5% 80px; max-width: 800px; margin: 0 auto; }
@@ -266,28 +296,117 @@
         .btn-inst { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); box-shadow: 0 10px 20px rgba(220, 39, 67, 0.2); }
         .btn-inst:hover { transform: translateY(-3px); filter: brightness(1.1); }
 
-        /* FOOTER */
-        .sky-footer { background: #0f172a; color: #fff; padding: 60px 5% 40px; text-align: center; }
+        /* ============================================================
+           СТИЛІ МОДАЛЬНОГО ВІКНА ТА ПРЕМІУМ-ФУТЕРА З ГОЛОВНОЇ СТОРІНКИ
+           ============================================================ */
+        
+        /* Dark Footer */
+        .sky-footer { background: #0a0f1a; color: #ffffff; padding: 100px 5% 40px; position: relative; overflow: hidden; }
+        .sky-footer::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 600px; height: 300px; background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%); pointer-events: none; }
+        .footer-container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+        .footer-main-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 80px; padding-bottom: 60px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        
+        .footer-logo { font-size: 30px; font-weight: 400; display: flex; align-items: center; gap: 10px; margin-bottom: 25px; font-family: 'Pacifico', cursive; color: #ffffff; }
+        .footer-logo .ngo { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: var(--primary); margin-left: 6px; letter-spacing: 1px; }
+        .footer-logo span { color: var(--primary); }
+        .brand-pitch { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 30px; text-align: left; }
+        
+        .footer-title { font-size: 18px; font-weight: 700; margin-bottom: 30px; color: white; text-align: left;}
+        .footer-nav { display: flex; flex-direction: column; gap: 15px; text-align: left; }
+        .nav-link { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,0.5); text-decoration: none; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .nav-link i { font-size: 20px; transition: 0.3s; }
+        .nav-link:hover { color: white; transform: translateX(10px); }
+        .nav-link:hover i { color: var(--primary); }
+        
+        .contact-mechanic { display: flex; flex-direction: column; gap: 20px; text-align: left;}
+        .contact-item { display: flex; align-items: center; gap: 15px; color: rgba(255,255,255,0.7); font-size: 15px; text-decoration: none; transition: 0.3s; }
+        .contact-item.clickable:hover { color: var(--primary); }
+        .contact-item i { width: 40px; height: 40px; background: rgba(255,255,255,0.03); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--primary); }
+        
+        .footer-bottom-bar { padding-top: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .legal-links { display: flex; gap: 30px; }
+        .legal-links a { color: rgba(255,255,255,0.3); text-decoration: none; font-size: 13px; transition: 0.3s; }
+        .legal-links a:hover { color: white; }
+        .copyright { color: rgba(255,255,255,0.3); font-size: 13px; }
+        
+        .social-mechanics { display: flex; gap: 15px; }
+        .social-btn { width: 45px; height: 45px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); }
+        .social-btn:hover { background: var(--primary); transform: rotate(15deg) scale(1.1); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3); }
+
+        .actions-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 60px; }
+        .action-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 22px 28px; display: flex; align-items: center; gap: 18px; transition: 0.4s; text-decoration: none; text-align: left; }
+        .action-title { color: #ffffff !important; font-size: 17px; font-weight: 700; margin-bottom: 2px; }
+        .action-desc { color: rgba(255, 255, 255, 0.5) !important; font-size: 13px; }
+        .action-icon { font-size: 30px; color: var(--primary); flex-shrink: 0; }
+        .action-item.highlight { background: var(--primary) !important; border: none; box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2); }
+        .action-item.highlight .action-title { color: #ffffff !important; }
+        .action-item.highlight .action-desc { color: rgba(255, 255, 255, 0.8) !important; }
+        .action-item.highlight .action-icon { color: #ffffff !important; }
+        .action-item:hover { background: rgba(255, 255, 255, 0.07); border-color: var(--primary); transform: translateY(-5px); }
+        .action-item.highlight:hover { background: var(--primary-hover) !important; transform: translateY(-5px); box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4); }
+
+        /* Modal Styles */
+        .modal { display: none; position: fixed; z-index: 9999; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); align-items: center; justify-content: center; }
+        .modal.show { display: flex; animation: fadeIn 0.3s ease; }
+        .modal-content { background: white; max-width: 1100px; width: 95%; margin: 2% auto; padding: 50px 40px; border-radius: 28px; text-align: center; position: relative; max-height: 90vh; overflow-y: auto; box-shadow: 0 40px 120px rgba(0,0,0,0.15); background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%); }
+        .close { position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer; }
+        .modal-sub { color: #64748b; font-size: 16px; margin-bottom: 25px; }
+        body.modal-open { overflow: hidden; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
+        
+        .donate-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch;}
+        .donate-left { display: flex; flex-direction: column; justify-content: center; padding-right: 10px; border-right: 1px solid rgba(0,0,0,0.05); }
+        .donate-box { width: 100%; }
+        .premium-box { background: linear-gradient(135deg, #f1f7ff, #ffffff); border: 1px solid rgba(37,99,235,0.1); border-radius: 20px; padding: 25px; text-align: left; }
+        .donate-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 15px; align-items: center; }
+        .card-copy-wrap { display: flex; align-items: center; gap: 10px; }
+        .copy-btn { background: var(--primary); border: none; color: white; border-radius: 10px; padding: 6px 10px; cursor: pointer; font-size: 14px; transition: 0.3s; flex-shrink: 0; }
+        .copy-btn:hover { background: var(--primary-hover); transform: scale(1.1); }
+        .donate-card-row strong { font-size: 16px; letter-spacing: 1px; }
+        
+        .iban-container { max-width: 100%; overflow: hidden; }
+        #ibanNumber { display: block; word-break: break-all; font-family: 'Courier New', monospace; line-height: 1.2; font-size: 14px; letter-spacing: 0.5px; }
+        .donate-impact { margin: 20px 0; font-weight: 700; color: #2563eb; }
+        .partner-cta { margin-top: 25px; }
+        .partner-note { margin-top: 10px; font-size: 13px; color: var(--text-muted); }
+
+        .donate-fast { min-height: 100%; border-radius: 24px; padding: 30px; color: white; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; background: linear-gradient(135deg, #111827 0%, #312e81 100%); }
+        .donate-fast-content { position: relative; z-index: 2; width: 100%; }
+        .mono-btn { display: inline-flex; align-items: center; gap: 10px; background: white; color: var(--primary); padding: 14px 20px; border-radius: 14px; font-weight: 700; text-decoration: none; margin-bottom: 20px; transition: 0.3s; }
+        .mono-btn:hover { transform: scale(1.05); }
+        .donate-bottom { margin-top: 25px; }
+
+        @media (max-width: 992px) {
+            .footer-main-row { grid-template-columns: 1fr; gap: 50px; }
+            .footer-bottom-bar { justify-content: center; text-align: center; }
+        }
 
         @media (max-width: 900px) {
             .story-card, .story-card:nth-child(even) { flex-direction: column; gap: 20px; padding: 20px; }
             .story-img-wrap { flex: none; width: 100%; }
-            .donate-wrapper { grid-template-columns: 1fr; padding: 25px; }
+            .donate-layout { grid-template-columns: 1fr; }
+            .donate-left { border-right: none; padding-right: 0; }
         }
     </style>
 </head>
 <body>
 
     <nav class="nav" id="navbar">
-        <a href="index.html" class="back-link">
+        <a href="index.html" class="back-link" fetchpriority="high">
             <i class="ph-bold ph-arrow-left"></i> <span data-uk="На головну" data-en="Back to Home">На головну</span>
         </a>
         
-        <div class="lang-switch">
-            <div class="lang-slider"></div>
-            <button id="btn-uk" class="active" onclick="setLang('uk')">UA</button>
-            <button id="btn-en" onclick="setLang('en')">EN</button>
-        </div>  
+        <div class="nav-right" style="display: flex; align-items: center; gap: 15px;">
+            <button class="btn" style="box-shadow: none;" data-action="open-modal">
+                <i class="ph-fill ph-heart"></i>
+                <span data-uk="Підтримати" data-en="Support">Підтримати</span>
+            </button>
+            <div class="lang-switch" id="langSwitcher">
+                <div class="lang-slider"></div>
+                <button class="active" data-action="switch-lang" data-lang="uk">UA</button>
+                <button data-action="switch-lang" data-lang="en">EN</button>
+            </div>  
+        </div>
     </nav>
 
     <main>
@@ -297,14 +416,14 @@
                 <span data-uk="Екстрений збір коштів" data-en="Urgent Fundraising">Екстрений збір коштів</span>
             </div>
             
-            <h1 data-uk="Діти не повинні залишатися <span class='marker-highlight'>голодними</span>" 
-                data-en="Children shouldn't go <span class='marker-highlight'>hungry</span>">
-                Діти не повинні залишатися <span class="marker-highlight">голодними</span>
+            <h1 data-uk="Діти у нашому просторі не повинні залишатися <span class='marker-highlight'>голодними</span>" 
+                data-en="Children in our space should not go <span class='marker-highlight'>hungry</span>">
+                Діти у нашому просторі не повинні залишатися <span class="marker-highlight">голодними</span>
             </h1>
 
-            <p data-uk="Вже понад півтора року 30 дітей з малозабезпечених сімей щодня приходять у SkyKids за єдиним повноцінним гарячим обідом. Але зараз програма фінансування від іноземних донорів <strong style='color: var(--danger); text-transform: uppercase;'>завершилася</strong>. Їм потрібна їжа <b>вже зараз</b>. Тепер їхнє щоденне харчування повністю залежить лише від небайдужих українців." 
-               data-en="For over a year and a half, 30 children from low-income families have come to SkyKids daily for their only full hot meal. But now the foreign donor funding program has <strong style='color: var(--danger); text-transform: uppercase;'>ended</strong>. They need food <b>right now</b>. Now their daily nutrition depends entirely on caring people.">
-                Вже понад півтора року 30 дітей з малозабезпечених сімей щодня приходять у SkyKids за єдиним повноцінним гарячим обідом. Але зараз програма фінансування від іноземних донорів <strong style="color: var(--danger); text-transform: uppercase;">завершилася</strong>. Їм потрібна їжа <b>вже зараз</b>. Тепер їхнє щоденне харчування повністю залежить лише від небайдужих українців.
+            <p data-uk="Вже понад півтора року 30 дітей з малозабезпечених сімей щодня приходять у SkyKids за єдиним повноцінним гарячим обідом. Але зараз програма фінансування від іноземних донорів <strong style='color: var(--danger); text-transform: uppercase;'>завершилася</strong>. Їм потрібна їжа <b>вже зараз</b>. Тепер їхнє щоденне харчування майже повністю залежить від небайдужих українців." 
+               data-en="For over a year and a half, 30 children from low-income families have come to SkyKids daily for their only full hot meal. But now the foreign donor funding program has <strong style='color: var(--danger); text-transform: uppercase;'>ended</strong>. They need food <b>right now</b>. Now their daily food depends almost entirely on caring Ukrainians.">
+                Вже понад півтора року 30 дітей з малозабезпечених сімей щодня приходять у SkyKids за єдиним повноцінним гарячим обідом. Але зараз програма фінансування від іноземних донорів <strong style="color: var(--danger); text-transform: uppercase;">завершилася</strong>. Їм потрібна їжа <b>вже зараз</b>. Тепер їхнє щоденне харчування майже повністю залежить від небайдужих українців.
             </p>
 
             <div class="stats-grid">
@@ -315,7 +434,7 @@
                 </div>
                 <div class="stat-card">
                     <i class="ph-duotone ph-coins stat-icon" style="color: #10b981;"></i>
-                    <div class="stat-val">18 500 ₴</div>
+                    <div class="stat-val">21 750 ₴</div>
                     <div class="stat-desc" data-uk="Гостра потреба на тиждень" data-en="Urgent need per week">Гостра потреба на тиждень</div>
                 </div>
                 <div class="stat-card">
@@ -325,151 +444,6 @@
                 </div>
             </div>
         </section>
-
-        <section class="stories-section">
-            <div class="section-header">
-                <div class="handwritten-note" style="color: var(--accent); margin-bottom: 10px;" data-uk="Це їхні реальні історії..." data-en="These are their real stories...">Це їхні реальні історії...</div>
-                <h2 data-uk="За кожною порцією — дитяча доля" data-en="Behind every meal is a child's story">За кожною порцією — дитяча доля</h2>
-                <p data-uk="Це не просто статистика. Це реальні діти нашого міста, які чекають на вашу допомогу прямо зараз." data-en="It's not just statistics. These are real children from our city waiting for your help right now.">Це не просто статистика. Це реальні діти нашого міста, які чекають на вашу допомогу прямо зараз.</p>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img-wrap">
-                    <img src="https://i.ibb.co/S4RgPHMJ/photo-2025-08-06-13-19-07-4.jpg" alt="Історія Альони" class="story-img">
-                </div>
-                <div class="story-content">
-                    <span class="story-badge" data-uk="Підопічна центру" data-en="Center's ward">Підопічна центру</span>
-                    <h3 data-uk="Альона: любов та прийняття" data-en="Alena: love and acceptance">Альона: любов та прийняття</h3>
-                    <p data-uk="Альона — дівчинка з непростими життєвими обставинами. Вона перебуває під опікою та змушена адаптуватися до війни і життя без батьків. Приходячи в клуб, вона отримує не лише гарячі комплексні обіди, але й можливість спілкуватися в атмосфері любові та прийняття. Тут Альона знайшла друзів, а також простір, де може розвивати свої дари та таланти, беручи участь у кулінарних та творчих майстер-класах." 
-                       data-en="Alena is a girl with difficult life circumstances. She is under guardianship and is forced to adapt to the war and life without parents. Coming to the club, she gets not only hot complete meals but also the opportunity to communicate in an atmosphere of love and acceptance. Here Alena found friends, as well as a space where she can develop her gifts and talents by participating in culinary and creative master classes.">
-                        Альона — дівчинка з непростими життєвими обставинами. Вона перебуває під опікою та змушена адаптуватися до війни і життя без батьків. Приходячи в клуб, вона отримує не лише гарячі комплексні обіди, але й можливість спілкуватися в атмосфері любові та прийняття. Тут Альона знайшла друзів, а також простір, де може розвивати свої дари та таланти, беручи участь у кулінарних та творчих майстер-класах.
-                    </p>
-                    <div class="story-quote" data-uk="«Найбільше мені подобається готувати разом і те, що тут завжди тепло...»" data-en="«What I like most is cooking together and that it's always warm here...»">«Найбільше мені подобається готувати разом і те, що тут завжди тепло...»</div>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img-wrap">
-                    <img src="https://i.ibb.co/m5kVtWZ8/photo-2026-05-11-19-30-02.jpg" alt="Павлина та Софія" class="story-img">
-                </div>
-                <div class="story-content">
-                    <span class="story-badge" data-uk="Сестри" data-en="Sisters">Сестри</span>
-                    <h3 data-uk="Павлина та Софія: місце, де безпечно" data-en="Pavlina and Sofia: a safe place">Павлина та Софія: місце, де безпечно</h3>
-                    <p data-uk="Дівчатка щодня стикаються зі складними життєвими обставинами. Вони живуть із бабусею та мамою, яка має залежність. У просторі Sky Kids сестри отримують не лише гарячі обіди, а й те, чого так бракує вдома — увагу, турботу та підтримку. Тут вони вчаться соціалізуватися, будувати здорову комунікацію та відкривати нові можливості." 
-                       data-en="The girls face difficult life circumstances every day. They live with their grandmother and a mother struggling with addiction. In the Sky Kids space, the sisters receive not only hot meals but also what they so desperately lack at home—attention, care, and support. Here they learn to socialize, build healthy communication, and discover new opportunities.">
-                        Дівчатка щодня стикаються зі складними життєвими обставинами. Вони живуть із бабусею та мамою, яка має залежність. У просторі Sky Kids сестри отримують не лише гарячі обіди, а й те, чого так бракує вдома — увагу, турботу та підтримку. Тут вони вчаться соціалізуватися, будувати здорову комунікацію та відкривати нові можливості.
-                    </p>
-                    <div class="story-quote" data-uk="«Дівчатка з радістю приходять до клубу, знаходять друзів та беруть участь у майстер-класах. По можливості ми також допомагаємо їм одягом і взуттям.»" data-en="«The girls gladly come to the club, make friends, and participate in master classes. Whenever possible, we also help them with clothes and shoes.»">
-                        «Дівчатка з радістю приходять до клубу, знаходять друзів та беруть участь у майстер-класах. По можливості ми також допомагаємо їм одягом і взуттям.»
-                    </div>
-                </div>
-            </div>
-            
-            <div class="story-card">
-                <div class="story-img-wrap">
-                    <img src="https://i.ibb.co/ymXJ3p78/photo-2025-07-04-13-24-10.jpg" alt="Історія Уляни" class="story-img">
-                </div>
-                <div class="story-content">
-                    <span class="story-badge" data-uk="Підопічна центру" data-en="Center's ward">Підопічна центру</span>
-                    <h3 data-uk="Уляна: від страху до довіри" data-en="Ulyana: from fear to trust">Уляна: від страху до довіри</h3>
-                    <p data-uk="Уляна — дівчинка зі складними життєвими обставинами. Її тато бореться з наркотичною залежністю, а мама проходить реабілітацію від алкогольної. У перший день у клубі вона сильно боялася всього нового: мовчки стояла в кутку та ні з ким не розмовляла. Але вже до кінця першого тижня Уля помітно змінилася: стала активною, веселою та знайшла собі подружку." 
-                       data-en="Ulyana is a girl with difficult life circumstances. Her father is struggling with drug addiction, and her mother is in rehab for alcohol addiction. On her first day at the club, she was terrified of everything new: stood silently in the corner and didn't talk to anyone. But by the end of the first week, Ulya had noticeably changed: she became active, cheerful, and found a friend.">
-                        Уляна — дівчинка зі складними життєвими обставинами. Її тато бореться з наркотичною залежністю, а мама проходить реабілітацію від алкогольної. У перший день у клубі вона сильно боялася всього нового: мовчки стояла в кутку та ні з ким не розмовляла. Але вже до кінця першого тижня Уля помітно змінилася: стала активною, веселою та знайшла собі подружку.
-                    </p>
-                    <div class="story-quote" data-uk="«Поки її сім'я долає труднощі, у SkyKids Уляна отримує тепло, підтримку і безпеку. Тут вона вчиться довіряти світу без зайвого стресу.»" data-en="«While her family is overcoming difficulties, at SkyKids Ulyana receives warmth, support, and safety. Here she learns to trust the world without extra stress.»">
-                        «Поки її сім'я долає труднощі, у SkyKids Уляна отримує тепло, підтримку і безпеку. Тут вона вчиться довіряти світу без зайвого стресу.»
-                    </div>
-                </div>
-            </div>
-          
-            <div class="story-card">
-                <div class="story-img-wrap" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; background: transparent;">
-                    <img src="https://i.ibb.co/wZqRyVGw/photo-2025-07-04-13-15-59-2.jpg" alt="Настя" class="story-img" style="border-radius: 24px;">
-                    <img src="https://i.ibb.co/GNBYwGq/photo-2025-07-04-13-15-59.jpg" alt="Віка" class="story-img" style="border-radius: 24px;">
-                </div>
-                <div class="story-content">
-                    <span class="story-badge" data-uk="ВПО з Херсонщини" data-en="IDPs from Kherson">ВПО з Херсонщини</span>
-                    <h3 data-uk="Настя та Віка: безпека після переїзду" data-en="Nastya and Vika: safety after moving">Настя та Віка: безпека після переїзду</h3>
-                    <p data-uk="Дівчатка переїхали разом із мамою з Херсонщини, рятуючись від війни. У клубі вони з'явилися нещодавно, але вже з перших днів відчули, що знайшли для себе безпечне місце, де їх приймають і розуміють. Сестри із задоволенням беруть участь у творчих майстер-класах, пробують нові заняття і потроху починають оговтуватися після пережитих труднощів." 
-                       data-en="The girls moved with their mother from the Kherson region, fleeing the war. They came to the club recently, but from the first days, they felt they had found a safe place where they are accepted and understood. The sisters gladly participate in creative master classes, try new activities, and gradually begin to recover after the hardships they've experienced.">
-                        Дівчатка переїхали разом із мамою з Херсонщини, рятуючись від війни. У клубі вони з'явилися нещодавно, але вже з перших днів відчули, що знайшли для себе безпечне місце, де їх приймають і розуміють. Сестри із задоволенням беруть участь у творчих майстер-класах, пробують нові заняття і потроху починають оговтуватися після пережитих труднощів.
-                    </p>
-                    <div class="story-quote" data-uk="«Для мами повноцінний гарячий обід доньок — це суттєве полегшення бюджету, адже їй доводиться багато працювати в новому місті. А для Насті та Віки — це радість, друзі та почуття безпеки.»" data-en="«For their mother, the daughters' full hot meal is a significant relief for the budget, as she has to work a lot in a new city. And for Nastya and Vika, it means joy, friends, and a sense of security.»">
-                        «Для мами повноцінний гарячий обід доньок — це суттєве полегшення бюджету, адже їй доводиться багато працювати в новому місті. А для Насті та Віки — це радість, друзі та почуття безпеки.»
-                    </div>
-                </div>
-            </div>
-          
-            <div class="story-card">
-                <div class="story-img-wrap">
-                    <img src="https://i.ibb.co/p6vQgG2x/photo-2025-06-05-16-27-35-2.jpg" alt="Історія Роми" class="story-img">
-                </div>
-                <div class="story-content">
-                    <span class="story-badge" data-uk="ВПО з прифронтової зони" data-en="IDP from frontline zone">ВПО з прифронтової зони</span>
-                    <h3 data-uk="Рома: шлях до впевненості" data-en="Roma: the path to confidence">Рома: шлях до впевненості</h3>
-                    <p data-uk="Рома приїхав із мамою з прифронтового міста, залишивши все минуле життя. Адаптація давалася йому важко: хлопчику було складно заводити друзів та відчувати себе «своїм». Але у SkyKids він нарешті відчув себе у безпеці та знайшов перших друзів, які приймають його таким, як він є. Творчість, майстер-класи та увага дорослих допомагають Ромі відновлювати впевненість у собі." 
-                       data-en="Roma came with his mother from a frontline city, leaving his entire past life behind. Adaptation was difficult for him: it was hard for the boy to make friends and feel like he 'belonged'. But at SkyKids, he finally felt safe and found his first friends who accept him as he is. Creativity, workshops, and the attention of adults help Roma restore his self-confidence.">
-                        Рома приїхав із мамою з прифронтового міста, залишивши все минуле життя. Адаптація давалася йому важко: хлопчику було складно заводити друзів та відчувати себе «своїм». Але у SkyKids він нарешті відчув себе у безпеці та знайшов перших друзів, які приймають його таким, як він є. Творчість, майстер-класи та увага дорослих допомагають Ромі відновлювати впевненість у собі.
-                    </p>
-                    <div class="story-quote" data-uk="«Щоденні гарячі обіди та смачні перекуси — це величезна підтримка для мами Роми, яка намагається налагодити життя сім'ї на новому місці в Дніпрі.»" data-en="«Daily hot meals and tasty snacks are a huge support for Roma's mother, who is trying to rebuild the family's life in a new place in Dnipro.»">
-                        «Щоденні гарячі обіди та смачні перекуси — це величезна підтримка для мами Роми, яка намагається налагодити життя сім'ї на новому місці в Дніпрі.»
-                    </div>
-                </div>
-            </div>
-          
-            <div class="story-card">
-                <div class="story-img-wrap">
-                    <img src="https://i.ibb.co/M5ZRzL5L/photo-2025-04-16-16-49-14.jpg" alt="Юля та Катя" class="story-img">
-                </div>
-                <div class="story-content">
-                    <span class="story-badge" data-uk="Сестри-двійнята" data-en="Twin sisters">Сестри-двійнята</span>
-                    <h3 data-uk="Юля та Катя: другий дім, де люблять" data-en="Yulia and Katya: a second home where they are loved">Юля та Катя: другий дім, де люблять</h3>
-                    <p data-uk="Юля та Катя — двійнята, чия родина долає важкі випробування через хворобу батька. Клуб став для них справжнім другим домом — місцем безпеки та турботи. Дівчатка обожнюють творчість, кулінарні майстер-класи та завжди готові допомогти команді. Вони — не просто підопічні, а невід'ємна частина нашої великої дружньої родини." 
-                       data-en="Yulia and Katya are twins whose family is overcoming difficult trials due to their father's illness. The club has become a true second home for them—a place of safety and care. The girls love creativity, cooking workshops, and are always ready to help the team. They are not just wards, but an integral part of our big friendly family.">
-                        Юля та Катя — двійнята, чия родина долає важкі випробування через хворобу батька. Клуб став для них справжнім другим домом — місцем безпеки та турботи. Дівчатка обожнюють творчість, кулінарні майстер-класи та завжди готові допомогти команді. Вони — не просто підопічні, а невід'ємна частина нашої великої дружньої родини.
-                    </p>
-                    <div class="story-quote" data-uk="«Тут їх завжди чекають і цінують. Дівчатка охоче допомагають із прибиранням та активно включаються у всі заходи, знаходячи тут підтримку, якої так потребує їхня сім'я.»" data-en="«They are always welcome and valued here. The girls eagerly help with cleaning and actively engage in all events, finding the support their family needs here.»">
-                        «Тут їх завжди чекають і цінують. Дівчатка охоче допомагають із прибиранням та активно включаються у всі заходи, знаходячи тут підтримку, якої так потребує їхня сім'я.»
-                    </div>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img-wrap" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; background: transparent;">
-                    <img src="https://i.ibb.co/SDSKyh3m/photo-2025-04-08-17-38-17.jpg" alt="Маша" class="story-img" style="border-radius: 24px;">
-                    <img src="https://i.ibb.co/ynPdLVRV/photo-2025-04-08-17-38-17-2.jpg" alt="Маша в клубі" class="story-img" style="border-radius: 24px;">
-                </div>
-                <div class="story-content">
-                    <span class="story-badge" data-uk="Підопічна центру" data-en="Center's ward">Підопічна центру</span>
-                    <h3 data-uk="Маша: острівець безпеки та посмішок" data-en="Masha: an island of safety and smiles">Маша: острівець безпеки та посмішок</h3>
-                    <p data-uk="Маша — дівчинка зі складними життєвими обставинами. Її батьки розлучилися, і тепер їй доводиться жити на дві сім'ї, балансуючи між дорослими, що конфліктують. Це створює для неї емоційну напругу та відчуття нестабільності. У нашому клубі вона знайшла справжній острівець безпеки — місце, де її люблять, цінують і приймають такою, яка вона є." 
-                       data-en="Masha is a girl with difficult life circumstances. Her parents divorced, and now she has to live between two families, balancing between conflicting adults. This creates emotional tension and a sense of instability for her. In our club, she found a real island of safety—a place where she is loved, valued, and accepted as she is.">
-                        Маша — дівчинка зі складними життєвими обставинами. Її батьки розлучилися, і тепер їй доводиться жити на дві сім'ї, балансуючи між дорослими, що конфліктують. Це створює для неї емоційну напругу та відчуття нестабільності. У нашому клубі вона знайшла справжній острівець безпеки — місце, де її люблять, цінують і приймають такою, яка вона є.
-                    </p>
-                    <div class="story-quote" data-uk="«Тут Машу завжди підтримують і допомагають їй розкриватися. Вона із задоволенням бере участь у майстер-класах, допомагає молодшим дітям та знаходить радість у творчості. Клуб став для неї місцем, де вона знову може щиро посміхатися.»" data-en="«Here, Masha is always supported and helped to open up. She gladly participates in master classes, helps younger children, and finds joy in creativity. The club has become a place where she can sincerely smile again.»">
-                        «Тут Машу завжди підтримують і допомагають їй розкриватися. Вона із задоволенням бере участь у майстер-класах, допомагає молодшим дітям та знаходить радість у творчості. Клуб став для неї місцем, де вона знову може щиро посміхатися.»
-                    </div>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img-wrap">
-                    <img src="https://i.ibb.co/fVhrQRRy/photo-2026-05-11-20-45-54.jpg" alt="Історія Каті" class="story-img">
-                </div>
-                <div class="story-content">
-                    <span class="story-badge" data-uk="Підопічна центру" data-en="Center's ward">Підопічна центру</span>
-                    <h3 data-uk="Катя: безпечний простір для розкриття" data-en="Katya: a safe space to open up">Катя: безпечний простір для розкриття</h3>
-                    <p data-uk="Катю до клубу привела подружка. Від самого початку дівчинка була дуже тихою та замкнутою. Катя — спокійна, сором'язлива, їй непросто знаходити спільну мову з іншими дітьми. Клуб став для неї тим самим безпечним простором, де її ніхто не засуджує і не підганяє. Тут, під чуйним наглядом наставників, вона поступово вчиться комунікувати, знаходить друзів і відкривається світу." 
-                       data-en="Katya was brought to the club by a friend. From the very beginning, the girl was very quiet and withdrawn. Katya is calm and shy; it's not easy for her to find common ground with other children. The club became that safe space for her where no one judges or rushes her. Here, under the sensitive guidance of mentors, she is gradually learning to communicate, making friends, and opening up to the world.">
-                        Катю до клубу привела подружка. Від самого початку дівчинка була дуже тихою та замкнутою. Катя — спокійна, сором'язлива, їй непросто знаходити спільну мову з іншими дітьми. Клуб став для неї тим самим безпечним простором, де її ніхто не засуджує і не підганяє. Тут, під чуйним наглядом наставників, вона поступово вчиться комунікувати, знаходить друзів і відкривається світу.
-                    </p>
-                    <div class="story-quote" data-uk="«Катя з радістю бере участь у майстер-класах та заходах. Для неї це важливий крок — відчути себе частиною нашої дружньої спільноти.»" data-en="«Katya gladly participates in master classes and events. For her, it's an important step—to feel like a part of our friendly community.»">
-                        «Катя з радістю бере участь у майстер-класах та заходах. Для неї це важливий крок — відчути себе частиною нашої дружньої спільноти.»
-                    </div>
-                </div>
-            </div>
-          
-            </section>
 
         <section class="transparency-section">
             <div class="section-header" style="margin-bottom: 20px;">
@@ -529,75 +503,27 @@
         </section>
 
         <section class="donate-section">
-            <div class="section-header" style="margin-bottom: 30px;">
-                <div class="handwritten-note" style="color: var(--accent); margin-bottom: 10px;" data-uk="Кожна гривня має значення 💛" data-en="Every hryvnia matters 💛">Кожна гривня має значення 💛</div>
-                <h2 data-uk="Ваша підтримка — це їхній обід" data-en="Your support is their meal">Ваша підтримка — це їхній обід</h2>
-            </div>
+            <div class="handwritten-note" style="color: var(--accent); margin-bottom: 10px;" data-uk="Кожна гривня має значення 💛" data-en="Every hryvnia matters 💛">Кожна гривня має значення 💛</div>
+            <h2 style="font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 20px;" data-uk="Ваша підтримка — це їхній обід" data-en="Your support is their meal">Ваша підтримка — це їхній обід</h2>
+            <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 40px;" data-uk="Не відкладайте на потім. Ваші 145 гривень прямо сьогодні перетворяться на гарячий обід." data-en="Don't put it off. Your 145 UAH will turn into a hot meal today.">Не відкладайте на потім. Ваші 145 гривень прямо сьогодні перетворяться на гарячий обід.</p>
             
-            <div class="donate-wrapper" id="donate">
-                
-                <div class="donate-left">
-                    <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 20px;" data-uk="Офіційні реквізити ГО" data-en="Official NGO Details">Офіційні реквізити ГО</h3>
-                    <div class="premium-box">
-                        <div class="donate-row">
-                            <span data-uk="Банк" data-en="Bank">Банк</span>
-                            <strong>Приват Банк</strong>
-                        </div>
-                        <div class="donate-row">
-                            <span data-uk="Отримувач" data-en="Recipient">Отримувач</span>
-                            <strong data-uk='ГО "Небесні Діти"' data-en='NGO "Sky Kids"'>ГО "Небесні Діти"</strong>
-                        </div>
-                        <div class="donate-row">
-                            <span data-uk="Код ЄДРПОУ" data-en="EDRPOU">Код ЄДРПОУ</span>
-                            <div class="card-copy-wrap">
-                                <strong id="edrpouNumber">45080222</strong>
-                                <button class="copy-btn" onclick="copyData('edrpouNumber', this)"><i class="ph-bold ph-copy"></i></button>
-                            </div>
-                        </div>
-                        <div class="donate-row">
-                            <span data-uk="Картка" data-en="Card">Картка</span>
-                            <div class="card-copy-wrap">
-                                <strong id="cardNumber">4246 0010 0732 1643</strong>
-                                <button class="copy-btn" onclick="copyData('cardNumber', this)"><i class="ph-bold ph-copy"></i></button>
-                            </div>
-                        </div>
-                        <div class="donate-row">
-                            <span>IBAN</span>
-                            <div class="card-copy-wrap">
-                                <strong id="ibanNumber">UA833052990000026004050569233</strong>
-                                <button class="copy-btn" onclick="copyData('ibanNumber', this)"><i class="ph-bold ph-copy"></i></button>
-                            </div>
-                        </div>
-                        <div class="donate-row" style="border:none; padding-bottom:0;">
-                            <span data-uk="Призначення" data-en="Purpose">Призначення</span>
-                            <strong data-uk="Благодійний внесок" data-en="Charitable donation">Благодійний внесок</strong>
-                        </div>
-                    </div>
-                </div>
+            <button class="btn-action" data-action="open-modal">
+                <i class="ph-fill ph-hand-heart" style="font-size: 28px;"></i>
+                <span data-uk="Дати обід вже сьогодні" data-en="Give a meal today">Дати обід вже сьогодні</span>
+            </button>
 
-                <div class="donate-right">
-                    <h3 data-uk="Врятувати від голоду зараз" data-en="Save from hunger now">Врятувати від голоду зараз</h3>
-                    <p data-uk="Не відкладайте на потім. Ваші 145 гривень прямо сьогодні перетворяться на гарячий обід." data-en="Don't put it off. Your 145 UAH will turn into a hot meal today.">Не відкладайте на потім. Ваші 145 гривень прямо сьогодні перетворяться на гарячий обід.</p>
-                    
-                    <a href="https://send.monobank.ua/" target="_blank" class="btn-action">
-                        <i class="ph-fill ph-credit-card"></i> <span data-uk="Дати обід вже сьогодні" data-en="Give a meal today">Дати обід вже сьогодні</span>
-                    </a>
-                    
-                    <div class="progress-container">
-                        <div class="progress-header">
-                            <span data-uk="Термінова мета (тиждень):" data-en="Urgent weekly goal:">Термінова мета (тиждень):</span>
-                            <strong id="progressText">0 / 18 500 ₴</strong>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progressFill"></div>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-top: 8px; opacity: 0.9;">
-                            <span data-uk="Зібрано" data-en="Raised">Зібрано</span>
-                            <span data-uk="Залишилось: <span id='progressLeft'>0</span> ₴" data-en="Left: <span id='progressLeft'>0</span> ₴">Залишилось: <span id='progressLeft'>0</span> ₴</span>
-                        </div>
-                    </div>
+            <div class="progress-container">
+                <div class="progress-header">
+                    <span data-uk="Зібрано на цьому тижні:" data-en="Raised this week:">Зібрано на цьому тижні:</span>
+                    <strong id="progressText" style="color: var(--text-main);">5 400 / 18 500 ₴</strong>
                 </div>
-
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 14px; margin-top: 15px; color: var(--text-muted); font-weight: 500;">
+                    <span data-uk="Допомогло: 37 людей" data-en="Helped: 37 people">Допомогло: 37 людей</span>
+                    <span data-uk="Залишилось: <strong style='color:#1e293b'>13 100</strong> ₴" data-en="Left: <strong style='color:#1e293b'>13 100</strong> ₴">Залишилось: <strong style="color:#1e293b">13 100</strong> ₴</span>
+                </div>
             </div>
         </section>
 
@@ -616,34 +542,218 @@
     </main>
 
     <footer class="sky-footer">
-        <div style="display: flex; justify-content: center; gap: 15px; margin-bottom: 20px;">
-            <i class="ph-fill ph-heart" style="color: #ef4444; font-size: 24px;"></i>
-            <i class="ph-fill ph-bowl-food" style="color: #fbbf24; font-size: 24px;"></i>
+        <div class="footer-container">
+            <div class="actions-row">
+                <a href="partner.html" class="action-item">
+                    <div class="action-icon"><i class="ph-duotone ph-handshake"></i></div>
+                    <div class="action-body">
+                        <h4 class="action-title" data-uk="Стати партнером" data-en="Become a Partner">Стати партнером</h4>
+                        <p class="action-desc" data-uk="Для бізнесу та організацій." data-en="For businesses & organizations.">Для бізнесу та організацій.</p>
+                    </div>
+                </a>
+                <a href="#" class="action-item highlight" data-action="open-modal">
+                    <div class="action-icon"><i class="ph-duotone ph-coins"></i></div>
+                    <div class="action-body">
+                        <h4 class="action-title" data-uk="Зробити внесок" data-en="Make a Donation">Зробити внесок</h4>
+                        <p class="action-desc" data-uk="Підтримати фінансово." data-en="Support financially.">Підтримати фінансово.</p>
+                    </div>
+                </a>
+                <a href="volunteer.html" class="action-item">
+                    <div class="action-icon"><i class="ph-duotone ph-users-three"></i></div>
+                    <div class="action-body">
+                        <h4 class="action-title" data-uk="Стати волонтером" data-en="Become a Volunteer">Стати волонтером</h4>
+                        <p class="action-desc" data-uk="Долучитися дією." data-en="Join with action.">Долучитися дією.</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="footer-main-row">
+                <div class="brand-column">
+                    <div class="footer-logo">SkyKids <span class="ngo">NGO</span></div>
+                    <p class="brand-pitch" data-uk="Ми будуємо систему, де кожна дитина має право на безпеку, розвиток та гарячий обід. Приєднуйтесь до змін." data-en="We are building a system where every child has the right to safety, development, and a hot meal. Join the change.">Ми будуємо систему, де кожна дитина має право на безпеку, розвиток та гарячий обід. Приєднуйтесь до змін.</p>
+                    <div class="social-mechanics">
+                        <a href="https://www.instagram.com/skykids.dnipro/" class="social-btn"><i class="ph-bold ph-instagram-logo"></i></a>
+                        <a href="https://t.me/skykids_dnipro" class="social-btn"><i class="ph-bold ph-telegram-logo"></i></a>
+                    </div>
+                </div>
+                <div class="links-column">
+                    <h4 class="footer-title" data-uk="Екосистема ГО" data-en="NGO Ecosystem">Екосистема ГО</h4>
+                    <nav class="footer-nav">
+                        <a href="index.html" class="nav-link"><i class="ph-bold ph-house-line"></i> <span data-uk="Головна SkyKids" data-en="Home SkyKids">Головна сторінка</span></a>
+                        <a href="skykitchen.html" class="nav-link"><i class="ph-duotone ph-bowl-food"></i> <span data-uk="Sky Kitchen (Годування)" data-en="Sky Kitchen (Feeding)">Sky Kitchen (Годування)</span></a>
+                        <a href="#" class="nav-link"><i class="ph-duotone ph-gift"></i> <span data-uk="Sky Gifts (Гуманітарна допомога)" data-en="Sky Gifts (Humanitarian aid)">Sky Gifts (Гуманітарна допомога)</span></a>
+                        <a href="#" class="nav-link"><i class="ph-duotone ph-graduation-cap"></i> <span data-uk="Sky Academy (Освіта)" data-en="Sky Academy (Education)">Sky Academy (Навчання дітей)</span></a>
+                        <a href="#" class="nav-link"><i class="ph-duotone ph-heartbeat"></i> <span data-uk="Sky Recovery (Реабілітація)" data-en="Sky Recovery (Rehabilitation)">Sky Recovery (Реабілітація)</span></a>
+                    </nav>
+                </div>
+                <div class="contacts-column">
+                    <h4 class="footer-title" data-uk="Зв'язок" data-en="Contact Us">Зв'язок</h4>
+                    <div class="contact-mechanic">
+                        <div class="contact-item"><i class="ph-bold ph-map-pin"></i> <span data-uk="вулиця Робоча, 152, Дніпро, Дніпропетровська область, Україна" data-en="152 Robocha Street, Dnipro, Dnipropetrovsk Oblast, Ukraine">вулиця Робоча, 152, Дніпро, Дніпропетровська область, Україна</span></div>
+                        <a href="mailto:skykidsdnipro@gmail.com" class="contact-item clickable"><i class="ph-bold ph-envelope-simple"></i> <span>skykidsdnipro@gmail.com</span></a>
+                        <a href="tel:+380667427733" class="contact-item clickable"><i class="ph-bold ph-phone"></i> <span>+38 (066) 742-77-33</span></a> 
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom-bar">
+                <div class="legal-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="offer.html">Public Offer</a>
+                    <a href="reports.html">Reports</a>
+                    <a href="charter.html">Сharter</a>
+                </div>
+                <p class="copyright">© 2026 Sky Kids NGO. Created with heart for children.</p>
+            </div>
         </div>
-        <p style="opacity: 0.7; font-size: 14px;">© 2026 Sky Kids NGO. Created with heart for children in Ukraine.</p>
     </footer>
 
-    <script>
-        // Перемикач мов
-        function setLang(lang) {
-            const switcher = document.querySelector('.lang-switch');
-            document.getElementById('btn-uk').classList.toggle('active', lang === 'uk');
-            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-            switcher.classList.toggle('en', lang === 'en');
+    <div id="donateModal" class="modal">
+        <div class="modal-content modal-premium">
+            <span class="close" data-action="close-modal">&times;</span>
+            <h2 data-uk="Підтримати дітей 💙" data-en="Support children 💙">Підтримати дітей 💙</h2>
+            <p class="modal-sub" data-uk="Оберіть зручний формат підтримки: разовий внесок або системна допомога." data-en="Choose a convenient way to support: one-time donation or long-term partnership.">Оберіть зручний формат підтримки: разовий внесок або системна допомога.</p>
 
-            document.querySelectorAll('[data-uk]').forEach(el => {
-                const translation = el.getAttribute('data-' + lang);
-                const icon = el.querySelector('i');
-                if (icon) {
-                    Array.from(el.childNodes).forEach(node => {
-                        if (node.nodeType === Node.TEXT_NODE) node.remove();
-                    });
-                    el.appendChild(document.createTextNode(' ' + translation));
-                } else {
-                    el.innerHTML = translation; 
-                }
-            });
-        }
+            <div class="donate-layout">
+                <div class="donate-left">
+                    <div class="donate-box premium-box">
+                        <div class="donate-row">
+                            <span data-uk="Банк" data-en="Bank">Банк</span>
+                            <strong>Приват Банк</strong>
+                        </div>
+                        <div class="donate-row">
+                            <span data-uk="Отримувач" data-en="Recipient">Отримувач</span>
+                            <strong data-uk='ГО "Небесні Діти"' data-en='NGO "Sky Kids"'>ГО "Небесні Діти"</strong>
+                        </div>
+                        <div class="donate-row">
+                            <span data-uk="Код ЄДРПОУ" data-en="EDRPOU">Код ЄДРПОУ</span>
+                            <strong>12345678</strong>
+                        </div>
+                        <div class="donate-row donate-card-row">
+                            <span data-uk="Картка" data-en="Card">Картка</span>
+                            <div class="card-copy-wrap">
+                                <strong id="cardNumber">4246 0010 0732 1643</strong>
+                                <button class="copy-btn" data-action="copy" data-target="cardNumber"><i class="ph-bold ph-copy"></i></button>
+                            </div> 
+                        </div>
+                        <div class="donate-row">
+                            <span>IBAN</span>
+                            <div class="card-copy-wrap">
+                                <div class="iban-container">
+                                    <strong id="ibanNumber">UA833052990000026004050569233</strong>
+                                </div>
+                                <button class="copy-btn" style="flex-shrink: 0;" data-action="copy" data-target="ibanNumber"><i class="ph-bold ph-copy"></i></button>
+                            </div>
+                        </div>
+                        <div class="donate-row">
+                            <span data-uk="Призначення платежу" data-en="Payment purpose">Призначення платежу</span>
+                            <strong data-uk="Благодійний внесок" data-en="Charitable donation">Благодійний внесок</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="donate-right">
+                    <div class="donate-fast">
+                        <div class="donate-fast-content">
+                            <div style="margin-bottom: 20px;">
+                                <img src="https://otzovik-ua.com/wp-content/uploads/2018/09/monobank.png" alt="Monobank" style="height: 40px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">
+                            </div>
+                            <h3><span data-uk="Поповнити Банку" data-en="Top up the Jar">Поповнити Банку</span></h3>
+                            <p style="font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 25px;">
+                                <span data-uk="Apple Pay / Google Pay / Card в 1 клік" data-en="Apple Pay / Google Pay / Card in 1 click">Apple Pay / Google Pay / Card в 1 клік</span>
+                            </p>
+                            
+                            <a href="https://send.monobank.ua/jar/3uRgTwfozj" target="_blank" class="mono-btn" style="background: #e2e8f0; color: #111827; width: 100%; justify-content: center; padding: 18px 20px; border-radius: 16px; font-size: 18px; text-decoration: none;">
+                                <i class="ph-fill ph-lightning" style="color: #6366f1;"></i>
+                                <span data-uk="Задонатити в 1 дотик" data-en="Donate in 1 touch">Задонатити в 1 дотик</span>
+                            </a>
+                            
+                            <p style="font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 25px;"><span data-uk="або скануй QR-Code" data-en="or scan the QR-Code">або скануй QR-Code</span></p>
+                            
+                            <div style="margin-top: 25px; width: 100%; display: flex; justify-content: center;">
+                                <div style="background: white; padding: 12px; border-radius: 20px; width: 100%; max-width: 250px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://send.monobank.ua/jar/3uRgTwfozj" alt="QR Code Monobank" style="width: 100%; height: auto; border-radius: 10px; display: block;">
+                                </div>
+                            </div>
+                            <p style="font-size: 13px; margin-top: 15px; color: rgba(255,255,255,0.6); font-weight: 500;" data-uk="Наведіть камеру телефону" data-en="Scan with phone camera">
+                                <i class="ph-bold ph-scan" style="vertical-align: middle; margin-right: 5px;"></i> Наведіть камеру телефону
+                            </p>
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+
+            <div class="donate-bottom">
+                <div class="donate-impact">
+                    <span data-uk="2900 грн = 1 день харчування" data-en="2900 UAH = 1 day of food">2900 грн = 1 день харчування</span>
+                </div>
+                <div class="partner-cta">
+                    <a href="partner.html" target="_blank" class="btn" style="box-shadow:none;"><span data-uk="Стати постійним партнером" data-en="Become a long-term partner">Стати постійним партнером</span></a>
+                    <p class="partner-note" data-uk="Для бізнесу, фондів та організацій" data-en="For businesses, foundations and organizations">Для бізнесу, фондів та організацій</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('click', (e) => {
+            const targetBtn = e.target.closest('[data-action]');
+            if (!targetBtn) return;
+            
+            const action = targetBtn.getAttribute('data-action');
+
+            // Перемикач мов
+            if (action === 'switch-lang') {
+                const lang = targetBtn.getAttribute('data-lang');
+                const switcher = document.getElementById('langSwitcher');
+                
+                switcher.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+                targetBtn.classList.add('active');
+                switcher.classList.toggle('en', lang === 'en');
+
+                document.querySelectorAll('[data-uk]').forEach(el => {
+                    const translation = el.getAttribute('data-' + lang);
+                    const icon = el.querySelector('i');
+                    if (icon) {
+                        Array.from(el.childNodes).forEach(node => {
+                            if (node.nodeType === Node.TEXT_NODE) node.remove();
+                        });
+                        el.appendChild(document.createTextNode(' ' + translation));
+                    } else {
+                        el.innerHTML = translation; 
+                    }
+                });
+            }
+
+            // Відкрити / Закрити модалку
+            if (action === 'open-modal') {
+                document.getElementById('donateModal').classList.add('show');
+                document.body.classList.add('modal-open');
+            }
+            if (action === 'close-modal') {
+                document.getElementById('donateModal').classList.remove('show');
+                document.body.classList.remove('modal-open');
+            }
+
+            // Копіювання реквізитів
+            if (action === 'copy') {
+                const targetId = targetBtn.getAttribute('data-target');
+                const text = document.getElementById(targetId).innerText.replace(/\s+/g, ''); 
+                navigator.clipboard.writeText(text);
+
+                const icon = targetBtn.querySelector('i');
+                icon.className = "ph-bold ph-check";
+                targetBtn.style.background = "#10b981";
+                targetBtn.style.color = "white";
+                
+                setTimeout(() => {
+                    icon.className = "ph-bold ph-copy";
+                    targetBtn.style.background = "";
+                    targetBtn.style.color = "";
+                }, 2000);
+            }
+        });
 
         // Sticky Navbar
         window.addEventListener('scroll', () => {
@@ -652,33 +762,12 @@
             else nav.classList.remove('scrolled');
         });
 
-        // Універсальна функція копіювання
-        function copyData(elementId, btn) {
-            const text = document.getElementById(elementId).innerText.replace(/\s+/g, ''); 
-            navigator.clipboard.writeText(text).then(() => {
-                const icon = btn.querySelector('i');
-                icon.className = "ph-bold ph-check";
-                btn.classList.add('success');
-                setTimeout(() => {
-                    icon.className = "ph-bold ph-copy";
-                    btn.classList.remove('success');
-                }, 2000);
-            });
-        }
-
-        // Прогрес бар
-        function initProgress(current, goal) {
-            const percent = Math.min((current / goal) * 100, 100);
-            setTimeout(() => {
-                document.getElementById("progressFill").style.width = percent + "%";
-            }, 300);
-            document.getElementById("progressText").innerText = current.toLocaleString('uk-UA') + " / " + goal.toLocaleString('uk-UA') + " ₴";
-            document.getElementById("progressLeft").innerText = (goal - current).toLocaleString('uk-UA');
-        }
-
-        // Встановлюємо початкові дані збору 
+        // Відкладений рендер Прогрес-бару (Performance Optimization)
         document.addEventListener("DOMContentLoaded", () => {
-            initProgress(5400, 18500); 
+            const fill = document.getElementById("progressFill");
+            if(fill) {
+                setTimeout(() => { fill.style.width = "29.1%"; /* (5400/18500)*100 */ }, 300);
+            }
         });
     </script>
 </body>
