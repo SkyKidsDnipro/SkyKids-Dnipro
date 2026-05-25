@@ -1293,14 +1293,13 @@ body::-webkit-scrollbar {
 }
       
 .hero-logo-text {
-    width: clamp(420px, 40vw, 600px);
+    /* clamp(мінімум, ідеал, максимум). Тепер на мобільних він стане 280px */
+    width: clamp(280px, 70vw, 600px); 
     height: auto;
     display: block;
     margin: 0 auto;
-}
-      
-.hero-logo-text {
     filter: drop-shadow(0 10px 30px rgba(37, 99, 235, 0.25));
+    transition: 0.8s;
 }
     
 .hero-logo-text:hover {
@@ -2158,6 +2157,19 @@ body.modal-open {
     box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4);
     color: white;
 }
+      
+    /* Робимо логотип білим для футера */
+.sky-footer .footer-logo-white {
+    height: 40px; /* Налаштуй розмір під свій футер */
+    width: auto;
+    filter: brightness(0) invert(1); /* Магія інверсії */
+    transition: 0.3s;
+}
+
+/* При наведенні можна додати легкий ефект */
+.sky-footer .footer-logo-white:hover {
+    opacity: 0.8;
+}
     </style>
 </head>
 <body> 
@@ -2612,8 +2624,8 @@ body.modal-open {
         <div class="footer-main-row">
             <div class="brand-column">
                 <div class="footer-logo">
-    SkyKids <span class="ngo">NGO</span>
-</div>
+                    <img src="https://i.ibb.co/6ccMK12n/3.png" alt="Sky Kids" class="footer-logo-white">
+                </div>
                 <p class="brand-pitch" data-uk="Ми будуємо систему, де кожна дитина має право на безпеку, розвиток та гарячий обід. Приєднуйтесь до змін." data-en="We are building a system where every child has the right to safety, development, and a hot meal. Join the change.">
                     Ми будуємо систему, де кожна дитина має право на безпеку, розвиток та гарячий обід. Приєднуйтесь до змін.
                 </p>
