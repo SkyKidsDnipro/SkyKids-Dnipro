@@ -77,7 +77,7 @@
     }
     </script>
     
-    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
     /* Глобальная защита всех иконок (Phosphor Icons) от искажения и сдавливания.
@@ -1913,9 +1913,254 @@ body.modal-open {
 
 .team-card:nth-child(5) { animation-delay: 0.5s; }
 .team-card:nth-child(6) { animation-delay: 0.6s; }
+      
+      /* ============================================================
+   СЕКЦІЯ ЖИТТЯ ФОНДУ (ОБНОВЛЕННАЯ)
+   ============================================================ */
+.events-section {
+    padding: 80px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.event-card {
+    background: #ffffff;
+    border-radius: 28px;
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.05);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+}
+
+.event-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(37, 99, 235, 0.15);
+    border-color: rgba(37, 99, 235, 0.2);
+}
+
+/* Контейнер картинки */
+.event-img-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #f8fafc;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    position: relative; /* Важно для абсолютного позиционирования бейджей */
+}
+
+/* Само изображение */
+.event-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Или contain, если важно не резать края вообще */
+    transition: transform 0.5s ease;
+}
+
+/* 3.1. Бейдж с датой в углу (Стекло) */
+.event-date-corner {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 800;
+    color: var(--primary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+/* 3.2. Оверлей при наведении (Замутнение + Гигантская дата) */
+.event-hover-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(37, 99, 235, 0.75); /* Синий полупрозрачный */
+    backdrop-filter: blur(8px); /* То самое замутнение */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    color: white;
+    opacity: 0;
+    z-index: 3;
+    transition: opacity 0.4s ease;
+}
+
+.huge-date { font-size: 72px; font-weight: 900; line-height: 1; text-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+.huge-month { font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; }
+.hover-desc { font-size: 15px; font-weight: 500; opacity: 0.95; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Анимации при наведении */
+.event-card:hover .event-hover-overlay { opacity: 1; }
+.event-card:hover .event-date-corner { opacity: 0; transform: translateY(-10px); }
+.event-card:hover .event-img { transform: scale(1.08); }
+
+/* Текст под фото */
+.event-info h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; line-height: 1.3; color: var(--text-main); }
+.event-info p { font-size: 14px; color: var(--text-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* ============================================================
+   МОДАЛКА ПОДІЇ (С РАЗМЫТЫМ ФОНОМ И СКРОЛЛОМ)
+   ============================================================ */
+
+/* 2. Исправление скролла модалки */
+#eventModal {
+    align-items: flex-start; /* Позволяет контенту расти вниз и скроллиться */
+    padding: 40px 20px;
+    overflow-y: auto; /* Включаем прокрутку самого окна */
+}
+
+.event-modal-content {
+    padding: 0;
+    max-width: 500px;
+    margin: 0 auto; /* Центрируем по горизонтали */
+    max-height: none; /* Убираем ограничение по высоте! */
+    overflow: hidden; /* Оставляем только для закругления углов */
+}
+
+/* Кнопка закрытия поверх всего */
+.close-event {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    color: white;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.3s;
+}
+.close-event:hover { background: rgba(0, 0, 0, 0.7); transform: scale(1.1); }
+
+/* 1. Замыливание фона по бокам как в соцсетях */
+.event-modal-img-wrap {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.modal-blur-bg {
+    position: absolute;
+    inset: -20px; /* Выходим за края, чтобы скрыть белые рамки размытия */
+    background-size: cover;
+    background-position: center;
+    filter: blur(15px); /* Сильное размытие */
+    opacity: 0.6;
+    z-index: 0;
+}
+
+#modalEventImg {
+    position: relative;
+    z-index: 1;
+    max-height: 60vh; /* Ограничиваем высоту, чтобы не было гигантским */
+    object-fit: contain; /* Картинка полностью помещается */
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+/* 3.3. Дата и время в углу модалки (Стекло) */
+.modal-date-badge {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.event-modal-body { padding: 30px; text-align: left; }
+.event-modal-body h3 { font-size: 24px; font-weight: 800; margin-bottom: 15px; color: var(--text-main); }
+.event-modal-body p { font-size: 16px; color: var(--text-muted); margin-bottom: 25px; white-space: pre-line; line-height: 1.6; }
+
+.btn-telegram {
+    width: 100%; background: #0088cc; color: white; padding: 18px; border-radius: 16px; font-size: 16px; font-weight: 700; display: flex; justify-content: center; align-items: center; gap: 10px; text-decoration: none; transition: 0.3s;
+}
+.btn-telegram:hover { background: #007ab8; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 136, 204, 0.3); }
+
+@media (max-width: 600px) {
+    .events-grid { gap: 15px; }
+    .event-card { padding: 12px; }
+    .huge-date { font-size: 48px; }
+    .huge-month { font-size: 14px; }
+}
+      
+    /* Унікальна картка події (світіння) */
+.event-card-special {
+    border: 2px solid rgba(139, 92, 246, 0.5);
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.3), 0 10px 30px rgba(37, 99, 235, 0.05);
+}
+.event-card-special:hover {
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.5), 0 20px 40px rgba(37, 99, 235, 0.1);
+    border-color: rgba(139, 92, 246, 0.8);
+}
+
+/* Приховати додаткові картки */
+.hidden-event {
+    display: none;
+}
+
+/* Кнопка реєстрації в модалці */
+.btn-register {
+    width: 100%;
+    background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+    color: white;
+    padding: 18px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 10px 20px rgba(139, 92, 246, 0.2);
+}
+.btn-register:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4);
+    color: white;
+}
     </style>
 </head>
-<body>
+<body> 
 
     <nav class="nav" id="navbar">
       
@@ -2051,47 +2296,185 @@ body.modal-open {
         </div>
     </main>
   
-  <section class="section text-center" style="padding-bottom: 40px;">
-    <span class="section-tag" data-uk="Незламність" data-en="Resilience">Незламність</span>
-    <h2 class="section-title" data-uk="Дитячий центр — це живий механізм" data-en="Our Children's Center is a Living Mechanism">
-        Дитячий центр — це живий механізм
-    </h2>
-    <p class="section-subtitle" style="margin-inline: auto;" 
-       data-uk="Ми не зупиняємося ні на мить. Навіть коли зникає світло, коли небо розривають дрони, коли бракує води чи фізичних сил — ми продовжуємо діяти. Бо дитячий голод не знає вихідних, а потреба в обіймах та підтримці не зникає під час тривог. Ми — той острівець стабільності, де кожна дитина знає: допомога прийде вчасно, попри все." 
-       data-en="We don't stop for a second. Even when the lights go out, when drones tear the sky, when there's no water or physical strength — we keep going. Because a child's hunger knows no days off, and the need for hugs and support doesn't vanish during alarms. We are that island of stability where every child knows: help will come on time, no matter what.">
-        Ми не зупиняємося ні на мить. Навіть коли зникає світло, коли небо розривають дрони, коли бракує води чи фізичних сил — ми продовжуємо діяти. Бо дитячий голод не знає вихідних, а потреба в обіймах та підтримці не зникає під час тривог. Ми — той острівець стабільності, де кожна дитина знає: допомога прийде вчасно, попри все.
-    </p>
-    <div class="metrics-row">
-    <div class="metric-item">
-        <div class="metric-value" id="count-meals">10950</div>
-        <div class="metric-label" data-uk="Обідів видано" data-en="Meals served">Обідів видано</div>
+  <section class="events-section">
+    <div class="text-center" style="margin-bottom: 30px;">
+        <span class="section-tag" data-uk="Життя SkyKids" data-en="Life of the SkyKids">Життя SkyKids</span>
+        <h2 class="section-title" data-uk="Останні події та заходи" data-en="Latest Events & Activities">
+            Останні події та заходи
+        </h2>
     </div>
-    <div class="metric-item">
-        <div class="metric-value">3+</div>
-        <div class="metric-label" data-uk="Волонтерів щотижня" data-en="Volunteers weekly">Роки праці</div>
-    </div>
-    <div class="metric-item">
-        <div class="metric-value">5+</div>
-        <div class="metric-label" data-uk="Волонтерів щотижня" data-en="Volunteers weekly">Волонтерів щотижня</div>
-    </div>
-    <div class="metric-item">
-        <div class="metric-value">20+</div>
-        <div class="metric-label" data-uk="Дітей щодня" data-en="Children daily">Дітей щодня</div>
-    </div>
-</div>
 
-<div class="spotlight-card">
-    <i class="ph-fill ph-quotes quote-icon"></i>
-    <img src="https://i.ibb.co/4wB2Wfxy/651705124-18569518261026269-8334889584643125333-n.jpg" alt="Волонтерка благодійного фонду Sky Kids спілкується з дитиною" class="spotlight-img" loading="lazy" decoding="async">
-    <div class="spotlight-content">
-        <p class="spotlight-quote" 
-           data-uk="«Коли я бачу посмішку дитини, яка отримала гарячий обід, я розумію, що кожна хвилина мого часу тут — це інвестиція у наше спільне майбутнє.»" 
-           data-en="«When I see the smile of a child who received a hot meal, I realize that every minute of my time here is an investment in our common future.»">
-           «Коли я бачу посмішку дитини, яка отримала гарячий обід, я розумію, що кожна хвилина мого часу тут, кожне рішення, і кожна дія — це інвестиція у наше спільне майбутнє.»
-        </p>
-        <div class="spotlight-author" data-uk="Ольга, голова SkyKids" data-en="Olga, head of SkyKids">Ольга, директор SkyKids</div>
+    <div class="events-grid">
+        
+        <div class="event-card" onclick="openEventModal(
+            'https://i.ibb.co/hx2Vj7LC/photo-2026-05-25-14-41-13.jpg', 
+            'День краси для дівчат 🎀', 'Beauty Day for Girls 🎀',
+            '🎀 Сьогодні у нас - День краси для дівчат.\n\nБудемо робити локони, зачіски з локонами та просто гарно проводити час у дівочій атмосфері 💕\n\nНа вас чекають:\n💖 краса;\n💖 спілкування;\n💖 гарний настрій;\n💖 багато посмішок та фото\n\nЧекаємо наших красунь 🌸', 
+            '🎀 Today is Beauty Day for girls.\n\nWe will do curls, hairstyles, and just have a great time in a girly atmosphere 💕\n\nWaiting for you:\n💖 beauty;\n💖 chatting;\n💖 good mood;\n💖 lots of smiles and photos\n\nWaiting for our beauties 🌸',
+            'https://t.me/skykids_dnipro/730', 
+            '25 Травня', 'May 25',
+            '16:00'
+        )">
+            <div class="event-img-wrapper">
+                <img src="https://i.ibb.co/hx2Vj7LC/photo-2026-05-25-14-41-13.jpg" alt="День краси" class="event-img" loading="lazy">
+                <div class="event-date-corner" data-uk="25 Травня" data-en="May 25">25 Травня</div>
+                <div class="event-hover-overlay">
+                    <div class="huge-date">25</div>
+                    <div class="huge-month" data-uk="Травня" data-en="May">Травня</div>
+                    <div class="hover-desc" data-uk="Майстер-клас: зачіски, локони та дівоча атмосфера 💕" data-en="Masterclass: hairstyles, curls and girly atmosphere 💕">Майстер-клас: зачіски, локони та дівоча атмосфера 💕</div>
+                </div>
+            </div>
+            <div class="event-info">
+                <h3 data-uk="День краси для дівчат 🎀" data-en="Beauty Day for Girls 🎀">День краси для дівчат 🎀</h3>
+                <p data-uk="Робимо локони, зачіски та просто гарно проводимо час у дівочій атмосфері. На вас чекають спілкування та посмішки!" data-en="Doing curls, hairstyles, and just having a good time in a girly atmosphere.">
+                    Робимо локони, зачіски та просто гарно проводимо час у дівочій атмосфері. На вас чекають спілкування та посмішки!
+                </p>
+            </div>
+        </div>
+
+        <div class="event-card" onclick="openEventModal(
+            'https://i.ibb.co/MyDVJ6Rh/photo-2026-05-25-15-25-34.jpg', 
+            'Кулінарні майстер-класи 👨‍🍳', 'Culinary Masterclasses 👨‍🍳',
+            '🍕 Діти просили - і ми повертаємо Кулінарні майстер-класи!\n\nПопереду - смачні зустрічі, кулінарні експерименти та справжні маленькі шедеври, які будемо готувати разом. Будемо вчитися готувати улюблені страви, дізнаватися секрети шеф-кухарів та насолоджуватися результатами своєї праці 🧁\n\nНа вас чекає:\n😋 багато смачненького;\n🧑‍🍳 новий досвід;\n📸 класні фотографії;\n🤗 тепла дружня атмосфера.\n\nЧекаємо на маленьких кулінарів!', 
+            '🍕 The children asked - and we are bringing back Culinary Masterclasses!\n\nAhead are tasty meetings, culinary experiments, and real little masterpieces that we will cook together. We will learn to cook favorite dishes and discover chef secrets 🧁\n\nWaiting for you:\n😋 lots of yummy things;\n🧑‍🍳 new experience;\n📸 cool photos;\n🤗 warm friendly atmosphere.\n\nWaiting for our little chefs!',
+            'https://t.me/skykids_dnipro/713',
+            '22 Травня', 'May 22',
+            '16:00'
+        )">
+            <div class="event-img-wrapper">
+                <img src="https://i.ibb.co/MyDVJ6Rh/photo-2026-05-25-15-25-34.jpg" alt="Кулінарія" class="event-img" loading="lazy">
+                <div class="event-date-corner" data-uk="22 Травня" data-en="May 22">22 Травня</div>
+                <div class="event-hover-overlay">
+                    <div class="huge-date">22</div>
+                    <div class="huge-month" data-uk="Травня" data-en="May">Травня</div>
+                    <div class="hover-desc" data-uk="Смачні зустрічі та кулінарні експерименти!" data-en="Tasty meetings and culinary experiments!">Смачні зустрічі та кулінарні експерименти!</div>
+                </div>
+            </div>
+            <div class="event-info">
+                <h3 data-uk="Кулінарні майстер-класи 👨‍🍳" data-en="Culinary Masterclasses 👨‍🍳">Кулінарні майстер-класи 👨‍🍳</h3>
+                <p data-uk="Попереду смачні зустрічі та справжні маленькі шедеври, які готуватимемо разом." data-en="Ahead are tasty meetings and real little masterpieces that we will cook together.">
+                    Попереду смачні зустрічі та справжні маленькі шедеври, які готуватимемо разом.
+                </p>
+            </div>
+        </div>
+
+        <div class="event-card event-card-special" onclick="openEventModal(
+            'https://i.ibb.co/bjBgp8zK/photo-2026-05-21-22-49-26.jpg', 
+            'Безкоштовні курси «Медіа» та «SMM» 🎬', 'Free «Media» & «SMM» Courses 🎬',
+            '‼️Незабаром стартують одразу два безкоштовні навчальні курси для підлітків та молоді!\n\n🎬 Курс «Медіа»\nНавчимося створювати якісний відеоконтент від ідеї до готового результату.\n\n📱 Курс «SMM»\nКурс для тих, хто хоче навчитися професійно вести соціальні мережі.\n\n📚 Тривалість: 16 занять.\n💙 Участь безкоштовна.\n👥 Вік: 12-20 років.\n\nДля детальної інформації та реєстрації тисніть кнопку нижче або телефонуйте 📞+380 95 513 44 45', 
+            '‼️Two free training courses for teenagers and youth are starting soon!\n\n🎬 «Media» Course\nLearn to create high-quality video content from idea to finished product.\n\n📱 «SMM» Course\nA course for those who want to learn how to professionally manage social networks.\n\n📚 Duration: 16 classes.\n💙 Participation is free.\n👥 Age: 12-20 years.\n\nFor details and registration, click the button below or call 📞+380 95 513 44 45',
+            'https://t.me/skykids_dnipro/729',
+            'Реєстрація', 'Registration',
+            'Відкрито',
+            'registration.html'
+        )">
+            <div class="event-img-wrapper">
+                <img src="https://i.ibb.co/bjBgp8zK/photo-2026-05-21-22-49-26.jpg" alt="Курси Медіа та SMM" class="event-img" loading="lazy">
+                <div class="event-date-corner" style="color: #8b5cf6;" data-uk="Реєстрація" data-en="Registration">Реєстрація</div>
+                <div class="event-hover-overlay" style="background: rgba(139, 92, 246, 0.85);">
+                    <div class="huge-date"><i class="ph-bold ph-star"></i></div>
+                    <div class="huge-month" data-uk="Курси" data-en="Courses">Курси</div>
+                    <div class="hover-desc" data-uk="Навчимо створювати крутий відеоконтент та вести соцмережі!" data-en="Learn to create cool video content and manage social networks!">Навчимо створювати крутий відеоконтент та вести соцмережі!</div>
+                </div>
+            </div>
+            <div class="event-info">
+                <h3 data-uk="Безкоштовні курси «Медіа» та «SMM» 🎬" data-en="Free «Media» & «SMM» Courses 🎬">Безкоштовні курси «Медіа» та «SMM» 🎬</h3>
+                <p data-uk="Курс для тих, хто хоче навчитися професійно вести соціальні мережі та створювати контент. Участь безкоштовна!" data-en="A course for those who want to learn how to professionally manage social networks.">
+                    Курс для тих, хто хоче навчитися професійно вести соціальні мережі та створювати контент. Участь безкоштовна!
+                </p>
+            </div>
+        </div>
+
+        <div class="event-card" onclick="openEventModal(
+            'https://i.ibb.co/F4FC6R7B/photo-2026-05-25-15-19-32.jpg', 
+            'Водні битви! 💦', 'Water Battles! 💦',
+            '💦 21 травня - ВОДНІ БИТВИ! \n\nБуде весело, мокро та незабутньо 😄\n\nЩо взяти із собою:\n• рушник;\n• змінний одяг;\n• водний пістолет або пляшку для води;\n• гарний настрій 😎\n\nГотуйтеся до справжньої битви! ☀️', 
+            '💦 May 21 - WATER BATTLES! \n\nIt will be fun, wet, and unforgettable 😄\n\nWhat to bring:\n• towel;\n• change of clothes;\n• water gun or water bottle;\n• good mood 😎\n\nGet ready for a real battle! ☀️',
+            'https://t.me/skykids_dnipro/718',
+            '21 Травня', 'May 21',
+            '16:00'
+        )">
+            <div class="event-img-wrapper">
+                <img src="https://i.ibb.co/F4FC6R7B/photo-2026-05-25-15-19-32.jpg" alt="Водні битви" class="event-img" loading="lazy">
+                <div class="event-date-corner" data-uk="21 Травня" data-en="May 21">21 Травня</div>
+                <div class="event-hover-overlay">
+                    <div class="huge-date">21</div>
+                    <div class="huge-month" data-uk="Травня" data-en="May">Травня</div>
+                    <div class="hover-desc" data-uk="Беремо водні пістолети та гарний настрій!" data-en="Bring water guns and a good mood!">Беремо водні пістолети та гарний настрій!</div>
+                </div>
+            </div>
+            <div class="event-info">
+                <h3 data-uk="Водні битви! 💦" data-en="Water Battles! 💦">Водні битви! 💦</h3>
+                <p data-uk="Буде весело, мокро та незабутньо! Готуйтеся до справжньої водної битви." data-en="It will be fun, wet, and unforgettable! Get ready for a real water battle.">
+                    Буде весело, мокро та незабутньо! Готуйтеся до справжньої водної битви.
+                </p>
+            </div>
+        </div>
+
+        <div class="event-card hidden-event" onclick="openEventModal(
+            'https://i.ibb.co/Pzr2CkqX/photo-2026-05-25-15-23-34.jpg', 
+            'Майстер-клас «Стрілки на мільйон» ✨', 'Masterclass «Million Dollar Eyeliner» ✨',
+            '✨ 14 травня - б’юті-майстер-клас «Стрілки на мільйон»!\n\nНавчимося малювати красиві стрілки для очей, розберемо різні техніки та поділимось б’юті-лайфхаками 💄\n\n👧 Для дівчат\n💜 Участь безкоштовна\n\nБуде атмосферно, цікаво та дуже красиво.', 
+            '✨ May 14 - beauty masterclass «Million Dollar Eyeliner»!\n\nWe will learn how to draw beautiful eyeliner, break down different techniques, and share beauty life hacks 💄\n\n👧 For girls\n💜 Participation is free\n\nIt will be atmospheric, interesting, and very beautiful.',
+            'https://t.me/skykids_dnipro/715',
+            '14 Травня', 'May 14',
+            '16:00'
+        )">
+            <div class="event-img-wrapper">
+                <img src="https://i.ibb.co/Pzr2CkqX/photo-2026-05-25-15-23-34.jpg" alt="Стрілки на мільйон" class="event-img" loading="lazy">
+                <div class="event-date-corner" data-uk="14 Травня" data-en="May 14">14 Травня</div>
+                <div class="event-hover-overlay">
+                    <div class="huge-date">14</div>
+                    <div class="huge-month" data-uk="Травня" data-en="May">Травня</div>
+                    <div class="hover-desc" data-uk="Навчимося малювати красиві стрілки для очей!" data-en="We will learn how to draw beautiful eyeliner!">Навчимося малювати красиві стрілки для очей!</div>
+                </div>
+            </div>
+            <div class="event-info">
+                <h3 data-uk="Майстер-клас «Стрілки на мільйон» ✨" data-en="Masterclass «Million Dollar Eyeliner» ✨">Майстер-клас «Стрілки на мільйон» ✨</h3>
+                <p data-uk="Навчимося малювати ідеальні стрілки, розберемо техніки та поділимось б'юті-лайфхаками." data-en="Learn to draw perfect eyeliner and share beauty lifehacks.">
+                    Навчимося малювати ідеальні стрілки, розберемо техніки та поділимось б'юті-лайфхаками.
+                </p>
+            </div>
+        </div>
+
+        <div class="event-card hidden-event" onclick="openEventModal(
+            'https://i.ibb.co/8nFG20c9/photo-2026-05-25-15-52-18.jpg', 
+            'Б’юті-майстер-клас 💄', 'Beauty Masterclass 💄',
+            '💄 Завітаємо у світ краси разом!\n\nУ нашому клубі відбудеться б’юті-майстер-клас для дівчаток.\n\nМи будемо:\n🌸 вчитися правильно користуватися косметикою\n💋 освоювати базовий макіяж\n🧴 знайомитися з основами догляду за шкірою та косметичними засобами.\n\nЦе чудова можливість дізнатися більше про догляд за собою та відчути себе впевненіше.\n\n💛 Участь безкоштовна\n\nЧекаємо на наших чарівних дівчат у клубі!', 
+            '💄 Let’s visit the world of beauty together!\n\nOur club will host a beauty masterclass for girls.\n\nWe will:\n🌸 learn how to properly use cosmetics\n💋 master basic makeup\n🧴 get acquainted with the basics of skin care and cosmetics.\n\nThis is a great opportunity to learn more about self-care and feel more confident.\n\n💛 Participation is free\n\nWaiting for our charming girls in the club!',
+            'https://t.me/skykids_dnipro/708',
+            '5 Травня', 'May 5',
+            '16:00'
+        )">
+            <div class="event-img-wrapper">
+                <img src="https://i.ibb.co/8nFG20c9/photo-2026-05-25-15-52-18.jpg" alt="Б'юті-майстер-клас" class="event-img" loading="lazy">
+                <div class="event-date-corner" data-uk="5 Травня" data-en="May 5">5 Травня</div>
+                <div class="event-hover-overlay">
+                    <div class="huge-date">5</div>
+                    <div class="huge-month" data-uk="Травня" data-en="May">Травня</div>
+                    <div class="hover-desc" data-uk="Вчимося макіяжу та догляду за шкірою!" data-en="Learning makeup and skin care!">Вчимося макіяжу та догляду за шкірою!</div>
+                </div>
+            </div>
+            <div class="event-info">
+                <h3 data-uk="Б’юті-майстер-клас 💄" data-en="Beauty Masterclass 💄">Б’юті-майстер-клас 💄</h3>
+                <p data-uk="Навчимося правильно користуватися косметикою, освоїмо базовий макіяж та догляд за шкірою." data-en="Learn how to properly use cosmetics, master basic makeup and skin care.">
+                    Навчимося правильно користуватися косметикою, освоїмо базовий макіяж та догляд за шкірою.
+                </p>
+            </div>
+        </div>
+        
     </div>
-</div>
+
+<!--<div class="text-center" style="margin-top: 40px;">
+        <button id="loadMoreBtn" class="btn btn-outline" style="color: var(--primary); border-color: var(--primary);" onclick="loadMoreEvents()">
+            <i class="ph-bold ph-caret-down"></i> <span data-uk="Завантажити ще" data-en="Load more">Завантажити ще</span>
+        </button>
+        
+        <a href="all-events.html" id="viewAllBtn" class="btn" style="display: none;">
+            <span data-uk="Всі заходи" data-en="All Events">Всі заходи</span> <i class="ph-bold ph-arrow-right"></i>
+        </a>
+    </div> -->
+
 </section>
   
   <section class="section text-center">
@@ -2495,6 +2878,37 @@ body.modal-open {
   </div>
 </div>
 
+  <div id="eventModal" class="modal">
+    <div class="modal-content event-modal-content">
+        <span class="close-event" onclick="closeEventModal()">&times;</span>
+        
+        <div class="event-modal-img-wrap">
+            <div class="modal-blur-bg" id="modalBlurBg"></div>
+            <img id="modalEventImg" src="" alt="Event Image">
+            <div class="modal-date-badge" id="modalDateBadge">
+                <i class="ph-bold ph-calendar-blank"></i> <span>Дата • Час</span>
+            </div>
+        </div>
+        
+        <div class="event-modal-body">
+            <h3 id="modalEventTitle">Заголовок</h3>
+            <p id="modalEventDesc">Опис події</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <a href="#" id="modalEventRegLink" class="btn-register" style="display: none;">
+                    <i class="ph-bold ph-pencil-simple-line" style="font-size: 24px;"></i>
+                    <span data-uk="Зареєструватися" data-en="Register Now">Зареєструватися</span>
+                </a>
+                
+                <a href="#" id="modalEventLink" target="_blank" class="btn-telegram">
+                    <i class="ph-fill ph-telegram-logo" style="font-size: 26px;"></i>
+                    <span data-uk="Перейти до Telegram-посту" data-en="Read post on Telegram">Перейти до Telegram-посту</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+  
     <script>
 // Единственная и правильная функция переключения языков
 function setLang(lang) {
@@ -2628,6 +3042,59 @@ function copyIBAN() {
 
 // (Логіка кастомного прогрес-бару та кнопки 1-click видалена. 
 // Тепер розрахунок цілі та процесинг оплат повністю делеговані офіційному віджету Monobank)
+      
+// ЛОГИКА ДЛЯ МОДАЛКИ ПОДІЙ (СОБЫТИЙ)
+// ЛОГІКА ДЛЯ МОДАЛКИ ПОДІЙ (З ПІДТРИМКОЮ ПЕРЕКЛАДУ)
+function openEventModal(imageSrc, titleUk, titleEn, descUk, descEn, postLink, dateUk, dateEn, timeText, regLink = null) {
+    document.getElementById('modalEventImg').src = imageSrc;
+    document.getElementById('modalBlurBg').style.backgroundImage = `url(${imageSrc})`;
+    
+    const titleEl = document.getElementById('modalEventTitle');
+    titleEl.setAttribute('data-uk', titleUk);
+    titleEl.setAttribute('data-en', titleEn);
+    
+    const descEl = document.getElementById('modalEventDesc');
+    descEl.setAttribute('data-uk', descUk);
+    descEl.setAttribute('data-en', descEn);
+    
+    const dateEl = document.getElementById('modalDateBadge');
+    dateEl.innerHTML = `<i class="ph-bold ph-calendar-blank"></i> <span data-uk="${dateUk} • ${timeText}" data-en="${dateEn} • ${timeText}">${dateUk} • ${timeText}</span>`;
+    
+    document.getElementById('modalEventLink').href = postLink;
+    
+    // Керування кнопкою реєстрації
+    const regBtn = document.getElementById('modalEventRegLink');
+    if (regLink) {
+        regBtn.href = regLink;
+        regBtn.style.display = 'flex';
+    } else {
+        regBtn.style.display = 'none';
+    }
+    
+    // Миттєво застосовуємо поточну мову до модалки при відкритті
+    const isEnglish = document.getElementById('btn-en').classList.contains('active');
+    titleEl.innerText = isEnglish ? titleEn : titleUk;
+    descEl.innerText = isEnglish ? descEn : descUk;
+    
+    const modal = document.getElementById('eventModal');
+    modal.classList.add('show');
+    document.body.classList.add('modal-open');
+    modal.scrollTop = 0;
+}
+
+function closeEventModal() {
+    document.getElementById('eventModal').classList.remove('show');
+    document.body.classList.remove('modal-open');
+}
+
+function loadMoreEvents() {
+    document.querySelectorAll('.hidden-event').forEach(el => {
+        el.style.display = 'flex'; 
+        el.style.animation = 'fadeInUp 0.6s ease backwards';
+    });
+    document.getElementById('loadMoreBtn').style.display = 'none';
+    document.getElementById('viewAllBtn').style.display = 'inline-flex';
+}
     </script>
 </body>
 </html>
