@@ -58,7 +58,7 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
-        /* Глобальная защита всех иконок (Phosphor Icons) */
+        /* Глобальная защита всех иконок */
         i[class^="ph-"], 
         i[class*=" ph-"],
         .ph, .ph-fill, .ph-bold, .ph-light, .ph-duotone {
@@ -76,26 +76,35 @@
         :root {
             --primary: #2563eb;
             --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
             --accent: #f59e0b; 
             --accent-hover: #d97706;
             --danger: #ef4444; 
             --text-main: #1e293b;
-            --text-muted: #64748b;
-            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #eff6ff 100%);
-            --border-radius: 24px;
+            --text-muted: #475569;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --border-radius-lg: 32px;
+            --border-radius-md: 20px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg-gradient);
+            background: var(--bg-main);
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
         html { scroll-behavior: smooth; }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
 
         /* --- НАВІГАЦІЯ --- */
         .nav {
@@ -117,7 +126,6 @@
         }
         .back-link:hover { background: var(--primary); color: white; transform: translateX(-5px); }
 
-        /* Кнопки Навігації */
         .btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 10px;
             padding: 10px 20px; border-radius: 50px; background: var(--primary);
@@ -145,247 +153,249 @@
 
         /* --- ЕМОЦІЙНІ МІКРО-СТИЛІ --- */
         .marker-highlight {
-            position: relative;
-            z-index: 1;
-            white-space: nowrap;
-            color: var(--text-main);
+            position: relative; z-index: 1; white-space: nowrap; color: var(--text-main);
         }
         .marker-highlight::after {
             content: ''; position: absolute; bottom: 4px; left: -2%;
             width: 104%; height: 14px; background: rgba(251, 191, 36, 0.5); 
             z-index: -1; transform: rotate(-2deg); border-radius: 4px;
         }
-        
         .handwritten-note {
-            font-family: 'Pacifico', cursive;
-            color: var(--primary);
-            font-size: 22px;
-            transform: rotate(-3deg);
-            opacity: 0.9;
+            font-family: 'Pacifico', cursive; color: var(--primary); font-size: 24px;
+            transform: rotate(-3deg); opacity: 0.9;
         }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: clamp(32px, 4vw, 44px); font-weight: 800; letter-spacing: -1px; margin-bottom: 15px; }
+        .section-header p { color: var(--text-muted); font-size: 18px; max-width: 700px; margin: 0 auto; line-height: 1.6; }
 
         /* --- HERO СЕКЦІЯ --- */
         .kitchen-hero {
-            padding: 160px 5% 80px; text-align: center;
-            background: radial-gradient(circle at top, rgba(245, 158, 11, 0.08) 0%, transparent 60%);
+            padding: 180px 5% 100px; text-align: center;
+            background: radial-gradient(circle at top, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
         }
-
         .alert-badge {
             display: inline-flex; align-items: center; gap: 8px;
             background: #fef2f2; color: var(--danger); border: 1px solid #fecaca;
-            padding: 8px 20px; border-radius: 30px; font-weight: 800; font-size: 14px;
-            margin-bottom: 25px; animation: pulseBadge 2s infinite alternate;
+            padding: 8px 24px; border-radius: 30px; font-weight: 800; font-size: 14px;
+            margin-bottom: 30px; animation: pulseBadge 2s infinite alternate;
             text-transform: uppercase; letter-spacing: 1px;
         }
-
         @keyframes pulseBadge {
             from { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
             to { box-shadow: 0 0 0 12px rgba(239, 68, 68, 0); }
         }
-
         .kitchen-hero h1 {
-            font-size: clamp(36px, 5vw, 64px); font-weight: 800; letter-spacing: -2px;
-            line-height: 1.15; margin-bottom: 24px; max-width: 900px; margin-inline: auto;
+            font-size: clamp(40px, 5vw, 68px); font-weight: 800; letter-spacing: -2px;
+            line-height: 1.15; margin-bottom: 24px; max-width: 950px; margin-inline: auto;
         }
-
         .kitchen-hero p {
-            font-size: 20px; color: var(--text-main); max-width: 850px;
-            margin: 0 auto 40px; line-height: 1.6; font-weight: 500;
-        }
-        
-        .trust-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: #e0f2fe; color: #0284c7; padding: 8px 20px;
-            border-radius: 30px; font-weight: 700; font-size: 15px;
-            margin-bottom: 25px; border: 1px solid #bae6fd;
+            font-size: 20px; color: var(--text-muted); max-width: 850px;
+            margin: 0 auto 50px; font-weight: 500;
         }
 
         /* --- МАТЕМАТИКА ПРОЄКТУ --- */
         .stats-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px; max-width: 1000px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px; max-width: 1000px; margin: 0 auto;
         }
         .stat-card {
-            background: white; padding: 30px; border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.02);
-            transition: 0.3s;
+            background: var(--bg-card); padding: 35px 25px; border-radius: var(--border-radius-lg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.03);
+            transition: 0.4s; position: relative; overflow: hidden;
         }
-        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(37,99,235,0.08); }
-        .stat-icon { font-size: 40px; color: var(--accent); margin-bottom: 15px; }
-        .stat-val { font-size: 32px; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
-        .stat-desc { color: var(--text-muted); font-size: 15px; font-weight: 600; }
-
-        /* --- ІСТОРІЇ ДІТЕЙ --- */
-        .stories-section { padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-header h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; margin-bottom: 15px; }
-        .section-header p { color: var(--text-muted); font-size: 18px; max-width: 600px; margin: 0 auto; }
-
-        .story-card {
-            display: flex; align-items: center; gap: 50px; margin-bottom: 60px;
-            background: #ffffff; border-radius: 32px; padding: 30px;
-            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.05); border: 1px solid rgba(0,0,0,0.03);
-            transition: 0.4s; position: relative;
+        .stat-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent)); opacity: 0; transition: 0.4s;
         }
-        .story-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(37, 99, 235, 0.1); }
-        .story-card:nth-child(even) { flex-direction: row-reverse; }
+        .stat-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(37,99,235,0.08); }
+        .stat-card:hover::before { opacity: 1; }
+        .stat-icon { font-size: 48px; color: var(--primary); margin-bottom: 20px; }
+        .stat-val { font-size: 38px; font-weight: 800; color: var(--text-main); margin-bottom: 5px; line-height: 1; }
+        .stat-desc { color: var(--text-muted); font-size: 16px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        .story-img-wrap { flex: 0 0 45%; border-radius: 24px; overflow: hidden; aspect-ratio: 4/3; }
-        .story-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .story-card:hover .story-img { transform: scale(1.05); }
-
-        .story-content { flex: 1; padding: 20px 0; }
-        .story-badge {
-            display: inline-block; background: rgba(245, 158, 11, 0.15); color: var(--accent-hover);
-            padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 800;
-            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;
+        /* --- ШАХМАТНА ГАЛЕРЕЯ (ІСТОРІЇ/ВПЛИВ) --- */
+        .checkerboard-section { padding: 100px 0; background: var(--bg-card); }
+        .checker-row {
+            display: flex; align-items: center; gap: 60px; margin-bottom: 80px;
         }
-        .story-content h3 { font-size: 28px; font-weight: 800; margin-bottom: 15px; }
-        .story-content p { font-size: 16px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
-        .story-quote {
-            padding-left: 20px; border-left: 3px solid var(--primary); font-style: italic;
-            font-weight: 600; color: var(--text-main); font-size: 16px;
+        .checker-row.reverse { flex-direction: row-reverse; }
+        .checker-row:last-child { margin-bottom: 0; }
+        
+        .checker-image {
+            flex: 1; border-radius: var(--border-radius-lg); overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08); position: relative; aspect-ratio: 4/3;
+        }
+        .checker-image img {
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;
+        }
+        .checker-row:hover .checker-image img { transform: scale(1.05); }
+        
+        .checker-text { flex: 1; padding: 20px 0; }
+        .checker-badge {
+            display: inline-block; background: var(--primary-light); color: var(--primary);
+            padding: 8px 16px; border-radius: 30px; font-size: 13px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;
+        }
+        .checker-text h3 { font-size: 32px; font-weight: 800; margin-bottom: 20px; color: var(--text-main); line-height: 1.2; }
+        .checker-text p { font-size: 18px; color: var(--text-muted); margin-bottom: 25px; }
+        .quote-block {
+            padding-left: 20px; border-left: 4px solid var(--accent);
+            font-style: italic; font-weight: 600; color: var(--text-main); font-size: 18px;
         }
 
-        /* --- ПРОЗОРІСТЬ --- */
-        .transparency-section { background: white; padding: 80px 5%; margin: 60px 0; border-top: 1px solid #f1f5f9; border-bottom: 1px solid #f1f5f9; }
-        .trans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1000px; margin: 40px auto 0; text-align: center; }
-        .trans-item i { font-size: 48px; color: #10b981; margin-bottom: 15px; }
-        .trans-item h4 { font-weight: 800; margin-bottom: 10px; font-size: 18px; }
-        .trans-item p { color: var(--text-muted); font-size: 14px; }
+        /* --- OPEN DOOR POLICY --- */
+        .open-door-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            position: relative; overflow: hidden;
+        }
+        .open-door-section::before {
+            content: ''; position: absolute; right: -100px; top: -100px; width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, transparent 70%); border-radius: 50%;
+        }
+        .open-door-container { display: flex; align-items: center; gap: 60px; position: relative; z-index: 2; }
+        
+        .open-door-content { flex: 1.2; }
+        .open-door-content h2 { font-size: 40px; font-weight: 800; margin-bottom: 25px; line-height: 1.2; }
+        .open-door-content p { font-size: 18px; color: rgba(255,255,255,0.8); margin-bottom: 30px; }
+        .open-door-list { list-style: none; display: flex; flex-direction: column; gap: 15px; }
+        .open-door-list li { display: flex; align-items: flex-start; gap: 15px; font-size: 17px; color: rgba(255,255,255,0.9); }
+        .open-door-list i { color: #34d399; font-size: 24px; margin-top: 2px; }
+        
+        .open-door-image { flex: 1; border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); }
+        .open-door-image img { width: 100%; height: auto; display: block; }
 
-        /* --- ВІДГУКИ БАТЬКІВ --- */
-        .reviews-section { padding: 40px 5% 100px; max-width: 1200px; margin: 0 auto; }
-        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
+        /* --- ПАРТНЕРАМ ТА ДОНОРАМ (Custom Reporting) --- */
+        .donors-info-section { padding: 80px 0; background: var(--bg-card); border-bottom: 1px solid #e2e8f0; }
+        .donors-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .donor-feature {
+            display: flex; align-items: flex-start; gap: 20px;
+            padding: 30px; background: var(--bg-main); border-radius: var(--border-radius-md);
+            border: 1px solid rgba(0,0,0,0.04); transition: 0.3s;
+        }
+        .donor-feature:hover { background: white; box-shadow: 0 15px 30px rgba(0,0,0,0.05); transform: translateY(-3px); }
+        .donor-icon { width: 60px; height: 60px; border-radius: 16px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
+        .donor-feature h4 { font-size: 20px; font-weight: 800; margin-bottom: 10px; color: var(--text-main); }
+        .donor-feature p { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+
+        /* --- ПРОЗОРІСТЬ (БЮДЖЕТ) --- */
+        .budget-section { padding: 100px 0; }
+        .budget-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .budget-item {
+            padding: 40px 30px; background: white; border-radius: var(--border-radius-lg);
+            border: 1px solid #e2e8f0; text-align: center; position: relative; z-index: 1;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.02);
+        }
+        .budget-percent {
+            font-size: 56px; font-weight: 800; color: transparent;
+            -webkit-text-stroke: 1.5px var(--primary); opacity: 0.2;
+            position: absolute; top: 10px; right: 20px; z-index: -1;
+        }
+        .budget-item i { font-size: 42px; color: #10b981; margin-bottom: 20px; }
+        .budget-item h4 { font-size: 22px; font-weight: 800; margin-bottom: 12px; }
+        .budget-item p { color: var(--text-muted); font-size: 16px; }
+
+        /* --- ВІДГУКИ --- */
+        .reviews-section { padding: 60px 0 100px; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .review-card {
-            background: linear-gradient(135deg, #ffffff, #f8fafc); padding: 30px; border-radius: 24px;
-            border: 1px solid #e2e8f0; position: relative;
+            background: linear-gradient(135deg, #ffffff, #f8fafc); padding: 40px; border-radius: var(--border-radius-lg);
+            border: 1px solid #e2e8f0; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.03);
         }
-        .review-card i.ph-quotes { font-size: 40px; color: rgba(37, 99, 235, 0.1); position: absolute; top: 20px; right: 20px; }
-        .review-text { font-size: 15px; color: var(--text-main); font-style: italic; margin-bottom: 20px; font-weight: 500; position: relative; z-index: 2; }
-        .review-author { display: flex; align-items: center; gap: 10px; }
-        .review-author-avatar { width: 40px; height: 40px; border-radius: 50%; background: #dcfce7; color: #10b981; display: flex; align-items: center; justify-content: center; font-weight: 800; }
-        .review-author-info strong { display: block; font-size: 15px; }
-        .review-author-info span { font-size: 12px; color: var(--text-muted); }
+        .review-card i.ph-quotes { font-size: 48px; color: var(--primary-light); position: absolute; top: 30px; right: 30px; }
+        .review-text { font-size: 16px; color: var(--text-main); font-style: italic; margin-bottom: 30px; font-weight: 500; position: relative; z-index: 2; line-height: 1.8; }
+        .review-author { display: flex; align-items: center; gap: 15px; }
+        .review-author-avatar { width: 50px; height: 50px; border-radius: 50%; background: #dcfce7; color: #10b981; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; }
+        .review-author-info strong { display: block; font-size: 16px; margin-bottom: 2px; }
+        .review-author-info span { font-size: 13px; color: var(--text-muted); }
 
         /* --- ВБУДОВАНИЙ БЛОК ДОНАТІВ НА СТОРІНЦІ --- */
         .donate-section { max-width: 800px; margin: 0 auto 100px; text-align: center; padding: 0 5%; }
-        
         .btn-action {
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px;
             background: var(--primary); color: white; font-weight: 800; font-size: 20px;
             padding: 22px 55px; border-radius: 60px; text-decoration: none; border: none; cursor: pointer;
-            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.3); transition: 0.3s; position: relative;
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.3); transition: 0.3s; position: relative; overflow: hidden;
         }
+        .btn-action::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: skewX(-20deg); transition: 0.5s;
+        }
+        .btn-action:hover::after { left: 150%; }
         .btn-action:hover { transform: translateY(-5px); box-shadow: 0 20px 45px rgba(37, 99, 235, 0.4); background: var(--primary-hover); }
 
-        .progress-container { margin-top: 50px; background: white; padding: 35px; border-radius: 28px; box-shadow: 0 15px 40px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.03); text-align: left; }
-        .progress-header { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 16px; font-weight: 600; }
-        .progress-bar { width: 100%; height: 16px; background: #f1f5f9; border-radius: 10px; overflow: hidden; }
-        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), #fbbf24); border-radius: 10px; transition: width 1.5s ease-out; }
+        .progress-container { margin-top: 50px; background: white; padding: 40px; border-radius: var(--border-radius-lg); box-shadow: 0 25px 50px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.03); text-align: left; }
+        .progress-header { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 18px; font-weight: 700; }
+        .progress-bar { width: 100%; height: 20px; background: #f1f5f9; border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), #fbbf24); border-radius: 10px; transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
 
         /* --- СОЦ МЕРЕЖІ --- */
-        .social-section { text-align: center; padding: 40px 5% 80px; max-width: 800px; margin: 0 auto; }
+        .social-section { text-align: center; padding: 40px 5% 100px; max-width: 800px; margin: 0 auto; }
         .btn-social {
-            display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px;
+            display: inline-flex; align-items: center; gap: 10px; padding: 16px 36px;
             border-radius: 60px; font-weight: 700; text-decoration: none; color: white;
             transition: 0.3s; font-size: 16px; margin: 10px;
         }
         .btn-tg { background: #0088cc; box-shadow: 0 10px 20px rgba(0, 136, 204, 0.2); }
-        .btn-tg:hover { background: #0099e6; transform: translateY(-3px); }
+        .btn-tg:hover { background: #0099e6; transform: translateY(-4px); box-shadow: 0 15px 25px rgba(0, 136, 204, 0.3); }
         .btn-inst { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); box-shadow: 0 10px 20px rgba(220, 39, 67, 0.2); }
-        .btn-inst:hover { transform: translateY(-3px); filter: brightness(1.1); }
+        .btn-inst:hover { transform: translateY(-4px); filter: brightness(1.1); box-shadow: 0 15px 25px rgba(220, 39, 67, 0.3); }
 
         /* ============================================================
-           СТИЛІ МОДАЛЬНОГО ВІКНА ТА ПРЕМІУМ-ФУТЕРА З ГОЛОВНОЇ СТОРІНКИ
+           ФУТЕР ТА МОДАЛЬНЕ ВІКНО
            ============================================================ */
-        
-        /* Dark Footer */
         .sky-footer { background: #0a0f1a; color: #ffffff; padding: 100px 5% 40px; position: relative; overflow: hidden; }
-        .sky-footer::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 600px; height: 300px; background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%); pointer-events: none; }
         .footer-container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
         .footer-main-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 80px; padding-bottom: 60px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         
         .footer-logo { font-size: 30px; font-weight: 400; display: flex; align-items: center; gap: 10px; margin-bottom: 25px; font-family: 'Pacifico', cursive; color: #ffffff; }
         .footer-logo .ngo { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: var(--primary); margin-left: 6px; letter-spacing: 1px; }
-        .footer-logo span { color: var(--primary); }
-        .brand-pitch { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 30px; text-align: left; }
-        
-        .footer-title { font-size: 18px; font-weight: 700; margin-bottom: 30px; color: white; text-align: left;}
-        .footer-nav { display: flex; flex-direction: column; gap: 15px; text-align: left; }
-        .nav-link { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,0.5); text-decoration: none; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .nav-link i { font-size: 20px; transition: 0.3s; }
+        .brand-pitch { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 30px; }
+        .footer-title { font-size: 18px; font-weight: 700; margin-bottom: 30px; color: white; }
+        .footer-nav { display: flex; flex-direction: column; gap: 15px; }
+        .nav-link { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,0.5); text-decoration: none; transition: 0.3s; }
         .nav-link:hover { color: white; transform: translateX(10px); }
         .nav-link:hover i { color: var(--primary); }
-        
-        .contact-mechanic { display: flex; flex-direction: column; gap: 20px; text-align: left;}
-        .contact-item { display: flex; align-items: center; gap: 15px; color: rgba(255,255,255,0.7); font-size: 15px; text-decoration: none; transition: 0.3s; }
-        .contact-item.clickable:hover { color: var(--primary); }
+        .contact-item { display: flex; align-items: center; gap: 15px; color: rgba(255,255,255,0.7); font-size: 15px; text-decoration: none; transition: 0.3s; margin-bottom: 20px;}
         .contact-item i { width: 40px; height: 40px; background: rgba(255,255,255,0.03); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--primary); }
-        
         .footer-bottom-bar { padding-top: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
-        .legal-links { display: flex; gap: 30px; }
-        .legal-links a { color: rgba(255,255,255,0.3); text-decoration: none; font-size: 13px; transition: 0.3s; }
-        .legal-links a:hover { color: white; }
-        .copyright { color: rgba(255,255,255,0.3); font-size: 13px; }
-        
+        .legal-links a { color: rgba(255,255,255,0.3); text-decoration: none; font-size: 13px; transition: 0.3s; margin-right: 30px; }
         .social-mechanics { display: flex; gap: 15px; }
         .social-btn { width: 45px; height: 45px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); }
-        .social-btn:hover { background: var(--primary); transform: rotate(15deg) scale(1.1); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3); }
+        .social-btn:hover { background: var(--primary); transform: rotate(15deg) scale(1.1); }
 
-        .actions-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 60px; }
-        .action-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 22px 28px; display: flex; align-items: center; gap: 18px; transition: 0.4s; text-decoration: none; text-align: left; }
-        .action-title { color: #ffffff !important; font-size: 17px; font-weight: 700; margin-bottom: 2px; }
-        .action-desc { color: rgba(255, 255, 255, 0.5) !important; font-size: 13px; }
-        .action-icon { font-size: 30px; color: var(--primary); flex-shrink: 0; }
-        .action-item.highlight { background: var(--primary) !important; border: none; box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2); }
-        .action-item.highlight .action-title { color: #ffffff !important; }
-        .action-item.highlight .action-desc { color: rgba(255, 255, 255, 0.8) !important; }
-        .action-item.highlight .action-icon { color: #ffffff !important; }
-        .action-item:hover { background: rgba(255, 255, 255, 0.07); border-color: var(--primary); transform: translateY(-5px); }
-        .action-item.highlight:hover { background: var(--primary-hover) !important; transform: translateY(-5px); box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4); }
-
-        /* Modal Styles */
-        .modal { display: none; position: fixed; z-index: 9999; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); align-items: center; justify-content: center; }
+        .modal { display: none; position: fixed; z-index: 9999; inset: 0; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); align-items: center; justify-content: center; }
         .modal.show { display: flex; animation: fadeIn 0.3s ease; }
-        .modal-content { background: white; max-width: 1100px; width: 95%; margin: 2% auto; padding: 50px 40px; border-radius: 28px; text-align: center; position: relative; max-height: 90vh; overflow-y: auto; box-shadow: 0 40px 120px rgba(0,0,0,0.15); background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%); }
-        .close { position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer; }
-        .modal-sub { color: #64748b; font-size: 16px; margin-bottom: 25px; }
+        .modal-content { background: white; max-width: 1100px; width: 95%; margin: 2% auto; padding: 50px; border-radius: var(--border-radius-lg); text-align: center; position: relative; max-height: 90vh; overflow-y: auto; }
+        .close { position: absolute; right: 25px; top: 20px; font-size: 28px; cursor: pointer; color: var(--text-muted); transition: 0.3s; }
+        .close:hover { color: var(--danger); transform: rotate(90deg); }
         body.modal-open { overflow: hidden; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px) scale(0.95);} to { opacity: 1; transform: translateY(0) scale(1);} }
         
-        .donate-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch;}
-        .donate-left { display: flex; flex-direction: column; justify-content: center; padding-right: 10px; border-right: 1px solid rgba(0,0,0,0.05); }
-        .donate-box { width: 100%; }
-        .premium-box { background: linear-gradient(135deg, #f1f7ff, #ffffff); border: 1px solid rgba(37,99,235,0.1); border-radius: 20px; padding: 25px; text-align: left; }
-        .donate-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 15px; align-items: center; }
+        .donate-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: stretch; margin-top: 30px;}
+        .premium-box { background: linear-gradient(135deg, #f8fafc, #ffffff); border: 1px solid #e2e8f0; border-radius: var(--border-radius-lg); padding: 35px; text-align: left; height: 100%;}
+        .donate-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 15px; align-items: center; padding-bottom: 15px; border-bottom: 1px dashed #e2e8f0;}
+        .donate-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
         .card-copy-wrap { display: flex; align-items: center; gap: 10px; }
-        .copy-btn { background: var(--primary); border: none; color: white; border-radius: 10px; padding: 6px 10px; cursor: pointer; font-size: 14px; transition: 0.3s; flex-shrink: 0; }
-        .copy-btn:hover { background: var(--primary-hover); transform: scale(1.1); }
-        .donate-card-row strong { font-size: 16px; letter-spacing: 1px; }
+        .copy-btn { background: var(--primary-light); border: none; color: var(--primary); border-radius: 12px; padding: 8px 12px; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        .copy-btn:hover { background: var(--primary); color: white; }
         
-        .iban-container { max-width: 100%; overflow: hidden; }
-        #ibanNumber { display: block; word-break: break-all; font-family: 'Courier New', monospace; line-height: 1.2; font-size: 14px; letter-spacing: 0.5px; }
-        .donate-impact { margin: 20px 0; font-weight: 700; color: #2563eb; }
-        .partner-cta { margin-top: 25px; }
-        .partner-note { margin-top: 10px; font-size: 13px; color: var(--text-muted); }
-
-        .donate-fast { min-height: 100%; border-radius: 24px; padding: 30px; color: white; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; background: linear-gradient(135deg, #111827 0%, #312e81 100%); }
-        .donate-fast-content { position: relative; z-index: 2; width: 100%; }
-        .mono-btn { display: inline-flex; align-items: center; gap: 10px; background: white; color: var(--primary); padding: 14px 20px; border-radius: 14px; font-weight: 700; text-decoration: none; margin-bottom: 20px; transition: 0.3s; }
-        .mono-btn:hover { transform: scale(1.05); }
-        .donate-bottom { margin-top: 25px; }
+        .donate-fast { height: 100%; border-radius: var(--border-radius-lg); padding: 40px; color: white; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; background: linear-gradient(135deg, #111827 0%, #3730a3 100%); }
+        .mono-btn { display: inline-flex; align-items: center; gap: 10px; background: white; color: #111827; padding: 18px 24px; border-radius: 16px; font-weight: 800; text-decoration: none; margin-bottom: 20px; transition: 0.3s; width: 100%; justify-content: center; font-size: 18px;}
+        .mono-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
 
         @media (max-width: 992px) {
-            .footer-main-row { grid-template-columns: 1fr; gap: 50px; }
-            .footer-bottom-bar { justify-content: center; text-align: center; }
-        }
-
-        @media (max-width: 900px) {
-            .story-card, .story-card:nth-child(even) { flex-direction: column; gap: 20px; padding: 20px; }
-            .story-img-wrap { flex: none; width: 100%; }
+            .checker-row, .checker-row.reverse { flex-direction: column; text-align: center; gap: 30px; }
+            .checker-text { padding: 0; }
+            .open-door-container { flex-direction: column; text-align: center; }
+            .open-door-list li { justify-content: center; text-align: left; }
+            .footer-main-row { grid-template-columns: 1fr; gap: 50px; text-align: center; }
+            .contact-item, .nav-link, .brand-pitch { justify-content: center; text-align: center; }
+            .social-mechanics { justify-content: center; }
+            .footer-bottom-bar { justify-content: center; }
             .donate-layout { grid-template-columns: 1fr; }
-            .donate-left { border-right: none; padding-right: 0; }
         }
     </style>
 </head>
@@ -410,7 +420,8 @@
     </nav>
 
     <main>
-        <section class="kitchen-hero">
+        <!-- HERO СЕКЦІЯ -->
+        <section class="kitchen-hero container">
             <div class="alert-badge">
                 <i class="ph-bold ph-bell-ringing"></i> 
                 <span data-uk="Екстрений збір коштів" data-en="Urgent Fundraising">Екстрений збір коштів</span>
@@ -421,58 +432,166 @@
                 Діти у нашому просторі не повинні залишатися <span class="marker-highlight">голодними</span>
             </h1>
 
-            <p data-uk="Вже понад півтора року 30 дітей з малозабезпечених сімей щодня приходять у SkyKids за єдиним повноцінним гарячим обідом. Але зараз програма фінансування від іноземних донорів <strong style='color: var(--danger); text-transform: uppercase;'>завершилася</strong>. Їм потрібна їжа <b>вже зараз</b>. Тепер їхнє щоденне харчування майже повністю залежить від небайдужих українців." 
-               data-en="For over a year and a half, 30 children from low-income families have come to SkyKids daily for their only full hot meal. But now the foreign donor funding program has <strong style='color: var(--danger); text-transform: uppercase;'>ended</strong>. They need food <b>right now</b>. Now their daily food depends almost entirely on caring Ukrainians.">
-                Вже понад півтора року 30 дітей з малозабезпечених сімей щодня приходять у SkyKids за єдиним повноцінним гарячим обідом. Але зараз програма фінансування від іноземних донорів <strong style="color: var(--danger); text-transform: uppercase;">завершилася</strong>. Їм потрібна їжа <b>вже зараз</b>. Тепер їхнє щоденне харчування майже повністю залежить від небайдужих українців.
+            <p data-uk="Вже понад півтора року 30 дітей з малозабезпечених та ВПО сімей щодня приходять у SkyKids за єдиним повноцінним гарячим обідом. Програма іноземного фінансування <strong style='color: var(--danger); text-transform: uppercase;'>завершилася</strong>. Тепер їхнє щоденне харчування повністю залежить від небайдужих людей." 
+               data-en="For over 18 months, 30 children from vulnerable families have come to SkyKids daily for their only full hot meal. The foreign funding program has <strong style='color: var(--danger); text-transform: uppercase;'>ended</strong>. Now their daily food depends entirely on caring people.">
+                Вже понад півтора року 30 дітей з малозабезпечених та ВПО сімей щодня приходять у SkyKids за єдиним повноцінним гарячим обідом. Програма іноземного фінансування <strong style="color: var(--danger); text-transform: uppercase;">завершилася</strong>. Тепер їхнє щоденне харчування повністю залежить від небайдужих людей.
             </p>
 
             <div class="stats-grid">
                 <div class="stat-card">
                     <i class="ph-duotone ph-users-three stat-icon"></i>
                     <div class="stat-val">30</div>
-                    <div class="stat-desc" data-uk="Дітей хочуть їсти щодня" data-en="Children want to eat daily">Дітей хочуть їсти щодня</div>
+                    <div class="stat-desc" data-uk="Дітей залежать від нас" data-en="Children depend on us">Дітей залежать від нас</div>
                 </div>
                 <div class="stat-card">
                     <i class="ph-duotone ph-coins stat-icon" style="color: #10b981;"></i>
-                    <div class="stat-val">21 750 ₴</div>
-                    <div class="stat-desc" data-uk="Гостра потреба на тиждень" data-en="Urgent need per week">Гостра потреба на тиждень</div>
+                    <div class="stat-val">2 900 ₴</div>
+                    <div class="stat-desc" data-uk="Вартість усіх обідів на день" data-en="Total daily cost of meals">Вартість усіх обідів на день</div>
                 </div>
                 <div class="stat-card">
-                    <i class="ph-duotone ph-bowl-food stat-icon" style="color: var(--primary);"></i>
+                    <i class="ph-duotone ph-bowl-food stat-icon" style="color: var(--accent);"></i>
                     <div class="stat-val">~145 ₴</div>
-                    <div class="stat-desc" data-uk="Вартість 1 ситого дня дитини" data-en="Cost of 1 full day for a child">Вартість 1 ситого дня дитини</div>
+                    <div class="stat-desc" data-uk="1 ситий день для дитини" data-en="1 full day for a child">1 ситий день для дитини</div>
                 </div>
             </div>
         </section>
 
-        <section class="transparency-section">
-            <div class="section-header" style="margin-bottom: 20px;">
-              <div class="trust-badge">
-                <i class="ph-fill ph-calendar-check"></i> 
-                <span data-uk="Безперервно годуємо дітей з жовтня 2024 року" data-en="Feeding children non-stop since October 2024">Безперервно годуємо дітей з жовтня 2024 року</span>
-            </div>
-                <h2 data-uk="Прозорість: Куди йдуть 145 гривень?" data-en="Transparency: Where does 145 UAH go?">Прозорість: Куди йдуть 145 гривень?</h2>
-            </div>
-            <div class="trans-grid">
-                <div class="trans-item">
-                    <i class="ph-duotone ph-carrot"></i>
-                    <h4 data-uk="Якісні продукти" data-en="Quality Food">Якісні продукти</h4>
-                    <p data-uk="Свіже м'ясо, овочі, крупи та фрукти для збалансованого меню дитини." data-en="Fresh meat, vegetables, grains, and fruits for a balanced child's menu.">Свіже м'ясо, овочі, крупи та фрукти для збалансованого меню дитини.</p>
+        <!-- ШАХМАТНА ГАЛЕРЕЯ (Більше ніж їжа) -->
+        <section class="checkerboard-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-uk="Більше, ніж просто їжа" data-en="Beyond Food">Більше, ніж просто їжа</h2>
+                    <p data-uk="Програма Sky Kitchen — це не лише калорії. Це щоденний якір стабільності для дітей, які зіткнулися з травмами війни, переїздом та ізоляцією." data-en="The Sky Kitchen program is more than just calories. It is a daily anchor of stability for children facing the trauma of war, displacement, and isolation.">
+                        Програма Sky Kitchen — це не лише калорії. Це щоденний якір стабільності для дітей, які зіткнулися з травмами війни, переїздом та ізоляцією.
+                    </p>
                 </div>
-                <div class="trans-item">
+
+                <!-- Блок 1 -->
+                <div class="checker-row">
+                    <div class="checker-image">
+                        <!-- Замінити на реальне фото -->
+                        <img src="sky children.jpg" alt="Children eating together">
+                    </div>
+                    <div class="checker-text">
+                        <div class="checker-badge" data-uk="Безпека та стабільність" data-en="Safety & Stability">Безпека та стабільність</div>
+                        <h3 data-uk="Повернення нормального дитинства" data-en="Restoring normal childhood">Повернення нормального дитинства</h3>
+                        <p data-uk="Багато наших підопічних живуть у постійному стресі. Приходячи до центру, вони потрапляють у безпечне середовище, де їх завжди чекають турботливі дорослі та гаряча тарілка супу." data-en="Many of our children live in constant stress. Coming to the center, they enter a safe environment where caring adults and a hot plate of soup always await them.">
+                            Багато наших підопічних живуть у постійному стресі. Приходячи до центру, вони потрапляють у безпечне середовище, де їх завжди чекають турботливі дорослі та гаряча тарілка супу.
+                        </p>
+                        <div class="quote-block" data-uk="«Їжа зберігає їхнє фізичне здоров'я. Наша спільнота допомагає їм зцілитися емоційно.»" data-en="«Food keeps their physical health. Our community helps them heal emotionally.»">
+                            «Їжа зберігає їхнє фізичне здоров'я. Наша спільнота допомагає їм зцілитися емоційно.»
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Блок 2 (Реверс) -->
+                <div class="checker-row reverse">
+                    <div class="checker-image">
+                        <!-- Замінити на реальне фото -->
+                        <img src="novi druzi za stolom.jpg" alt="Happy kids">
+                    </div>
+                    <div class="checker-text">
+                        <div class="checker-badge" style="background: #dcfce7; color: #10b981;" data-uk="Соціалізація" data-en="Socialization">Соціалізація</div>
+                        <h3 data-uk="Нові друзі за спільним столом" data-en="New friends at the shared table">Нові друзі за спільним столом</h3>
+                        <p data-uk="Спільні обіди — це час, коли діти діляться історіями, знаходять друзів і забувають про самотність. Ми проводимо освітні воркшопи, творчі заняття та свята, щоб вони знову навчилися радіти життю." data-en="Shared meals are a time when children share stories, make friends, and forget about loneliness. We hold educational workshops and creative activities so they learn to enjoy life again.">
+                            Спільні обіди — це час, коли діти діляться історіями, знаходять друзів і забувають про самотність. Ми проводимо освітні воркшопи, творчі заняття та свята, щоб вони знову навчилися радіти життю.
+                        </p>
+                        <a href="volunteer.html" class="btn" style="background: white; color: var(--text-main); border: 1px solid #e2e8f0; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-top: 10px;">
+                            <span data-uk="Дізнатися про волонтерство" data-en="Learn about volunteering">Дізнатися про волонтерство</span> <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ПОЛІТИКА ВІДКРИТИХ ДВЕРЕЙ (Окрема секція) -->
+        <section class="open-door-section">
+            <div class="container open-door-container">
+                <div class="open-door-content">
+                    <h2 data-uk="Політика відкритих дверей" data-en="Open Door Policy">Політика відкритих дверей</h2>
+                    <p data-uk="Прозорість — одна з наших головних цінностей. Ми запрошуємо донорів, партнерів та благодійників відвідати наш центр у Дніпрі, познайомитися з командою та побачити нашу роботу на власні очі." data-en="Transparency is one of our core values. We welcome donors, partners, and supporters to visit our center in Dnipro, meet our team, and see our work firsthand.">
+                        Прозорість — одна з наших головних цінностей. Ми запрошуємо донорів, партнерів та благодійників відвідати наш центр у Дніпрі, познайомитися з командою та побачити нашу роботу на власні очі.
+                    </p>
+                    <ul class="open-door-list">
+                        <li><i class="ph-fill ph-check-circle"></i> <span data-uk="Проведіть моніторинг реалізації проєкту" data-en="Monitor project implementation">Проведіть моніторинг реалізації проєкту</span></li>
+                        <li><i class="ph-fill ph-check-circle"></i> <span data-uk="Передайте гуманітарну допомогу особисто" data-en="Deliver humanitarian assistance personally">Передайте гуманітарну допомогу особисто</span></li>
+                        <li><i class="ph-fill ph-check-circle"></i> <span data-uk="Просто проведіть час із дітьми" data-en="Simply spend time with the children">Просто проведіть час із дітьми</span></li>
+                    </ul>
+                    <p style="margin-top: 25px; font-weight: 600; font-size: 16px; color: var(--accent);" data-uk="Ми віримо, що довіра будується через відкритість та особистий зв'язок." data-en="We believe trust is built through openness, accountability, and personal connection.">Ми віримо, що довіра будується через відкритість та особистий зв'язок.</p>
+                </div>
+                <div class="open-door-image">
+                    <!-- Замінити на реальне фото вашої команди чи центру ззовні/всередині -->
+                    <img src="zvit z zahodu.jpg" alt="Sky Kids Center Open Doors">
+                </div>
+            </div>
+        </section>
+
+        <!-- ДЛЯ ПАРТНЕРІВ (Donor Recognition) -->
+        <section class="donors-info-section">
+            <div class="container">
+                <div class="section-header" style="margin-bottom: 30px;">
+                    <h2 data-uk="Для інституційних донорів та бізнесу" data-en="For Institutional Donors & Business">Для інституційних донорів та бізнесу</h2>
+                    <p data-uk="Ми глибоко цінуємо кожне партнерство та готові адаптуватися під ваші вимоги до звітності." data-en="We deeply value every partnership and are ready to adapt to your reporting requirements.">Ми глибоко цінуємо кожне партнерство та готові адаптуватися під ваші вимоги до звітності.</p>
+                </div>
+                <div class="donors-grid">
+                    <div class="donor-feature">
+                        <div class="donor-icon"><i class="ph-duotone ph-file-text"></i></div>
+                        <div>
+                            <h4 data-uk="Індивідуальна звітність" data-en="Custom Reporting">Індивідуальна звітність</h4>
+                            <p data-uk="Адаптуємо фінансові та операційні звіти під специфічні формати комплаєнсу та аудиту вашої організації." data-en="We adapt financial and operational reporting to meet your specific compliance and audit formats.">Адаптуємо фінансові та операційні звіти під специфічні формати комплаєнсу та аудиту вашої організації.</p>
+                        </div>
+                    </div>
+                    <div class="donor-feature">
+                        <div class="donor-icon" style="background: #fef3c7; color: #d97706;"><i class="ph-duotone ph-certificate"></i></div>
+                        <div>
+                            <h4 data-uk="Офіційне визнання" data-en="Official Recognition">Офіційне визнання</h4>
+                            <p data-uk="Надаємо офіційні листи-подяки, фото-докази реалізації та згадуємо вас у звітах про вплив." data-en="We provide official letters of appreciation, implementation photos, and mention you in impact reports.">Надаємо офіційні листи-подяки, фото-докази реалізації та згадуємо вас у звітах про вплив.</p>
+                        </div>
+                    </div>
+                    <div class="donor-feature">
+                        <div class="donor-icon" style="background: #dcfce7; color: #10b981;"><i class="ph-duotone ph-globe"></i></div>
+                        <div>
+                            <h4 data-uk="Гнучкість платежів" data-en="Flexible Payments">Гнучкість платежів</h4>
+                            <p data-uk="Приймаємо гранти через SWIFT, PayPal, а також з радістю приймаємо гуманітарну in-kind підтримку." data-en="We accept grants via SWIFT, PayPal, and also readily accept humanitarian in-kind support.">Приймаємо гранти через SWIFT, PayPal, а також з радістю приймаємо гуманітарну in-kind підтримку.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ПРОЗОРІСТЬ БЮДЖЕТУ -->
+        <section class="budget-section container">
+            <div class="section-header">
+                <h2 data-uk="Куди йдуть ваші донати?" data-en="Daily Cost Breakdown">Куди йдуть ваші донати?</h2>
+                <p data-uk="Вартість одного дня роботи кухні для 30 дітей складає 2900 грн. Ось як вони розподіляються:" data-en="The daily cost of running the kitchen for 30 children is 2,900 UAH. Here is the breakdown:">
+                    Вартість одного дня роботи кухні для 30 дітей складає 2900 грн. Ось як вони розподіляються:
+                </p>
+            </div>
+            
+            <div class="budget-grid">
+                <div class="budget-item">
+                    <div class="budget-percent">75%</div>
+                    <i class="ph-duotone ph-cooking-pot" style="color: var(--primary);"></i>
+                    <h4 data-uk="Гарячі обіди" data-en="Hot Meals">Гарячі обіди</h4>
+                    <p data-uk="Свіжі, поживні обіди (м'ясо, гарніри, супи), що професійно готуються щодня." data-en="Fresh, nutritious lunches prepared daily.">Свіжі, поживні обіди (м'ясо, гарніри, супи), що професійно готуються щодня.</p>
+                </div>
+                <div class="budget-item">
+                    <div class="budget-percent">15%</div>
                     <i class="ph-duotone ph-truck"></i>
-                    <h4 data-uk="Логістика" data-en="Logistics">Логістика</h4>
-                    <p data-uk="Безпечна доставка продуктів до нашого дитячого простору." data-en="Safe delivery of products to our children's space.">Безпечна доставка продуктів до нашого дитячого простору.</p>
+                    <h4 data-uk="Логістика та кухня" data-en="Food Logistics">Логістика та кухня</h4>
+                    <p data-uk="Транспортування, зберігання продуктів, комунальні послуги та необхідний посуд." data-en="Transportation, storage, food safety, and serving supplies.">Транспортування, зберігання продуктів, комунальні послуги та необхідний посуд.</p>
                 </div>
-                <div class="trans-item">
-                    <i class="ph-duotone ph-cooking-pot"></i>
-                    <h4 data-uk="Приготування" data-en="Cooking">Приготування</h4>
-                    <p data-uk="Оплата комунальних послуг та праці нашого невтомного кухаря." data-en="Payment for utilities and the work of our tireless chef.">Оплата комунальних послуг та праці нашого невтомного кухаря.</p>
+                <div class="budget-item">
+                    <div class="budget-percent">10%</div>
+                    <i class="ph-duotone ph-apple-logo" style="color: var(--accent);"></i>
+                    <h4 data-uk="Снеки та фрукти" data-en="Healthy Snacks">Снеки та фрукти</h4>
+                    <p data-uk="Свіжі фрукти, печиво та маленькі радощі для дітей після основного прийому їжі." data-en="Fresh fruit, cookies, and small treats that bring joy to children.">Свіжі фрукти, печиво та маленькі радощі для дітей після основного прийому їжі.</p>
                 </div>
             </div>
         </section>
 
-        <section class="reviews-section">
+        <!-- ВІДГУКИ -->
+        <section class="reviews-section container">
             <div class="section-header">
                 <h2 data-uk="Слова вдячності від мам" data-en="Words of gratitude from moms">Слова вдячності від мам</h2>
             </div>
@@ -502,34 +621,37 @@
             </div>
         </section>
 
+        <!-- БЛОК ДОНАТІВ -->
         <section class="donate-section">
-            <div class="handwritten-note" style="color: var(--accent); margin-bottom: 10px;" data-uk="Кожна гривня має значення 💛" data-en="Every hryvnia matters 💛">Кожна гривня має значення 💛</div>
-            <h2 style="font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 20px;" data-uk="Ваша підтримка — це їхній обід" data-en="Your support is their meal">Ваша підтримка — це їхній обід</h2>
-            <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 40px;" data-uk="Не відкладайте на потім. Ваші 145 гривень прямо сьогодні перетворяться на гарячий обід." data-en="Don't put it off. Your 145 UAH will turn into a hot meal today.">Не відкладайте на потім. Ваші 145 гривень прямо сьогодні перетворяться на гарячий обід.</p>
+            <div class="handwritten-note" style="margin-bottom: 15px;" data-uk="Кожна гривня має значення 💛" data-en="Every hryvnia matters 💛">Кожна гривня має значення 💛</div>
+            <h2 style="font-size: clamp(32px, 4vw, 52px); font-weight: 800; margin-bottom: 25px; line-height: 1.1;" data-uk="Ваша підтримка — це їхній обід" data-en="Your support is their meal">Ваша підтримка — це їхній обід</h2>
+            <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 40px;" data-uk="Не відкладайте на потім. Будь-який внесок негайно трансформується в реальну допомогу, допомагаючи нам поставити їжу на стіл дитини вже завтра." data-en="Don't put it off. Your donation immediately translates into real assistance, helping us place nutritious food on a child’s table the very next day.">Не відкладайте на потім. Будь-який внесок негайно трансформується в реальну допомогу, допомагаючи нам поставити їжу на стіл дитини вже завтра.</p>
             
             <button class="btn-action" data-action="open-modal">
                 <i class="ph-fill ph-hand-heart" style="font-size: 28px;"></i>
-                <span data-uk="Дати обід вже сьогодні" data-en="Give a meal today">Дати обід вже сьогодні</span>
+                <span data-uk="Нагодувати дитину сьогодні" data-en="Feed a child today">Нагодувати дитину сьогодні</span>
             </button>
 
+            <!-- ПРОГРЕС БАР ЗБОРУ (Тижневий) -->
             <div class="progress-container">
                 <div class="progress-header">
                     <span data-uk="Зібрано на цьому тижні:" data-en="Raised this week:">Зібрано на цьому тижні:</span>
-                    <strong id="progressText" style="color: var(--text-main);">0 / 21 750 ₴</strong>
+                    <strong id="progressText" style="color: var(--primary);">212.07 / 21 750 ₴</strong>
                 </div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
-                <div style="display: flex; justify-content: space-between; font-size: 14px; margin-top: 15px; color: var(--text-muted); font-weight: 500;">
-                    <span data-uk="Допомогло: 37 людей" data-en="Helped: 37 people">Допомогло: 0 людей</span>
-                    <span data-uk="Залишилось: <strong style='color:#1e293b'>13 100</strong> ₴" data-en="Left: <strong style='color:#1e293b'>13 100</strong> ₴">Залишилось: <strong style="color:#1e293b">0</strong> ₴</span>
+                <div style="display: flex; justify-content: space-between; font-size: 15px; margin-top: 15px; color: var(--text-muted); font-weight: 500;">
+                    <span data-uk="Допомогло: <strong style='color:#1e293b'>2</strong> людини" data-en="Helped: <strong style='color:#1e293b'>2</strong> people">Допомогло: <strong style="color:#1e293b">2</strong> людини</span>
+                    <span data-uk="Залишилось: <strong style='color:#1e293b'>20 230.21</strong> ₴" data-en="Left: <strong style='color:#1e293b'>20 230.21</strong> ₴">Залишилось: <strong style="color:#1e293b">21 537.93</strong> ₴</span>
                 </div>
             </div>
         </section>
 
+        <!-- СОЦ МЕРЕЖІ -->
         <section class="social-section">
-            <h3 style="font-size: 28px; font-weight: 800; margin-bottom: 15px;" data-uk="Слідкуйте за життям центру" data-en="Follow the life of the center">Слідкуйте за життям центру</h3>
-            <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 18px;" data-uk="Ми публікуємо щоденні звіти, посмішки дітей та будні нашої команди. Переконайтеся самі, як ваша допомога творить дива." data-en="We publish daily reports, children's smiles, and our team's routine. See for yourself how your help works miracles.">Ми публікуємо щоденні звіти, посмішки дітей та будні нашої команди. Переконайтеся самі, як ваша допомога творить дива.</p>
+            <h3 style="font-size: 32px; font-weight: 800; margin-bottom: 20px;" data-uk="Слідкуйте за життям центру" data-en="Follow the life of the center">Слідкуйте за життям центру</h3>
+            <p style="color: var(--text-muted); margin-bottom: 40px; font-size: 18px;" data-uk="Ми публікуємо щоденні звіти, посмішки дітей та будні нашої команди. Переконайтеся самі, як ваша допомога творить дива." data-en="We publish daily reports, children's smiles, and our team's routine. See for yourself how your help works miracles.">Ми публікуємо щоденні звіти, посмішки дітей та будні нашої команди. Переконайтеся самі, як ваша допомога творить дива.</p>
             <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
                 <a href="https://t.me/skykids_dnipro" target="_blank" class="btn-social btn-tg">
                     <i class="ph-fill ph-telegram-logo"></i> Telegram канал
@@ -541,32 +663,9 @@
         </section>
     </main>
 
+    <!-- ФУТЕР -->
     <footer class="sky-footer">
         <div class="footer-container">
-            <div class="actions-row">
-                <a href="partner.html" class="action-item">
-                    <div class="action-icon"><i class="ph-duotone ph-handshake"></i></div>
-                    <div class="action-body">
-                        <h4 class="action-title" data-uk="Стати партнером" data-en="Become a Partner">Стати партнером</h4>
-                        <p class="action-desc" data-uk="Для бізнесу та організацій." data-en="For businesses & organizations.">Для бізнесу та організацій.</p>
-                    </div>
-                </a>
-                <a href="#" class="action-item highlight" data-action="open-modal">
-                    <div class="action-icon"><i class="ph-duotone ph-coins"></i></div>
-                    <div class="action-body">
-                        <h4 class="action-title" data-uk="Зробити внесок" data-en="Make a Donation">Зробити внесок</h4>
-                        <p class="action-desc" data-uk="Підтримати фінансово." data-en="Support financially.">Підтримати фінансово.</p>
-                    </div>
-                </a>
-                <a href="volunteer.html" class="action-item">
-                    <div class="action-icon"><i class="ph-duotone ph-users-three"></i></div>
-                    <div class="action-body">
-                        <h4 class="action-title" data-uk="Стати волонтером" data-en="Become a Volunteer">Стати волонтером</h4>
-                        <p class="action-desc" data-uk="Долучитися дією." data-en="Join with action.">Долучитися дією.</p>
-                    </div>
-                </a>
-            </div>
-
             <div class="footer-main-row">
                 <div class="brand-column">
                     <div class="footer-logo">SkyKids <span class="ngo">NGO</span></div>
@@ -582,16 +681,15 @@
                         <a href="index.html" class="nav-link"><i class="ph-bold ph-house-line"></i> <span data-uk="Головна SkyKids" data-en="Home SkyKids">Головна сторінка</span></a>
                         <a href="skykitchen.html" class="nav-link"><i class="ph-duotone ph-bowl-food"></i> <span data-uk="Sky Kitchen (Годування)" data-en="Sky Kitchen (Feeding)">Sky Kitchen (Годування)</span></a>
                         <a href="#" class="nav-link"><i class="ph-duotone ph-gift"></i> <span data-uk="Sky Gifts (Гуманітарна допомога)" data-en="Sky Gifts (Humanitarian aid)">Sky Gifts (Гуманітарна допомога)</span></a>
-                        <a href="#" class="nav-link"><i class="ph-duotone ph-graduation-cap"></i> <span data-uk="Sky Academy (Освіта)" data-en="Sky Academy (Education)">Sky Academy (Навчання дітей)</span></a>
-                        <a href="#" class="nav-link"><i class="ph-duotone ph-heartbeat"></i> <span data-uk="Sky Recovery (Реабілітація)" data-en="Sky Recovery (Rehabilitation)">Sky Recovery (Реабілітація)</span></a>
+                        <a href="volunteer.html" class="nav-link"><i class="ph-duotone ph-users-three"></i> <span data-uk="Стати волонтером" data-en="Become a Volunteer">Стати волонтером</span></a>
                     </nav>
                 </div>
                 <div class="contacts-column">
                     <h4 class="footer-title" data-uk="Зв'язок" data-en="Contact Us">Зв'язок</h4>
                     <div class="contact-mechanic">
-                        <div class="contact-item"><i class="ph-bold ph-map-pin"></i> <span data-uk="вулиця Робоча, 152, Дніпро, Дніпропетровська область, Україна" data-en="152 Robocha Street, Dnipro, Dnipropetrovsk Oblast, Ukraine">вулиця Робоча, 152, Дніпро, Дніпропетровська область, Україна</span></div>
-                        <a href="mailto:skykidsdnipro@gmail.com" class="contact-item clickable"><i class="ph-bold ph-envelope-simple"></i> <span>skykidsdnipro@gmail.com</span></a>
-                        <a href="tel:+380667427733" class="contact-item clickable"><i class="ph-bold ph-phone"></i> <span>+38 (066) 742-77-33</span></a> 
+                        <div class="contact-item"><i class="ph-bold ph-map-pin"></i> <span data-uk="вулиця Робоча, 152, Дніпро, Україна" data-en="152 Robocha Street, Dnipro, Ukraine">вулиця Робоча, 152, Дніпро, Україна</span></div>
+                        <a href="mailto:skykids.partner@gmail.com" class="contact-item"><i class="ph-bold ph-envelope-simple"></i> <span>skykids.partner@gmail.com</span></a>
+                        <a href="tel:+380984927948" class="contact-item"><i class="ph-bold ph-phone"></i> <span>+38 (098) 492-79-48</span></a> 
                     </div>
                 </div>
             </div>
@@ -601,98 +699,76 @@
                     <a href="privacy.html">Privacy Policy</a>
                     <a href="offer.html">Public Offer</a>
                     <a href="reports.html">Reports</a>
-                    <a href="charter.html">Сharter</a>
                 </div>
-                <p class="copyright">© 2026 Sky Kids NGO. Created with heart for children.</p>
+                <p style="color: rgba(255,255,255,0.3); font-size: 13px;">© 2026 Sky Kids NGO. Created with heart for children.</p>
             </div>
         </div>
     </footer>
 
+    <!-- МОДАЛЬНЕ ВІКНО ДОНАТІВ -->
     <div id="donateModal" class="modal">
-        <div class="modal-content modal-premium">
-            <span class="close" data-action="close-modal">&times;</span>
-            <h2 data-uk="Підтримати дітей 💙" data-en="Support children 💙">Підтримати дітей 💙</h2>
-            <p class="modal-sub" data-uk="Оберіть зручний формат підтримки: разовий внесок або системна допомога." data-en="Choose a convenient way to support: one-time donation or long-term partnership.">Оберіть зручний формат підтримки: разовий внесок або системна допомога.</p>
+        <div class="modal-content">
+            <span class="close" data-action="close-modal"><i class="ph-bold ph-x"></i></span>
+            <h2 style="font-size: 32px; font-weight: 800; margin-bottom: 10px;" data-uk="Підтримати дітей 💙" data-en="Support children 💙">Підтримати дітей 💙</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 16px;" data-uk="Оберіть зручний формат підтримки. Кожен внесок має величезне значення." data-en="Choose a convenient way to support. Every contribution makes a huge difference.">Оберіть зручний формат підтримки. Кожен внесок має величезне значення.</p>
 
             <div class="donate-layout">
-                <div class="donate-left">
-                    <div class="donate-box premium-box">
-                        <div class="donate-row">
-                            <span data-uk="Банк" data-en="Bank">Банк</span>
-                            <strong>Приват Банк</strong>
+                <!-- Ліва колонка: Реквізити -->
+                <div class="premium-box">
+                    <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;"><i class="ph-fill ph-bank" style="color: var(--primary);"></i> Офіційні реквізити</h3>
+                    <div class="donate-row">
+                        <span data-uk="Банк" data-en="Bank">Банк</span>
+                        <strong>Приват Банк</strong>
+                    </div>
+                    <div class="donate-row">
+                        <span data-uk="Отримувач" data-en="Recipient">Отримувач</span>
+                        <strong data-uk='ГО "Небесні Діти"' data-en='NGO "Sky Kids"'>ГО "Небесні Діти"</strong>
+                    </div>
+                    <div class="donate-row">
+                        <span data-uk="Код ЄДРПОУ" data-en="EDRPOU">Код ЄДРПОУ</span>
+                        <strong>45080222</strong>
+                    </div>
+                    <div class="donate-row">
+                        <span>IBAN</span>
+                        <div class="card-copy-wrap">
+                            <strong id="ibanNumber" style="font-family: monospace; font-size: 14px;">UA833052990000026004050569233</strong>
+                            <button class="copy-btn" data-action="copy" data-target="ibanNumber" title="Копіювати"><i class="ph-bold ph-copy"></i></button>
                         </div>
-                        <div class="donate-row">
-                            <span data-uk="Отримувач" data-en="Recipient">Отримувач</span>
-                            <strong data-uk='ГО "Небесні Діти"' data-en='NGO "Sky Kids"'>ГО "Небесні Діти"</strong>
-                        </div>
-                        <div class="donate-row">
-                            <span data-uk="Код ЄДРПОУ" data-en="EDRPOU">Код ЄДРПОУ</span>
-                            <strong>12345678</strong>
-                        </div>
-                        <div class="donate-row donate-card-row">
-                            <span data-uk="Картка" data-en="Card">Картка</span>
-                            <div class="card-copy-wrap">
-                                <strong id="cardNumber">4246 0010 0732 1643</strong>
-                                <button class="copy-btn" data-action="copy" data-target="cardNumber"><i class="ph-bold ph-copy"></i></button>
-                            </div> 
-                        </div>
-                        <div class="donate-row">
-                            <span>IBAN</span>
-                            <div class="card-copy-wrap">
-                                <div class="iban-container">
-                                    <strong id="ibanNumber">UA833052990000026004050569233</strong>
-                                </div>
-                                <button class="copy-btn" style="flex-shrink: 0;" data-action="copy" data-target="ibanNumber"><i class="ph-bold ph-copy"></i></button>
-                            </div>
-                        </div>
-                        <div class="donate-row">
-                            <span data-uk="Призначення платежу" data-en="Payment purpose">Призначення платежу</span>
-                            <strong data-uk="Благодійний внесок" data-en="Charitable donation">Благодійний внесок</strong>
-                        </div>
+                    </div>
+                    <div class="donate-row" style="border: none;">
+                        <span data-uk="Призначення" data-en="Payment purpose">Призначення</span>
+                        <strong data-uk="Благодійний внесок" data-en="Charitable donation">Благодійний внесок</strong>
                     </div>
                 </div>
 
-                <div class="donate-right">
-                    <div class="donate-fast">
-                        <div class="donate-fast-content">
-                            <div style="margin-bottom: 20px;">
-                                <img src="https://otzovik-ua.com/wp-content/uploads/2018/09/monobank.png" alt="Monobank" style="height: 40px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">
+                <!-- Права колонка: Швидкий донат (Банка) -->
+                <div class="donate-fast">
+                    <div style="width: 100%;">
+                        <div style="margin-bottom: 20px;">
+                            <img src="https://otzovik-ua.com/wp-content/uploads/2018/09/monobank.png" alt="Monobank" style="height: 45px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));">
+                        </div>
+                        <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 10px;"><span data-uk="Поповнити Банку" data-en="Top up the Jar">Поповнити Банку</span></h3>
+                        <p style="font-size: 15px; color: rgba(255,255,255,0.7); margin-bottom: 30px;">
+                            <span data-uk="Apple Pay / Google Pay в 1 клік" data-en="Apple Pay / Google Pay in 1 click">Apple Pay / Google Pay в 1 клік</span>
+                        </p>
+                        
+                        <a href="https://send.monobank.ua/jar/4EEyoEa8n4" target="_blank" class="mono-btn">
+                            <i class="ph-fill ph-lightning" style="color: #6366f1;"></i>
+                            <span data-uk="Задонатити швидко" data-en="Donate fast">Задонатити швидко</span>
+                        </a>
+                        
+                        <div style="margin-top: 30px; display: flex; justify-content: center;">
+                            <div style="background: white; padding: 15px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://send.monobank.ua/jar/3uRgTwfozj" alt="QR Code Monobank" style="width: 120px; height: 120px; display: block;">
                             </div>
-                            <h3><span data-uk="Поповнити Банку" data-en="Top up the Jar">Поповнити Банку</span></h3>
-                            <p style="font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 25px;">
-                                <span data-uk="Apple Pay / Google Pay / Card в 1 клік" data-en="Apple Pay / Google Pay / Card in 1 click">Apple Pay / Google Pay / Card в 1 клік</span>
-                            </p>
-                            
-                            <a href="https://send.monobank.ua/jar/4EEyoEa8n4" target="_blank" class="mono-btn" style="background: #e2e8f0; color: #111827; width: 100%; justify-content: center; padding: 18px 20px; border-radius: 16px; font-size: 18px; text-decoration: none;">
-                                <i class="ph-fill ph-lightning" style="color: #6366f1;"></i>
-                                <span data-uk="Задонатити в 1 дотик" data-en="Donate in 1 touch">Задонатити в 1 дотик</span>
-                            </a>
-                            
-                            <p style="font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 25px;"><span data-uk="або скануй QR-Code" data-en="or scan the QR-Code">або скануй QR-Code</span></p>
-                            
-                            <div style="margin-top: 25px; width: 100%; display: flex; justify-content: center;">
-                                <div style="background: white; padding: 12px; border-radius: 20px; width: 100%; max-width: 250px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
-                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://send.monobank.ua/jar/3uRgTwfozj" alt="QR Code Monobank" style="width: 100%; height: auto; border-radius: 10px; display: block;">
-                                </div>
-                            </div>
-                            <p style="font-size: 13px; margin-top: 15px; color: rgba(255,255,255,0.6); font-weight: 500;" data-uk="Наведіть камеру телефону" data-en="Scan with phone camera">
-                                <i class="ph-bold ph-scan" style="vertical-align: middle; margin-right: 5px;"></i> Наведіть камеру телефону
-                            </p>
                         </div>
                     </div>
                 </div>
-              
             </div>
-
-            <div class="donate-bottom">
-                <div class="donate-impact">
-                    <span data-uk="2900 грн = 1 день харчування" data-en="2900 UAH = 1 day of food">2900 грн = 1 день харчування</span>
-                </div>
-                <div class="partner-cta">
-                    <a href="partner.html" target="_blank" class="btn" style="box-shadow:none;"><span data-uk="Стати постійним партнером" data-en="Become a long-term partner">Стати постійним партнером</span></a>
-                    <p class="partner-note" data-uk="Для бізнесу, фондів та організацій" data-en="For businesses, foundations and organizations">Для бізнесу, фондів та організацій</p>
-                </div>
-            </div>
+            
+            <p style="margin-top: 30px; color: var(--text-muted); font-size: 14px;" data-uk="Потрібні документи для гранту чи партнерства? Напишіть Євгену: skykids.partner@gmail.com" data-en="Need documents for a grant or partnership? Contact Evgen: skykids.partner@gmail.com">
+                Потрібні документи для гранту чи партнерства? Напишіть Євгену: <strong>skykids.partner@gmail.com</strong>
+            </p>
         </div>
     </div>
 
@@ -731,7 +807,7 @@
                 document.getElementById('donateModal').classList.add('show');
                 document.body.classList.add('modal-open');
             }
-            if (action === 'close-modal') {
+            if (action === 'close-modal' || e.target.classList.contains('modal')) {
                 document.getElementById('donateModal').classList.remove('show');
                 document.body.classList.remove('modal-open');
             }
@@ -755,6 +831,14 @@
             }
         });
 
+        // Закриття модалки по кліку поза контентом
+        document.getElementById('donateModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('show');
+                document.body.classList.remove('modal-open');
+            }
+        });
+
         // Sticky Navbar
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
@@ -762,11 +846,12 @@
             else nav.classList.remove('scrolled');
         });
 
-        // Відкладений рендер Прогрес-бару (Performance Optimization)
+        // Відкладений рендер Прогрес-бару
         document.addEventListener("DOMContentLoaded", () => {
             const fill = document.getElementById("progressFill");
             if(fill) {
-                setTimeout(() => { fill.style.width = "0%"; /* (5400/18500)*100 */ }, 300);
+                // Відсоток зібраного: (69.79 / 20300) * 100 = ~0.34% (суму змінив на тижневу, 7 днів * 2900 = 20300)
+                setTimeout(() => { fill.style.width = "0.34%"; }, 500);
             }
         });
     </script>
