@@ -310,26 +310,34 @@
         .review-author-info strong { display: block; font-size: 16px; margin-bottom: 2px; }
         .review-author-info span { font-size: 13px; color: var(--text-muted); }
 
-        /* --- ВБУДОВАНИЙ БЛОК ДОНАТІВ НА СТОРІНЦІ --- */
-        .donate-section { max-width: 800px; margin: 0 auto 100px; text-align: center; padding: 0 5%; }
-        .btn-action {
-            display: inline-flex; align-items: center; justify-content: center; gap: 12px;
-            background: var(--primary); color: white; font-weight: 800; font-size: 20px;
-            padding: 22px 55px; border-radius: 60px; text-decoration: none; border: none; cursor: pointer;
-            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.3); transition: 0.3s; position: relative; overflow: hidden;
-        }
-        .btn-action::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transform: skewX(-20deg); transition: 0.5s;
-        }
-        .btn-action:hover::after { left: 150%; }
-        .btn-action:hover { transform: translateY(-5px); box-shadow: 0 20px 45px rgba(37, 99, 235, 0.4); background: var(--primary-hover); }
-
+        /* --- ВБУДОВАНИЙ БЛОК ДОНАТІВ НА СТОРІНЦІ ТА МОДАЛКА --- */
+        .donate-section { max-width: 900px; margin: 0 auto 100px; text-align: center; padding: 0 5%; }
+        
         .progress-container { margin-top: 50px; background: white; padding: 40px; border-radius: var(--border-radius-lg); box-shadow: 0 25px 50px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.03); text-align: left; }
         .progress-header { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 18px; font-weight: 700; }
         .progress-bar { width: 100%; height: 20px; background: #f1f5f9; border-radius: 10px; overflow: hidden; }
         .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), #fbbf24); border-radius: 10px; transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        .donate-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: stretch; margin-top: 30px;}
+        .premium-box { background: linear-gradient(135deg, #f8fafc, #ffffff); border: 1px solid #e2e8f0; border-radius: var(--border-radius-lg); padding: 35px; text-align: left; height: 100%;}
+        .donate-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 15px; align-items: center; padding-bottom: 15px; border-bottom: 1px dashed #e2e8f0;}
+        .donate-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .card-copy-wrap { display: flex; align-items: center; gap: 10px; }
+        .copy-btn { background: var(--primary-light); border: none; color: var(--primary); border-radius: 12px; padding: 8px 12px; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        .copy-btn:hover { background: var(--primary); color: white; }
+        
+        .donate-fast { height: 100%; border-radius: var(--border-radius-lg); padding: 40px; color: white; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; background: linear-gradient(135deg, #111827 0%, #3730a3 100%); }
+        .mono-btn { display: inline-flex; align-items: center; gap: 10px; background: white; color: #111827; padding: 18px 24px; border-radius: 16px; font-weight: 800; text-decoration: none; margin-bottom: 20px; transition: 0.3s; width: 100%; justify-content: center; font-size: 18px;}
+        .mono-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+
+        /* Modal Styles */
+        .modal { display: none; position: fixed; z-index: 9999; inset: 0; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); align-items: center; justify-content: center; }
+        .modal.show { display: flex; animation: fadeIn 0.3s ease; }
+        .modal-content { background: white; max-width: 1100px; width: 95%; margin: 2% auto; padding: 50px; border-radius: var(--border-radius-lg); text-align: center; position: relative; max-height: 90vh; overflow-y: auto; }
+        .close { position: absolute; right: 25px; top: 20px; font-size: 28px; cursor: pointer; color: var(--text-muted); transition: 0.3s; }
+        .close:hover { color: var(--danger); transform: rotate(90deg); }
+        body.modal-open { overflow: hidden; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px) scale(0.95);} to { opacity: 1; transform: translateY(0) scale(1);} }
 
         /* --- СОЦ МЕРЕЖІ --- */
         .social-section { text-align: center; padding: 40px 5% 100px; max-width: 800px; margin: 0 auto; }
@@ -343,13 +351,10 @@
         .btn-inst { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); box-shadow: 0 10px 20px rgba(220, 39, 67, 0.2); }
         .btn-inst:hover { transform: translateY(-4px); filter: brightness(1.1); box-shadow: 0 15px 25px rgba(220, 39, 67, 0.3); }
 
-        /* ============================================================
-           ФУТЕР ТА МОДАЛЬНЕ ВІКНО
-           ============================================================ */
+        /* ФУТЕР */
         .sky-footer { background: #0a0f1a; color: #ffffff; padding: 100px 5% 40px; position: relative; overflow: hidden; }
         .footer-container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
         .footer-main-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 80px; padding-bottom: 60px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        
         .footer-logo { font-size: 30px; font-weight: 400; display: flex; align-items: center; gap: 10px; margin-bottom: 25px; font-family: 'Pacifico', cursive; color: #ffffff; }
         .footer-logo .ngo { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: var(--primary); margin-left: 6px; letter-spacing: 1px; }
         .brand-pitch { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 30px; }
@@ -365,26 +370,6 @@
         .social-mechanics { display: flex; gap: 15px; }
         .social-btn { width: 45px; height: 45px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); }
         .social-btn:hover { background: var(--primary); transform: rotate(15deg) scale(1.1); }
-
-        .modal { display: none; position: fixed; z-index: 9999; inset: 0; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); align-items: center; justify-content: center; }
-        .modal.show { display: flex; animation: fadeIn 0.3s ease; }
-        .modal-content { background: white; max-width: 1100px; width: 95%; margin: 2% auto; padding: 50px; border-radius: var(--border-radius-lg); text-align: center; position: relative; max-height: 90vh; overflow-y: auto; }
-        .close { position: absolute; right: 25px; top: 20px; font-size: 28px; cursor: pointer; color: var(--text-muted); transition: 0.3s; }
-        .close:hover { color: var(--danger); transform: rotate(90deg); }
-        body.modal-open { overflow: hidden; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px) scale(0.95);} to { opacity: 1; transform: translateY(0) scale(1);} }
-        
-        .donate-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: stretch; margin-top: 30px;}
-        .premium-box { background: linear-gradient(135deg, #f8fafc, #ffffff); border: 1px solid #e2e8f0; border-radius: var(--border-radius-lg); padding: 35px; text-align: left; height: 100%;}
-        .donate-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 15px; align-items: center; padding-bottom: 15px; border-bottom: 1px dashed #e2e8f0;}
-        .donate-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .card-copy-wrap { display: flex; align-items: center; gap: 10px; }
-        .copy-btn { background: var(--primary-light); border: none; color: var(--primary); border-radius: 12px; padding: 8px 12px; cursor: pointer; font-size: 16px; transition: 0.3s; }
-        .copy-btn:hover { background: var(--primary); color: white; }
-        
-        .donate-fast { height: 100%; border-radius: var(--border-radius-lg); padding: 40px; color: white; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; background: linear-gradient(135deg, #111827 0%, #3730a3 100%); }
-        .mono-btn { display: inline-flex; align-items: center; gap: 10px; background: white; color: #111827; padding: 18px 24px; border-radius: 16px; font-weight: 800; text-decoration: none; margin-bottom: 20px; transition: 0.3s; width: 100%; justify-content: center; font-size: 18px;}
-        .mono-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
 
         @media (max-width: 992px) {
             .checker-row, .checker-row.reverse { flex-direction: column; text-align: center; gap: 30px; }
@@ -424,7 +409,7 @@
         <section class="kitchen-hero container">
             <div class="alert-badge">
                 <i class="ph-bold ph-bell-ringing"></i> 
-                <span data-uk="Екстрений збір коштів" data-en="Urgent Fundraising">Екстрений збір коштів</span>
+                <span data-uk="Збір на щомісячне харчування" data-en="Monthly Food Fundraising">Збір на щомісячне харчування</span>
             </div>
             
             <h1 data-uk="Діти у нашому просторі не повинні залишатися <span class='marker-highlight'>голодними</span>" 
@@ -450,7 +435,7 @@
                 </div>
                 <div class="stat-card">
                     <i class="ph-duotone ph-bowl-food stat-icon" style="color: var(--accent);"></i>
-                    <div class="stat-val">~97 ₴</div>
+                    <div class="stat-val">~145 ₴</div>
                     <div class="stat-desc" data-uk="1 ситий день для дитини" data-en="1 full day for a child">1 ситий день для дитини</div>
                 </div>
             </div>
@@ -469,8 +454,7 @@
                 <!-- Блок 1 -->
                 <div class="checker-row">
                     <div class="checker-image">
-                        <!-- Замінити на реальне фото -->
-                        <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Children eating together">
+                        <img src="sky children.jpg" alt="Children eating together">
                     </div>
                     <div class="checker-text">
                         <div class="checker-badge" data-uk="Безпека та стабільність" data-en="Safety & Stability">Безпека та стабільність</div>
@@ -487,8 +471,7 @@
                 <!-- Блок 2 (Реверс) -->
                 <div class="checker-row reverse">
                     <div class="checker-image">
-                        <!-- Замінити на реальне фото -->
-                        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Happy kids">
+                        <img src="novi druzi za stolom.jpg" alt="Happy kids">
                     </div>
                     <div class="checker-text">
                         <div class="checker-badge" style="background: #dcfce7; color: #10b981;" data-uk="Соціалізація" data-en="Socialization">Соціалізація</div>
@@ -520,8 +503,7 @@
                     <p style="margin-top: 25px; font-weight: 600; font-size: 16px; color: var(--accent);" data-uk="Ми віримо, що довіра будується через відкритість та особистий зв'язок." data-en="We believe trust is built through openness, accountability, and personal connection.">Ми віримо, що довіра будується через відкритість та особистий зв'язок.</p>
                 </div>
                 <div class="open-door-image">
-                    <!-- Замінити на реальне фото вашої команди чи центру ззовні/всередині -->
-                    <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sky Kids Center Open Doors">
+                    <img src="zvit z zahodu.jpg" alt="Sky Kids Center Open Doors">
                 </div>
             </div>
         </section>
@@ -621,29 +603,82 @@
             </div>
         </section>
 
-        <!-- БЛОК ДОНАТІВ -->
+        <!-- ВБУДОВАНИЙ БЛОК ДОНАТІВ -->
         <section class="donate-section">
             <div class="handwritten-note" style="margin-bottom: 15px;" data-uk="Кожна гривня має значення 💛" data-en="Every hryvnia matters 💛">Кожна гривня має значення 💛</div>
             <h2 style="font-size: clamp(32px, 4vw, 52px); font-weight: 800; margin-bottom: 25px; line-height: 1.1;" data-uk="Ваша підтримка — це їхній обід" data-en="Your support is their meal">Ваша підтримка — це їхній обід</h2>
-            <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 40px;" data-uk="Не відкладайте на потім. Будь-який внесок негайно трансформується в реальну допомогу, допомагаючи нам поставити їжу на стіл дитини вже завтра." data-en="Don't put it off. Your donation immediately translates into real assistance, helping us place nutritious food on a child’s table the very next day.">Не відкладайте на потім. Будь-який внесок негайно трансформується в реальну допомогу, допомагаючи нам поставити їжу на стіл дитини вже завтра.</p>
             
-            <button class="btn-action" data-action="open-modal">
-                <i class="ph-fill ph-hand-heart" style="font-size: 28px;"></i>
-                <span data-uk="Нагодувати дитину сьогодні" data-en="Feed a child today">Нагодувати дитину сьогодні</span>
-            </button>
+            <p style="font-size: 17px; color: var(--text-main); margin-bottom: 20px; font-weight: 500; background: rgba(37, 99, 235, 0.04); padding: 25px; border-radius: 16px; border: 1px solid rgba(37, 99, 235, 0.1);" data-uk="Наша ціль — <strong>87 000 грн</strong>. Це вартість щоденного гарячого харчування для 30 дітей на цілий місяць. Ви можете допомогти будь-якою сумою, або повністю закрити 1 день (2900 грн), тиждень чи місяць. Зробіть внесок через банку або за реквізитами організації нижче." data-en="Our goal is <strong>87,000 UAH</strong>. This is the cost of daily hot meals for 30 children for a whole month. You can help with any amount, or fully cover 1 day (2,900 UAH), a week, or a month. Make a donation via Monobank or using the organization details below.">
+                Наша ціль — <strong>87 000 грн</strong>. Це вартість щоденного гарячого харчування для 30 дітей на цілий місяць. Ви можете допомогти будь-якою сумою, або повністю закрити 1 день (2900 грн), тиждень чи місяць. Зробіть внесок через банку або за реквізитами організації нижче.
+            </p>
 
-            <!-- ПРОГРЕС БАР ЗБОРУ (Тижневий) -->
-            <div class="progress-container">
+            <!-- ПРОГРЕС БАР ЗБОРУ (Місячний) -->
+            <div class="progress-container" style="margin-top: 0; margin-bottom: 40px;">
                 <div class="progress-header">
-                    <span data-uk="Зібрано на цьому тижні:" data-en="Raised this week:">Зібрано на цьому тижні:</span>
-                    <strong id="progressText" style="color: var(--primary);">69.79 / 20 300 ₴</strong>
+                    <span data-uk="Зібрано на місяць харчування:" data-en="Raised for a month of meals:">Зібрано на місяць харчування:</span>
+                    <strong id="progressText" style="color: var(--primary);">0 / 87 000 ₴</strong>
                 </div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
                 <div style="display: flex; justify-content: space-between; font-size: 15px; margin-top: 15px; color: var(--text-muted); font-weight: 500;">
-                    <span data-uk="Допомогло: <strong style='color:#1e293b'>2</strong> людини" data-en="Helped: <strong style='color:#1e293b'>2</strong> people">Допомогло: <strong style="color:#1e293b">2</strong> людини</span>
-                    <span data-uk="Залишилось: <strong style='color:#1e293b'>20 230.21</strong> ₴" data-en="Left: <strong style='color:#1e293b'>20 230.21</strong> ₴">Залишилось: <strong style="color:#1e293b">20 230.21</strong> ₴</span>
+                    <span data-uk="Допомогло: <strong style='color:#1e293b'>0</strong> людей" data-en="Helped: <strong style='color:#1e293b'>0</strong> people">Допомогло: <strong style="color:#1e293b">0</strong> людей</span>
+                    <span data-uk="Залишилось: <strong style='color:#1e293b'>87 000</strong> ₴" data-en="Left: <strong style='color:#1e293b'>87 000</strong> ₴">Залишилось: <strong style="color:#1e293b">87 000</strong> ₴</span>
+                </div>
+            </div>
+
+            <!-- ВБУДОВАНІ РЕКВІЗИТИ (ЗАМІСТЬ КНОПКИ) -->
+            <div class="donate-layout" style="margin-top: 0;">
+                <!-- Ліва колонка: Реквізити -->
+                <div class="premium-box">
+                    <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;"><i class="ph-fill ph-bank" style="color: var(--primary);"></i> Офіційні реквізити</h3>
+                    <div class="donate-row">
+                        <span data-uk="Банк" data-en="Bank">Банк</span>
+                        <strong>Приват Банк</strong>
+                    </div>
+                    <div class="donate-row">
+                        <span data-uk="Отримувач" data-en="Recipient">Отримувач</span>
+                        <strong data-uk='ГО "Небесні Діти"' data-en='NGO "Sky Kids"'>ГО "Небесні Діти"</strong>
+                    </div>
+                    <div class="donate-row">
+                        <span data-uk="Код ЄДРПОУ" data-en="EDRPOU">Код ЄДРПОУ</span>
+                        <strong>45080222</strong>
+                    </div>
+                    <div class="donate-row">
+                        <span>IBAN</span>
+                        <div class="card-copy-wrap">
+                            <strong id="ibanNumberInline" style="font-family: monospace; font-size: 14px;">UA833052990000026004050569233</strong>
+                            <button class="copy-btn" data-action="copy" data-target="ibanNumberInline" title="Копіювати"><i class="ph-bold ph-copy"></i></button>
+                        </div>
+                    </div>
+                    <div class="donate-row" style="border: none;">
+                        <span data-uk="Призначення" data-en="Payment purpose">Призначення</span>
+                        <strong data-uk="Благодійний внесок" data-en="Charitable donation">Благодійний внесок</strong>
+                    </div>
+                </div>
+
+                <!-- Права колонка: Швидкий донат (Банка) -->
+                <div class="donate-fast">
+                    <div style="width: 100%;">
+                        <div style="margin-bottom: 20px;">
+                            <img src="https://otzovik-ua.com/wp-content/uploads/2018/09/monobank.png" alt="Monobank" style="height: 45px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));">
+                        </div>
+                        <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 10px;"><span data-uk="Поповнити Банку" data-en="Top up the Jar">Поповнити Банку</span></h3>
+                        <p style="font-size: 15px; color: rgba(255,255,255,0.7); margin-bottom: 30px;">
+                            <span data-uk="Apple Pay / Google Pay в 1 клік" data-en="Apple Pay / Google Pay in 1 click">Apple Pay / Google Pay в 1 клік</span>
+                        </p>
+                        
+                        <a href="https://send.monobank.ua/jar/3uRgTwfozj" target="_blank" class="mono-btn">
+                            <i class="ph-fill ph-lightning" style="color: #6366f1;"></i>
+                            <span data-uk="Нагодувати дитину сьогодні" data-en="Feed a child today">Нагодувати дитину сьогодні</span>
+                        </a>
+                        
+                        <div style="margin-top: 30px; display: flex; justify-content: center;">
+                            <div style="background: white; padding: 15px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+                                <img src="87%20000%20NGO%20SkyKigs.png" alt="QR Code Monobank" style="width: 120px; height: 120px; display: block;">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -705,12 +740,12 @@
         </div>
     </footer>
 
-    <!-- МОДАЛЬНЕ ВІКНО ДОНАТІВ -->
+    <!-- МОДАЛЬНЕ ВІКНО ДОНАТІВ (Для кнопок з хедеру) -->
     <div id="donateModal" class="modal">
         <div class="modal-content">
             <span class="close" data-action="close-modal"><i class="ph-bold ph-x"></i></span>
             <h2 style="font-size: 32px; font-weight: 800; margin-bottom: 10px;" data-uk="Підтримати дітей 💙" data-en="Support children 💙">Підтримати дітей 💙</h2>
-            <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 16px;" data-uk="Оберіть зручний формат підтримки. Кожен внесок має величезне значення." data-en="Choose a convenient way to support. Every contribution makes a huge difference.">Оберіть зручний формат підтримки. Кожен внесок має величезне значення.</p>
+            <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 16px;" data-uk="Оберіть зручний формат підтримки. Наша ціль 87 000 грн для забезпечення місяця гарячого харчування." data-en="Choose a convenient way to support. Our goal is 87,000 UAH to provide a month of hot meals.">Оберіть зручний формат підтримки. Наша ціль 87 000 грн для забезпечення місяця гарячого харчування.</p>
 
             <div class="donate-layout">
                 <!-- Ліва колонка: Реквізити -->
@@ -731,8 +766,8 @@
                     <div class="donate-row">
                         <span>IBAN</span>
                         <div class="card-copy-wrap">
-                            <strong id="ibanNumber" style="font-family: monospace; font-size: 14px;">UA833052990000026004050569233</strong>
-                            <button class="copy-btn" data-action="copy" data-target="ibanNumber" title="Копіювати"><i class="ph-bold ph-copy"></i></button>
+                            <strong id="ibanNumberModal" style="font-family: monospace; font-size: 14px;">UA833052990000026004050569233</strong>
+                            <button class="copy-btn" data-action="copy" data-target="ibanNumberModal" title="Копіювати"><i class="ph-bold ph-copy"></i></button>
                         </div>
                     </div>
                     <div class="donate-row" style="border: none;">
@@ -752,14 +787,14 @@
                             <span data-uk="Apple Pay / Google Pay в 1 клік" data-en="Apple Pay / Google Pay in 1 click">Apple Pay / Google Pay в 1 клік</span>
                         </p>
                         
-                        <a href="https://send.monobank.ua/jar/4EEyoEa8n4" target="_blank" class="mono-btn">
+                        <a href="https://send.monobank.ua/jar/3uRgTwfozj" target="_blank" class="mono-btn">
                             <i class="ph-fill ph-lightning" style="color: #6366f1;"></i>
                             <span data-uk="Задонатити швидко" data-en="Donate fast">Задонатити швидко</span>
                         </a>
                         
                         <div style="margin-top: 30px; display: flex; justify-content: center;">
                             <div style="background: white; padding: 15px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
-                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://send.monobank.ua/jar/3uRgTwfozj" alt="QR Code Monobank" style="width: 120px; height: 120px; display: block;">
+                                <img src="87%20000%20NGO%20SkyKigs.png" alt="QR Code Monobank" style="width: 120px; height: 120px; display: block;">
                             </div>
                         </div>
                     </div>
@@ -850,8 +885,8 @@
         document.addEventListener("DOMContentLoaded", () => {
             const fill = document.getElementById("progressFill");
             if(fill) {
-                // Відсоток зібраного: (69.79 / 20300) * 100 = ~0.34% (суму змінив на тижневу, 7 днів * 2900 = 20300)
-                setTimeout(() => { fill.style.width = "0.34%"; }, 500);
+                // Відсоток зібраного: (0 / 87000) * 100 = 0%
+                setTimeout(() => { fill.style.width = "0%"; }, 500);
             }
         });
     </script>
