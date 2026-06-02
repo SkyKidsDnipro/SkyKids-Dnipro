@@ -325,6 +325,15 @@
             .footer-bottom-bar { flex-direction: column; align-items: flex-start; gap: 15px; }
             .donate-layout { grid-template-columns: 1fr; }
         }
+      
+        @media (max-width: 768px) {
+            .back-link span {
+                display: none; /* Скрывает текст */
+            }
+            .back-link {
+            padding: 10px; /* Делает кнопку со стрелкой более аккуратной и квадратной/круглой */
+            }
+        }
     </style>
 </head>
 <body>
@@ -607,7 +616,7 @@
                 <div class="links-column">
                     <h4 class="footer-title" data-uk="Екосистема ГО" data-en="NGO Ecosystem">Екосистема ГО</h4>
                     <nav class="footer-nav">
-                    <a href="#" class="nav-link">
+                    <a href="index.html" class="nav-link">
                         <i class="ph-bold ph-house-line"></i>
                         <span data-uk="Головна SkyKids" data-en="Home SkyKids">Головна сторінка</span>
                     </a>
@@ -619,11 +628,11 @@
                         <i class="ph-duotone ph-gift"></i>
                         <span data-uk="Sky Gifts (Гуманітарна допомога)" data-en="Sky Gifts (Humanitarian aid)">Sky Gifts (Гуманітарна допомога)</span>
                     </a>
-                    <a href="#" class="nav-link">
+                    <a href="skygifts.html" class="nav-link">
                         <i class="ph-duotone ph-graduation-cap"></i>
                         <span data-uk="Sky Academy (Освіта)" data-en="Sky Academy (Education)">Sky Academy (Навчання дітей)</span>
                     </a>
-                    <a href="#" class="nav-link">
+                    <a href="skyecovery.html" class="nav-link">
                         <i class="ph-duotone ph-heartbeat"></i>
                         <span data-uk="Sky Recovery (Реабілітація)" data-en="Sky Recovery (Rehabilitation)">Sky Recovery (Реабілітація)</span>
                     </a>
@@ -704,7 +713,7 @@
                     </div>
                     <div class="donate-row">
                         <span data-uk="Код ЄДРПОУ" data-en="EDRPOU">Код ЄДРПОУ</span>
-                        <strong>12345678</strong>
+                        <strong>45080222</strong>
                     </div>
                     <div class="donate-row">
                         <span>IBAN</span>
@@ -735,6 +744,11 @@
                             <i class="ph-fill ph-lightning" style="color: #6366f1;"></i>
                             <span data-uk="Задонатити швидко" data-en="Donate fast">Задонатити швидко</span>
                         </a>
+                        <div style="margin-top: 30px; display: flex; justify-content: center;">
+                            <div style="background: white; padding: 15px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+                                <img src="87%20000%20NGO%20SkyKigs.png" alt="QR Code Monobank" style="width: 120px; height: 120px; display: block;">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
