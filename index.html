@@ -2170,6 +2170,144 @@ body.modal-open {
 .sky-footer .footer-logo-white:hover {
     opacity: 0.8;
 }
+
+/* ============================================================
+   ШИРОКА КАРТКА ПОДІЇ (БАНЕР ДЛЯ МАСШТАБНИХ ІВЕНТІВ)
+   ============================================================ */
+.event-card-wide {
+    grid-column: 1 / -1; /* Займає всю ширину сітки (2 колонки) */
+    display: flex;
+    flex-direction: row; /* Текст зліва, фото справа */
+    align-items: stretch;
+    gap: 40px;
+    background: linear-gradient(135deg, #ffffff 0%, #f1f7ff 100%);
+    border-radius: 32px;
+    padding: 40px;
+    border: 1px solid rgba(37, 99, 235, 0.1);
+    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.08);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.event-card-wide:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 60px rgba(37, 99, 235, 0.15);
+    border-color: rgba(37, 99, 235, 0.3);
+}
+
+.event-card-wide .event-info {
+    flex: 1.2; /* Текст займає трохи більше місця */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.event-card-wide .event-img-wrapper {
+    flex: 1;
+    min-height: 350px;
+    margin-bottom: 0; /* Прибираємо відступ знизу, бо він був для звичайної картки */
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.event-card-wide .event-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Яскравий бейдж над заголовком */
+.event-badge-premium {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #f43f5e, #e11d48); /* Червоний акцент */
+    color: white;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    align-self: flex-start;
+    box-shadow: 0 10px 20px rgba(244, 63, 94, 0.3);
+}
+
+.event-card-wide .event-info h3 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 900;
+    color: var(--text-main);
+    line-height: 1.2;
+    margin-bottom: 15px;
+    letter-spacing: -1px;
+}
+
+.event-card-wide .event-info p {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Іконки-переваги (локації, їжа тощо) */
+.event-features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.feature-tag {
+    background: white;
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    color: var(--primary);
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.feature-tag i { font-size: 18px; }
+
+/* Кнопка всередині банера */
+.btn-details {
+    align-self: flex-start;
+    background: var(--primary);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.event-card-wide:hover .btn-details {
+    background: var(--primary-hover);
+    transform: translateX(5px);
+}
+
+/* Адаптація для планшетів та мобільних */
+@media (max-width: 992px) {
+    .event-card-wide {
+        flex-direction: column-reverse; /* Фото зверху, текст знизу */
+        padding: 25px;
+        gap: 25px;
+    }
+    .event-card-wide .event-img-wrapper {
+        min-height: 250px;
+        width: 100%;
+    }
+}
     </style>
 </head>
 <body> 
@@ -2344,7 +2482,7 @@ body.modal-open {
             </div>
         </div>
 
-                <div class="event-card" onclick="openEventModal(
+        <div class="event-card" onclick="openEventModal(
             'planetarium.jpg', 
             'Поїздка до планетарію! 🚀✨', 'Trip to the Planetarium! 🚀✨',
             '🌟 Увага! Завтра їдемо до планетарію! 🚀✨\n\nМаємо чудову новину - для наших дітей організовано безкоштовне відвідування планетарію для дітей 7-13 років.\n\n🗓Завтра, 3 червня.\n🕜 Виїзд о 13:30.\n\nУ зв’язку з поїздкою клуб завтра не працюватиме.\n\n📍 Кількість місць обмежена, тому поспішайте записатися!\n\n✍️ Для запису пишіть адміністратору в особисті повідомлення: @skykids22\n\nДо зустрічі серед зірок! 🌙⭐️', 
@@ -2368,6 +2506,57 @@ body.modal-open {
                     Безкоштовне відвідування планетарію для дітей 7-13 років. Кількість місць обмежена, поспішайте записатися!
                 </p>
             </div>
+        </div>
+
+        <!-- ШИРОКА КАРТКА МАСШТАБНОЇ ПОДІЇ -->
+        <div class="event-card-wide" onclick="openEventModal(
+            'big-holiday.jpg', 
+            'Велике дитяче свято! 🎉', 'Grand Children\'s Holiday! 🎉',
+            '🎉 ДРУЗІ, ЗАПРОШУЄМО НА ВЕЛИКЕ ДИТЯЧЕ СВЯТО!\n\n📅 31 травня\n🕛 Початок об 11:00\n\nМи готуємо масштабне та веселе свято для діток віком до 10 років! У дворі нашого центру розгорнеться справжнє містечко розваг.\n\nНа вас чекають:\n✨ творчі майстер-класи\n🎪 атракціони та батути\n🎩 виступ справжнього фокусника\n🌭 смачна їжа: хот-доги, солодка вата та лімонади\n🎁 подарунки для кожного малюка\n🎈 багато сюрпризів та радості!\n\nВсе це — абсолютно безкоштовно! Буде весело, цікаво та по-справжньому святково!\n\nЧекаємо кожного маленького гостя!', 
+            '🎉 FRIENDS, WELCOME TO THE GRAND CHILDREN\'S HOLIDAY!\n\n📅 May 31\n🕛 Starts at 11:00\n\nWe are preparing a huge and fun holiday for children under 10! Our center\'s yard will turn into a real amusement town.\n\nWaiting for you:\n✨ creative workshops\n🎪 attractions and trampolines\n🎩 a real magician\'s performance\n🌭 delicious food: hot dogs, cotton candy, and lemonades\n🎁 gifts for every little one\n🎈 lots of surprises and joy!\n\nAll of this is completely free! It will be fun, interesting, and truly festive!\n\nWaiting for every little guest!',
+            'https://t.me/skykids_dnipro', 
+            '31 Травня', 'May 31',
+            '11:00'
+        )">
+            
+            <!-- ТЕКСТОВА ЧАСТИНА (ЗЛІВА) -->
+            <div class="event-info">
+                <div class="event-badge-premium">
+                    <i class="ph-fill ph-star"></i> <span data-uk="Запрошуємо всіх!" data-en="Everyone is Welcome!">Запрошуємо всіх!</span>
+                </div>
+                
+                <h3 data-uk="Велике дитяче свято! 🎉" data-en="Grand Children's Holiday! 🎉">Велике дитяче свято! 🎉</h3>
+                
+                <p data-uk="Ми готуємо масштабне свято для дітей до 10 років у дворі нашого центру! Буде безліч локацій, виступ справжнього фокусника, батути, а також смаколики: хот-доги, лімонади та солодка вата. І найголовніше — все це абсолютно безкоштовно!" 
+                   data-en="We are preparing a huge holiday for children under 10 in our center's yard! There will be lots of locations, a real magician's performance, trampolines, and treats: hot dogs, lemonades, and cotton candy. All for free!">
+                    Ми готуємо масштабне свято для дітей до 10 років у дворі нашого центру! Буде безліч локацій, виступ справжнього фокусника, батути, а також смаколики: хот-доги, лімонади та солодка вата. І найголовніше — все це абсолютно безкоштовно!
+                </p>
+                
+                <!-- Теги-переваги -->
+                <div class="event-features-grid">
+                    <div class="feature-tag"><i class="ph-duotone ph-ticket"></i> <span data-uk="Вхід вільний" data-en="Free Entry">Вхід вільний</span></div>
+                    <div class="feature-tag"><i class="ph-duotone ph-tent"></i> <span data-uk="Батути та ігри" data-en="Trampolines & Games">Батути та ігри</span></div>
+                    <div class="feature-tag"><i class="ph-duotone ph-magic-wand"></i> <span data-uk="Фокусник" data-en="Magician">Фокусник</span></div>
+                    <div class="feature-tag"><i class="ph-duotone ph-popcorn"></i> <span data-uk="Солодка вата та хот-доги" data-en="Cotton Candy & Hot Dogs">Солодка вата та хот-доги</span></div>
+                    <div class="feature-tag"><i class="ph-duotone ph-gift"></i> <span data-uk="Подарунки" data-en="Gifts">Подарунки</span></div>
+                </div>
+
+                <div class="btn-details">
+                    <span data-uk="Детальніше" data-en="More Details">Детальніше</span> <i class="ph-bold ph-arrow-right"></i>
+                </div>
+            </div>
+
+            <!-- ФОТОГРАФІЯ (СПРАВА) -->
+            <div class="event-img-wrapper">
+                <img src="big-holiday.jpg" alt="Велике дитяче свято" class="event-img" loading="lazy">
+                <div class="event-date-corner" data-uk="31 Травня" data-en="May 31">31 Травня</div>
+                <div class="event-hover-overlay">
+                    <div class="huge-date">31</div>
+                    <div class="huge-month" data-uk="Травня" data-en="May">Травня</div>
+                    <div class="hover-desc" data-uk="Чекаємо на найкрутішому святі року!" data-en="Waiting for you at the coolest holiday of the year!">Чекаємо на найкрутішому святі року!</div>
+                </div>
+            </div>
+            
         </div>
         
         <div class="event-card" onclick="openEventModal(
