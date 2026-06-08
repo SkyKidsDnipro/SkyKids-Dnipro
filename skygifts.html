@@ -8,7 +8,7 @@
     <meta name="title" content="Sky Gifts — Передай речі дітям | Sky Kids">
     <meta name="description" content="Ми приймаємо допомогу не грошима, а речами: одяг, іграшки, канцелярія, подарунки для дітей у Дніпрі. Надішліть посилку поштою або приїжджайте особисто.">
     <meta name="keywords" content="Sky Gifts, гуманітарна допомога, речі для дітей Дніпро, іграшки, канцелярія, благодійний фонд, волонтери Україна">
-    <meta name="theme-color" content="#f59e0b">
+    <meta name="theme-color" content="#8b5cf6">
 
     <link rel="icon" type="image/png" href="https://i.ibb.co/F4vPWzFy/photo-2025-05-26-21-19-34.jpg">
     <link rel="apple-touch-icon" href="https://i.ibb.co/F4vPWzFy/photo-2025-05-26-21-19-34.jpg">
@@ -40,8 +40,11 @@
             --primary: #2563eb;
             --primary-hover: #1d4ed8;
             --primary-light: #eff6ff;
-            --accent: #f59e0b; 
-            --accent-hover: #d97706;
+            /* Унікальні кольори для Sky Gifts */
+            --gifts-main: #8b5cf6; 
+            --gifts-hover: #7c3aed;
+            --gifts-light: #f5f3ff;
+            
             --danger: #ef4444; 
             --text-main: #1e293b;
             --text-muted: #475569;
@@ -60,7 +63,7 @@
         
         body::before {
             content: ''; position: fixed; inset: 0;
-            background: radial-gradient(800px at 10% 20%, rgba(16, 185, 129, 0.05), transparent 60%),
+            background: radial-gradient(800px at 10% 20%, rgba(139, 92, 246, 0.05), transparent 60%),
                         radial-gradient(600px at 90% 80%, rgba(37, 99, 235, 0.05), transparent 60%);
             z-index: -2;
         }
@@ -85,10 +88,10 @@
 
         .btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 10px 20px;
-            border-radius: 50px; background: var(--primary); color: white; font-weight: 600; font-size: 14px;
+            border-radius: 50px; background: var(--gifts-main); color: white; font-weight: 600; font-size: 14px;
             text-decoration: none; border: none; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .btn:hover { background: var(--primary-hover); transform: translateY(-3px); box-shadow: 0 12px 25px rgba(37, 99, 235, 0.3); }
+        .btn:hover { background: var(--gifts-hover); transform: translateY(-3px); box-shadow: 0 12px 25px rgba(139, 92, 246, 0.3); }
 
         .lang-switch {
             display: flex; gap: 4px; background: rgba(241, 245, 249, 0.8); padding: 4px; border-radius: 30px; position: relative; width: 110px;
@@ -107,9 +110,9 @@
         .marker-highlight { position: relative; z-index: 1; white-space: nowrap; color: var(--text-main); }
         .marker-highlight::after {
             content: ''; position: absolute; bottom: 4px; left: -2%; width: 104%; height: 14px;
-            background: rgba(251, 191, 36, 0.5); z-index: -1; transform: rotate(-2deg); border-radius: 4px;
+            background: rgba(139, 92, 246, 0.4); z-index: -1; transform: rotate(-2deg); border-radius: 4px;
         }
-        .handwritten-note { font-family: 'Pacifico', cursive; color: var(--primary); font-size: 26px; transform: rotate(-3deg); opacity: 0.9; }
+        .handwritten-note { font-family: 'Pacifico', cursive; color: var(--gifts-main); font-size: 26px; transform: rotate(-3deg); opacity: 0.9; }
         .section-header { text-align: center; margin-bottom: 60px; }
         .section-header h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 800; letter-spacing: -1px; margin-bottom: 20px; }
         .section-header p { color: var(--text-muted); font-size: 19px; max-width: 750px; margin: 0 auto; line-height: 1.6; }
@@ -119,9 +122,9 @@
             padding: 180px 5% 100px; text-align: center;
         }
         .alert-badge {
-            display: inline-flex; align-items: center; gap: 8px; background: #ecfdf5; color: #10b981;
-            border: 1px solid #a7f3d0; padding: 10px 24px; border-radius: 30px; font-weight: 800; font-size: 14px;
-            margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.1);
+            display: inline-flex; align-items: center; gap: 8px; background: var(--gifts-light); color: var(--gifts-main);
+            border: 1px solid #ddd6fe; padding: 10px 24px; border-radius: 30px; font-weight: 800; font-size: 14px;
+            margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 20px rgba(139, 92, 246, 0.1);
         }
         .gifts-hero h1 { font-size: clamp(40px, 5vw, 68px); font-weight: 800; letter-spacing: -2px; line-height: 1.15; margin-bottom: 24px; max-width: 950px; margin-inline: auto; }
         .gifts-hero p { font-size: 20px; color: var(--text-muted); max-width: 850px; margin: 0 auto 60px; font-weight: 500; }
@@ -133,11 +136,11 @@
         }
         .stat-card::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
-            background: linear-gradient(90deg, #10b981, var(--primary)); opacity: 0; transition: 0.4s;
+            background: linear-gradient(90deg, var(--gifts-main), var(--primary)); opacity: 0; transition: 0.4s;
         }
-        .stat-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(16, 185, 129, 0.1); background: white; }
+        .stat-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(139, 92, 246, 0.1); background: white; }
         .stat-card:hover::before { opacity: 1; }
-        .stat-icon { font-size: 54px; color: #10b981; margin-bottom: 20px; transition: 0.3s; }
+        .stat-icon { font-size: 54px; color: var(--gifts-main); margin-bottom: 20px; transition: 0.3s; }
         .stat-card:hover .stat-icon { transform: scale(1.1) rotate(-5deg); }
         .stat-val { font-size: 26px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; line-height: 1.2; }
         .stat-desc { color: var(--text-muted); font-size: 16px; font-weight: 500; }
@@ -160,7 +163,7 @@
         
         .checker-text { flex: 1; padding: 20px 0; }
         .checker-badge {
-            display: inline-block; background: #ecfdf5; color: #10b981; padding: 10px 20px; border-radius: 30px;
+            display: inline-block; background: var(--gifts-light); color: var(--gifts-main); padding: 10px 20px; border-radius: 30px;
             font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px;
         }
         .checker-text h3 { font-size: 36px; font-weight: 800; margin-bottom: 20px; color: var(--text-main); line-height: 1.2; }
@@ -182,14 +185,14 @@
         .need-item p { color: var(--text-muted); font-size: 16px; line-height: 1.6; }
 
         /* Пастельні градієнти для карток потреб */
-        .bg-clothes { background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%); }
-        .bg-clothes i { color: var(--primary); background: white; box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1); }
+        .bg-clothes { background: linear-gradient(135deg, #ffffff 0%, var(--gifts-light) 100%); }
+        .bg-clothes i { color: var(--gifts-main); background: white; box-shadow: 0 10px 20px rgba(139, 92, 246, 0.1); }
         
         .bg-books { background: linear-gradient(135deg, #ffffff 0%, #ecfdf5 100%); }
         .bg-books i { color: #10b981; background: white; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.1); }
         
-        .bg-gifts { background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%); }
-        .bg-gifts i { color: var(--accent); background: white; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.1); }
+        .bg-gifts { background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%); }
+        .bg-gifts i { color: var(--primary); background: white; box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1); }
         
         .bg-health { background: linear-gradient(135deg, #ffffff 0%, #fef2f2 100%); }
         .bg-health i { color: var(--danger); background: white; box-shadow: 0 10px 20px rgba(239, 68, 68, 0.1); }
@@ -204,7 +207,7 @@
         }
         .post-box::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 8px;
-            background: repeating-linear-gradient(45deg, var(--danger), var(--danger) 10px, transparent 10px, transparent 20px, var(--primary) 20px, var(--primary) 30px, transparent 30px, transparent 40px);
+            background: repeating-linear-gradient(45deg, var(--danger), var(--danger) 10px, transparent 10px, transparent 20px, var(--gifts-main) 20px, var(--gifts-main) 30px, transparent 30px, transparent 40px);
         }
         
         .post-row { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 17px; align-items: center; padding-bottom: 20px; border-bottom: 1px dashed #cbd5e1;}
@@ -221,10 +224,10 @@
             text-align: center; margin-top: 60px; background: #0f172a; color: white; padding: 60px 40px; 
             border-radius: var(--border-radius-lg); position: relative; overflow: hidden; box-shadow: 0 30px 60px rgba(15, 23, 42, 0.2);
         }
-        .contact-big::before { content: ''; position: absolute; right: -50px; top: -50px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(37, 99, 235, 0.4) 0%, transparent 70%); }
+        .contact-big::before { content: ''; position: absolute; right: -50px; top: -50px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%); }
         .contact-big h3 { font-size: 32px; font-weight: 800; margin-bottom: 15px; }
-        .phone-number { display: inline-flex; align-items: center; gap: 15px; font-size: 40px; font-weight: 800; color: #34d399; margin-bottom: 10px; font-family: monospace; letter-spacing: -1px; transition: 0.3s; }
-        .phone-number:hover { transform: scale(1.05); color: #10b981; }
+        .phone-number { display: inline-flex; align-items: center; gap: 15px; font-size: 40px; font-weight: 800; color: #a78bfa; margin-bottom: 10px; font-family: monospace; letter-spacing: -1px; transition: 0.3s; }
+        .phone-number:hover { transform: scale(1.05); color: #c4b5fd; }
 
         /* --- СОЦ МЕРЕЖІ --- */
         .social-section { text-align: center; padding: 60px 5% 80px; max-width: 800px; margin: 0 auto; }
@@ -246,19 +249,19 @@
         .marquee-content { flex: 1; overflow: hidden; display: flex; align-items: center; }
         .marquee-track { display: flex; white-space: nowrap; animation: marquee-run 30s linear infinite; }
         .marquee-item { display: flex; align-items: center; gap: 15px; padding: 0 40px; color: #f8fafc; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-        .marquee-item i { color: #f43f5e; font-size: 20px; }
+        .marquee-item i { color: var(--gifts-main); font-size: 20px; }
         
         .marquee-cta-btn {
-            background: #f43f5e; color: white; height: 100%; padding: 0 30px; display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 13px; letter-spacing: 1px; transition: 0.3s; position: relative; z-index: 11; box-shadow: -10px 0 30px rgba(15, 23, 42, 0.9); border: none; cursor: pointer;
+            background: var(--gifts-main); color: white; height: 100%; padding: 0 30px; display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 13px; letter-spacing: 1px; transition: 0.3s; position: relative; z-index: 11; box-shadow: -10px 0 30px rgba(15, 23, 42, 0.9); border: none; cursor: pointer;
         }
-        .marquee-cta-btn:hover { background: #e11d48; padding-right: 40px; }
+        .marquee-cta-btn:hover { background: var(--gifts-hover); padding-right: 40px; }
         .marquee-cta-btn:hover i { transform: translateX(5px); }
         @keyframes marquee-run { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         .sky-footer { background: #0a0f1a; color: #ffffff; padding: 100px 5% 40px; position: relative; overflow: hidden; }
         .sky-footer::before {
             content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
-            width: 600px; height: 300px; background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%); pointer-events: none;
+            width: 600px; height: 300px; background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%); pointer-events: none;
         }
         .footer-container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
         
@@ -267,6 +270,8 @@
         .action-title { color: #ffffff !important; font-size: 17px; font-weight: 700; margin-bottom: 2px; }
         .action-desc { color: rgba(255, 255, 255, 0.5) !important; font-size: 13px; }
         .action-icon { font-size: 30px; color: var(--primary); flex-shrink: 0; }
+        
+        /* Кнопка "Зробити внесок" - повернуто оригінальний колір var(--primary) */
         .action-item.highlight { background: var(--primary) !important; border: none; box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2); }
         .action-item.highlight .action-title { color: #ffffff !important; }
         .action-item.highlight .action-desc { color: rgba(255, 255, 255, 0.8) !important; }
@@ -385,7 +390,7 @@
                     <div class="stat-desc" data-uk="Для школи та творчості" data-en="For school and creativity">Для школи та творчості</div>
                 </div>
                 <div class="stat-card">
-                    <i class="ph-duotone ph-teddy-bear stat-icon" style="color: var(--accent);"></i>
+                    <i class="ph-duotone ph-puzzle-piece stat-icon" style="color: var(--gifts-main);"></i>
                     <div class="stat-val" data-uk="Іграшки" data-en="Toys & Gifts">Іграшки</div>
                     <div class="stat-desc" data-uk="Для розвитку та радості" data-en="For development and joy">Для розвитку та радості</div>
                 </div>
@@ -616,7 +621,7 @@
                         <i class="ph-duotone ph-gift"></i>
                         <span data-uk="Sky Gifts (Гуманітарна допомога)" data-en="Sky Gifts (Humanitarian aid)">Sky Gifts (Гуманітарна допомога)</span>
                     </a>
-                    <a href="skygifts.html" class="nav-link">
+                    <a href="skyacademy.html" class="nav-link">
                         <i class="ph-duotone ph-graduation-cap"></i>
                         <span data-uk="Sky Academy (Освіта)" data-en="Sky Academy (Education)">Sky Academy (Навчання дітей)</span>
                     </a>
