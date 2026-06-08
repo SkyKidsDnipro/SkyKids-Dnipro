@@ -225,7 +225,6 @@
             -webkit-text-stroke: 1px rgba(0,0,0,0.05);
         }
 
-        /* Пастельні градієнти для карток витрат */
         .bg-meals { background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%); }
         .bg-meals i { color: var(--primary); background: white; box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1); }
         
@@ -268,6 +267,28 @@
         .donate-fast { height: 100%; border-radius: var(--border-radius-lg); padding: 40px; color: white; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; background: linear-gradient(135deg, #111827 0%, #312e81 100%); }
         .mono-btn { display: inline-flex; align-items: center; gap: 10px; background: white; color: #111827; padding: 18px 24px; border-radius: 16px; font-weight: 800; text-decoration: none; margin-bottom: 20px; transition: 0.3s; width: 100%; justify-content: center; font-size: 18px;}
         .mono-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+
+        /* --- ЛОГІСТИКА ТА КАРТА --- */
+        .logistics-section { padding: 100px 0 50px; background: var(--bg-card); border-top: 1px solid rgba(0,0,0,0.03); }
+        .logistics-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; margin-top: 50px;}
+        
+        .post-box { 
+            background: #ffffff; border: 1px solid #e2e8f0; border-radius: var(--border-radius-lg); padding: 50px; 
+            box-shadow: 0 25px 60px rgba(0,0,0,0.04); height: 100%; position: relative; overflow: hidden;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        
+        .map-box { height: 100%; min-height: 400px; border-radius: var(--border-radius-lg); overflow: hidden; position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.08); border: 8px solid white;}
+        .map-box iframe { width: 100%; height: 100%; position: absolute; top: 0; left: 0; border: none; }
+        
+        .contact-big { 
+            text-align: center; margin-top: 60px; background: #0f172a; color: white; padding: 60px 40px; 
+            border-radius: var(--border-radius-lg); position: relative; overflow: hidden; box-shadow: 0 30px 60px rgba(15, 23, 42, 0.2);
+        }
+        .contact-big::before { content: ''; position: absolute; right: -50px; top: -50px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(37, 99, 235, 0.4) 0%, transparent 70%); }
+        .contact-big h3 { font-size: 32px; font-weight: 800; margin-bottom: 15px; }
+        .phone-number { display: inline-flex; align-items: center; gap: 15px; font-size: 40px; font-weight: 800; color: #60a5fa; margin-bottom: 10px; font-family: monospace; letter-spacing: -1px; transition: 0.3s; }
+        .phone-number:hover { transform: scale(1.05); color: #93c5fd; }
 
         /* --- СОЦ МЕРЕЖІ --- */
         .social-section { text-align: center; padding: 40px 5% 100px; max-width: 800px; margin: 0 auto; }
@@ -346,6 +367,15 @@
         body.modal-open { overflow: hidden; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(30px) scale(0.95);} to { opacity: 1; transform: translateY(0) scale(1);} }
 
+        /* Стилі для Фінансової Модалки */
+        .donate-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: stretch; margin-top: 30px;}
+        .premium-box { background: linear-gradient(135deg, #f1f7ff, #ffffff); border: 1px solid rgba(37,99,235,0.1); border-radius: var(--border-radius-lg); padding: 35px; text-align: left; height: 100%;}
+        .donate-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 15px; align-items: center; padding-bottom: 15px; border-bottom: 1px dashed #e2e8f0;}
+        .donate-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .donate-fast { height: 100%; border-radius: var(--border-radius-lg); padding: 40px; color: white; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; background: linear-gradient(135deg, #111827 0%, #312e81 100%); }
+        .mono-btn { display: inline-flex; align-items: center; gap: 10px; background: #e2e8f0; color: #111827; padding: 18px 20px; border-radius: 16px; font-weight: 700; text-decoration: none; margin-bottom: 20px; transition: 0.3s; width: 100%; justify-content: center; font-size: 18px;}
+        .mono-btn:hover { transform: scale(1.05); }
+
         @media (max-width: 992px) {
             .checker-row, .checker-row.reverse { flex-direction: column; text-align: center; gap: 30px; }
             .checker-text { padding: 0; }
@@ -358,13 +388,17 @@
             .legal-links { flex-wrap: wrap; gap: 15px; }
             
             .donate-layout { grid-template-columns: 1fr; }
+            .logistics-layout { grid-template-columns: 1fr; }
+            .map-box { min-height: 300px; }
+            .phone-number { font-size: 32px; }
         }
+        
         @media (max-width: 768px) {
             .back-link span {
-                display: none; /* Скрывает текст */
+                display: none;
             }
             .back-link {
-            padding: 10px; /* Делает кнопку со стрелкой более аккуратной и квадратной/круглой */
+            padding: 10px; 
             }
         }
     </style>
@@ -390,7 +424,6 @@
     </nav>
 
     <main>
-        <!-- HERO СЕКЦІЯ -->
         <section class="kitchen-hero container">
             <div class="alert-badge">
                 <i class="ph-bold ph-bell-ringing"></i> 
@@ -426,7 +459,6 @@
             </div>
         </section>
 
-        <!-- ШАХМАТНА ГАЛЕРЕЯ (Більше ніж їжа) -->
         <section class="checkerboard-section">
             <div class="container">
                 <div class="section-header">
@@ -436,7 +468,6 @@
                     </p>
                 </div>
 
-                <!-- Блок 1 -->
                 <div class="checker-row">
                     <div class="checker-image">
                         <img src="sky children.jpg" alt="Children eating together">
@@ -453,7 +484,6 @@
                     </div>
                 </div>
 
-                <!-- Блок 2 (Реверс) -->
                 <div class="checker-row reverse">
                     <div class="checker-image">
                         <img src="novi druzi za stolom.jpg" alt="Happy kids">
@@ -472,7 +502,6 @@
             </div>
         </section>
 
-        <!-- ПОЛІТИКА ВІДКРИТИХ ДВЕРЕЙ -->
         <section class="open-door-section">
             <div class="container open-door-container">
                 <div class="open-door-content">
@@ -493,7 +522,6 @@
             </div>
         </section>
 
-        <!-- ДЛЯ ПАРТНЕРІВ (Donor Recognition) -->
         <section class="donors-info-section">
             <div class="container">
                 <div class="section-header" style="margin-bottom: 30px;">
@@ -526,7 +554,6 @@
             </div>
         </section>
 
-        <!-- ПРОЗОРІСТЬ БЮДЖЕТУ -->
         <section class="budget-section container">
             <div class="section-header">
                 <h2 data-uk="Куди йдуть ваші донати?" data-en="Daily Cost Breakdown">Куди йдуть ваші донати?</h2>
@@ -557,7 +584,6 @@
             </div>
         </section>
 
-        <!-- ВІДГУКИ -->
         <section class="reviews-section container">
             <div class="section-header">
                 <h2 data-uk="Слова вдячності від мам" data-en="Words of gratitude from moms">Слова вдячності від мам</h2>
@@ -588,7 +614,6 @@
             </div>
         </section>
 
-        <!-- ВБУДОВАНИЙ БЛОК ДОНАТІВ -->
         <section class="donate-section">
             <div class="handwritten-note" style="margin-bottom: 15px;" data-uk="Кожна гривня має значення 💛" data-en="Every hryvnia matters 💛">Кожна гривня має значення 💛</div>
             <h2 style="font-size: clamp(32px, 4vw, 52px); font-weight: 800; margin-bottom: 25px; line-height: 1.1;" data-uk="Ваша підтримка — це їхній обід" data-en="Your support is their meal">Ваша підтримка — це їхній обід</h2>
@@ -597,7 +622,6 @@
                 Наша ціль — <strong>87 000 грн</strong>. Це вартість щоденного гарячого харчування для 30 дітей на цілий місяць. Ви можете допомогти будь-якою сумою, або повністю закрити 1 день (2900 грн), тиждень чи місяць. Зробіть внесок через банку або за реквізитами організації нижче.
             </p>
 
-            <!-- ПРОГРЕС БАР ЗБОРУ (Місячний) -->
             <div class="progress-container" style="margin-top: 0; margin-bottom: 40px;">
                 <div class="progress-header">
                     <span data-uk="Зібрано на місяць харчування:" data-en="Raised for a month of meals:">Зібрано на місяць харчування:</span>
@@ -612,9 +636,7 @@
                 </div>
             </div>
 
-            <!-- ВБУДОВАНІ РЕКВІЗИТИ -->
             <div class="donate-layout" style="margin-top: 0;">
-                <!-- Ліва колонка: Реквізити -->
                 <div class="premium-box">
                     <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;"><i class="ph-fill ph-bank" style="color: var(--primary);"></i> Офіційні реквізити</h3>
                     <div class="donate-row">
@@ -642,7 +664,6 @@
                     </div>
                 </div>
 
-                <!-- Права колонка: Швидкий донат (Банка) -->
                 <div class="donate-fast">
                     <div style="width: 100%;">
                         <div style="margin-bottom: 20px;">
@@ -657,6 +678,7 @@
                             <i class="ph-fill ph-lightning" style="color: #6366f1;"></i>
                             <span data-uk="Нагодувати дитину сьогодні" data-en="Feed a child today">Нагодувати дитину сьогодні</span>
                         </a>
+                        
                         <div style="margin-top: 30px; display: flex; justify-content: center;">
                             <div style="background: white; padding: 15px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
                                 <img src="87%20000%20NGO%20SkyKigs.png" alt="QR Code Monobank" style="width: 120px; height: 120px; display: block;">
@@ -667,7 +689,76 @@
             </div>
         </section>
 
-        <!-- СОЦ МЕРЕЖІ -->
+        <section class="logistics-section">
+            <div class="container">
+                <div class="handwritten-note" style="text-align: center; margin-bottom: 10px;" data-uk="Чекаємо на вас 💛" data-en="Waiting for you 💛">Чекаємо на вас 💛</div>
+                <h2 style="font-size: clamp(32px, 4vw, 52px); font-weight: 800; margin-bottom: 25px; line-height: 1.1; text-align: center;" data-uk="Як нас знайти та чим допомогти?" data-en="How to find us and how to help?">Як нас знайти та чим допомогти?</h2>
+                
+                <div class="logistics-layout">
+                    <div class="post-box">
+                        <h3 style="font-size: 26px; font-weight: 800; margin-bottom: 25px; display: flex; align-items: center; gap: 12px;">
+                            <i class="ph-fill ph-house-line" style="color: var(--primary);"></i> <span data-uk="Завітайте до Sky Kitchen" data-en="Visit Sky Kitchen">Завітайте до Sky Kitchen</span>
+                        </h3>
+                        <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 17px;" data-uk="Ви можете приїхати до нас особисто, щоб побачити процес приготування, познайомитися з дітьми, або передати продукти харчування." data-en="You can come to us in person to see the cooking process, meet the children, or deliver food in kind.">Ви можете приїхати до нас особисто, щоб побачити процес приготування, познайомитися з дітьми, або передати продукти харчування.</p>
+                        
+                        <div class="post-row">
+                            <span data-uk="Місто" data-en="City">Місто</span>
+                            <strong>м. Дніпро</strong>
+                        </div>
+                        <div class="post-row">
+                            <span data-uk="Адреса" data-en="Address">Адреса</span>
+                            <strong>вул. Робоча, 152</strong>
+                        </div>
+                        <div class="post-row" style="border: none;">
+                            <span data-uk="Контакт (Адміністратор)" data-en="Contact (Admin)">Контакт (Адміністратор)</span>
+                            <div class="card-copy-wrap">
+                                <strong id="postPhone">+380667427733</strong>
+                                <button class="copy-btn" data-action="copy" data-target="postPhone"><i class="ph-bold ph-copy"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 25px; padding: 18px; background: #fffbeb; border-left: 4px solid var(--accent); border-radius: 12px; font-size: 15px; color: #b45309;">
+                            <i class="ph-bold ph-info"></i> <span data-uk="Якщо ви хочете привезти велику партію продуктів або стати волонтером на кухні, будь ласка, попередьте нас дзвінком." data-en="If you want to deliver a large batch of products or become a kitchen volunteer, please let us know by calling.">Якщо ви хочете привезти велику партію продуктів або стати волонтером на кухні, будь ласка, попередьте нас дзвінком.</span>
+                        </div>
+                    </div>
+
+                    <div class="map-box">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2646.619176378411!2d34.9944686!3d48.4446522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40dbe2c47a0640d3%3A0xc39f9976bb23ef21!2sRobocha%20St%2C%20152%2C%20Dnipro%2C%20Dnipropetrovska%20oblast%2C%20Ukraine%2C%2049000!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        
+                        <div style="position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); padding: 25px; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.15);">
+                            <h4 style="font-weight: 800; font-size: 20px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;"><i class="ph-fill ph-map-pin" style="color: var(--danger);"></i> <span data-uk="Наша локація" data-en="Our location">Наша локація</span></h4>
+                            <p style="color: var(--text-main); font-weight: 700; font-size: 17px; margin-bottom: 5px;" data-uk="вул. Робоча, 152, м. Дніпро" data-en="152 Robocha St., Dnipro">вул. Робоча, 152, м. Дніпро</p>
+                            <p style="color: var(--text-muted); font-size: 15px;" data-uk="Дитячий простір Sky Kids NGO." data-en="Sky Kids NGO Space.">Дитячий простір Sky Kids NGO.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-big">
+                    <h3 data-uk="Спонсорство та системна підтримка" data-en="Sponsorship and systemic support">Спонсорство та системна підтримка</h3>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 19px; margin-bottom: 30px;" data-uk="Якщо ваша компанія хоче стати постійним партнером або ви готові регулярно постачати продукти, зв'яжіться з координатором." data-en="If your company wants to become a permanent partner or you are ready to regularly supply products, contact the coordinator.">Якщо ваша компанія хоче стати постійним партнером або ви готові регулярно постачати продукти, зв'яжіться з координатором.</p>
+                    
+                    <a href="tel:+380984927948" style="text-decoration: none; color: inherit;">
+                        <div class="phone-number"><i class="ph-fill ph-phone-call"></i> +38 (098) 492-79-48</div>
+                    </a>
+                    <div style="font-size: 17px; color: rgba(255,255,255,0.6); margin-bottom: 35px;" 
+     data-uk="Євген Чернов — Координатор проєкту" 
+     data-en="Evgen Chernov — Project Coordinator">
+     Євген Чернов — Координатор проєкту
+</div>
+                
+<div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+    <a href="https://t.me/son_of_god_evgen" target="_blank" class="btn" style="background: #0088cc; padding: 18px 35px; font-size: 16px;">
+        <i class="ph-fill ph-telegram-logo"></i> 
+        <span data-uk="Написати в Telegram" data-en="Write in Telegram">Написати в Telegram</span>
+    </a>
+    <a href="mailto:skykidsdnipro@gmail.com" class="btn" style="background: rgba(255,255,255,0.1); padding: 18px 35px; font-size: 16px; border: 1px solid rgba(255,255,255,0.2);">
+        <i class="ph-fill ph-envelope-simple"></i> Email
+    </a>
+</div>
+                </div>
+            </div>
+        </section>
+
         <section class="social-section">
             <h3 style="font-size: 32px; font-weight: 800; margin-bottom: 20px;" data-uk="Слідкуйте за життям центру" data-en="Follow the life of the center">Слідкуйте за життям центру</h3>
             <p style="color: var(--text-muted); margin-bottom: 40px; font-size: 18px;" data-uk="Ми публікуємо щоденні звіти, посмішки дітей та будні нашої команди. Переконайтеся самі, як ваша допомога творить дива." data-en="We publish daily reports, children's smiles, and our team's routine. See for yourself how your help works miracles.">Ми публікуємо щоденні звіти, посмішки дітей та будні нашої команди. Переконайтеся самі, як ваша допомога творить дива.</p>
@@ -682,7 +773,6 @@
         </section>
     </main>
 
-    <!-- РЯДОК, ЩО БІЖИТЬ (MARQUEE) -->
     <div class="urgent-marquee-wrap">
         <div class="marquee-content">
             <div class="marquee-track">
@@ -698,7 +788,6 @@
         </button>
     </div>
 
-    <!-- ФУТЕР -->
     <footer class="sky-footer">
         <div class="footer-container">
             <div class="actions-row">
@@ -745,7 +834,7 @@
                         <i class="ph-bold ph-house-line"></i>
                         <span data-uk="Головна SkyKids" data-en="Home SkyKids">Головна сторінка</span>
                     </a>
-                    <a href="#" class="nav-link">
+                    <a href="skykitchen.html" class="nav-link">
                         <i class="ph-duotone ph-bowl-food"></i>
                         <span data-uk="Sky Kitchen (Годування)" data-en="Sky Kitchen (Feeding)">Sky Kitchen (Годування)</span>
                     </a>
@@ -753,7 +842,7 @@
                         <i class="ph-duotone ph-gift"></i>
                         <span data-uk="Sky Gifts (Гуманітарна допомога)" data-en="Sky Gifts (Humanitarian aid)">Sky Gifts (Гуманітарна допомога)</span>
                     </a>
-                    <a href="skygifts.html" class="nav-link">
+                    <a href="skyacademy.html" class="nav-link">
                         <i class="ph-duotone ph-graduation-cap"></i>
                         <span data-uk="Sky Academy (Освіта)" data-en="Sky Academy (Education)">Sky Academy (Навчання дітей)</span>
                     </a>
@@ -767,8 +856,8 @@
                     <h4 class="footer-title" data-uk="Зв'язок" data-en="Contact Us">Зв'язок</h4>
                     <div class="contact-mechanic">
                         <div class="contact-item"><i class="ph-bold ph-map-pin"></i> <span data-uk="вулиця Робоча, 152, Дніпро, Україна" data-en="152 Robocha Street, Dnipro, Ukraine">вулиця Робоча, 152, Дніпро, Україна</span></div>
-                        <a href="mailto:skykidsdnipro@gmail.com" class="contact-item"><i class="ph-bold ph-envelope-simple"></i> <span>skykidsdnipro@gmail.com</span></a>
-                        <a href="tel:+380667427733" class="contact-item"><i class="ph-bold ph-phone"></i> <span>+38 (066) 742-77-33</span></a> 
+                        <a href="mailto:skykidsdnipro@gmail.com" class="contact-item clickable"><i class="ph-bold ph-envelope-simple"></i> <span>skykidsdnipro@gmail.com</span></a>
+                        <a href="tel:+380667427733" class="contact-item clickable"><i class="ph-bold ph-phone"></i> <span>+38 (066) 742-77-33</span></a> 
                     </div>
                 </div>
             </div>
@@ -784,7 +873,6 @@
         </div>
     </footer>
 
-    <!-- МОДАЛЬНЕ ВІКНО ДОНАТІВ (Фінансове для футера) -->
     <div id="donateModal" class="modal">
         <div class="modal-content modal-premium">
             <span class="close" data-action="close-modal"><i class="ph-bold ph-x"></i></span>
