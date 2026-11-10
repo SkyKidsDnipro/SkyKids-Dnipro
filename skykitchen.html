@@ -26,7 +26,7 @@
     <link rel="preload" href="assets/fonts/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/phosphor-bold.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="assets/css/bundle.css?v=abf4e653">
+    <link rel="stylesheet" href="assets/css/bundle.css?v=66a879a7">
 <!-- /sk:head -->
     
     <title>Sky Kitchen — Гарячі обіди для дітей | Sky Kids NGO</title>
@@ -92,7 +92,7 @@ i[class*=" ph-"],
             border-radius: 50px; background: var(--primary); color: white; font-weight: 600; font-size: 14px;
             text-decoration: none; border: none; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .btn:hover { background: var(--primary-hover); transform: translateY(-3px); box-shadow: 0 12px 25px rgba(37, 99, 235, 0.3); }
+        .btn:hover { background: var(--primary-hover); transform: none; box-shadow: 0 12px 25px rgba(37, 99, 235, 0.3); }
 
 
         /* --- ЕМОЦІЙНІ МІКРО-СТИЛІ --- */
@@ -127,7 +127,7 @@ i[class*=" ph-"],
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
             background: linear-gradient(90deg, var(--primary), var(--accent)); opacity: 0; transition: 0.4s;
         }
-        .stat-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(37, 99, 235, 0.1); background: white; }
+        .stat-card:hover { transform: none; box-shadow: 0 30px 60px rgba(37, 99, 235, 0.1); background: white; }
         .stat-card:hover::before { opacity: 1; }
         .stat-icon { font-size: 54px; color: var(--primary); margin-bottom: 20px; transition: 0.3s; }
         .stat-card:hover .stat-icon { transform: scale(1.1) rotate(-5deg); }
@@ -191,7 +191,7 @@ i[class*=" ph-"],
             padding: 30px; background: var(--bg-main); border-radius: var(--border-radius-md);
             border: 1px solid rgba(0,0,0,0.04); transition: 0.3s;
         }
-        .donor-feature:hover { background: white; box-shadow: 0 15px 30px rgba(0,0,0,0.05); transform: translateY(-3px); }
+        .donor-feature:hover { background: white; box-shadow: 0 15px 30px rgba(0,0,0,0.05); transform: none; }
         .donor-icon { width: 60px; height: 60px; border-radius: 16px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
         .donor-feature h4 { font-size: 20px; font-weight: 800; margin-bottom: 10px; color: var(--text-main); }
         .donor-feature p { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
@@ -205,7 +205,7 @@ i[class*=" ph-"],
             box-shadow: 0 15px 35px rgba(0,0,0,0.03); transition: 0.4s; border: 1px solid rgba(255,255,255,0.6);
             backdrop-filter: blur(10px); position: relative; overflow: hidden;
         }
-        .budget-item:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.08); }
+        .budget-item:hover { transform: none; box-shadow: 0 30px 60px rgba(0,0,0,0.08); }
         .budget-item i { font-size: 54px; margin-bottom: 25px; display: inline-block; padding: 20px; border-radius: 50%; transition: 0.3s; position: relative; z-index: 2;}
         .budget-item:hover i { transform: scale(1.1); }
         .budget-item h4 { font-size: 22px; font-weight: 800; margin-bottom: 15px; color: var(--text-main); position: relative; z-index: 2;}
@@ -258,7 +258,7 @@ i[class*=" ph-"],
         
         .donate-fast { height: 100%; border-radius: var(--border-radius-lg); padding: 40px; color: white; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; background: linear-gradient(135deg, #111827 0%, #312e81 100%); }
         .mono-btn { display: inline-flex; align-items: center; gap: 10px; background: white; color: #111827; padding: 18px 24px; border-radius: 16px; font-weight: 800; text-decoration: none; margin-bottom: 20px; transition: 0.3s; width: 100%; justify-content: center; font-size: 18px;}
-        .mono-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .mono-btn:hover { transform: none; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
 
         /* --- ЛОГІСТИКА ТА КАРТА --- */
         .logistics-section { padding: 100px 0 50px; background: var(--bg-card); border-top: 1px solid rgba(0,0,0,0.03); }
@@ -286,9 +286,9 @@ i[class*=" ph-"],
         .social-section { text-align: center; padding: 40px 5% 100px; max-width: 800px; margin: 0 auto; }
         .btn-social { display: inline-flex; align-items: center; gap: 10px; padding: 18px 40px; border-radius: 60px; font-weight: 700; text-decoration: none; color: white; transition: 0.3s; font-size: 17px; margin: 10px; }
         .btn-tg { background: #0088cc; box-shadow: 0 10px 25px rgba(0, 136, 204, 0.25); }
-        .btn-tg:hover { background: #0099e6; transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0, 136, 204, 0.35); }
+        .btn-tg:hover { background: #0099e6; transform: none; box-shadow: 0 15px 35px rgba(0, 136, 204, 0.35); }
         .btn-inst { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); box-shadow: 0 10px 25px rgba(220, 39, 67, 0.25); }
-        .btn-inst:hover { transform: translateY(-5px); filter: brightness(1.1); box-shadow: 0 15px 35px rgba(220, 39, 67, 0.35); }
+        .btn-inst:hover { transform: none; filter: brightness(1.1); box-shadow: 0 15px 35px rgba(220, 39, 67, 0.35); }
 
         /* ============================================================
            ФУТЕР ТА РЯДОК, ЩО БІЖИТЬ
@@ -915,7 +915,7 @@ i[class*=" ph-"],
 </div>
 <!-- /sk:donate-modal -->
     <!-- sk:scripts -->
-<script src="assets/js/site.js?v=abf4e653" defer></script>
+<script src="assets/js/site.js?v=66a879a7" defer></script>
 <!-- /sk:scripts -->
 </body>
 </html>
