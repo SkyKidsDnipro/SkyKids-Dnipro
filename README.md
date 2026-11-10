@@ -51,7 +51,7 @@ To build a generation of confident, supported, and capable young people who unde
 
 ## 🚀 Project Scope
 
-SkyKids operates as a scalable model that can expand into multiple направления:
+SkyKids operates as a scalable model that can expand into multiple directions:
 
 - Sky Kitchen — daily nutrition support  
 - Sky Gifts — humanitarian aid  
@@ -62,17 +62,55 @@ SkyKids operates as a scalable model that can expand into multiple направ�
 
 ## 🛠 Tech Overview
 
-This repository contains the official SkyKids website.
+Static website (HTML5, CSS3, vanilla JavaScript) served by **GitHub Pages** at
+[skykids.com.ua](https://skykids.com.ua). There is no framework and no runtime build step:
+every page is a plain `.html` file.
 
-- HTML5  
-- CSS3  
-- Vanilla JavaScript  
+### Project structure
 
-Built with focus on:
-- ⚡ performance  
-- ♿ accessibility  
-- 📱 responsive design  
-- 🌐 GitHub Pages deployment  
+```
+*.html                  pages (index, skykitchen, skygifts, skyacademy, skyrecovery, …)
+partials/               shared blocks: header, footer, donate modal
+assets/css/site.css     styles of the shared blocks (prefixed `sk-`)
+assets/js/site.js       shared behaviour: UA/EN language, menu, modals, copy buttons
+assets/img/             images (WebP): brand/, team/, events/, photos/, icons/, game/
+assets/brand/           original PNG logos for the media kit
+tools/site.json         per-page settings: header style, translation on/off, SEO description
+tools/build.py          inserts partials into pages, generates <head> SEO tags, sitemap.xml, robots.txt
+tools/check_links.py    checks internal links, files, anchors and image alt texts
+```
+
+### Editing
+
+| What to change | Where |
+| --- | --- |
+| Menu, footer, contacts | `partials/header.html`, `partials/footer.html` |
+| Bank details, Monobank jar | `partials/donate-modal.html` |
+| Page text | the page itself (`skykitchen.html`, …) — outside the `<!-- sk:… -->` blocks |
+| Page description for Google / social previews | `<meta name="description">` in the page |
+| Domain, OG image | `tools/site.json` |
+
+After changing anything in `partials/`, `assets/css/site.css`, `assets/js/site.js` or `tools/site.json`, run:
+
+```bash
+python3 tools/build.py        # updates all pages, sitemap.xml and robots.txt
+python3 tools/check_links.py  # checks links and files
+```
+
+Content between `<!-- sk:… -->` and `<!-- /sk:… -->` markers is generated — do not edit it by hand,
+it will be overwritten. The GitHub Action in `.github/workflows/check.yml` runs both scripts on every
+push and fails if pages were not rebuilt or a link is broken. On January 1 it will ask for one rebuild
+to update the year in the footer.
+
+### Translations
+
+Translatable elements carry both versions: `data-uk="…" data-en="…"`. The chosen language is remembered
+between pages. Pages without English text set `"i18n": false` in `tools/site.json`, which hides the switch.
+
+### Adding images
+
+Put images into `assets/img/…` as WebP (≈1200 px wide for posters, 400×400 px for team photos) and use
+file names without spaces, e.g. `assets/img/events/new-event.webp`.
 
 ---
 

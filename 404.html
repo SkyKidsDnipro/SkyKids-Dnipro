@@ -2,7 +2,34 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
+    <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Сторінку не знайдено. Зіграйте в міні-гру SkyKids або поверніться на головну.">
+    <!-- sk:head -->
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#2563eb">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Sky Kids NGO">
+    <meta property="og:locale" content="uk_UA">
+    <meta property="og:url" content="https://skykids.com.ua/404.html">
+    <meta property="og:title" content="SkyKids — Політ у майбутнє">
+    <meta property="og:description" content="Сторінку не знайдено. Зіграйте в міні-гру SkyKids або поверніться на головну.">
+    <meta property="og:image" content="https://skykids.com.ua/assets/img/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SkyKids — Політ у майбутнє">
+    <meta name="twitter:description" content="Сторінку не знайдено. Зіграйте в міні-гру SkyKids або поверніться на головну.">
+    <meta name="twitter:image" content="https://skykids.com.ua/assets/img/og-image.jpg">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/duotone/style.css">
+<!-- /sk:head -->
     <title>SkyKids — Політ у майбутнє</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Pacifico&display=swap" rel="stylesheet">
     <style>
@@ -338,9 +365,9 @@
 <div class="sky-bg" id="sky"></div>
 
 <nav class="nav" id="topNav">
-    <a href="index.html" class="logo">
-    <img src="https://i.ibb.co/bgmcGKHp/2.png" alt="Logo" class="logo-img">
-    <img src="https://i.ibb.co/6ccMK12n/3.png" alt="SkyKids Text" class="logo-text-img">
+    <a href="/" class="logo">
+    <img src="assets/img/brand/logo.webp" alt="" class="logo-img">
+    <img src="assets/img/brand/wordmark.webp" alt="SkyKids" class="logo-text-img">
 </a>
     <div class="controls-top">
         <button class="btn-icon" id="muteBtn">🔊</button>
@@ -358,7 +385,7 @@
         <div class="aura magnet-active"></div>
         <div class="aura time-active"></div>
         <div class="aura star-active"></div>
-        <img src="https://i.ibb.co/PsX2SJQR/SKYKIDS.png" alt="Hero">
+        <img src="assets/img/game/hero.webp" alt="Хмаринка SkyKids — герой гри">
     </div>
     <div class="ground" id="ground"></div>
     <div class="score-container">
@@ -370,8 +397,8 @@
 <div class="overlay" id="startScreen">
     <div class="menu-card">
         <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 15px;">
-            <img src="https://i.ibb.co/bgmcGKHp/2.png" style="width: 80px;">
-            <img src="https://i.ibb.co/6ccMK12n/3.png" alt="SkyKids Text" class="logo-text-img" style="height: 82px;">
+            <img src="assets/img/brand/logo.webp" alt="" style="width: 80px;">
+            <img src="assets/img/brand/wordmark.webp" alt="SkyKids" class="logo-text-img" style="height: 82px;">
         </div>
 
         <p style="color: inherit; opacity: 0.8; font-size: 15px; margin-bottom: 25px; line-height: 1.5;">
@@ -382,11 +409,11 @@
         <button class="main-btn" id="startBtn">ПОЛЕТІЛИ!</button>
         
         <div class="social-links">
-            <a href="https://www.instagram.com/skykids.dnipro/" target="_blank" class="tg-btn">
-                <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" width="16" style="filter: grayscale(1)"> Instagram
+            <a href="https://www.instagram.com/skykids.dnipro/" target="_blank" rel="noopener" class="tg-btn">
+                <img src="assets/img/icons/instagram.webp" width="16" height="16" alt="" style="filter: grayscale(1)"> Instagram
             </a>
-            <a href="https://t.me/skykids_dnipro" target="_blank" class="tg-btn">
-                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968804.png" width="16" style="filter: grayscale(1)"> Telegram
+            <a href="https://t.me/skykids_dnipro" target="_blank" rel="noopener" class="tg-btn">
+                <img src="assets/img/icons/telegram.webp" width="16" height="16" alt="" style="filter: grayscale(1)"> Telegram
             </a>
         </div>
     </div>
@@ -402,16 +429,16 @@
             <span>🎮</span> СПРОБУВАТИ ЩЕ
         </button>
         
-        <a href="index.html" class="main-btn secondary-btn">
+        <a href="/" class="main-btn secondary-btn">
             <span>←</span> НА ГОЛОВНУ
         </a>
         
         <div class="social-links">
-            <a href="https://www.instagram.com/skykids.dnipro/" target="_blank" class="tg-btn">
-                <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" width="16" style="filter: grayscale(1)"> Instagram
+            <a href="https://www.instagram.com/skykids.dnipro/" target="_blank" rel="noopener" class="tg-btn">
+                <img src="assets/img/icons/instagram.webp" width="16" height="16" alt="" style="filter: grayscale(1)"> Instagram
             </a>
-            <a href="https://t.me/skykids_dnipro" target="_blank" class="tg-btn">
-                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968804.png" width="16" style="filter: grayscale(1)"> Telegram
+            <a href="https://t.me/skykids_dnipro" target="_blank" rel="noopener" class="tg-btn">
+                <img src="assets/img/icons/telegram.webp" width="16" height="16" alt="" style="filter: grayscale(1)"> Telegram
             </a>
         </div>
     </div>
@@ -671,7 +698,7 @@
         
         if (type === "coin") {
             entity.className = "coin";
-            entity.innerHTML = `<img src="https://i.ibb.co/Y4mkpGfM/Sky.png">`;
+            entity.innerHTML = `<img src="assets/img/game/coin.webp" alt="">`;
             entity.style.bottom = (Math.random() * 250 + 90) + "px";
         } else if (["shield", "magnet", "time", "star"].includes(type)) {
             entity.className = `powerup ${type}`;
@@ -877,7 +904,8 @@
         }
     });
 
-    document.getElementById("logoBtn").onclick = () => {
+    const logoBtn = document.getElementById("logoBtn");
+    if (logoBtn) logoBtn.onclick = () => {
         window.open("https://t.me/skykids_dnipro", "_blank");
     };
 

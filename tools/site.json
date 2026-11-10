@@ -1,0 +1,127 @@
+{
+  "domain": "https://skykids.com.ua",
+  "site_name": "Sky Kids NGO",
+  "theme_color": "#2563eb",
+  "og_image": "assets/img/og-image.jpg",
+  "default_description": "ГО «Небесні Діти» (Sky Kids) — системна допомога дітям у Дніпрі: щоденне гаряче харчування, гуманітарна допомога, освіта та психологічна підтримка.",
+  "pages": {
+    "index.html": {
+      "header": "overlay",
+      "i18n": true,
+      "priority": "1.0",
+      "changefreq": "weekly"
+    },
+    "skykitchen.html": {
+      "header": "overlay",
+      "i18n": true,
+      "priority": "0.9",
+      "changefreq": "weekly"
+    },
+    "skygifts.html": {
+      "header": "overlay",
+      "i18n": true,
+      "priority": "0.9",
+      "changefreq": "monthly"
+    },
+    "skyacademy.html": {
+      "header": "overlay",
+      "i18n": true,
+      "priority": "0.8",
+      "changefreq": "monthly"
+    },
+    "skyrecovery.html": {
+      "header": "overlay",
+      "i18n": true,
+      "priority": "0.8",
+      "changefreq": "monthly"
+    },
+    "all-events.html": {
+      "header": "overlay",
+      "i18n": true,
+      "priority": "0.8",
+      "changefreq": "weekly"
+    },
+    "request-for-help.html": {
+      "header": "overlay",
+      "i18n": true,
+      "priority": "0.8",
+      "changefreq": "monthly",
+      "description": "Потрібна допомога для дитини — харчування, речі чи підтримка? Залиште заявку в центрі Sky Kids у Дніпрі. Ми поруч."
+    },
+    "reports.html": {
+      "header": "sticky",
+      "i18n": false,
+      "priority": "0.7",
+      "changefreq": "monthly",
+      "description": "Фінансова звітність ГО «Небесні Діти» (ЄДРПОУ 45080222): доходи, витрати та принципи використання благодійних коштів."
+    },
+    "legal-center.html": {
+      "header": "sticky",
+      "i18n": false,
+      "priority": "0.6",
+      "changefreq": "yearly",
+      "description": "Юридичний центр Sky Kids: реквізити, статут, публічна оферта, політика конфіденційності та внутрішні документи ГО «Небесні Діти»."
+    },
+    "charter.html": {
+      "header": "sticky",
+      "i18n": false,
+      "priority": "0.5",
+      "changefreq": "yearly",
+      "description": "Статут громадської організації «Небесні Діти» (Sky Kids): загальні положення, мета, завдання та порядок управління."
+    },
+    "governance.html": {
+      "header": "sticky",
+      "i18n": false,
+      "priority": "0.4",
+      "changefreq": "yearly",
+      "description": "Внутрішня документація ГО «Небесні Діти»: статут, регламенти та політики для волонтерів, співробітників і партнерів."
+    },
+    "partner.html": {
+      "header": "sticky",
+      "i18n": false,
+      "priority": "0.6",
+      "changefreq": "yearly",
+      "description": "Системне партнерство зі SkyKids для компаній і фондів: репутаційний капітал, прозорі звіти та реальна допомога дітям у Дніпрі."
+    },
+    "partners.html": {
+      "header": "sticky",
+      "i18n": false,
+      "priority": "0.5",
+      "changefreq": "yearly",
+      "description": "Партнерство для бізнесу: як компанія може реалізувати КСВ разом зі SkyKids — прозоро, зі звітами та медійною підтримкою."
+    },
+    "volunteer.html": {
+      "header": "sticky",
+      "i18n": false,
+      "priority": "0.6",
+      "changefreq": "yearly",
+      "description": "Волонтерство в SkyKids: допомога в центрі в Дніпрі або онлайн з будь-якої точки світу — навіть 15 хвилин мають значення."
+    },
+    "media.html": {
+      "header": "sticky",
+      "i18n": false,
+      "priority": "0.4",
+      "changefreq": "yearly",
+      "description": "Медіа-кіт Sky Kids: логотипи, кольори бренду та готовий опис організації для журналістів і партнерів."
+    },
+    "offer.html": {
+      "header": "sticky",
+      "i18n": false,
+      "priority": "0.3",
+      "changefreq": "yearly",
+      "description": "Публічна оферта ГО «Небесні Діти» на укладення договору добровільної благодійної пожертви."
+    },
+    "privacy.html": {
+      "header": "sticky",
+      "i18n": false,
+      "priority": "0.3",
+      "changefreq": "yearly",
+      "description": "Політика конфіденційності сайту Sky Kids: які дані ми збираємо та як їх захищаємо."
+    },
+    "404.html": {
+      "standalone": true,
+      "noindex": true,
+      "description": "Сторінку не знайдено. Зіграйте в міні-гру SkyKids або поверніться на головну."
+    }
+  }
+}
