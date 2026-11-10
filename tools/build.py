@@ -28,9 +28,8 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ASSET_VERSION_FILES = ['assets/css/site.css', 'assets/js/site.js']
-PHOSPHOR = 'https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/{}/style.css'
-ICON_WEIGHTS = ['bold', 'fill', 'duotone']
+CSS_PARTS = ['assets/css/fonts.css', 'assets/css/icons.css', 'assets/css/site.css']  # збираються в assets/css/bundle.css
+ASSET_VERSION_FILES = CSS_PARTS + ['assets/js/site.js']
 
 
 def read(path):
@@ -95,11 +94,11 @@ def head_block(path, title, desc, cfg, site, version):
         '<link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/favicon-32.png">',
         '<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">',
         '<link rel="manifest" href="site.webmanifest">',
-        '<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>',
+        '<link rel="preload" href="assets/fonts/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>',
+        '<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>',
+        '<link rel="preload" href="assets/fonts/phosphor-bold.woff2" as="font" type="font/woff2" crossorigin>',
+        '<link rel="stylesheet" href="assets/css/bundle.css?v=%s">' % version,
     ]
-    lines += ['<link rel="stylesheet" href="%s">' % PHOSPHOR.format(w) for w in ICON_WEIGHTS]
-    if not cfg.get('standalone'):
-        lines.append('<link rel="stylesheet" href="assets/css/site.css?v=%s">' % version)
     return '\n'.join('    ' + l for l in lines)
 
 
@@ -132,6 +131,25 @@ def mark_current(header_html, path):
     return out
 
 
+IMG_SIZES = '(max-width: 600px) 92vw, 500px'
+
+
+def add_srcset(page):
+    """<img src="assets/img/(events|photos)/x.webp"> -> додає srcset, якщо є x-640.webp (tools/images.py)."""
+    def fix(m):
+        tag, src = m.group(0), m.group(1)
+        if 'srcset=' in tag:
+            return tag
+        small = src[:-5] + '-640.webp'
+        if not os.path.exists(os.path.join(ROOT, small)):
+            return tag
+        from PIL import Image  # noqa: F401  (лише для перевірки ширини оригіналу)
+        width = Image.open(os.path.join(ROOT, src)).width
+        extra = ' srcset="%s 640w, %s %dw" sizes="%s"' % (small, src, width, IMG_SIZES)
+        return tag[:-1].rstrip('/').rstrip() + extra + '>'
+    return re.sub(r'<img\b[^>]*?\ssrc="(assets/img/(?:events|photos)/[a-z0-9-]+(?<!-640)\.webp)"[^>]*>', fix, page)
+
+
 def build(check=False):
     site = json.loads(read('tools/site.json'))
     version = asset_version()
@@ -158,10 +176,20 @@ def build(check=False):
             page = replace_block(page, 'donate-modal', partials['donate-modal'], path)
             page = replace_block(page, 'scripts', scripts, path)
             page = set_body_i18n(page, cfg.get('i18n', False))
+        page = add_srcset(page)
         if page != original:
             changed.append(path)
             if not check:
                 write(path, page)
+
+    # один CSS-файл замість трьох: менше запитів, що блокують показ сторінки
+    bundle = '/* Згенеровано tools/build.py з %s — редагуйте ці файли, не цей. */\n' % ', '.join(CSS_PARTS)
+    bundle += '\n'.join(read(p) for p in CSS_PARTS)
+    current = read('assets/css/bundle.css') if os.path.exists(os.path.join(ROOT, 'assets/css/bundle.css')) else None
+    if current != bundle:
+        changed.append('assets/css/bundle.css')
+        if not check:
+            write('assets/css/bundle.css', bundle)
 
     # sitemap.xml + robots.txt
     today = datetime.date.today().isoformat()
@@ -181,6 +209,16 @@ def build(check=False):
             changed.append(path)
             if not check:
                 write(path, content)
+
+    # усі іконки зі сторінок мають бути у зібраному шрифті (tools/icons.py)
+    sys.path.insert(0, os.path.join(ROOT, 'tools'))
+    from icons import used_icons
+    icons_css = read('assets/css/icons.css')
+    absent = sorted('ph-%s ph-%s' % (w, n) for w, names in used_icons().items() for n in names
+                    if '.ph-%s.ph-%s:' % (w, n) not in icons_css)
+    if absent:
+        print('Іконок немає в assets/fonts — запустіть python3 tools/icons.py: ' + ', '.join(absent))
+        return 1
 
     if check:
         if changed:

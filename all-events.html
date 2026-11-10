@@ -23,19 +23,14 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/favicon-32.png">
     <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/duotone/style.css">
-    <link rel="stylesheet" href="assets/css/site.css?v=56c608bd">
+    <link rel="preload" href="assets/fonts/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/phosphor-bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/css/bundle.css?v=abf4e653">
 <!-- /sk:head -->
     <title>Історія подій — Sky Kids NGO</title>
     <meta name="description" content="Історія всіх заходів, майстер-класів та подій благодійного фонду Sky Kids.">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
     <style>
         /* ================= БАЗОВІ СТИЛІ ================= */
@@ -169,8 +164,8 @@ i[class*=" ph-"],
 <header class="sk-header sk-header--overlay">
     <div class="sk-header__inner">
         <a href="index.html" class="sk-logo" aria-label="SkyKids — на головну">
-            <img src="assets/img/brand/logo.webp" alt="" class="sk-logo__mark" width="44" height="44" fetchpriority="high">
-            <img src="assets/img/brand/wordmark.webp" alt="SkyKids" class="sk-logo__word" width="68" height="26">
+            <img src="assets/img/brand/logo-96.webp" alt="" class="sk-logo__mark" width="44" height="44" fetchpriority="high">
+            <img src="assets/img/brand/wordmark-200.webp" alt="SkyKids" class="sk-logo__word" width="68" height="26">
         </a>
 
         <nav class="sk-nav" id="sk-nav" aria-label="Головне меню">
@@ -194,7 +189,7 @@ i[class*=" ph-"],
         </nav>
 
         <div class="sk-header__actions">
-            <button class="sk-btn" type="button" data-open-modal="donateModal">
+            <button class="sk-btn" type="button" data-open-modal="donateModal" aria-label="Підтримати" data-uk-aria="Підтримати" data-en-aria="Donate">
                 <i class="ph-fill ph-heart" aria-hidden="true"></i>
                 <span data-uk="Підтримати" data-en="Donate">Підтримати</span>
             </button>
@@ -249,7 +244,7 @@ i[class*=" ph-"],
                     </div>
                 </div>
                 <div class="event-img-wrapper">
-                    <img src="assets/img/events/dytiache-sviato.webp" alt="Велике дитяче свято" class="event-img" loading="lazy">
+                    <img src="assets/img/events/dytiache-sviato.webp" alt="Велике дитяче свято" class="event-img" loading="lazy" srcset="assets/img/events/dytiache-sviato-640.webp 640w, assets/img/events/dytiache-sviato.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                     <div class="event-date-corner" data-uk="31 Травня" data-en="May 31">31 Травня</div>
                     <div class="event-hover-overlay">
                         <div class="huge-date">31</div>
@@ -261,7 +256,7 @@ i[class*=" ph-"],
             <!-- ПОДІЯ: ЛІТНІЙ ТАБІР -->
             <div class="event-card" onclick="openEventModal('assets/img/events/tabir-karpaty.webp', 'Літній табір у Карпатах ⛰️🌲', 'Summer Camp in Carpathians ⛰️🌲', '📢 Шановні батьки!\n\nПовідомляємо, що з 8 по 21 червня клуб SkyKids не працюватиме, адже ми разом із дітьми вирушаємо до літнього табору в Карпати ⛰️🌲\n\nПопереду на нас чекають нові пригоди, яскраві емоції, цікаві знайомства та незабутні враження.', '📢 Dear parents!\n\nWe inform you that from June 8 to 21, the SkyKids club will be closed, as we and the children are going to a summer camp in the Carpathians ⛰️🌲\n\nNew adventures, bright emotions, interesting meetings, and unforgettable impressions await us.', 'https://t.me/skykids_dnipro/735', '8-21 Черв', 'Jun 8-21', 'Табір')">
                 <div class="event-img-wrapper">
-                    <img src="assets/img/events/tabir-karpaty.webp" alt="Літній табір у Карпатах" class="event-img" loading="lazy">
+                    <img src="assets/img/events/tabir-karpaty.webp" alt="Літній табір у Карпатах" class="event-img" loading="lazy" srcset="assets/img/events/tabir-karpaty-640.webp 640w, assets/img/events/tabir-karpaty.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                     <div class="event-date-corner" data-uk="8-21 Черв" data-en="Jun 8-21">8-21 Черв</div>
                     <div class="event-hover-overlay">
                         <div class="huge-date">8-21</div>
@@ -275,7 +270,7 @@ i[class*=" ph-"],
             <!-- ПОДІЯ: ПЛАНЕТАРІЙ -->
             <div class="event-card" onclick="openEventModal('assets/img/events/planetarii.webp', 'Поїздка до планетарію! 🚀✨', 'Trip to the Planetarium! 🚀✨', '🌟 Увага! Завтра їдемо до планетарію! 🚀✨\n\nМаємо чудову новину - для наших дітей організовано безкоштовне відвідування планетарію для дітей 7-13 років.', '🌟 Attention! We are going to the planetarium tomorrow! 🚀✨\n\nGreat news - a free visit to the planetarium has been organized for our children aged 7-13.', 'https://t.me/skykids_dnipro/734', '3 Червня', 'June 3', '13:30')">
                 <div class="event-img-wrapper">
-                    <img src="assets/img/events/planetarii.webp" alt="Поїздка до планетарію" class="event-img" loading="lazy">
+                    <img src="assets/img/events/planetarii.webp" alt="Поїздка до планетарію" class="event-img" loading="lazy" srcset="assets/img/events/planetarii-640.webp 640w, assets/img/events/planetarii.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                     <div class="event-date-corner" data-uk="3 Червня" data-en="June 3">3 Червня</div>
                     <div class="event-hover-overlay">
                         <div class="huge-date">3</div>
@@ -289,7 +284,7 @@ i[class*=" ph-"],
             <!-- ПОДІЯ: ДЕНЬ КРАСИ -->
             <div class="event-card" onclick="openEventModal('assets/img/events/zachisky.webp', 'День краси для дівчат 🎀', 'Beauty Day for Girls 🎀', '🎀 Сьогодні у нас - День краси для дівчат.\n\nБудемо робити локони, зачіски з локонами та просто гарно проводити час у дівочій атмосфері 💕', '🎀 Today is Beauty Day for girls.\n\nWe will do curls, hairstyles, and just have a great time in a girly atmosphere 💕', 'https://t.me/skykids_dnipro/730', '25 Травня', 'May 25', '16:00')">
                 <div class="event-img-wrapper">
-                    <img src="assets/img/events/zachisky.webp" alt="День краси" class="event-img" loading="lazy">
+                    <img src="assets/img/events/zachisky.webp" alt="День краси" class="event-img" loading="lazy" srcset="assets/img/events/zachisky-640.webp 640w, assets/img/events/zachisky.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                     <div class="event-date-corner" data-uk="25 Травня" data-en="May 25">25 Травня</div>
                     <div class="event-hover-overlay">
                         <div class="huge-date">25</div>
@@ -303,7 +298,7 @@ i[class*=" ph-"],
             <!-- ПОДІЯ: КУЛІНАРІЯ -->
             <div class="event-card" onclick="openEventModal('assets/img/events/kulinarni-maister-klasy.webp', 'Кулінарні майстер-класи 👨‍🍳', 'Culinary Masterclasses 👨‍🍳', '🍕 Діти просили - і ми повертаємо Кулінарні майстер-класи!\n\nПопереду - смачні зустрічі, кулінарні експерименти та справжні маленькі шедеври, які будемо готувати разом.', '🍕 The children asked - and we are bringing back Culinary Masterclasses!\n\nAhead are tasty meetings, culinary experiments, and real little masterpieces that we will cook together.', 'https://t.me/skykids_dnipro/713', '22 Травня', 'May 22', '16:00')">
                 <div class="event-img-wrapper">
-                    <img src="assets/img/events/kulinarni-maister-klasy.webp" alt="Кулінарія" class="event-img" loading="lazy">
+                    <img src="assets/img/events/kulinarni-maister-klasy.webp" alt="Кулінарія" class="event-img" loading="lazy" srcset="assets/img/events/kulinarni-maister-klasy-640.webp 640w, assets/img/events/kulinarni-maister-klasy.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                     <div class="event-date-corner" data-uk="22 Травня" data-en="May 22">22 Травня</div>
                     <div class="event-hover-overlay">
                         <div class="huge-date">22</div>
@@ -317,7 +312,7 @@ i[class*=" ph-"],
             <!-- ПОДІЯ: SMM КУРСИ -->
             <div class="event-card event-card-special" onclick="openEventModal('assets/img/events/kursy-media-smm.webp', 'Безкоштовні курси «Медіа» та «SMM» 🎬', 'Free «Media» & «SMM» Courses 🎬', '‼️Незабаром стартують одразу два безкоштовні навчальні курси для підлітків та молоді!\n\nДля детальної інформації та реєстрації тисніть кнопку нижче.', '‼️Two free training courses for teenagers and youth are starting soon!\n\nFor details and registration, click the button below.', 'https://t.me/skykids_dnipro/729', 'Реєстрація', 'Registration', 'Відкрито', 'registration.html')">
                 <div class="event-img-wrapper">
-                    <img src="assets/img/events/kursy-media-smm.webp" alt="Курси Медіа та SMM" class="event-img" loading="lazy">
+                    <img src="assets/img/events/kursy-media-smm.webp" alt="Курси Медіа та SMM" class="event-img" loading="lazy" srcset="assets/img/events/kursy-media-smm-640.webp 640w, assets/img/events/kursy-media-smm.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                     <div class="event-date-corner" style="color: #8b5cf6;" data-uk="Реєстрація" data-en="Registration">Реєстрація</div>
                     <div class="event-hover-overlay" style="background: rgba(139, 92, 246, 0.85);">
                         <div class="huge-date"><i class="ph-bold ph-star"></i></div>
@@ -331,7 +326,7 @@ i[class*=" ph-"],
             <!-- ПОДІЯ: ВОДНІ БИТВИ -->
             <div class="event-card" onclick="openEventModal('assets/img/events/vodni-bytvy.webp', 'Водні битви! 💦', 'Water Battles! 💦', '💦 21 травня - ВОДНІ БИТВИ! \n\nБуде весело, мокро та незабутньо 😄\n\nГотуйтеся до справжньої битви! ☀️', '💦 May 21 - WATER BATTLES! \n\nIt will be fun, wet, and unforgettable 😄\n\nGet ready for a real battle! ☀️', 'https://t.me/skykids_dnipro/718', '21 Травня', 'May 21', '16:00')">
                 <div class="event-img-wrapper">
-                    <img src="assets/img/events/vodni-bytvy.webp" alt="Водні битви" class="event-img" loading="lazy">
+                    <img src="assets/img/events/vodni-bytvy.webp" alt="Водні битви" class="event-img" loading="lazy" srcset="assets/img/events/vodni-bytvy-640.webp 640w, assets/img/events/vodni-bytvy.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                     <div class="event-date-corner" data-uk="21 Травня" data-en="May 21">21 Травня</div>
                     <div class="event-hover-overlay">
                         <div class="huge-date">21</div>
@@ -345,7 +340,7 @@ i[class*=" ph-"],
             <!-- ПОДІЯ: СТРІЛКИ НА МІЛЬЙОН -->
             <div class="event-card" onclick="openEventModal('assets/img/events/strilky.webp', 'Майстер-клас «Стрілки на мільйон» ✨', 'Masterclass «Million Dollar Eyeliner» ✨', '✨ 14 травня - б’юті-майстер-клас «Стрілки на мільйон»!\n\nНавчимося малювати красиві стрілки для очей, розберемо різні техніки та поділимось б’юті-лайфхаками 💄', '✨ May 14 - beauty masterclass «Million Dollar Eyeliner»!\n\nWe will learn how to draw beautiful eyeliner, break down different techniques, and share beauty life hacks 💄', 'https://t.me/skykids_dnipro/715', '14 Травня', 'May 14', '16:00')">
                 <div class="event-img-wrapper">
-                    <img src="assets/img/events/strilky.webp" alt="Стрілки на мільйон" class="event-img" loading="lazy">
+                    <img src="assets/img/events/strilky.webp" alt="Стрілки на мільйон" class="event-img" loading="lazy" srcset="assets/img/events/strilky-640.webp 640w, assets/img/events/strilky.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                     <div class="event-date-corner" data-uk="14 Травня" data-en="May 14">14 Травня</div>
                     <div class="event-hover-overlay">
                         <div class="huge-date">14</div>
@@ -359,7 +354,7 @@ i[class*=" ph-"],
             <!-- ПОДІЯ: Б'ЮТІ МАЙСТЕР КЛАС -->
             <div class="event-card" onclick="openEventModal('assets/img/events/byti.webp', 'Б’юті-майстер-клас 💄', 'Beauty Masterclass 💄', '💄 Завітаємо у світ краси разом!\n\nУ нашому клубі відбудеться б’юті-майстер-клас для дівчаток.\n\nЦе чудова можливість дізнатися більше про догляд за собою та відчути себе впевненіше.', '💄 Let’s visit the world of beauty together!\n\nOur club will host a beauty masterclass for girls.\n\nThis is a great opportunity to learn more about self-care and feel more confident.', 'https://t.me/skykids_dnipro/708', '5 Травня', 'May 5', '16:00')">
                 <div class="event-img-wrapper">
-                    <img src="assets/img/events/byti.webp" alt="Б'юті-майстер-клас" class="event-img" loading="lazy">
+                    <img src="assets/img/events/byti.webp" alt="Б'юті-майстер-клас" class="event-img" loading="lazy" srcset="assets/img/events/byti-640.webp 640w, assets/img/events/byti.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                     <div class="event-date-corner" data-uk="5 Травня" data-en="May 5">5 Травня</div>
                     <div class="event-hover-overlay">
                         <div class="huge-date">5</div>
@@ -417,7 +412,7 @@ i[class*=" ph-"],
 
         <div class="sk-footer__grid">
             <div class="sk-footer__brand">
-                <img src="assets/img/brand/wordmark.webp" alt="SkyKids" width="99" height="38" loading="lazy">
+                <img src="assets/img/brand/wordmark-200.webp" alt="SkyKids" width="99" height="38" loading="lazy">
                 <p class="sk-footer__about" data-uk="Ми будуємо систему, де кожна дитина має право на безпеку, розвиток та гарячий обід. Приєднуйтесь до змін." data-en="We are building a system where every child has the right to safety, growth and a hot meal. Join the change.">Ми будуємо систему, де кожна дитина має право на безпеку, розвиток та гарячий обід. Приєднуйтесь до змін.</p>
                 <p class="sk-footer__legal-name">ГО «Небесні Діти» · ЄДРПОУ 45080222</p>
                 <div class="sk-footer__social">
@@ -480,7 +475,7 @@ i[class*=" ph-"],
             <span class="close-event" onclick="closeEventModal()">&times;</span>
             <div class="event-modal-img-wrap">
                 <div class="modal-blur-bg" id="modalBlurBg"></div>
-                <img id="modalEventImg" src="" alt="Event Image">
+                <img id="modalEventImg" src="" alt="Event Image" loading="lazy" decoding="async">
                 <div class="modal-date-badge" id="modalDateBadge"><i class="ph-bold ph-calendar-blank"></i> <span>Дата • Час</span></div>
             </div>
             <div class="event-modal-body">
@@ -604,7 +599,7 @@ i[class*=" ph-"],
 </div>
 <!-- /sk:donate-modal -->
     <!-- sk:scripts -->
-<script src="assets/js/site.js?v=56c608bd" defer></script>
+<script src="assets/js/site.js?v=abf4e653" defer></script>
 <!-- /sk:scripts -->
 </body>
 </html>

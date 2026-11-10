@@ -23,21 +23,16 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/favicon-32.png">
     <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/duotone/style.css">
-    <link rel="stylesheet" href="assets/css/site.css?v=56c608bd">
+    <link rel="preload" href="assets/fonts/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/phosphor-bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/css/bundle.css?v=abf4e653">
 <!-- /sk:head -->
     
     <title>Sky Kitchen — Гарячі обіди для дітей | Sky Kids NGO</title>
     <meta name="description" content="Благодійний проєкт Sky Kitchen. Забезпечуємо щоденним гарячим харчуванням 30 дітей у Дніпрі. Ваші 145 грн — це ситий день для дитини. Долучайтеся до збору.">
     <meta name="keywords" content="Sky Kitchen, благодійний фонд, допомога дітям Дніпро, гаряче харчування для дітей, волонтери Україна, благодійний внесок">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     
 
     <style>
@@ -363,8 +358,8 @@ i[class*=" ph-"],
 <header class="sk-header sk-header--overlay">
     <div class="sk-header__inner">
         <a href="index.html" class="sk-logo" aria-label="SkyKids — на головну">
-            <img src="assets/img/brand/logo.webp" alt="" class="sk-logo__mark" width="44" height="44" fetchpriority="high">
-            <img src="assets/img/brand/wordmark.webp" alt="SkyKids" class="sk-logo__word" width="68" height="26">
+            <img src="assets/img/brand/logo-96.webp" alt="" class="sk-logo__mark" width="44" height="44" fetchpriority="high">
+            <img src="assets/img/brand/wordmark-200.webp" alt="SkyKids" class="sk-logo__word" width="68" height="26">
         </a>
 
         <nav class="sk-nav" id="sk-nav" aria-label="Головне меню">
@@ -388,7 +383,7 @@ i[class*=" ph-"],
         </nav>
 
         <div class="sk-header__actions">
-            <button class="sk-btn" type="button" data-open-modal="donateModal">
+            <button class="sk-btn" type="button" data-open-modal="donateModal" aria-label="Підтримати" data-uk-aria="Підтримати" data-en-aria="Donate">
                 <i class="ph-fill ph-heart" aria-hidden="true"></i>
                 <span data-uk="Підтримати" data-en="Donate">Підтримати</span>
             </button>
@@ -455,7 +450,7 @@ i[class*=" ph-"],
 
                 <div class="checker-row">
                     <div class="checker-image">
-                        <img src="assets/img/photos/sky-children.webp" alt="Children eating together">
+                        <img src="assets/img/photos/sky-children.webp" alt="Children eating together" srcset="assets/img/photos/sky-children-640.webp 640w, assets/img/photos/sky-children.webp 1280w" sizes="(max-width: 600px) 92vw, 500px" loading="lazy" decoding="async">
                     </div>
                     <div class="checker-text">
                         <div class="checker-badge" data-uk="Безпека та стабільність" data-en="Safety & Stability">Безпека та стабільність</div>
@@ -471,7 +466,7 @@ i[class*=" ph-"],
 
                 <div class="checker-row reverse">
                     <div class="checker-image">
-                        <img src="assets/img/photos/novi-druzi-za-stolom.webp" alt="Happy kids">
+                        <img src="assets/img/photos/novi-druzi-za-stolom.webp" alt="Happy kids" srcset="assets/img/photos/novi-druzi-za-stolom-640.webp 640w, assets/img/photos/novi-druzi-za-stolom.webp 954w" sizes="(max-width: 600px) 92vw, 500px" loading="lazy" decoding="async">
                     </div>
                     <div class="checker-text">
                         <div class="checker-badge" style="background: #dcfce7; color: #047857;" data-uk="Соціалізація" data-en="Socialization">Соціалізація</div>
@@ -502,7 +497,7 @@ i[class*=" ph-"],
                     <p style="margin-top: 25px; font-weight: 600; font-size: 16px; color: var(--accent);" data-uk="Ми віримо, що довіра будується через відкритість та особистий зв'язок." data-en="We believe trust is built through openness, accountability, and personal connection.">Ми віримо, що довіра будується через відкритість та особистий зв'язок.</p>
                 </div>
                 <div class="open-door-image">
-                    <img src="assets/img/photos/zvit-z-zakhodu.webp" alt="Sky Kids Center Open Doors">
+                    <img src="assets/img/photos/zvit-z-zakhodu.webp" alt="Sky Kids Center Open Doors" srcset="assets/img/photos/zvit-z-zakhodu-640.webp 640w, assets/img/photos/zvit-z-zakhodu.webp 1280w" sizes="(max-width: 600px) 92vw, 500px" loading="lazy" decoding="async">
                 </div>
             </div>
         </section>
@@ -652,7 +647,7 @@ i[class*=" ph-"],
                 <div class="donate-fast">
                     <div style="width: 100%;">
                         <div style="margin-bottom: 20px;">
-                            <img src="assets/img/icons/monobank.webp" alt="Monobank" style="height: 45px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));">
+                            <img src="assets/img/icons/monobank.webp" alt="Monobank" style="height: 45px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));" loading="lazy" decoding="async">
                         </div>
                         <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 10px;"><span data-uk="Поповнити Банку" data-en="Top up the Jar">Поповнити Банку</span></h3>
                         <p style="font-size: 15px; color: rgba(255,255,255,0.7); margin-bottom: 30px;">
@@ -666,7 +661,7 @@ i[class*=" ph-"],
                         
                         <div style="margin-top: 30px; display: flex; justify-content: center;">
                             <div style="background: white; padding: 15px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
-                                <img src="assets/img/brand/goal-87000.png" alt="QR Code Monobank" style="width: 120px; height: 120px; display: block;">
+                                <img src="assets/img/brand/goal-87000.png" alt="QR Code Monobank" style="width: 120px; height: 120px; display: block;" loading="lazy" decoding="async">
                             </div>
                         </div>
                     </div>
@@ -793,7 +788,7 @@ i[class*=" ph-"],
 
         <div class="sk-footer__grid">
             <div class="sk-footer__brand">
-                <img src="assets/img/brand/wordmark.webp" alt="SkyKids" width="99" height="38" loading="lazy">
+                <img src="assets/img/brand/wordmark-200.webp" alt="SkyKids" width="99" height="38" loading="lazy">
                 <p class="sk-footer__about" data-uk="Ми будуємо систему, де кожна дитина має право на безпеку, розвиток та гарячий обід. Приєднуйтесь до змін." data-en="We are building a system where every child has the right to safety, growth and a hot meal. Join the change.">Ми будуємо систему, де кожна дитина має право на безпеку, розвиток та гарячий обід. Приєднуйтесь до змін.</p>
                 <p class="sk-footer__legal-name">ГО «Небесні Діти» · ЄДРПОУ 45080222</p>
                 <div class="sk-footer__social">
@@ -920,7 +915,7 @@ i[class*=" ph-"],
 </div>
 <!-- /sk:donate-modal -->
     <!-- sk:scripts -->
-<script src="assets/js/site.js?v=56c608bd" defer></script>
+<script src="assets/js/site.js?v=abf4e653" defer></script>
 <!-- /sk:scripts -->
 </body>
 </html>
