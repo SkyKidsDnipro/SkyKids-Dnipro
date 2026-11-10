@@ -17,6 +17,9 @@
     --sk-font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
+/* Переходи за якорями не ховають заголовок під шапкою */
+html { scroll-padding-top: calc(var(--sk-header-h) + 16px); }
+
 /* ---------- Доступність ---------- */
 .sk-skip-link {
     position: fixed;
@@ -248,7 +251,7 @@
     padding: 7px 0;
     border: 0;
     background: transparent;
-    color: var(--sk-muted);
+    color: #475569;
     font: 700 13px/1 var(--sk-font);
     cursor: pointer;
     transition: color 0.2s ease;

@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/duotone/style.css">
-    <link rel="stylesheet" href="assets/css/site.css?v=d0dce06d">
+    <link rel="stylesheet" href="assets/css/site.css?v=56c608bd">
 <!-- /sk:head -->
     <title>Історія подій — Sky Kids NGO</title>
     <meta name="description" content="Історія всіх заходів, майстер-класів та подій благодійного фонду Sky Kids.">
@@ -157,6 +157,10 @@ i[class*=" ph-"],
         .btn-tg:hover { background: #0099e6; transform: translateY(-3px); color: white; }
         .btn-inst { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); box-shadow: 0 10px 20px rgba(220, 39, 67, 0.2); }
         .btn-inst:hover { transform: translateY(-3px); filter: brightness(1.1); color: white; }
+    
+        /* Доступність: контраст тексту не нижче 4.5:1 (WCAG AA) */
+        .btn-tg, .btn-telegram { background: #0077b5; }
+        .btn-telegram:hover { background: #006399; }
     </style>
 </head>
 <body data-i18n="on">
@@ -208,9 +212,7 @@ i[class*=" ph-"],
 </header>
 <!-- /sk:header -->
 
-
-
-    <header class="page-header">
+    <header class="page-header" id="main">
         <h1 data-uk="Історія подій" data-en="Event History">Історія подій</h1>
         <p data-uk="Тут зібрані всі наші заходи, зустрічі та майстер-класи. Ми творимо щасливі моменти разом!" data-en="Here are all our events, meetings and master classes. We create happy moments together!">
             Тут зібрані всі наші заходи, зустрічі та майстер-класи. Ми творимо щасливі моменти разом!
@@ -602,7 +604,7 @@ i[class*=" ph-"],
 </div>
 <!-- /sk:donate-modal -->
     <!-- sk:scripts -->
-<script src="assets/js/site.js?v=d0dce06d" defer></script>
+<script src="assets/js/site.js?v=56c608bd" defer></script>
 <!-- /sk:scripts -->
 </body>
 </html>

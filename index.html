@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/duotone/style.css">
-    <link rel="stylesheet" href="assets/css/site.css?v=d0dce06d">
+    <link rel="stylesheet" href="assets/css/site.css?v=56c608bd">
 <!-- /sk:head -->
   
     <title>Sky Kids — Системна допомога дітям у прифронтовій зоні</title>
@@ -561,24 +561,6 @@ body::before {
     z-index: -2;
 }
 
-/* Глубина + зерно */
-body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: url("https://www.transparenttextures.com/patterns/noise.png");
-    opacity: 0.03;
-    z-index: -1;
-}
-      
-
-/* Скрыть скроллбар для всего body */
-body::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
-}
-
-/* Опционально: скрыть полосу прокрутки для отдельных блоков */
 
 /* ============================================================
    СТИЛИ ДЛЯ БОЛЬШОГО БЛОКА ПОМОЩИ ДЕТЯМ
@@ -1562,6 +1544,13 @@ body.modal-open {
         width: 100%;
     }
 }
+    
+        /* Доступність: контраст тексту не нижче 4.5:1 (WCAG AA) */
+        .section-tag { color: #1d4ed8; }
+        .marquee-cta-btn { background: #e11d48; }
+        .marquee-cta-btn:hover { background: #be123c; }
+        .btn-telegram { background: #0077b5; }
+        .btn-telegram:hover { background: #006399; }
     </style>
 </head>
 <body data-i18n="on">    <!-- sk:header -->
@@ -1621,7 +1610,7 @@ body.modal-open {
                     src="https://www.youtube.com/embed/BJXmcD2eWYw?autoplay=1&mute=1&loop=1&playlist=BJXmcD2eWYw&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1" 
                     frameborder="0" 
                     allow="autoplay; encrypted-media" 
-                    allowfullscreen>
+                    allowfullscreen title="Відео про SkyKids">
             </iframe>
             <div class="hero-video-overlay"></div>
         </div>
@@ -2341,7 +2330,7 @@ function loadMoreEvents() {
 </div>
 <!-- /sk:donate-modal -->
     <!-- sk:scripts -->
-<script src="assets/js/site.js?v=d0dce06d" defer></script>
+<script src="assets/js/site.js?v=56c608bd" defer></script>
 <!-- /sk:scripts -->
 </body>
 </html>
