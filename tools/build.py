@@ -71,12 +71,12 @@ def head_block(path, title, desc, cfg, site, version):
     url = site['domain'] + '/' + ('' if path == 'index.html' else path)
     og_image = site['domain'] + '/' + site['og_image']
     e = lambda s: html.escape(s, quote=True)
-    lines = [
-        '<link rel="canonical" href="%s">' % url,
-        '<meta name="theme-color" content="%s">' % site['theme_color'],
-    ]
+    lines = []
     if cfg.get('noindex'):
         lines.append('<meta name="robots" content="noindex">')
+    else:
+        lines.append('<link rel="canonical" href="%s">' % url)
+    lines.append('<meta name="theme-color" content="%s">' % site['theme_color'])
     lines += [
         '<meta property="og:type" content="website">',
         '<meta property="og:site_name" content="%s">' % e(site['site_name']),
@@ -106,8 +106,8 @@ def head_block(path, title, desc, cfg, site, version):
 def ensure_description(page, desc):
     if re.search(r'<meta\s+name="description"', page):
         return page
-    tag = '    <meta name="description" content="%s">\n' % html.escape(desc, quote=True)
-    return page.replace('<!-- sk:head -->', tag + '    <!-- sk:head -->', 1)
+    tag = '<meta name="description" content="%s">\n    ' % html.escape(desc, quote=True)
+    return page.replace('<!-- sk:head -->', tag + '<!-- sk:head -->', 1)
 
 
 def set_body_i18n(page, enabled):

@@ -2,12 +2,12 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
+    <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <meta name="description" content="Сторінку не знайдено. Зіграйте в міні-гру SkyKids або поверніться на головну.">
+    <meta name="description" content="Сторінку не знайдено. Зіграйте в міні-гру SkyKids або поверніться на головну.">
     <!-- sk:head -->
-    <link rel="canonical" href="https://skykids.com.ua/404.html">
-    <meta name="theme-color" content="#2563eb">
     <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#2563eb">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Sky Kids NGO">
     <meta property="og:locale" content="uk_UA">
@@ -365,9 +365,9 @@
 <div class="sky-bg" id="sky"></div>
 
 <nav class="nav" id="topNav">
-    <a href="index.html" class="logo">
-    <img src="assets/img/brand/logo.webp" alt="Logo" class="logo-img">
-    <img src="assets/img/brand/wordmark.webp" alt="SkyKids Text" class="logo-text-img">
+    <a href="/" class="logo">
+    <img src="assets/img/brand/logo.webp" alt="" class="logo-img">
+    <img src="assets/img/brand/wordmark.webp" alt="SkyKids" class="logo-text-img">
 </a>
     <div class="controls-top">
         <button class="btn-icon" id="muteBtn">🔊</button>
@@ -385,7 +385,7 @@
         <div class="aura magnet-active"></div>
         <div class="aura time-active"></div>
         <div class="aura star-active"></div>
-        <img src="assets/img/game/hero.webp" alt="Hero">
+        <img src="assets/img/game/hero.webp" alt="Хмаринка SkyKids — герой гри">
     </div>
     <div class="ground" id="ground"></div>
     <div class="score-container">
@@ -397,8 +397,8 @@
 <div class="overlay" id="startScreen">
     <div class="menu-card">
         <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 15px;">
-            <img src="assets/img/brand/logo.webp" style="width: 80px;">
-            <img src="assets/img/brand/wordmark.webp" alt="SkyKids Text" class="logo-text-img" style="height: 82px;">
+            <img src="assets/img/brand/logo.webp" alt="" style="width: 80px;">
+            <img src="assets/img/brand/wordmark.webp" alt="SkyKids" class="logo-text-img" style="height: 82px;">
         </div>
 
         <p style="color: inherit; opacity: 0.8; font-size: 15px; margin-bottom: 25px; line-height: 1.5;">
@@ -409,11 +409,11 @@
         <button class="main-btn" id="startBtn">ПОЛЕТІЛИ!</button>
         
         <div class="social-links">
-            <a href="https://www.instagram.com/skykids.dnipro/" target="_blank" class="tg-btn">
-                <img src="assets/img/icons/instagram.webp" width="16" style="filter: grayscale(1)"> Instagram
+            <a href="https://www.instagram.com/skykids.dnipro/" target="_blank" rel="noopener" class="tg-btn">
+                <img src="assets/img/icons/instagram.webp" width="16" height="16" alt="" style="filter: grayscale(1)"> Instagram
             </a>
-            <a href="https://t.me/skykids_dnipro" target="_blank" class="tg-btn">
-                <img src="assets/img/icons/telegram.webp" width="16" style="filter: grayscale(1)"> Telegram
+            <a href="https://t.me/skykids_dnipro" target="_blank" rel="noopener" class="tg-btn">
+                <img src="assets/img/icons/telegram.webp" width="16" height="16" alt="" style="filter: grayscale(1)"> Telegram
             </a>
         </div>
     </div>
@@ -429,16 +429,16 @@
             <span>🎮</span> СПРОБУВАТИ ЩЕ
         </button>
         
-        <a href="index.html" class="main-btn secondary-btn">
+        <a href="/" class="main-btn secondary-btn">
             <span>←</span> НА ГОЛОВНУ
         </a>
         
         <div class="social-links">
-            <a href="https://www.instagram.com/skykids.dnipro/" target="_blank" class="tg-btn">
-                <img src="assets/img/icons/instagram.webp" width="16" style="filter: grayscale(1)"> Instagram
+            <a href="https://www.instagram.com/skykids.dnipro/" target="_blank" rel="noopener" class="tg-btn">
+                <img src="assets/img/icons/instagram.webp" width="16" height="16" alt="" style="filter: grayscale(1)"> Instagram
             </a>
-            <a href="https://t.me/skykids_dnipro" target="_blank" class="tg-btn">
-                <img src="assets/img/icons/telegram.webp" width="16" style="filter: grayscale(1)"> Telegram
+            <a href="https://t.me/skykids_dnipro" target="_blank" rel="noopener" class="tg-btn">
+                <img src="assets/img/icons/telegram.webp" width="16" height="16" alt="" style="filter: grayscale(1)"> Telegram
             </a>
         </div>
     </div>
@@ -698,7 +698,7 @@
         
         if (type === "coin") {
             entity.className = "coin";
-            entity.innerHTML = `<img src="assets/img/game/coin.webp">`;
+            entity.innerHTML = `<img src="assets/img/game/coin.webp" alt="">`;
             entity.style.bottom = (Math.random() * 250 + 90) + "px";
         } else if (["shield", "magnet", "time", "star"].includes(type)) {
             entity.className = `powerup ${type}`;
@@ -904,7 +904,8 @@
         }
     });
 
-    document.getElementById("logoBtn").onclick = () => {
+    const logoBtn = document.getElementById("logoBtn");
+    if (logoBtn) logoBtn.onclick = () => {
         window.open("https://t.me/skykids_dnipro", "_blank");
     };
 

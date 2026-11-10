@@ -83,9 +83,11 @@
       Это железобетонно фиксирует их пропорции в любых Flex/Grid контейнерах проекта,
       делая их абсолютно одинаковыми по геометрии.
     */
-    i[class^="ph-"], 
-    i[class*=" ph-"],
-    .ph, .ph-fill, .ph-bold, .ph-light, .ph-duotone {
+    i[class^="ph-"],
+i[class*=" ph-"],
+.ph-fill,
+.ph-bold,
+.ph-duotone {
         flex-shrink: 0 !important; /* Ключевая защита от сдавливания во Flexbox */
         display: inline-flex !important;
         align-items: center;
@@ -136,44 +138,9 @@
             transition: all 0.4s ease;
         }
         
-        .nav.scrolled {
-            padding: 12px 5%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
 
-        .lang-switch {
-            display: flex;
-            gap: 4px;
-            background: rgba(241, 245, 249, 0.8);
-            padding: 4px;
-            border-radius: 30px;
-        }
 
-.lang-switch button {
-    background: transparent;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: 600;
-    font-family: inherit;
-    color: var(--text-muted);
-    transition: all 0.25s ease;
-    font-size: 14px;
-}
-.lang-switch button:hover {
-    transform: scale(1.15);
-    color: var(--primary);
-}
 
-.lang-switch button.active {
-    background: white;
-    color: var(--primary);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    transform: scale(1.1);
-}
 
         /* --- КНОПКИ --- */
         .btn {
@@ -251,198 +218,39 @@
         .text-center { text-align: center; margin-inline: auto; }
 
 /* Dark Footer НОВЫЙ */
-.sky-footer {
-    background: #0a0f1a;
-    color: #ffffff;
-    padding: 100px 5% 40px;
-    position: relative;
-    overflow: hidden;
-}
 
 /* Ефект фонового світіння */
-.sky-footer::before {
-    content: '';
-    position: absolute;
-    top: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
-    pointer-events: none;
-}
 
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-}
 
-.footer-main-row {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 80px;
-    padding-bottom: 60px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
 
 /* Logo & Brand */
-.footer-logo {
-    font-size: 30px;
-    font-weight: 400;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 25px;
-    font-family: 'Pacifico', cursive;
-    color: #ffffff;
-}
 
-.footer-logo .ngo {
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--primary);
-    margin-left: 6px;
-    letter-spacing: 1px;
-}
 
-.footer-logo span { color: var(--primary); }
 
-.brand-pitch {
-    font-size: 16px;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.6;
-    margin-bottom: 30px;
-}
 
 /* Links & Nav */
-.footer-title {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 30px;
-    color: white;
-}
 
-.footer-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
 
-.nav-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: rgba(255,255,255,0.5);
-    text-decoration: none;
-    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
 
-.nav-link i { font-size: 20px; transition: 0.3s; }
 
-.nav-link:hover {
-    color: white;
-    transform: translateX(10px);
-}
 
-.nav-link:hover i { color: var(--primary); }
 
 /* Contacts Mechanics */
-.contact-mechanic {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
 
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    color: rgba(255,255,255,0.7);
-    font-size: 15px;
-}
 
-.contact-item.clickable {
-    text-decoration: none;
-    transition: 0.3s;
-}
 
-.contact-item.clickable:hover { color: var(--primary); }
 
-.contact-item i {
-    width: 40px;
-    height: 40px;
-    background: rgba(255,255,255,0.03);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    color: var(--primary);
-}
 
 /* Bottom Bar */
-.footer-bottom-bar {
-    padding-top: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
 
-.legal-links { display: flex; gap: 30px; }
-.legal-links a { 
-    color: rgba(255,255,255,0.3); 
-    text-decoration: none; 
-    font-size: 13px; 
-    transition: 0.3s;
-}
-.legal-links a:hover { color: white; }
 
-.copyright { color: rgba(255,255,255,0.3); font-size: 13px; }
 
 /* Social Buttons */
-.social-mechanics { display: flex; gap: 15px; }
-.social-btn {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.05);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-decoration: none;
-    transition: 0.3s;
-    border: 1px solid rgba(255,255,255,0.1);
-}
 
-.social-btn:hover {
-    background: var(--primary);
-    transform: rotate(15deg) scale(1.1);
-    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
-}
 
-@media (max-width: 992px) {
-    .footer-main-row { grid-template-columns: 1fr; gap: 50px; }
-    .footer-bottom-bar { justify-content: center; text-align: center; }
-}
 
-.logo-img {
-    width: 46px;
-    height: 46px;
-    object-fit: contain;
-    border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-    transition: 0.3s;
-}
 
-.logo:hover .logo-img {
-    transform: scale(1.4) rotate(5deg);
-}
+
       
 .logo {
     font-weight: 400;
@@ -593,9 +401,6 @@ main.section {
     }
     
     /* Скрываем текстовый логотип на мобильных, чтобы не перегружать навигацию */
-    .logo-text-img {
-        display: none !important;
-    }
 }
       
 /* --- PREMIUM HERO SECTION З ВІДЕО-ФОНОМ --- */
@@ -732,45 +537,10 @@ main.section {
     padding-top: 60px !important; 
 }
       
-.lang-switch {
-    position: relative;
-    display: flex;
-    background: rgba(241, 245, 249, 0.8);
-    border-radius: 30px;
-    padding: 4px;
-    width: 110px;
-}
 
-.lang-switch button {
-    flex: 1;
-    border: none;
-    background: transparent;
-    z-index: 2;
-    padding: 8px 0;
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--text-muted);
-}
 
-.lang-slider {
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    width: 50%;
-    height: calc(100% - 8px);
-    background: white;
-    border-radius: 20px;
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-}
 
-.lang-switch.en .lang-slider {
-    transform: translateX(85%);
-}
 
-.lang-switch button.active {
-    color: var(--primary);
-}
       
 /* ФОН ПРЕМИУМ */
 body {
@@ -801,11 +571,6 @@ body::after {
     z-index: -1;
 }
       
-.nav.scrolled {
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(25px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
 
 /* Скрыть скроллбар для всего body */
 body::-webkit-scrollbar {
@@ -814,10 +579,6 @@ body::-webkit-scrollbar {
 }
 
 /* Опционально: скрыть полосу прокрутки для отдельных блоков */
-.some-container::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
-}
 
 /* ============================================================
    СТИЛИ ДЛЯ БОЛЬШОГО БЛОКА ПОМОЩИ ДЕТЯМ
@@ -986,77 +747,21 @@ body::-webkit-scrollbar {
 /* АДАПТАЦИЯ КАРТОЧЕК ПОД ТЕМНЫЙ ФУТЕР */
 
 /* 1. Контейнер ряда в футере */
-.sky-footer .actions-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    margin-bottom: 60px; /* Отступ до основного футера */
-}
 
 /* 2. Сама карточка в темном режиме */
-.sky-footer .action-item {
-    background: rgba(255, 255, 255, 0.03); /* Почти прозрачный белый */
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    padding: 22px 28px;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    text-decoration: none;
-}
 
 /* 3. Заголовок и текст */
-.sky-footer .action-title {
-    color: #ffffff !important; /* Всегда белый в футере */
-    font-size: 17px;
-    font-weight: 700;
-    margin-bottom: 2px;
-}
 
-.sky-footer .action-desc {
-    color: rgba(255, 255, 255, 0.5) !important; /* Тусклый текст для контраста */
-    font-size: 13px;
-}
 
 /* 4. Иконка */
-.sky-footer .action-icon {
-    font-size: 30px;
-    color: var(--primary);
-    flex-shrink: 0;
-}
 
 /* 5. Карточка Доната (Выделенная) */
-.sky-footer .action-item.highlight {
-    background: var(--primary) !important;
-    border: none;
-    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
-}
 
-.sky-footer .action-item.highlight .action-title {
-    color: #ffffff !important;
-}
 
-.sky-footer .action-item.highlight .action-desc {
-    color: rgba(255, 255, 255, 0.8) !important;
-}
 
-.sky-footer .action-item.highlight .action-icon {
-    color: #ffffff !important; /* Белая иконка на синем фоне */
-}
 
 /* 6. Ховер-эффекты */
-.sky-footer .action-item:hover {
-    background: rgba(255, 255, 255, 0.07);
-    border-color: var(--primary);
-    transform: translateY(-5px);
-}
 
-.sky-footer .action-item.highlight:hover {
-    background: var(--primary-hover) !important;
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4);
-}
       
 .urgent-marquee-wrap {
     background: #0f172a; /* Темний фон, як у футера */
@@ -1147,30 +852,12 @@ body::-webkit-scrollbar {
 /* Адаптивність для сіток (Реальність, Рішення, Команда) */
 @media (max-width: 768px) {
     /* Робимо сітку в одну колонку */
-    .context-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px;
-    }
 
     /* Вирівнюємо зигзаг-секції (Реальність та рішення) */
-    .zigzag {
-        flex-direction: column !important;
-        gap: 30px;
-    }
 
-    .zigzag:nth-child(even) {
-        flex-direction: column !important;
-    }
 
     /* Корекція внутрішніх відступів для мобільних */
-    .context-card {
-        padding: 30px 20px;
-    }
 
-    .glass-section {
-        padding: 40px 20px !important;
-        margin: 0 15px 30px !important;
-    }
 
     .section-title {
         font-size: 28px;
@@ -1180,95 +867,19 @@ body::-webkit-scrollbar {
       
       /* НОВ*/
       /* --- LIVE COUNTER --- */
-.metrics-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    margin: 40px 0;
-}
 
-.metric-item {
-    background: white;
-    padding: 35px 25px;
-    border-radius: 32px;
-    text-align: center;
-    border: 1px solid rgba(0,0,0,0.03);
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
 
-.metric-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.06);
-}
 
-.metric-value {
-    font-size: 52px;
-    font-weight: 800;
-    color: var(--primary);
-    line-height: 1;
-    margin-bottom: 10px;
-    letter-spacing: -2px;
-}
 
-.metric-label {
-    font-size: 15px;
-    color: var(--text-muted);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
 
 /* --- VOLUNTEER SPOTLIGHT --- */
-.spotlight-card {
-    background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
-    border-radius: 40px;
-    padding: 40px;
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    margin: 60px 0;
-    border: 1px solid rgba(37, 99, 235, 0.1);
-    position: relative;
-    overflow: hidden;
-}
 
-.spotlight-img {
-    width: 140px;
-    height: 140px;
-    border-radius: 35px;
-    object-fit: cover;
-    flex-shrink: 0;
-    box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
-}
 
-.spotlight-content { position: relative; z-index: 2; }
 
-.spotlight-quote {
-    font-size: clamp(18px, 2.5vw, 22px);
-    font-weight: 700;
-    color: var(--text-main);
-    line-height: 1.4;
-    margin-bottom: 15px;
-}
 
-.spotlight-author {
-    font-family: 'Pacifico', cursive;
-    color: var(--primary);
-    font-size: 18px;
-}
 
-.quote-icon {
-    position: absolute;
-    top: -20px;
-    left: -10px;
-    font-size: 80px;
-    color: var(--primary);
-    opacity: 0.05;
-}
 
-@media (max-width: 768px) {
-    .spotlight-card { flex-direction: column; text-align: center; padding: 40px 25px; }
-}
+
       
 .section-subtitle {
     border-left: 3px solid var(--primary);
@@ -1277,10 +888,6 @@ body::-webkit-scrollbar {
     max-width: 900px;
 }
       
-.logo-text-img {
-    height: 28px;
-    object-fit: contain;
-}
       
 .logo {
     display: flex;
@@ -1338,41 +945,12 @@ body::-webkit-scrollbar {
     overflow-y: auto;
 }
       
-.donate-layout {
-    align-items: stretch;
-}
       
-.donate-fast {
-    min-height: 100%;
-}
       
-.donate-left {
-    display: flex;
-}
 
-.donate-left .donate-box {
-    width: 100%;
-}
       
-.donate-left {
-    border-right: 1px solid rgba(0,0,0,0.05);
-    padding-right: 10px;
-}
       
-.close {
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    font-size: 24px;
-    cursor: pointer;
-}
 
-.donate-box {
-    background: #f1f7ff;
-    padding: 20px;
-    border-radius: 16px;
-    margin: 20px 0;
-}
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px);}
@@ -1380,63 +958,19 @@ body::-webkit-scrollbar {
 }
       
 /* ПРЕМИУМ МОДАЛКА */
-.modal-premium {
-    border-radius: 28px;
-    box-shadow: 0 40px 120px rgba(0,0,0,0.15);
-    padding: 50px 40px;
-}
 
 /* Подзаголовок */
-.modal-sub {
-    color: #64748b;
-    font-size: 16px;
-    margin-bottom: 25px;
-}
 
 /* Строки реквизитов */
-.donate-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 12px;
-    font-size: 15px;
-}
 
 /* Улучшенный блок */
-.premium-box {
-    background: linear-gradient(135deg, #f1f7ff, #ffffff);
-    border: 1px solid rgba(37,99,235,0.1);
-}
 
 /* Impact строка */
-.donate-impact {
-    margin: 20px 0;
-    font-weight: 700;
-    color: #2563eb;
-}
       
-.donate-fast {
-    box-shadow: 
-        0 20px 60px rgba(37, 99, 235, 0.4),
-        inset 0 1px 0 rgba(255,255,255,0.2);
-}
       
-.donate-fast:hover {
-    transform: translateY(-3px);
-    transition: 0.3s;
-}
 
 /* Список партнера */
-.partner-list {
-    text-align: left;
-    margin: 25px 0;
-    padding-left: 0;
-    list-style: none;
-}
 
-.partner-list li {
-    margin-bottom: 10px;
-    font-weight: 500;
-}
 
 /* Анимация появления */
 .modal.show {
@@ -1451,62 +985,19 @@ body.modal-open {
 
 /* ДОП. ДЛЯ ОКНА ДОНАТОВ */
 /* --- КНОПКА КОПИРОВАНИЯ --- */
-.card-copy-wrap {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 
-.copy-btn {
-    background: var(--primary);
-    border: none;
-    color: white;
-    border-radius: 10px;
-    padding: 6px 10px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: 0.3s;
-}
 
-.copy-btn:hover {
-    background: var(--primary-hover);
-    transform: scale(1.1);
-}
 
 /* Акцент строки карты */
-.donate-card-row strong {
-    font-size: 16px;
-    letter-spacing: 1px;
-}
 
 /* --- БЛОК ПАРТНЁРСТВА --- */
-.partner-cta {
-    margin-top: 25px;
-}
 
-.partner-note {
-    margin-top: 10px;
-    font-size: 13px;
-    color: var(--text-muted);
-}
 
 /* --- ЛЕГКИЙ ВИЗУАЛЬНЫЙ АКЦЕНТ МОДАЛКИ --- */
-.modal-premium {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
-}
       
 /* Для двух кнопок копирования */
-.card-copy-wrap {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 
 /* Чуть усилить IBAN строку */
-#ibanNumber {
-    font-size: 14px;
-    letter-spacing: 0.5px;
-}
 
 @media (min-width: 1024px) {
     .projects-grid {
@@ -1519,286 +1010,62 @@ body.modal-open {
       
 /* 2 колонка*/
 /* --- GRID --- */
-.donate-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
 
 /* --- ПРАВАЯ КОЛОНКА --- */
-.donate-fast {
-    height: 100%;
-    border-radius: 24px;
-    padding: 30px;
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
 
 /* ФОН ПОД КАРТИНКУ (потом вставишь) */
-.donate-fast::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: 
-        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-        url('assets/img/photos/hungry-child.webp') center/cover no-repeat;
-    opacity: 1;
-}
       
 /* Контент поверх */
-.donate-fast-content {
-    position: relative;
-    z-index: 2;
-}
 
-.donate-fast h3 {
-    font-size: 22px;
-    margin-bottom: 10px;
-}
 
-.donate-fast p {
-    opacity: 0.9;
-    margin-bottom: 20px;
-}
 
 /* Кнопка банка */
-.mono-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: white;
-    color: var(--primary);
-    padding: 14px 20px;
-    border-radius: 14px;
-    font-weight: 700;
-    text-decoration: none;
-    margin-bottom: 20px;
-    transition: 0.3s;
-}
 
-.mono-btn:hover {
-    transform: scale(1.05);
-}
 
 /* Нижний блок */
-.donate-bottom {
-    margin-top: 25px;
-}
 
 /* --- АДАПТИВ --- */
-@media (max-width: 900px) {
-    .donate-layout {
-        grid-template-columns: 1fr;
-    }
-}
+
       
 /* Кнопки */
-      .quick-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 10px;
-}
 
-.quick-buttons button {
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-    color: white;
-    padding: 10px 16px;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    transition: 0.3s;
-}
 
-.quick-buttons button:hover {
-    background: white;
-    color: var(--primary);
-    transform: scale(1.05);
-}
       
-.mono-btn {
-    font-size: 16px;
-    padding: 16px 24px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
       
-.donate-fast::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(37,99,235,0.75), rgba(29,78,216,0.45));
-    z-index: 1;
-}
       
 /* --- PROGRESS BAR --- */
-.donate-progress {
-    margin-top: 20px;
-    text-align: left;
-}
 
-.progress-header {
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-    margin-bottom: 8px;
-    opacity: 0.9;
-}
 
-.progress-header strong {
-    font-size: 14px;
-}
 
-.progress-bar {
-    width: 100%;
-    height: 10px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-}
 
-.progress-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #ffffff, #c7d2fe);
-    border-radius: 10px;
-    transition: width 0.6s ease;
-    box-shadow: 0 0 10px rgba(255,255,255,0.5);
-}
 
-.progress-footer {
-    margin-top: 8px;
-    font-size: 12px;
-    opacity: 0.8;
-    display: flex;
-    justify-content: space-between;
-}
       
 /* Улучщеный блок стати партнером */
-.partner-modal {
-    max-width: 720px;
-}
 
-.partner-section {
-    margin: 30px 0;
-    text-align: left;
-}
 
-.partner-section h4 {
-    margin-bottom: 15px;
-    font-weight: 700;
-}
 
-.partner-grid {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
 
-.partner-card {
-    background: #f1f7ff;
-    padding: 10px 16px;
-    border-radius: 12px;
-    font-weight: 600;
-}
 
-.partner-box {
-    background: white;
-    padding: 15px;
-    border-radius: 14px;
-    flex: 1;
-    min-width: 150px;
-    border: 1px solid rgba(0,0,0,0.05);
-}
 
-.partner-proof {
-    display: flex;
-    justify-content: space-between;
-    margin: 30px 0;
-    text-align: center;
-}
 
-.proof-item strong {
-    font-size: 22px;
-    color: var(--primary);
-}
 
-.partner-note {
-    margin-top: 10px;
-    font-size: 13px;
-    color: var(--text-muted);
-}
       
 /* --- WIDE МОДАЛКА --- */
-.partner-modal-wide {
-    max-width: 1000px;
-    width: 95%;
-}
 
 /* --- ЛЕЙАУТ --- */
-.partner-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    align-items: stretch;
-}
 
 /* --- ЛЕВАЯ --- */
-.partner-left {
-    text-align: left;
-}
 
 /* --- ПРАВАЯ --- */
-.partner-right {
-    display: flex;
-}
 
-.partner-highlight {
-    width: 100%;
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    color: white;
-    border-radius: 20px;
-    padding: 30px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
 
 /* --- СТАТЫ --- */
-.partner-stats {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
-}
 
-.partner-stats strong {
-    font-size: 20px;
-}
 
-.partner-stats span {
-    font-size: 12px;
-    opacity: 0.8;
-}
       
-.partner-highlight .partner-note {
-    color: rgba(255,255,255,0.75);
-}
 
 /* --- АДАПТИВ --- */
-@media (max-width: 900px) {
-    .partner-layout {
-        grid-template-columns: 1fr;
-    }
-}
+
       
 /* ============================================================
    СТИЛІ ДЛЯ СЕКЦІЇ КОМАНДИ
@@ -2155,17 +1422,8 @@ body.modal-open {
 }
       
     /* Робимо логотип білим для футера */
-.sky-footer .footer-logo-white {
-    height: 40px; /* Налаштуй розмір під свій футер */
-    width: auto;
-    filter: brightness(0) invert(1); /* Магія інверсії */
-    transition: 0.3s;
-}
 
 /* При наведенні можна додати легкий ефект */
-.sky-footer .footer-logo-white:hover {
-    opacity: 0.8;
-}
 
 /* ============================================================
    ШИРОКА КАРТКА ПОДІЇ (БАНЕР ДЛЯ МАСШТАБНИХ ІВЕНТІВ)

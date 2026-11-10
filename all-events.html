@@ -39,7 +39,11 @@
 
     <style>
         /* ================= БАЗОВІ СТИЛІ ================= */
-        i[class^="ph-"], i[class*=" ph-"], .ph, .ph-fill, .ph-bold, .ph-light, .ph-duotone {
+        i[class^="ph-"],
+i[class*=" ph-"],
+.ph-fill,
+.ph-bold,
+.ph-duotone {
             flex-shrink: 0 !important; display: inline-flex !important; align-items: center; justify-content: center;
             aspect-ratio: 1 / 1 !important; min-width: 1.25em !important; min-height: 1.25em !important; line-height: 1 !important; vertical-align: middle;
         }
@@ -59,22 +63,10 @@
 
         /* --- НАВІГАЦІЯ --- */
         .nav { position: fixed; width: 100%; top: 0; display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; z-index: 1000; transition: all 0.4s ease; }
-        .nav.scrolled { padding: 12px 5%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(25px); border-bottom: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         .logo { font-weight: 400; font-size: 26px; color: #000; display: flex; align-items: center; gap: 12px; text-decoration: none; font-family: 'Pacifico', cursive; }
-        .logo-img { width: 46px; height: 46px; object-fit: contain; border-radius: 50%; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); transition: 0.3s; }
-        .logo-text-img { height: 28px; object-fit: contain; }
-        .logo:hover .logo-img { transform: scale(1.4) rotate(5deg); }
 
-        .nav-right { display: flex; align-items: center; gap: 15px; }
         
-        .lang-switch { display: flex; gap: 4px; background: rgba(241, 245, 249, 0.8); padding: 4px; border-radius: 30px; position: relative; width: 110px; }
-        .lang-switch button { flex: 1; background: transparent; border: none; padding: 8px 0; border-radius: 20px; cursor: pointer; font-weight: 600; font-family: inherit; color: var(--text-muted); transition: all 0.25s ease; font-size: 14px; z-index: 2; }
-        .lang-switch button.active { color: var(--primary); }
-        .lang-slider { position: absolute; top: 4px; left: 4px; width: 50%; height: calc(100% - 8px); background: white; border-radius: 20px; transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
-        .lang-switch.en .lang-slider { transform: translateX(85%); }
 
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 36px; border-radius: 50px; background: var(--primary); color: white; font-weight: 600; font-size: 16px; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25); }
-        .btn:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 15px 30px rgba(37, 99, 235, 0.35); }
 
         /* --- ЗАГОЛОВОК СТОРІНКИ --- */
         .page-header { text-align: center; margin-bottom: 60px; padding-top: 150px; }
@@ -125,24 +117,9 @@
         @media (max-width: 992px) { .event-card-wide { flex-direction: column-reverse; padding: 25px; gap: 25px; } .event-card-wide .event-img-wrapper { min-height: 250px; width: 100%; } }
 
         /* ================= ФУТЕР (СПРОЩЕНИЙ) ================= */
-        .sky-footer { background: #0a0f1a; color: #ffffff; padding: 80px 5% 40px; text-align: center; position: relative; overflow: hidden; }
-        .sky-footer::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 600px; height: 300px; background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%); pointer-events: none; }
-        .footer-container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
         
-        .footer-logo-white { height: 40px; filter: brightness(0) invert(1); transition: 0.3s; margin-bottom: 40px; }
         
-        .btn-back-home {
-            display: inline-flex; align-items: center; gap: 12px; padding: 18px 40px; border-radius: 50px;
-            background: rgba(255, 255, 255, 0.05); color: white; font-weight: 700; font-size: 16px; text-decoration: none;
-            border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease; margin-bottom: 60px;
-        }
-        .btn-back-home:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3); }
 
-        .footer-bottom-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 30px; }
-        .legal-links { display: flex; gap: 30px; }
-        .legal-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: 0.3s; }
-        .legal-links a:hover { color: white; }
-        .copyright { color: rgba(255,255,255,0.4); font-size: 13px; }
 
         /* ================= МОДАЛКИ (БАЗА) ================= */
         .modal { display: none; position: fixed; z-index: 9999; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); align-items: flex-start; justify-content: center; overflow-y: auto; padding: 40px 20px; }
@@ -150,11 +127,9 @@
         .modal.show { display: flex; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
         .modal-content { background: white; margin: 0 auto; border-radius: 28px; position: relative; overflow: hidden; max-width: 500px; width: 100%; box-shadow: 0 40px 120px rgba(0,0,0,0.15); }
-        .modal-premium { max-width: 1100px; padding: 50px 40px; background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%); text-align: center; }
-        .close-event, .close { position: absolute; top: 15px; right: 15px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 20px; cursor: pointer; z-index: 10; transition: 0.3s; }
+        .close-event { position: absolute; top: 15px; right: 15px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 20px; cursor: pointer; z-index: 10; transition: 0.3s; }
         .close-event { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); color: white; }
         .close-event:hover { background: rgba(0, 0, 0, 0.7); transform: scale(1.1); }
-        .close { color: #000; font-size: 28px; right: 25px; top: 20px; }
 
         /* Специфічні стилі модалки подій */
         .event-modal-img-wrap { width: 100%; position: relative; overflow: hidden; background: #111; display: flex; align-items: center; justify-content: center; min-height: 300px; }
@@ -171,15 +146,9 @@
         .btn-register:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4); color: white; }
 
         /* ДОНАТ МОДАЛКА (КРАТКИЙ CSS) */
-        .donate-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left; }
-        .donate-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 15px; align-items: center;}
-        .premium-box { background: linear-gradient(135deg, #f1f7ff, #ffffff); border: 1px solid rgba(37,99,235,0.1); padding: 20px; border-radius: 16px;}
-        .copy-btn { background: var(--primary); border: none; color: white; border-radius: 10px; padding: 6px 10px; cursor: pointer; transition: 0.3s; }
-        .donate-fast { height: 100%; border-radius: 24px; padding: 30px; background: linear-gradient(135deg, #111827 0%, #312e81 100%); color: white; text-align: center; }
-        .mono-btn { display: inline-flex; align-items: center; gap: 10px; background: white; color: var(--primary); padding: 16px 20px; border-radius: 14px; font-weight: 700; text-decoration: none; margin-bottom: 20px; transition: 0.3s; width: 100%; justify-content: center;}
 
-        @media (max-width: 992px) { .donate-layout { grid-template-columns: 1fr; } }
-        @media (max-width: 600px) { .events-grid { grid-template-columns: 1fr; } .logo-text-img { display: none !important; } .page-header h1 { font-size: 32px; } .footer-bottom-bar { justify-content: center; flex-direction: column; } }
+        
+        @media (max-width: 600px) { .events-grid { grid-template-columns: 1fr; }  .page-header h1 { font-size: 32px; }  }
         
         /* ================= СЕКЦІЯ СОЦМЕРЕЖ ================= */
         .social-section { text-align: center; padding: 40px 5% 80px; max-width: 800px; margin: 0 auto; }

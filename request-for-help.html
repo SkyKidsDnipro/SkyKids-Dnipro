@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Потрібна допомога для дитини — харчування, речі чи підтримка? Залиште заявку в центрі Sky Kids у Дніпрі. Ми поруч.">
+    <meta name="description" content="Потрібна допомога для дитини — харчування, речі чи підтримка? Залиште заявку в центрі Sky Kids у Дніпрі. Ми поруч.">
     <!-- sk:head -->
     <link rel="canonical" href="https://skykids.com.ua/request-for-help.html">
     <meta name="theme-color" content="#2563eb">
@@ -67,36 +67,8 @@
             justify-content: space-between; align-items: center;
             padding: 20px 5%; z-index: 1000; transition: all 0.4s ease;
         }
-        .nav.scrolled {
-            padding: 12px 5%; background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
 
-        .back-link {
-            display: inline-flex; align-items: center; gap: 8px;
-            color: var(--primary); text-decoration: none; font-weight: 700;
-            background: rgba(37, 99, 235, 0.1); padding: 8px 16px; border-radius: 20px;
-            transition: 0.3s;
-        }
-        .back-link:hover { background: var(--primary); color: white; transform: translateX(-5px); }
 
-        .lang-switch {
-            display: flex; gap: 4px; background: rgba(241, 245, 249, 0.8);
-            padding: 4px; border-radius: 30px; position: relative; width: 110px;
-        }
-        .lang-switch button {
-            flex: 1; border: none; background: transparent; z-index: 2;
-            padding: 8px 0; cursor: pointer; font-weight: 600; color: var(--text-muted);
-            transition: 0.3s;
-        }
-        .lang-slider {
-            position: absolute; top: 4px; left: 4px; width: 50%; height: calc(100% - 8px);
-            background: white; border-radius: 20px; transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-        }
-        .lang-switch.en .lang-slider { transform: translateX(85%); }
-        .lang-switch button.active { color: var(--primary); }
 
         /* --- HEADER СТОРІНКИ --- */
         .legal-header {
@@ -213,38 +185,13 @@
         }
 
         /* --- УЛУЧШЕННЫЙ ФУТЕР --- */
-        .sky-footer { background: #0a0f1a; color: #fff; padding: 80px 5% 40px; border-top: 1px solid rgba(255,255,255,0.05); }
-        .footer-container { max-width: 1100px; margin: 0 auto; }
         
         /* Сетка для перелинковки */
-        .footer-nav-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-            gap: 40px; 
-            text-align: left;
-            margin-bottom: 60px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
         
-        .footer-col h4 { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: 25px; font-weight: 800; }
-        .footer-links { list-style: none; }
-        .footer-links li { margin-bottom: 15px; }
-        .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 15px; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
-        .footer-links a:hover { color: #fff; transform: translateX(5px); }
         
         /* Нижняя панель с легал-ссылками */
-        .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
-        .legal-links { display: flex; gap: 25px; }
-        .legal-links a { color: rgba(255,255,255,0.3); text-decoration: none; font-size: 13px; transition: 0.3s; }
-        .legal-links a:hover { color: #fff; }
-        .copyright { color: rgba(255,255,255,0.2); font-size: 13px; }
 
-        @media (max-width: 768px) {
-            .footer-nav-grid { text-align: center; }
-            .footer-links a { justify-content: center; }
-            .footer-bottom { flex-direction: column; text-align: center; }
-        }
+        
 
         @media (max-width: 768px) {
             .charter-card { padding: 40px 20px; }
