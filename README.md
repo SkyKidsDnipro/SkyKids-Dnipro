@@ -140,11 +140,12 @@ If you want to contribute or support the initiative — reach out.
 
 ### General Contact
 
-Email: officeskydoor@gmail.com
-Location: Dnipro, Ukraine
-Phone: +38 (056) 789-33-23
-Phone: +38 (095) 159-80-63
-Phone: +38 (063) 725-54-23
+Website: https://skykids.com.ua
+Email: skykidsdnipro@gmail.com
+Phone: +38 (066) 742-77-33
+Address: 152 Robocha St, Dnipro, Ukraine
+Instagram: https://www.instagram.com/skykids.dnipro/
+Telegram: https://t.me/skykids_dnipro
 
 
 ### 🤝 Partnerships & Grants / Fundraising
