@@ -24,14 +24,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/favicon-32.png">
     <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/duotone/style.css">
-    <link rel="stylesheet" href="assets/css/site.css?v=56c608bd">
+    <link rel="preload" href="assets/fonts/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/phosphor-bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/css/bundle.css?v=abf4e653">
 <!-- /sk:head -->
     <title>Partnerships | Sky Kids NGO</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Pacifico&display=swap">
     
     <style>
         :root {
@@ -56,7 +54,7 @@
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--bg-soft);
             color: var(--text-main);
             margin: 0; line-height: 1.8;
@@ -182,8 +180,8 @@
 <header class="sk-header">
     <div class="sk-header__inner">
         <a href="index.html" class="sk-logo" aria-label="SkyKids — на головну">
-            <img src="assets/img/brand/logo.webp" alt="" class="sk-logo__mark" width="44" height="44" fetchpriority="high">
-            <img src="assets/img/brand/wordmark.webp" alt="SkyKids" class="sk-logo__word" width="68" height="26">
+            <img src="assets/img/brand/logo-96.webp" alt="" class="sk-logo__mark" width="44" height="44" fetchpriority="high">
+            <img src="assets/img/brand/wordmark-200.webp" alt="SkyKids" class="sk-logo__word" width="68" height="26">
         </a>
 
         <nav class="sk-nav" id="sk-nav" aria-label="Головне меню">
@@ -207,7 +205,7 @@
         </nav>
 
         <div class="sk-header__actions">
-            <button class="sk-btn" type="button" data-open-modal="donateModal">
+            <button class="sk-btn" type="button" data-open-modal="donateModal" aria-label="Підтримати" data-uk-aria="Підтримати" data-en-aria="Donate">
                 <i class="ph-fill ph-heart" aria-hidden="true"></i>
                 <span data-uk="Підтримати" data-en="Donate">Підтримати</span>
             </button>
@@ -261,7 +259,7 @@
                     <p>Корпоративне волонтерство підвищує лояльність ваших працівників (eNPS) та згуртовує команду навколо важливої мети.</p>
                 </div>
                 <div class="b2b-card">
-                    <i class="ph-duotone ph-check-verified"></i>
+                    <i class="ph-duotone ph-seal-check"></i>
                     <h3>100% Прозорість</h3>
                     <p>Ми надаємо детальні звіти за кожну витрачену гривню. Ви точно знаєте, кому, як і коли допоміг ваш бізнес.</p>
                 </div>
@@ -340,7 +338,7 @@
 
         <div class="sk-footer__grid">
             <div class="sk-footer__brand">
-                <img src="assets/img/brand/wordmark.webp" alt="SkyKids" width="99" height="38" loading="lazy">
+                <img src="assets/img/brand/wordmark-200.webp" alt="SkyKids" width="99" height="38" loading="lazy">
                 <p class="sk-footer__about" data-uk="Ми будуємо систему, де кожна дитина має право на безпеку, розвиток та гарячий обід. Приєднуйтесь до змін." data-en="We are building a system where every child has the right to safety, growth and a hot meal. Join the change.">Ми будуємо систему, де кожна дитина має право на безпеку, розвиток та гарячий обід. Приєднуйтесь до змін.</p>
                 <p class="sk-footer__legal-name">ГО «Небесні Діти» · ЄДРПОУ 45080222</p>
                 <div class="sk-footer__social">
@@ -467,7 +465,7 @@
 </div>
 <!-- /sk:donate-modal -->
     <!-- sk:scripts -->
-<script src="assets/js/site.js?v=56c608bd" defer></script>
+<script src="assets/js/site.js?v=abf4e653" defer></script>
 <!-- /sk:scripts -->
 </body>
 </html>

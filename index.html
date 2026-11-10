@@ -23,22 +23,17 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/favicon-32.png">
     <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/duotone/style.css">
-    <link rel="stylesheet" href="assets/css/site.css?v=56c608bd">
+    <link rel="preload" href="assets/fonts/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/phosphor-bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/css/bundle.css?v=abf4e653">
 <!-- /sk:head -->
   
     <title>Sky Kids — Системна допомога дітям у прифронтовій зоні</title>
     <meta name="description" content="Благодійний фонд Sky Kids. Системна підтримка дітей у Дніпрі та прифронтових зонах: регулярне гаряче харчування, гуманітарна допомога, психологічна та освітня підтримка.">
     <meta name="keywords" content="Sky Kids, благодійний фонд, допомога дітям Дніпро, волонтери Україна, гуманітарна допомога дітям, регулярне харчування">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
     <script type="application/ld+json">
     {
@@ -1558,8 +1553,8 @@ body.modal-open {
 <header class="sk-header sk-header--overlay">
     <div class="sk-header__inner">
         <a href="index.html" class="sk-logo" aria-label="SkyKids — на головну">
-            <img src="assets/img/brand/logo.webp" alt="" class="sk-logo__mark" width="44" height="44" fetchpriority="high">
-            <img src="assets/img/brand/wordmark.webp" alt="SkyKids" class="sk-logo__word" width="68" height="26">
+            <img src="assets/img/brand/logo-96.webp" alt="" class="sk-logo__mark" width="44" height="44" fetchpriority="high">
+            <img src="assets/img/brand/wordmark-200.webp" alt="SkyKids" class="sk-logo__word" width="68" height="26">
         </a>
 
         <nav class="sk-nav" id="sk-nav" aria-label="Головне меню">
@@ -1583,7 +1578,7 @@ body.modal-open {
         </nav>
 
         <div class="sk-header__actions">
-            <button class="sk-btn" type="button" data-open-modal="donateModal">
+            <button class="sk-btn" type="button" data-open-modal="donateModal" aria-label="Підтримати" data-uk-aria="Підтримати" data-en-aria="Donate">
                 <i class="ph-fill ph-heart" aria-hidden="true"></i>
                 <span data-uk="Підтримати" data-en="Donate">Підтримати</span>
             </button>
@@ -1606,8 +1601,9 @@ body.modal-open {
 
 <section class="hero-brand" id="heroSection">
         <div class="hero-video-wrapper">
+            <!-- Відео підвантажується після завантаження сторінки (скрипт унизу), щоб не гальмувати перший екран -->
             <iframe class="hero-video-iframe" 
-                    src="https://www.youtube.com/embed/BJXmcD2eWYw?autoplay=1&mute=1&loop=1&playlist=BJXmcD2eWYw&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1" 
+                    data-src="https://www.youtube.com/embed/BJXmcD2eWYw?autoplay=1&mute=1&loop=1&playlist=BJXmcD2eWYw&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1" 
                     frameborder="0" 
                     allow="autoplay; encrypted-media" 
                     allowfullscreen title="Відео про SkyKids">
@@ -1736,7 +1732,7 @@ body.modal-open {
             'Табір'
         )">
             <div class="event-img-wrapper">
-                <img src="assets/img/events/tabir-karpaty.webp" alt="Літній табір у Карпатах" class="event-img" loading="lazy">
+                <img src="assets/img/events/tabir-karpaty.webp" alt="Літній табір у Карпатах" class="event-img" loading="lazy" srcset="assets/img/events/tabir-karpaty-640.webp 640w, assets/img/events/tabir-karpaty.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                 <div class="event-date-corner" data-uk="8-21 Черв" data-en="Jun 8-21">8-21 Черв</div>
                 <div class="event-hover-overlay">
                     <div class="huge-date">8-21</div>
@@ -1762,7 +1758,7 @@ body.modal-open {
             '13:30'
         )">
             <div class="event-img-wrapper">
-                <img src="assets/img/events/planetarii.webp" alt="Поїздка до планетарію" class="event-img" loading="lazy">
+                <img src="assets/img/events/planetarii.webp" alt="Поїздка до планетарію" class="event-img" loading="lazy" srcset="assets/img/events/planetarii-640.webp 640w, assets/img/events/planetarii.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                 <div class="event-date-corner" data-uk="3 Червня" data-en="June 3">3 Червня</div>
                 <div class="event-hover-overlay">
                     <div class="huge-date">3</div>
@@ -1782,8 +1778,8 @@ body.modal-open {
         <div class="event-card-wide" onclick="openEventModal(
             'assets/img/events/dytiache-sviato.webp', 
             'Велике дитяче свято! 🎉', 'Grand Children\'s Holiday! 🎉',
-            '🎉 ДРУЗІ, ЗАПРОШУЄМО НА ВЕЛИКЕ ДИТЯЧЕ СВЯТО!\n\n📅 31 травня\n🕛 Початок об 11:00\n\nМи готуємо масштабне та веселе свято для діток віком до 10 років! У дворі нашого центру розгорнеться справжнє містечко розваг.\n\nНа вас чекають:\n✨ творчі майстер-класи\n🎪 атракціони та батути\n🎩 виступ справжнього фокусника\n🌭 смачна їжа: хот-доги, солодка вата та лімонади\n🎁 подарунки для кожного малюка\n🎈 багато сюрпризів та радості!\n\nВсе це — абсолютно безкоштовно! Буде весело, цікаво та по-справжньому святково!\n\nЧекаємо кожного маленького гостя!', 
-            '🎉 FRIENDS, WELCOME TO THE GRAND CHILDREN\'S HOLIDAY!\n\n📅 May 31\n🕛 Starts at 11:00\n\nWe are preparing a huge and fun holiday for children under 10! Our center\'s yard will turn into a real amusement town.\n\nWaiting for you:\n✨ creative workshops\n🎪 attractions and trampolines\n🎩 a real magician\'s performance\n🌭 delicious food: hot dogs, cotton candy, and lemonades\n🎁 gifts for every little one\n🎈 lots of surprises and joy!\n\nAll of this is completely free! It will be fun, interesting, and truly festive!\n\nWaiting for every little guest!',
+            '🎉 ВЕЛИКЕ ДИТЯЧЕ СВЯТО ВІДБУЛОСЯ!\n\n📅 31 травня\n🕛 11:00\n\nМи провели масштабне та веселе свято для діток віком до 10 років! Двір нашого центру перетворився на справжнє містечко розваг.\n\nНа гостей чекали:\n✨ творчі майстер-класи\n🎪 атракціони та батути\n🎩 виступ справжнього фокусника\n🌭 смачна їжа: хот-доги, солодка вата та лімонади\n🎁 подарунки для кожного малюка\n🎈 багато сюрпризів та радості!\n\nУсе це було абсолютно безкоштовно. Було весело, цікаво та по-справжньому святково!\n\nДякуємо кожному маленькому гостю!', 
+            '🎉 THE GRAND CHILDREN\'S HOLIDAY TOOK PLACE!\n\n📅 May 31\n🕛 11:00\n\nWe held a big and joyful holiday for children under 10! Our centre\'s yard turned into a real amusement town.\n\nOur guests enjoyed:\n✨ creative workshops\n🎪 attractions and trampolines\n🎩 a real magician\'s performance\n🌭 delicious food: hot dogs, cotton candy and lemonade\n🎁 gifts for every little one\n🎈 lots of surprises and joy!\n\nAll of it was completely free. It was fun, exciting and truly festive!\n\nThank you to every little guest!',
             'https://t.me/skykids_dnipro/732', 
             '31 Травня', 'May 31',
             '11:00'
@@ -1792,14 +1788,14 @@ body.modal-open {
             <!-- ТЕКСТОВА ЧАСТИНА (ЗЛІВА) -->
             <div class="event-info">
                 <div class="event-badge-premium">
-                    <i class="ph-fill ph-star"></i> <span data-uk="Запрошуємо всіх!" data-en="Everyone is Welcome!">Запрошуємо всіх!</span>
+                    <i class="ph-fill ph-star"></i> <span data-uk="Відбулося 31 травня" data-en="Held on May 31">Відбулося 31 травня</span>
                 </div>
                 
                 <h3 data-uk="Велике дитяче свято! 🎉" data-en="Grand Children's Holiday! 🎉">Велике дитяче свято! 🎉</h3>
                 
-                <p data-uk="Ми готуємо масштабне свято для дітей до 10 років у дворі нашого центру! Буде безліч локацій, виступ справжнього фокусника, батути, а також смаколики: хот-доги, лімонади та солодка вата. І найголовніше — все це абсолютно безкоштовно!" 
-                   data-en="We are preparing a huge holiday for children under 10 in our center's yard! There will be lots of locations, a real magician's performance, trampolines, and treats: hot dogs, lemonades, and cotton candy. All for free!">
-                    Ми готуємо масштабне свято для дітей до 10 років у дворі нашого центру! Буде безліч локацій, виступ справжнього фокусника, батути, а також смаколики: хот-доги, лімонади та солодка вата. І найголовніше — все це абсолютно безкоштовно!
+                <p data-uk="Ми провели масштабне свято для дітей до 10 років у дворі нашого центру: безліч локацій, виступ справжнього фокусника, батути, а також смаколики — хот-доги, лімонади та солодка вата. І найголовніше — все це було абсолютно безкоштовно!" 
+                   data-en="We held a big holiday for children under 10 in our centre's yard: lots of activity zones, a real magician's performance, trampolines and treats — hot dogs, lemonade and cotton candy. All of it completely free!">
+                    Ми провели масштабне свято для дітей до 10 років у дворі нашого центру: безліч локацій, виступ справжнього фокусника, батути, а також смаколики — хот-доги, лімонади та солодка вата. І найголовніше — все це було абсолютно безкоштовно!
                 </p>
                 
                 <!-- Теги-переваги -->
@@ -1818,12 +1814,12 @@ body.modal-open {
 
             <!-- ФОТОГРАФІЯ (СПРАВА) -->
             <div class="event-img-wrapper">
-                <img src="assets/img/events/dytiache-sviato.webp" alt="Велике дитяче свято" class="event-img" loading="lazy">
+                <img src="assets/img/events/dytiache-sviato.webp" alt="Велике дитяче свято" class="event-img" loading="lazy" srcset="assets/img/events/dytiache-sviato-640.webp 640w, assets/img/events/dytiache-sviato.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                 <div class="event-date-corner" data-uk="31 Травня" data-en="May 31">31 Травня</div>
                 <div class="event-hover-overlay">
                     <div class="huge-date">31</div>
                     <div class="huge-month" data-uk="Травня" data-en="May">Травня</div>
-                    <div class="hover-desc" data-uk="Чекаємо на найкрутішому святі року!" data-en="Waiting for you at the coolest holiday of the year!">Чекаємо на найкрутішому святі року!</div>
+                    <div class="hover-desc" data-uk="Найкрутіше свято року!" data-en="The coolest holiday of the year!">Найкрутіше свято року!</div>
                 </div>
             </div>
             
@@ -1839,7 +1835,7 @@ body.modal-open {
             '16:00'
         )">
             <div class="event-img-wrapper">
-                <img src="assets/img/events/zachisky.webp" alt="День краси" class="event-img" loading="lazy">
+                <img src="assets/img/events/zachisky.webp" alt="День краси" class="event-img" loading="lazy" srcset="assets/img/events/zachisky-640.webp 640w, assets/img/events/zachisky.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                 <div class="event-date-corner" data-uk="25 Травня" data-en="May 25">25 Травня</div>
                 <div class="event-hover-overlay">
                     <div class="huge-date">25</div>
@@ -1865,7 +1861,7 @@ body.modal-open {
             '16:00'
         )">
             <div class="event-img-wrapper">
-                <img src="assets/img/events/kulinarni-maister-klasy.webp" alt="Кулінарія" class="event-img" loading="lazy">
+                <img src="assets/img/events/kulinarni-maister-klasy.webp" alt="Кулінарія" class="event-img" loading="lazy" srcset="assets/img/events/kulinarni-maister-klasy-640.webp 640w, assets/img/events/kulinarni-maister-klasy.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                 <div class="event-date-corner" data-uk="22 Травня" data-en="May 22">22 Травня</div>
                 <div class="event-hover-overlay">
                     <div class="huge-date">22</div>
@@ -1893,7 +1889,7 @@ body.modal-open {
             'registration.html'
         )">
             <div class="event-img-wrapper">
-                <img src="assets/img/events/kursy-media-smm.webp" alt="Курси Медіа та SMM" class="event-img" loading="lazy">
+                <img src="assets/img/events/kursy-media-smm.webp" alt="Курси Медіа та SMM" class="event-img" loading="lazy" srcset="assets/img/events/kursy-media-smm-640.webp 640w, assets/img/events/kursy-media-smm.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                 <div class="event-date-corner" style="color: #8b5cf6;" data-uk="Реєстрація" data-en="Registration">Реєстрація</div>
                 <div class="event-hover-overlay" style="background: rgba(139, 92, 246, 0.85);">
                     <div class="huge-date"><i class="ph-bold ph-star"></i></div>
@@ -1919,7 +1915,7 @@ body.modal-open {
             '16:00'
         )">
             <div class="event-img-wrapper">
-                <img src="assets/img/events/vodni-bytvy.webp" alt="Водні битви" class="event-img" loading="lazy">
+                <img src="assets/img/events/vodni-bytvy.webp" alt="Водні битви" class="event-img" loading="lazy" srcset="assets/img/events/vodni-bytvy-640.webp 640w, assets/img/events/vodni-bytvy.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                 <div class="event-date-corner" data-uk="21 Травня" data-en="May 21">21 Травня</div>
                 <div class="event-hover-overlay">
                     <div class="huge-date">21</div>
@@ -1945,7 +1941,7 @@ body.modal-open {
             '16:00'
         )"> 
             <div class="event-img-wrapper">
-                <img src="assets/img/events/strilky.webp" alt="Стрілки на мільйон" class="event-img" loading="lazy">
+                <img src="assets/img/events/strilky.webp" alt="Стрілки на мільйон" class="event-img" loading="lazy" srcset="assets/img/events/strilky-640.webp 640w, assets/img/events/strilky.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                 <div class="event-date-corner" data-uk="14 Травня" data-en="May 14">14 Травня</div>
                 <div class="event-hover-overlay">
                     <div class="huge-date">14</div>
@@ -1971,7 +1967,7 @@ body.modal-open {
             '16:00'
         )">
             <div class="event-img-wrapper">
-                <img src="assets/img/events/byti.webp" alt="Б'юті-майстер-клас" class="event-img" loading="lazy">
+                <img src="assets/img/events/byti.webp" alt="Б'юті-майстер-клас" class="event-img" loading="lazy" srcset="assets/img/events/byti-640.webp 640w, assets/img/events/byti.webp 1200w" sizes="(max-width: 600px) 92vw, 500px">
                 <div class="event-date-corner" data-uk="5 Травня" data-en="May 5">5 Травня</div>
                 <div class="event-hover-overlay">
                     <div class="huge-date">5</div>
@@ -2124,7 +2120,7 @@ body.modal-open {
 
         <div class="sk-footer__grid">
             <div class="sk-footer__brand">
-                <img src="assets/img/brand/wordmark.webp" alt="SkyKids" width="99" height="38" loading="lazy">
+                <img src="assets/img/brand/wordmark-200.webp" alt="SkyKids" width="99" height="38" loading="lazy">
                 <p class="sk-footer__about" data-uk="Ми будуємо систему, де кожна дитина має право на безпеку, розвиток та гарячий обід. Приєднуйтесь до змін." data-en="We are building a system where every child has the right to safety, growth and a hot meal. Join the change.">Ми будуємо систему, де кожна дитина має право на безпеку, розвиток та гарячий обід. Приєднуйтесь до змін.</p>
                 <p class="sk-footer__legal-name">ГО «Небесні Діти» · ЄДРПОУ 45080222</p>
                 <div class="sk-footer__social">
@@ -2189,7 +2185,7 @@ body.modal-open {
         
         <div class="event-modal-img-wrap">
             <div class="modal-blur-bg" id="modalBlurBg"></div>
-            <img id="modalEventImg" src="" alt="Event Image">
+            <img id="modalEventImg" src="" alt="Event Image" loading="lazy" decoding="async">
             <div class="modal-date-badge" id="modalDateBadge">
                 <i class="ph-bold ph-calendar-blank"></i> <span>Дата • Час</span>
             </div>
@@ -2215,6 +2211,23 @@ body.modal-open {
 </div>
   
     <script>
+// Фонове відео YouTube: вантажимо після основного контенту.
+// Не вантажимо при «Заощадженні трафіку» та «Зменшенні руху» — лишається статичний фон.
+(function () {
+    var frame = document.querySelector('.hero-video-iframe[data-src]');
+    if (!frame) return;
+    var saveData = navigator.connection && navigator.connection.saveData;
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (saveData || reduceMotion) return;
+    function start() { frame.src = frame.getAttribute('data-src'); }
+    function later() {
+        if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 3000 });
+        else setTimeout(start, 1500);
+    }
+    if (document.readyState === 'complete') later();
+    else window.addEventListener('load', later);
+})();
+
 // ЛОГИКА ДЛЯ МОДАЛКИ ПОДІЙ (СОБЫТИЙ)
 // ЛОГІКА ДЛЯ МОДАЛКИ ПОДІЙ (З ПІДТРИМКОЮ ПЕРЕКЛАДУ)
 function openEventModal(imageSrc, titleUk, titleEn, descUk, descEn, postLink, dateUk, dateEn, timeText, regLink = null) {
@@ -2330,7 +2343,7 @@ function loadMoreEvents() {
 </div>
 <!-- /sk:donate-modal -->
     <!-- sk:scripts -->
-<script src="assets/js/site.js?v=56c608bd" defer></script>
+<script src="assets/js/site.js?v=abf4e653" defer></script>
 <!-- /sk:scripts -->
 </body>
 </html>

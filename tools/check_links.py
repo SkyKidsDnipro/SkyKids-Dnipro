@@ -41,6 +41,8 @@ def main():
         refs = re.findall(r'(?:href|src)="([^"]*)"', s)
         refs += re.findall(r"url\(['\"]?([^'\")]+)['\"]?\)", s)
         refs += re.findall(r"openEventModal\('([^']+)'", s)
+        for srcset in re.findall(r'srcset="([^"]*)"', s):
+            refs += [part.strip().split()[0] for part in srcset.split(',') if part.strip()]
         for ref in refs:
             ref = ref.strip()
             if not ref or ref.startswith(SKIP_SCHEMES) or '${' in ref:
